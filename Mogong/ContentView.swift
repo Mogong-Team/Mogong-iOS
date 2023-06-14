@@ -6,12 +6,14 @@
 //
 
 import SwiftUI
+import KakaoSDKCommon
+import KakaoSDKAuth
 
 struct ContentView: View {
     var body: some View {
         TabView {
             NavigationView {
-                HomeView()
+                LoginView()
             }
             .tabItem {
                 Image(systemName: "heart.fill")
