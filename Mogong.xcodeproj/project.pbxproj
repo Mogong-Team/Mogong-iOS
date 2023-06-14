@@ -24,12 +24,12 @@
 		8F8A67432A39768700467936 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A67422A39768700467936 /* UserView.swift */; };
 		8F8A67452A39773600467936 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A67442A39773600467936 /* ContentView.swift */; };
 		8F8A67472A39792D00467936 /* RankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A67462A39792D00467936 /* RankView.swift */; };
-		8F8A67532A39DCF300467936 /* KakaoSDKAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 8F8A67522A39DCF300467936 /* KakaoSDKAuth */; };
-		8F8A67552A39DCF300467936 /* KakaoSDKCommon in Frameworks */ = {isa = PBXBuildFile; productRef = 8F8A67542A39DCF300467936 /* KakaoSDKCommon */; };
-		8F8A67572A39DCF300467936 /* KakaoSDKUser in Frameworks */ = {isa = PBXBuildFile; productRef = 8F8A67562A39DCF300467936 /* KakaoSDKUser */; };
+		936083925F226246A2A6DD2D /* Pods_Mogong.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43543764F7659697C75D1DC0 /* Pods_Mogong.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		43543764F7659697C75D1DC0 /* Pods_Mogong.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mogong.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C495DE2ED845CC16581FE5B /* Pods-Mogong.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mogong.debug.xcconfig"; path = "Target Support Files/Pods-Mogong/Pods-Mogong.debug.xcconfig"; sourceTree = "<group>"; };
 		8F8A67162A39755E00467936 /* Mogong.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mogong.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F8A67192A39755E00467936 /* MogongApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MogongApp.swift; sourceTree = "<group>"; };
 		8F8A671D2A39756000467936 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,6 +49,7 @@
 		8F8A67442A39773600467936 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8F8A67462A39792D00467936 /* RankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankView.swift; sourceTree = "<group>"; };
 		8F8A674D2A39D97B00467936 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		D667EF6094CA2926C5A20B00 /* Pods-Mogong.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mogong.release.xcconfig"; path = "Target Support Files/Pods-Mogong/Pods-Mogong.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,20 +57,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8F8A67552A39DCF300467936 /* KakaoSDKCommon in Frameworks */,
-				8F8A67532A39DCF300467936 /* KakaoSDKAuth in Frameworks */,
-				8F8A67572A39DCF300467936 /* KakaoSDKUser in Frameworks */,
+				936083925F226246A2A6DD2D /* Pods_Mogong.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8C553550B3D6F9F48E9D5446 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				43543764F7659697C75D1DC0 /* Pods_Mogong.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8F8A670D2A39755E00467936 = {
 			isa = PBXGroup;
 			children = (
 				8F8A67182A39755E00467936 /* Mogong */,
 				8F8A67172A39755E00467936 /* Products */,
+				E87B95DDFFF3746F3B31FFB7 /* Pods */,
+				8C553550B3D6F9F48E9D5446 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -155,6 +164,16 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		E87B95DDFFF3746F3B31FFB7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8C495DE2ED845CC16581FE5B /* Pods-Mogong.debug.xcconfig */,
+				D667EF6094CA2926C5A20B00 /* Pods-Mogong.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -162,20 +181,17 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8F8A67242A39756000467936 /* Build configuration list for PBXNativeTarget "Mogong" */;
 			buildPhases = (
+				2331CC238643A26D5AAC665E /* [CP] Check Pods Manifest.lock */,
 				8F8A67122A39755E00467936 /* Sources */,
 				8F8A67132A39755E00467936 /* Frameworks */,
 				8F8A67142A39755E00467936 /* Resources */,
+				E3D95C862BD99A57577FAA84 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = Mogong;
-			packageProductDependencies = (
-				8F8A67522A39DCF300467936 /* KakaoSDKAuth */,
-				8F8A67542A39DCF300467936 /* KakaoSDKCommon */,
-				8F8A67562A39DCF300467936 /* KakaoSDKUser */,
-			);
 			productName = Mogong;
 			productReference = 8F8A67162A39755E00467936 /* Mogong.app */;
 			productType = "com.apple.product-type.application";
@@ -204,9 +220,6 @@
 				Base,
 			);
 			mainGroup = 8F8A670D2A39755E00467936;
-			packageReferences = (
-				8F8A67512A39DCF300467936 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */,
-			);
 			productRefGroup = 8F8A67172A39755E00467936 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -227,6 +240,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2331CC238643A26D5AAC665E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Mogong-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E3D95C862BD99A57577FAA84 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Mogong/Pods-Mogong-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Mogong/Pods-Mogong-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Mogong/Pods-Mogong-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8F8A67122A39755E00467936 /* Sources */ = {
@@ -370,6 +425,7 @@
 		};
 		8F8A67252A39756000467936 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8C495DE2ED845CC16581FE5B /* Pods-Mogong.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -400,6 +456,7 @@
 		};
 		8F8A67262A39756000467936 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D667EF6094CA2926C5A20B00 /* Pods-Mogong.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -450,35 +507,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		8F8A67512A39DCF300467936 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/kakao/kakao-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		8F8A67522A39DCF300467936 /* KakaoSDKAuth */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8F8A67512A39DCF300467936 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
-			productName = KakaoSDKAuth;
-		};
-		8F8A67542A39DCF300467936 /* KakaoSDKCommon */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8F8A67512A39DCF300467936 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
-			productName = KakaoSDKCommon;
-		};
-		8F8A67562A39DCF300467936 /* KakaoSDKUser */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8F8A67512A39DCF300467936 /* XCRemoteSwiftPackageReference "kakao-ios-sdk" */;
-			productName = KakaoSDKUser;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8F8A670E2A39755E00467936 /* Project object */;
 }
