@@ -48,10 +48,10 @@ struct SignupView: View {
                             .stroke(.gray, lineWidth: 1)
                     }
                 
-                Button {
-                    
+                NavigationLink {
+                    LoginView()
                 } label: {
-                    Text("회원가입")
+                    Text("가입하기")
                         .frame(width: 300, height: 50)
                         .foregroundColor(.white)
                         .background(.black)

@@ -29,9 +29,9 @@ struct LoginView: View {
                         RoundedRectangle(cornerRadius: 5)
                             .stroke(.gray, lineWidth: 1)
                     }
-
-                Button {
-                    
+                
+                NavigationLink {
+                    UsernameView()
                 } label: {
                     Text("로그인")
                         .frame(width: 300, height: 50)
