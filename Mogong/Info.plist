@@ -17,7 +17,15 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>naverLogin</string>
+				<string>com.mogong.Mogong</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.445750195734-da9230k2r5min42eioscrp2uibiei6ch</string>
 			</array>
 		</dict>
 	</array>

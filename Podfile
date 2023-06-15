@@ -11,5 +11,7 @@ pod 'KakaoSDKCommon'
 pod 'KakaoSDKAuth'
 pod 'KakaoSDKUser'
 pod 'naveridlogin-sdk-ios'
+pod 'GoogleSignIn'
+pod 'GoogleSignInSwiftSupport'
 
 end

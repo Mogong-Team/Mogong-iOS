@@ -24,6 +24,7 @@
 		8F8A67432A39768700467936 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A67422A39768700467936 /* UserView.swift */; };
 		8F8A67452A39773600467936 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A67442A39773600467936 /* ContentView.swift */; };
 		8F8A67472A39792D00467936 /* RankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A67462A39792D00467936 /* RankView.swift */; };
+		8F8A67592A3ABB2200467936 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8F8A67582A3ABB2200467936 /* GoogleService-Info.plist */; };
 		936083925F226246A2A6DD2D /* Pods_Mogong.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43543764F7659697C75D1DC0 /* Pods_Mogong.framework */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +50,8 @@
 		8F8A67442A39773600467936 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8F8A67462A39792D00467936 /* RankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankView.swift; sourceTree = "<group>"; };
 		8F8A674D2A39D97B00467936 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8F8A67582A3ABB2200467936 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8F8A675A2A3ABFA200467936 /* Mogong.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Mogong.entitlements; sourceTree = "<group>"; };
 		D667EF6094CA2926C5A20B00 /* Pods-Mogong.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mogong.release.xcconfig"; path = "Target Support Files/Pods-Mogong/Pods-Mogong.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -93,7 +96,9 @@
 		8F8A67182A39755E00467936 /* Mogong */ = {
 			isa = PBXGroup;
 			children = (
+				8F8A675A2A3ABFA200467936 /* Mogong.entitlements */,
 				8F8A674D2A39D97B00467936 /* Info.plist */,
+				8F8A67582A3ABB2200467936 /* GoogleService-Info.plist */,
 				8F8A67192A39755E00467936 /* MogongApp.swift */,
 				8F8A67442A39773600467936 /* ContentView.swift */,
 				8F8A67272A3975E400467936 /* Service */,
@@ -235,6 +240,7 @@
 			files = (
 				8F8A67212A39756000467936 /* Preview Assets.xcassets in Resources */,
 				8F8A671E2A39756000467936 /* Assets.xcassets in Resources */,
+				8F8A67592A3ABB2200467936 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,6 +434,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Mogong/Mogong.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Mogong/Preview Content\"";
@@ -459,6 +466,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Mogong/Mogong.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Mogong/Preview Content\"";

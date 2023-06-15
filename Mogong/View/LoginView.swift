@@ -10,6 +10,9 @@ import KakaoSDKCommon
 import KakaoSDKAuth
 import KakaoSDKUser
 import NaverThirdPartyLogin
+import GoogleSignIn
+import GoogleSignInSwift
+import AuthenticationServices
 
 struct LoginView: View {
     @EnvironmentObject var viewModel: LoginViewModel
@@ -72,7 +75,11 @@ struct LoginView: View {
                         }
                     }
                 } label: {
-                    Text("kakao")
+                    Text("K")
+                        .frame(width: 50, height: 50)
+                        .background(.yellow)
+                        .foregroundColor(.black)
+                        .clipShape(Circle())
                 }
                 
                 Button {
@@ -87,26 +94,38 @@ struct LoginView: View {
                             .requestThirdPartyLogin() // 로그인 요청
                         print(#function)
                     }
-                    // 네이버 앱이 안깔려져 있을때 -> requestThirdPartyLogin을 통해 사파리로 이동
+                    // 네이버 앱이 안깔려져 있을때 -> 웹에서 로그인 요청
                     else {
                         NaverThirdPartyLoginConnection
                             .getSharedInstance()
                             .requestThirdPartyLogin()
                     }
                 } label: {
-                    Text("naver")
+                    Text("N")
+                        .frame(width: 50, height: 50)
+                        .background(.green)
+                        .foregroundColor(.white)
+                        .clipShape(Circle())
                 }
                 
                 Button {
                     
                 } label: {
-                    Image(systemName: "heart.fill")
+                    Text("G")
+                        .frame(width: 50, height: 50)
+                        .background(.blue)
+                        .foregroundColor(.white)
+                        .clipShape(Circle())
                 }
                 
                 Button {
-                    
+                    viewModel.signInWithApple()
                 } label: {
-                    Image(systemName: "heart.fill")
+                    Image(systemName: "applelogo")
+                        .frame(width: 50, height: 50)
+                        .background(.black)
+                        .foregroundColor(.white)
+                        .clipShape(Circle())
                 }
             }
             .padding()
