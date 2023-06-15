@@ -80,7 +80,7 @@ struct SocialLoginView: View {
             }
             
             Button {
-                
+                handleGoogleSignIn()
             } label: {
                 Text("G")
                     .frame(width: 50, height: 50)
@@ -97,6 +97,18 @@ struct SocialLoginView: View {
                     .background(.black)
                     .foregroundColor(.white)
                     .clipShape(Circle())
+            }
+        }
+    }
+    
+    func handleGoogleSignIn() {
+        guard let rootVC = UIApplication.shared.windows.first?.rootViewController else { return }
+        
+        GIDSignIn.sharedInstance.signIn(withPresenting: rootVC) { signInResult, error in
+            if let error = error {
+                print(error)
+            } else {
+                
             }
         }
     }

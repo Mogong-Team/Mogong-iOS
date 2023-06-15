@@ -10,7 +10,6 @@ import Combine
 import Alamofire
 import NaverThirdPartyLogin
 import GoogleSignIn
-import GoogleSignInSwift
 import AuthenticationServices
 
 class AuthViewModel: NSObject, ObservableObject  {
@@ -23,6 +22,16 @@ class AuthViewModel: NSObject, ObservableObject  {
         
     }
 }
+
+//extension AuthViewModel: GIDSignInDelegate {
+//    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+//        if let error = error {
+//            print("Error \(error.localizedDescription)")
+//            return
+//        }
+//        guard let authentication = user.authentication else { return }
+//    }
+//}
 
 extension AuthViewModel: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
     // Apple 로그인을 요청하는 메서드
@@ -59,7 +68,7 @@ extension AuthViewModel: ASAuthorizationControllerDelegate, ASAuthorizationContr
     }
 }
 
-extension AuthViewModel:  UIApplicationDelegate, NaverThirdPartyLoginConnectionDelegate   {
+extension AuthViewModel: NaverThirdPartyLoginConnectionDelegate   {
     // 로그인에 성공했을 경우 호출
     func oauth20ConnectionDidFinishRequestACTokenWithAuthCode() {
         print("로그인 성공")
