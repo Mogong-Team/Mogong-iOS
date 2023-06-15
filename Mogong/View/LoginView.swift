@@ -9,8 +9,11 @@ import SwiftUI
 import KakaoSDKCommon
 import KakaoSDKAuth
 import KakaoSDKUser
+import NaverThirdPartyLogin
 
 struct LoginView: View {
+    @EnvironmentObject var viewModel: LoginViewModel
+    
     var body: some View {
         VStack {
             HStack {
@@ -71,11 +74,27 @@ struct LoginView: View {
                 } label: {
                     Text("kakao")
                 }
-
+                
                 Button {
-                    
+                    // 네이버 앱이 깔려져 있을때
+                    if NaverThirdPartyLoginConnection
+                        .getSharedInstance()
+                        .isPossibleToOpenNaverApp()
+                    {
+                        NaverThirdPartyLoginConnection.getSharedInstance().delegate = viewModel.self
+                        NaverThirdPartyLoginConnection
+                            .getSharedInstance()
+                            .requestThirdPartyLogin() // 로그인 요청
+                        print(#function)
+                    }
+                    // 네이버 앱이 안깔려져 있을때 -> requestThirdPartyLogin을 통해 사파리로 이동
+                    else {
+                        NaverThirdPartyLoginConnection
+                            .getSharedInstance()
+                            .requestThirdPartyLogin()
+                    }
                 } label: {
-                    Image(systemName: "heart.fill")
+                    Text("naver")
                 }
                 
                 Button {

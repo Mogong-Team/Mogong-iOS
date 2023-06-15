@@ -170,7 +170,6 @@
 				8C495DE2ED845CC16581FE5B /* Pods-Mogong.debug.xcconfig */,
 				D667EF6094CA2926C5A20B00 /* Pods-Mogong.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
