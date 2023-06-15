@@ -12,7 +12,7 @@ import NaverThirdPartyLogin
 
 @main
 struct MogongApp: App {
-    @StateObject var loginViewModel = LoginViewModel()
+    @StateObject var authViewModel = AuthViewModel()
     @StateObject var studyViewModel = StudyViewModel()
     @StateObject var rankViewModel = RankViewModel()
     @StateObject var userViewModel = UserViewModel()
@@ -36,7 +36,7 @@ struct MogongApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(loginViewModel)
+                .environmentObject(authViewModel)
                 .environmentObject(studyViewModel)
                 .environmentObject(rankViewModel)
                 .environmentObject(userViewModel)

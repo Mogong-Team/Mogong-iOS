@@ -1,5 +1,5 @@
 //
-//  LoginViewModel.swift
+//  AuthViewModel.swift
 //  Mogong
 //
 //  Created by 심현석 on 2023/06/14.
@@ -13,13 +13,18 @@ import GoogleSignIn
 import GoogleSignInSwift
 import AuthenticationServices
 
-class LoginViewModel: NSObject, ObservableObject  {
+class AuthViewModel: NSObject, ObservableObject  {
     @Published var loginData = Login(id: "", name: "", email: "")
+    @Published var isLoggedIn: Bool = false
     
     let loginInstance = NaverThirdPartyLoginConnection.getSharedInstance()
+    
+    func checkIfLoggedIn() {
+        
+    }
 }
 
-extension LoginViewModel: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
+extension AuthViewModel: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
     // Apple 로그인을 요청하는 메서드
     func signInWithApple() {
         let request = ASAuthorizationAppleIDProvider().createRequest()
@@ -54,7 +59,7 @@ extension LoginViewModel: ASAuthorizationControllerDelegate, ASAuthorizationCont
     }
 }
 
-extension LoginViewModel:  UIApplicationDelegate, NaverThirdPartyLoginConnectionDelegate   {
+extension AuthViewModel:  UIApplicationDelegate, NaverThirdPartyLoginConnectionDelegate   {
     // 로그인에 성공했을 경우 호출
     func oauth20ConnectionDidFinishRequestACTokenWithAuthCode() {
         print("로그인 성공")
