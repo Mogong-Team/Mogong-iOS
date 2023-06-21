@@ -24,9 +24,7 @@
 		8F8A67432A39768700467936 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A67422A39768700467936 /* UserView.swift */; };
 		8F8A67452A39773600467936 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A67442A39773600467936 /* ContentView.swift */; };
 		8F8A67472A39792D00467936 /* RankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A67462A39792D00467936 /* RankView.swift */; };
-		8F8A675D2A3AE17900467936 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A675C2A3AE17900467936 /* SignupView.swift */; };
 		8F8A675F2A3AE30900467936 /* SocialLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A675E2A3AE30900467936 /* SocialLoginView.swift */; };
-		8F8A67612A3AE46000467936 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A67602A3AE46000467936 /* LoginView.swift */; };
 		8F8A67632A3B24DF00467936 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8F8A67622A3B24DF00467936 /* GoogleService-Info.plist */; };
 		8F8A67652A3B2EBB00467936 /* UsernameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A67642A3B2EBB00467936 /* UsernameView.swift */; };
 		936083925F226246A2A6DD2D /* Pods_Mogong.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43543764F7659697C75D1DC0 /* Pods_Mogong.framework */; };
@@ -55,9 +53,7 @@
 		8F8A67462A39792D00467936 /* RankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankView.swift; sourceTree = "<group>"; };
 		8F8A674D2A39D97B00467936 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8F8A675A2A3ABFA200467936 /* Mogong.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Mogong.entitlements; sourceTree = "<group>"; };
-		8F8A675C2A3AE17900467936 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		8F8A675E2A3AE30900467936 /* SocialLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLoginView.swift; sourceTree = "<group>"; };
-		8F8A67602A3AE46000467936 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		8F8A67622A3B24DF00467936 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8F8A67642A3B2EBB00467936 /* UsernameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameView.swift; sourceTree = "<group>"; };
 		D667EF6094CA2926C5A20B00 /* Pods-Mogong.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mogong.release.xcconfig"; path = "Target Support Files/Pods-Mogong/Pods-Mogong.release.xcconfig"; sourceTree = "<group>"; };
@@ -181,9 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				8F8A67342A39764D00467936 /* AuthView.swift */,
-				8F8A67602A3AE46000467936 /* LoginView.swift */,
 				8F8A675E2A3AE30900467936 /* SocialLoginView.swift */,
-				8F8A675C2A3AE17900467936 /* SignupView.swift */,
 				8F8A67642A3B2EBB00467936 /* UsernameView.swift */,
 			);
 			path = Authentication;
@@ -326,9 +320,7 @@
 				8F8A672F2A39763400467936 /* Rank.swift in Sources */,
 				8F8A67372A39765700467936 /* StudyViewModel.swift in Sources */,
 				8F8A67412A39767B00467936 /* Extension.swift in Sources */,
-				8F8A67612A3AE46000467936 /* LoginView.swift in Sources */,
 				8F8A67332A39764300467936 /* HomeView.swift in Sources */,
-				8F8A675D2A3AE17900467936 /* SignupView.swift in Sources */,
 				8F8A67312A39763800467936 /* User.swift in Sources */,
 				8F8A671A2A39755E00467936 /* MogongApp.swift in Sources */,
 				8F8A67432A39768700467936 /* UserView.swift in Sources */,

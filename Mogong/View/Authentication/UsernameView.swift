@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct UsernameView: View {
+    @Environment(\.dismiss) var dismiss
     @State private var username = ""
-
     
     var body: some View {
         VStack {
@@ -30,7 +30,7 @@ struct UsernameView: View {
                             .stroke(.gray, lineWidth: 1)
                     }
                 
-                Button {
+                NavigationLink {
                     
                 } label: {
                     Text("입력")
@@ -44,7 +44,17 @@ struct UsernameView: View {
             
             Spacer()
         }
-        .navigationBarHidden(true)
+        .navigationBarBackButtonHidden()
+        .toolbar {
+            ToolbarItemGroup(placement: .navigationBarLeading) {
+                Button {
+                    dismiss()
+                } label: {
+                    Image(systemName: "chevron.left")
+                        .foregroundColor(.black)
+                }
+            }
+        }
     }
 }
 

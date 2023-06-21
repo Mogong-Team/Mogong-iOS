@@ -37,10 +37,6 @@ struct AuthView: View {
                 }
                 .padding()
                 
-                LoginView()
-                
-                Divider()
-                
                 Text("3초만에 로그인하기")
                     .font(.body)
                     .fontWeight(.bold)
@@ -48,21 +44,16 @@ struct AuthView: View {
                 SocialLoginView()
                     .padding()
                 
-                HStack(spacing: 20) {
+                NavigationLink {
+                    
+                } label: {
                     Text("문의하기")
                         .font(.body)
                         .foregroundColor(.gray)
-                    
-                    NavigationLink {
-                        SignupView()
-                    } label: {
-                        Text("가입하기")
-                            .font(.body)
-                            .foregroundColor(.gray)
-                    }
                 }
             }
             .navigationBarHidden(true)
+            .accentColor(.red)
         }
     }
 }
