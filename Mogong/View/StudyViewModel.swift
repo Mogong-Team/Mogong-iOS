@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 
 class StudyViewModel: ObservableObject {
-
+    @Published var searchQuery: String = ""
     
     
 }
