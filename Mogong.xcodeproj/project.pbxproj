@@ -27,6 +27,8 @@
 		8F8A675F2A3AE30900467936 /* SocialLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A675E2A3AE30900467936 /* SocialLoginView.swift */; };
 		8F8A67632A3B24DF00467936 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8F8A67622A3B24DF00467936 /* GoogleService-Info.plist */; };
 		8F8A67652A3B2EBB00467936 /* UsernameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A67642A3B2EBB00467936 /* UsernameView.swift */; };
+		8F8A676A2A42CD5100467936 /* StudyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A67692A42CD5100467936 /* StudyListView.swift */; };
+		8F8A676C2A42CD6D00467936 /* MyStudyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A676B2A42CD6D00467936 /* MyStudyView.swift */; };
 		936083925F226246A2A6DD2D /* Pods_Mogong.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43543764F7659697C75D1DC0 /* Pods_Mogong.framework */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +58,8 @@
 		8F8A675E2A3AE30900467936 /* SocialLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLoginView.swift; sourceTree = "<group>"; };
 		8F8A67622A3B24DF00467936 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8F8A67642A3B2EBB00467936 /* UsernameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameView.swift; sourceTree = "<group>"; };
+		8F8A67692A42CD5100467936 /* StudyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyListView.swift; sourceTree = "<group>"; };
+		8F8A676B2A42CD6D00467936 /* MyStudyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStudyView.swift; sourceTree = "<group>"; };
 		D667EF6094CA2926C5A20B00 /* Pods-Mogong.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mogong.release.xcconfig"; path = "Target Support Files/Pods-Mogong/Pods-Mogong.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -147,6 +151,8 @@
 				8F8A675B2A3AE14D00467936 /* Authentication */,
 				8F8A67442A39773600467936 /* ContentView.swift */,
 				8F8A67322A39764300467936 /* HomeView.swift */,
+				8F8A67692A42CD5100467936 /* StudyListView.swift */,
+				8F8A676B2A42CD6D00467936 /* MyStudyView.swift */,
 				8F8A67462A39792D00467936 /* RankView.swift */,
 				8F8A67422A39768700467936 /* UserView.swift */,
 			);
@@ -307,12 +313,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F8A676A2A42CD5100467936 /* StudyListView.swift in Sources */,
 				8F8A67652A3B2EBB00467936 /* UsernameView.swift in Sources */,
 				8F8A672D2A39762F00467936 /* Study.swift in Sources */,
 				8F8A67472A39792D00467936 /* RankView.swift in Sources */,
 				8F8A67392A39765D00467936 /* RankViewModel.swift in Sources */,
 				8F8A67452A39773600467936 /* ContentView.swift in Sources */,
 				8F8A673D2A39766B00467936 /* AuthViewModel.swift in Sources */,
+				8F8A676C2A42CD6D00467936 /* MyStudyView.swift in Sources */,
 				8F8A673F2A39767200467936 /* Login.swift in Sources */,
 				8F8A675F2A3AE30900467936 /* SocialLoginView.swift in Sources */,
 				8F8A67352A39764D00467936 /* AuthView.swift in Sources */,

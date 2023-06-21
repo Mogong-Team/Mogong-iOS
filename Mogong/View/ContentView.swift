@@ -21,7 +21,23 @@ struct ContentView: View {
                     }
                     .tabItem {
                         Image(systemName: "heart.fill")
-                        Text("게시판")
+                        Text("Home")
+                    }
+                    
+                    NavigationView {
+                        StudyListView()
+                    }
+                    .tabItem {
+                        Image(systemName: "heart.fill")
+                        Text("Study List")
+                    }
+                    
+                    NavigationView {
+                        MyStudyView()
+                    }
+                    .tabItem {
+                        Image(systemName: "heart.fill")
+                        Text("My Study")
                     }
                     
                     NavigationView {
@@ -29,7 +45,7 @@ struct ContentView: View {
                     }
                     .tabItem {
                         Image(systemName: "heart.fill")
-                        Text("리그")
+                        Text("Ranking")
                     }
                     
                     NavigationView {
@@ -37,7 +53,7 @@ struct ContentView: View {
                     }
                     .tabItem {
                         Image(systemName: "heart.fill")
-                        Text("추가")
+                        Text("My Page")
                     }
                 }
             } else {
