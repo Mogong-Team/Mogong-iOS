@@ -8,73 +8,64 @@
 import SwiftUI
 
 struct StudyListCell: View {
-    @EnvironmentObject var viewModel: StudyViewModel
     
-    @State private var tags = ["모집중", "모집완료", "스터디완주 2회", "#자바스크립트", "#앱개발", "#디자이너"]
-    
-    @State private var des = ["줌 스터디", "참여인원 10명", "대규모 프로젝트", "화이팅"]
-    
-    var columns: [GridItem] = [
-        GridItem(.adaptive(minimum: .infinity, maximum: .infinity), spacing: nil, alignment: nil)
-    ]
-    
-    var desColumns: [GridItem] = [
-        GridItem(.adaptive(minimum: .infinity, maximum: .infinity), spacing: nil, alignment: nil)
-    ]
+    var tags = ["모집중", "모집완료", "스터디완주 2회", "#자바스크립트", "#앱개발", "#디자이너"]
+    var des = ["줌 스터디", "참여인원 10명", "대규모 프로젝트", "화이팅"]
     
     var body: some View {
-            HStack {
-                VStack {
-                    Image(systemName: "circle.fill")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 40, height: 40)
-                        .clipShape(Circle())
+        HStack {
+            VStack {
+                Image(systemName: "circle.fill")
+                    .resizable()
+                    .frame(width: 40, height: 40)
+                    .scaledToFit()
+                    .clipShape(Circle())
+                
+                Spacer()
+            }
+            
+            VStack {
+                HStack {
+                    Text("~2023.06.28")
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                    
+                    Spacer()
+                    
+                    Button {
+                        
+                    } label: {
+                        Image(systemName: "heart")
+                            .tint(.red)
+                    }
+                }
+                
+                HStack {
+                    Text("한달동안 프로젝트 같이해요!")
+                        .foregroundColor(.black)
+                        .fontWeight(.bold)
+                        .lineLimit(1)
+                        .frame(alignment: .leading)
                     
                     Spacer()
                 }
-
-                VStack {
-                    HStack {
-                        Text("~2023.06.28")
-                            .font(.subheadline)
-                            .foregroundColor(.gray)
-
-                        Spacer()
-
-                        Button {
-                            
-                        } label: {
-                            Image(systemName: "heart")
-                                .tint(.red)
-                        }
-                    }
-
-                    HStack {
-                        Text("한달동안 프로젝트 같이해요!")
-                            .fontWeight(.bold)
-                            .lineLimit(1)
-                        .frame(alignment: .leading)
-
-                        Spacer()
-                    }
-                    
-                    LazyVGrid(columns: columns, alignment: .leading, spacing: nil) {
-                        ForEach($tags, id: \.self) { tag in
-                            tagView(tagType: .label, tag: tag)
-                        }
-                    }
-                    
-                    LazyVGrid(columns: desColumns, alignment: .leading) {
-                        ForEach($des, id: \.self) { des in
-                            descriptionView(des: des)
-                        }
+                
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: 100))], alignment: .leading, spacing: nil) {
+                    ForEach(tags, id: \.self) { tag in
+                        tagView(tagType: .label, tag: tag)
                     }
                 }
-
-                Spacer()
+                
+                LazyVGrid(columns: [GridItem(.flexible())], alignment: .leading, spacing: nil) {
+                    ForEach(des, id: \.self) { des in
+                        descriptionView(des: des)
+                    }
+                }
             }
-            .padding()
+            
+            Spacer()
+        }
+        .padding()
     }
 }
 
@@ -85,7 +76,7 @@ struct StudyListCell_Previews: PreviewProvider {
 }
 
 struct descriptionView: View {
-    @Binding var des: String
+    var des: String
     
     var body: some View {
         Label {
@@ -107,7 +98,7 @@ enum TagType {
 
 struct tagView: View {
     var tagType: TagType
-    @Binding var tag: String
+    var tag: String
     
     var body: some View {
         switch tagType {
