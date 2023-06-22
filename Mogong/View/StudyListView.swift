@@ -11,9 +11,7 @@ struct StudyListView: View {
     @EnvironmentObject var viewModel: StudyViewModel
     
     @State private var selectedFilter: Int = 0
-    
-    var items = ["1", "2", "3", "4", "5"]
-    
+        
     var body: some View {
         VStack {
             HStack {
@@ -48,11 +46,11 @@ struct StudyListView: View {
             .padding(.horizontal, 20)
             
             ScrollView {
-                ForEach(items, id:\.self) { item in
+                ForEach(viewModel.studys) { study in
                     NavigationLink {
                         // 스터디 상세 보기
                     } label: {
-                        StudyListCell()
+                        StudyListCell(study: study)
                             .background(Color(uiColor: .systemGray5))
                             .cornerRadius(20)
                             .padding(.horizontal, 20)

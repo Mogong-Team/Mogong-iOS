@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct StudyListCell: View {
+    let study: Study
     
     var tags = ["모집중", "모집완료", "스터디완주 2회", "#자바스크립트", "#앱개발", "#디자이너"]
     var des = ["줌 스터디", "참여인원 10명", "대규모 프로젝트", "화이팅"]
@@ -41,7 +42,7 @@ struct StudyListCell: View {
                 }
                 
                 HStack {
-                    Text("한달동안 프로젝트 같이해요!")
+                    Text(study.title)
                         .foregroundColor(.black)
                         .fontWeight(.bold)
                         .lineLimit(1)
@@ -51,7 +52,7 @@ struct StudyListCell: View {
                 }
                 
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 100))], alignment: .leading, spacing: nil) {
-                    ForEach(tags, id: \.self) { tag in
+                    ForEach(study.hashtags, id: \.self) { tag in
                         tagView(tagType: .label, tag: tag)
                     }
                 }
@@ -71,7 +72,7 @@ struct StudyListCell: View {
 
 struct StudyListCell_Previews: PreviewProvider {
     static var previews: some View {
-        StudyListCell()
+        StudyListCell(study: Study(title: "한달동안 프로젝트 같이해요!", frequencyOfWeek: 2, durationOfMonth: 2, studyMode: .online, totalMemberCount: 5, introduction: "안녕하세요", memberPreference: "누구든 상관없어요", hashtags: ["#자바스크립트", "#앱개발", "#디자이너"], dueDate: Date(timeIntervalSinceNow: 24*3600*7), languages: [.javaScript, .figma, .swift], fields: [.backend, .designer], profitGoal: .no, recruitmentType: .teamProject, isBookMarked: true, isCompleted: false))
     }
 }
 
