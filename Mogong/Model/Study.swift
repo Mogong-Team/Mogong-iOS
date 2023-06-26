@@ -18,12 +18,6 @@ enum StudyMode: String, CaseIterable {
     case both = "온/오프라인"
 }
 
-enum Language: String, CaseIterable {
-    case javaScript = "JavaScript"
-    case swift = "Swift"
-    case figma = "Figma"
-}
-
 enum Field: String, CaseIterable {
     case frontend = "프론트엔드"
     case backend = "백엔드"

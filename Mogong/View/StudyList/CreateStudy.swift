@@ -14,15 +14,27 @@ struct CreateStudy: View {
     @State private var isComplete: Bool = false
     
     @State private var title: String = ""
+    @State private var frequencyOfWeek: Int = 0
+    @State private var totalMemberCount: Int = 0
     @State private var selectedStudyType: StudyType?
     @State private var selectedStudyMode: StudyMode?
     @State private var introduction: String = ""
     @State private var memberPreference: String = ""
     @State private var selectProfitGoal: ProfitGoal?
     @State private var dueDate: Date = Date()
-    @State private var languages = [Language]()
+    @State private var selectedlanguages = Set<Language>()
     
     @State private var showDatePicker = false
+    @State private var showSelectLanguagesView = false
+    
+    @State private var selectedNumberOfTimes = 0
+    @State private var selectedNumberOfPeople = 0
+    @State private var selectedDuration = 0
+    @State private var showPicker1 = false
+    
+    let frequency = [1, 2, 3, 4, 5, 6, 7]
+    let memberCount = [2, 3, 4, 5, 6, 7, 8, 9, 10]
+    let durations = ["1 week", "2 weeks", "3 weeks", "1 month"]
     
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -42,7 +54,31 @@ struct CreateStudy: View {
                                 .font(Font.system(size: 16))
                                 .frame(height: 25)
                             
-                            SingleLineTextField(text: $title, placeHolder: "")
+                            Menu {
+                                ForEach(0..<frequency.count, id: \.self) { frequency in
+                                    Button {
+                                        frequencyOfWeek = frequency
+                                    } label: {
+                                        Text("주 \(String(frequency))회")
+                                    }
+                                }
+                            } label: {
+                                HStack {
+                                    Text("일")
+                                        .font(Font.system(size: 16))
+                                        .foregroundColor(Color(uiColor: .lightGray))
+                                    
+                                    Image(systemName: "arrowtriangle.down.fill")
+                                        .foregroundColor(.gray)
+                                }
+                                .padding(.horizontal, 13)
+                                .frame(height: 38)
+                                .frame(maxWidth: .infinity)
+                                .overlay {
+                                    RoundedRectangle(cornerRadius: 9)
+                                        .stroke(Color.gray, lineWidth: 1)
+                                }
+                            }
                         }
                         
                         VStack(alignment: .leading, spacing: 0) {
@@ -50,15 +86,30 @@ struct CreateStudy: View {
                                 .font(Font.system(size: 16))
                                 .frame(height: 25)
                             
-                            SingleLineTextField(text: $title, placeHolder: "")
-                        }
-                        
-                        VStack(alignment: .leading, spacing: 0) {
-                            Text("기간")
-                                .font(Font.system(size: 16))
-                                .frame(height: 25)
-                            
-                            SingleLineTextField(text: $title, placeHolder: "")
+                            Menu {
+                                ForEach(0..<memberCount.count, id: \.self) { count in
+                                    Button {
+                                        totalMemberCount = count
+                                    } label: {
+                                        Text("\(String(count))명")
+                                    }
+                                }
+                            } label: {
+                                HStack {
+                                    Text("명")
+                                        .font(Font.system(size: 16))
+                                        .foregroundColor(Color(uiColor: .lightGray))
+                                    
+                                    Image(systemName: "chevron.down")
+                                        .foregroundColor(.gray)
+                                }
+                                .padding(.horizontal, 13)
+                                .frame(height: 38)
+                                .frame(maxWidth: .infinity)
+                                .overlay {
+                                    RoundedRectangle(cornerRadius: 9)
+                                        .stroke(Color.gray, lineWidth: 1)
+                                }                            }
                         }
                     }
                 }
@@ -144,6 +195,7 @@ struct CreateStudy: View {
                         
                         Button {
                             // add picker
+                            showSelectLanguagesView =  true
                         } label: {
                             Image(systemName: "plus")
                         }
@@ -189,6 +241,11 @@ struct CreateStudy: View {
                 .datePickerStyle(.graphical)
                 .environment(\.locale, Locale.init(identifier: "ko_KR"))
                 .presentationDetents([.fraction(0.5)])
+        }
+        .sheet(isPresented: $showSelectLanguagesView) {
+            NavigationStack {
+                SelectLanguageView(selectedLanguage: $selectedlanguages)
+            }
         }
     }
 }
