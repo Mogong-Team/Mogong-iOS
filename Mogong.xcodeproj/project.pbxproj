@@ -40,6 +40,7 @@
 		8FE5169F2A4965F40059D720 /* ApplicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE5169E2A4965F40059D720 /* ApplicationView.swift */; };
 		8FE516A12A4969DA0059D720 /* StudyDeatailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE516A02A4969DA0059D720 /* StudyDeatailView.swift */; };
 		8FE516A32A4973280059D720 /* MemberIntroductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE516A22A4973280059D720 /* MemberIntroductionView.swift */; };
+		8FE516A52A4989030059D720 /* HashtagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE516A42A4989030059D720 /* HashtagView.swift */; };
 		936083925F226246A2A6DD2D /* Pods_Mogong.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43543764F7659697C75D1DC0 /* Pods_Mogong.framework */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +83,7 @@
 		8FE5169E2A4965F40059D720 /* ApplicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationView.swift; sourceTree = "<group>"; };
 		8FE516A02A4969DA0059D720 /* StudyDeatailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyDeatailView.swift; sourceTree = "<group>"; };
 		8FE516A22A4973280059D720 /* MemberIntroductionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberIntroductionView.swift; sourceTree = "<group>"; };
+		8FE516A42A4989030059D720 /* HashtagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagView.swift; sourceTree = "<group>"; };
 		D667EF6094CA2926C5A20B00 /* Pods-Mogong.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mogong.release.xcconfig"; path = "Target Support Files/Pods-Mogong/Pods-Mogong.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -234,6 +236,7 @@
 				8FE516922A4913450059D720 /* SelectButton.swift */,
 				8FE516942A4913700059D720 /* SingleLineTextField.swift */,
 				8FE516962A49138E0059D720 /* MultiLineTextField.swift */,
+				8FE516A42A4989030059D720 /* HashtagView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 				8F8A67652A3B2EBB00467936 /* UsernameView.swift in Sources */,
 				8F8A672D2A39762F00467936 /* Study.swift in Sources */,
 				8FE516932A4913460059D720 /* SelectButton.swift in Sources */,
+				8FE516A52A4989030059D720 /* HashtagView.swift in Sources */,
 				8F8A67472A39792D00467936 /* RankView.swift in Sources */,
 				8F8A67392A39765D00467936 /* RankViewModel.swift in Sources */,
 				8FE516972A49138E0059D720 /* MultiLineTextField.swift in Sources */,

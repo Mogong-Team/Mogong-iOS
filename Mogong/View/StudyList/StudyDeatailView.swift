@@ -38,7 +38,7 @@ struct StudyDeatailView: View {
                             .font(Font.system(size: 36, weight: .bold))
                             .multilineTextAlignment(.leading)
                         
-                        VStack(alignment: .leading, spacing: 10) {
+                        VStack(alignment: .leading, spacing: 15) {
                             HStack(spacing: 5) {
                                 Text("모집 형태")
                                     .font(Font.system(size: 15, weight: .bold))
@@ -71,7 +71,7 @@ struct StudyDeatailView: View {
                                     .font(Font.system(size: 15, weight: .bold))
                                     .foregroundColor(.gray)
                                 
-                                Text("")
+                                Text("\(study.durationOfMonth)달")
                                     .font(Font.system(size: 15, weight: .bold))
                             }
                             
@@ -80,8 +80,11 @@ struct StudyDeatailView: View {
                                     .font(Font.system(size: 15, weight: .bold))
                                     .foregroundColor(.gray)
                                 
-                                Text("")
-                                    .font(Font.system(size: 15, weight: .bold))
+                                LazyHGrid(rows: [GridItem()]) {
+                                    ForEach(study.languages, id: \.self) { language in
+                                        HashtagView(text: language.rawValue)
+                                    }
+                                }
                             }
                             
                             HStack(spacing: 5) {
@@ -89,8 +92,11 @@ struct StudyDeatailView: View {
                                     .font(Font.system(size: 15, weight: .bold))
                                     .foregroundColor(.gray)
                                 
-                                Text("")
-                                    .font(Font.system(size: 15, weight: .bold))
+                                LazyHGrid(rows: [GridItem()]) {
+                                    ForEach(study.fields, id: \.self) { field in
+                                        HashtagView(text: field.rawValue)
+                                    }
+                                }
                             }
                             
                             HStack(spacing: 5) {

@@ -14,8 +14,9 @@ struct CreateStudy: View {
     @State private var isComplete: Bool = false
     
     @State private var title: String = ""
-    @State private var frequencyOfWeek: Int = 0
-    @State private var totalMemberCount: Int = 0
+    @State private var frequencyOfWeek: Int?
+    @State private var totalMemberCount: Int?
+    @State private var durationOfMonth: Int?
     @State private var selectedStudyType: StudyType?
     @State private var selectedStudyMode: StudyMode?
     @State private var introduction: String = ""
@@ -29,6 +30,7 @@ struct CreateStudy: View {
     
     let frequency = [1, 2, 3, 4, 5, 6, 7]
     let memberCount = [2, 3, 4, 5, 6, 7, 8, 9, 10]
+    let month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
     
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -53,18 +55,24 @@ struct CreateStudy: View {
                                     Button {
                                         frequencyOfWeek = frequency
                                     } label: {
-                                        Text("주 \(String(frequency))회")
+                                        Text("주 \(String(frequency))일")
                                     }
                                 }
                             } label: {
                                 HStack {
-                                    Text("일")
-                                        .font(Font.system(size: 16))
-                                        .foregroundColor(Color(uiColor: .lightGray))
-                                    
-                                    Image(systemName: "arrowtriangle.down.fill")
-                                        .foregroundColor(.gray)
+                                    if let frequency = frequencyOfWeek {
+                                        Text("주 \(frequency)일")
+                                            .foregroundColor(.black)
+                                            .fontWeight(.bold)
+                                    } else {
+                                        Text("일")
+                                            .foregroundColor(Color(uiColor: .lightGray))
+                                        
+                                        Image(systemName: "arrowtriangle.down.fill")
+                                            .foregroundColor(.gray)
+                                    }
                                 }
+                                .font(Font.system(size: 16))
                                 .padding(.horizontal, 13)
                                 .frame(height: 38)
                                 .frame(maxWidth: .infinity)
@@ -90,13 +98,19 @@ struct CreateStudy: View {
                                 }
                             } label: {
                                 HStack {
-                                    Text("명")
-                                        .font(Font.system(size: 16))
-                                        .foregroundColor(Color(uiColor: .lightGray))
-                                    
-                                    Image(systemName: "chevron.down")
-                                        .foregroundColor(.gray)
+                                    if let member = totalMemberCount {
+                                        Text("\(member)명")
+                                            .foregroundColor(.black)
+                                            .fontWeight(.bold)
+                                    } else {
+                                        Text("명")
+                                            .foregroundColor(Color(uiColor: .lightGray))
+                                        
+                                        Image(systemName: "chevron.down")
+                                            .foregroundColor(.gray)
+                                    }
                                 }
+                                .font(Font.system(size: 16))
                                 .padding(.horizontal, 13)
                                 .frame(height: 38)
                                 .frame(maxWidth: .infinity)
@@ -104,6 +118,44 @@ struct CreateStudy: View {
                                     RoundedRectangle(cornerRadius: 9)
                                         .stroke(Color.gray, lineWidth: 1)
                                 }                            }
+                        }
+                        
+                        VStack(alignment: .leading, spacing: 0) {
+                            Text("기간")
+                                .font(Font.system(size: 16))
+                                .frame(height: 25)
+                            
+                            Menu {
+                                ForEach(0..<month.count, id: \.self) { month in
+                                    Button {
+                                        durationOfMonth = month
+                                    } label: {
+                                        Text("\(String(month))달")
+                                    }
+                                }
+                            } label: {
+                                HStack {
+                                    if let month = durationOfMonth {
+                                        Text("\(month)달")
+                                            .foregroundColor(.black)
+                                            .fontWeight(.bold)
+                                    } else {
+                                        Text("달")
+                                            .foregroundColor(Color(uiColor: .lightGray))
+                                        
+                                        Image(systemName: "chevron.down")
+                                            .foregroundColor(.gray)
+                                    }
+                                }
+                                .font(Font.system(size: 16))
+                                .padding(.horizontal, 13)
+                                .frame(height: 38)
+                                .frame(maxWidth: .infinity)
+                                .overlay {
+                                    RoundedRectangle(cornerRadius: 9)
+                                        .stroke(Color.gray, lineWidth: 1)
+                                }
+                            }
                         }
                     }
                 }
