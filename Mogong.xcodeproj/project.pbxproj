@@ -20,7 +20,7 @@
 		8F8A673B2A39766300467936 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A673A2A39766300467936 /* UserViewModel.swift */; };
 		8F8A673D2A39766B00467936 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A673C2A39766B00467936 /* AuthViewModel.swift */; };
 		8F8A673F2A39767200467936 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A673E2A39767200467936 /* Login.swift */; };
-		8F8A67412A39767B00467936 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A67402A39767B00467936 /* Extension.swift */; };
+		8F8A67412A39767B00467936 /* Date+Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A67402A39767B00467936 /* Date+Conversion.swift */; };
 		8F8A67432A39768700467936 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A67422A39768700467936 /* UserView.swift */; };
 		8F8A67452A39773600467936 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A67442A39773600467936 /* ContentView.swift */; };
 		8F8A67472A39792D00467936 /* RankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A67462A39792D00467936 /* RankView.swift */; };
@@ -30,6 +30,12 @@
 		8F8A676A2A42CD5100467936 /* StudyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A67692A42CD5100467936 /* StudyListView.swift */; };
 		8F8A676C2A42CD6D00467936 /* MyStudyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A676B2A42CD6D00467936 /* MyStudyView.swift */; };
 		8F8A676E2A42D16800467936 /* StudyListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A676D2A42D16800467936 /* StudyListCell.swift */; };
+		8FE516902A4868120059D720 /* CreateStudy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE5168F2A4868120059D720 /* CreateStudy.swift */; };
+		8FE516932A4913460059D720 /* SelectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE516922A4913450059D720 /* SelectButton.swift */; };
+		8FE516952A4913700059D720 /* SingleLineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE516942A4913700059D720 /* SingleLineTextField.swift */; };
+		8FE516972A49138E0059D720 /* MultiLineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE516962A49138E0059D720 /* MultiLineTextField.swift */; };
+		8FE516992A4927D00059D720 /* SelectLanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE516982A4927D00059D720 /* SelectLanguageView.swift */; };
+		8FE5169B2A492EAF0059D720 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE5169A2A492EAF0059D720 /* Language.swift */; };
 		936083925F226246A2A6DD2D /* Pods_Mogong.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43543764F7659697C75D1DC0 /* Pods_Mogong.framework */; };
 /* End PBXBuildFile section */
 
@@ -50,7 +56,7 @@
 		8F8A673A2A39766300467936 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		8F8A673C2A39766B00467936 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		8F8A673E2A39767200467936 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
-		8F8A67402A39767B00467936 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		8F8A67402A39767B00467936 /* Date+Conversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Conversion.swift"; sourceTree = "<group>"; };
 		8F8A67422A39768700467936 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
 		8F8A67442A39773600467936 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8F8A67462A39792D00467936 /* RankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankView.swift; sourceTree = "<group>"; };
@@ -62,6 +68,12 @@
 		8F8A67692A42CD5100467936 /* StudyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyListView.swift; sourceTree = "<group>"; };
 		8F8A676B2A42CD6D00467936 /* MyStudyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStudyView.swift; sourceTree = "<group>"; };
 		8F8A676D2A42D16800467936 /* StudyListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyListCell.swift; sourceTree = "<group>"; };
+		8FE5168F2A4868120059D720 /* CreateStudy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateStudy.swift; sourceTree = "<group>"; };
+		8FE516922A4913450059D720 /* SelectButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectButton.swift; sourceTree = "<group>"; };
+		8FE516942A4913700059D720 /* SingleLineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleLineTextField.swift; sourceTree = "<group>"; };
+		8FE516962A49138E0059D720 /* MultiLineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiLineTextField.swift; sourceTree = "<group>"; };
+		8FE516982A4927D00059D720 /* SelectLanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLanguageView.swift; sourceTree = "<group>"; };
+		8FE5169A2A492EAF0059D720 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		D667EF6094CA2926C5A20B00 /* Pods-Mogong.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mogong.release.xcconfig"; path = "Target Support Files/Pods-Mogong/Pods-Mogong.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,6 +155,7 @@
 				8F8A672C2A39762F00467936 /* Study.swift */,
 				8F8A672E2A39763400467936 /* Rank.swift */,
 				8F8A67302A39763800467936 /* User.swift */,
+				8FE5169A2A492EAF0059D720 /* Language.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -153,11 +166,11 @@
 				8F8A675B2A3AE14D00467936 /* Authentication */,
 				8F8A67442A39773600467936 /* ContentView.swift */,
 				8F8A67322A39764300467936 /* HomeView.swift */,
-				8F8A67692A42CD5100467936 /* StudyListView.swift */,
-				8F8A676D2A42D16800467936 /* StudyListCell.swift */,
+				8FE5168E2A4868010059D720 /* StudyList */,
 				8F8A676B2A42CD6D00467936 /* MyStudyView.swift */,
 				8F8A67462A39792D00467936 /* RankView.swift */,
 				8F8A67422A39768700467936 /* UserView.swift */,
+				8FE516912A4912DC0059D720 /* Components */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -165,7 +178,7 @@
 		8F8A672A2A3975E600467936 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				8F8A67402A39767B00467936 /* Extension.swift */,
+				8F8A67402A39767B00467936 /* Date+Conversion.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -190,6 +203,27 @@
 				8F8A67642A3B2EBB00467936 /* UsernameView.swift */,
 			);
 			path = Authentication;
+			sourceTree = "<group>";
+		};
+		8FE5168E2A4868010059D720 /* StudyList */ = {
+			isa = PBXGroup;
+			children = (
+				8F8A67692A42CD5100467936 /* StudyListView.swift */,
+				8F8A676D2A42D16800467936 /* StudyListCell.swift */,
+				8FE5168F2A4868120059D720 /* CreateStudy.swift */,
+				8FE516982A4927D00059D720 /* SelectLanguageView.swift */,
+			);
+			path = StudyList;
+			sourceTree = "<group>";
+		};
+		8FE516912A4912DC0059D720 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				8FE516922A4913450059D720 /* SelectButton.swift */,
+				8FE516942A4913700059D720 /* SingleLineTextField.swift */,
+				8FE516962A49138E0059D720 /* MultiLineTextField.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		E87B95DDFFF3746F3B31FFB7 /* Pods */ = {
@@ -316,22 +350,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FE516952A4913700059D720 /* SingleLineTextField.swift in Sources */,
 				8F8A676A2A42CD5100467936 /* StudyListView.swift in Sources */,
 				8F8A67652A3B2EBB00467936 /* UsernameView.swift in Sources */,
 				8F8A672D2A39762F00467936 /* Study.swift in Sources */,
+				8FE516932A4913460059D720 /* SelectButton.swift in Sources */,
 				8F8A67472A39792D00467936 /* RankView.swift in Sources */,
 				8F8A67392A39765D00467936 /* RankViewModel.swift in Sources */,
+				8FE516972A49138E0059D720 /* MultiLineTextField.swift in Sources */,
 				8F8A67452A39773600467936 /* ContentView.swift in Sources */,
 				8F8A673D2A39766B00467936 /* AuthViewModel.swift in Sources */,
 				8F8A676C2A42CD6D00467936 /* MyStudyView.swift in Sources */,
+				8FE516902A4868120059D720 /* CreateStudy.swift in Sources */,
 				8F8A673F2A39767200467936 /* Login.swift in Sources */,
 				8F8A675F2A3AE30900467936 /* SocialLoginView.swift in Sources */,
+				8FE516992A4927D00059D720 /* SelectLanguageView.swift in Sources */,
 				8F8A67352A39764D00467936 /* AuthView.swift in Sources */,
 				8F8A676E2A42D16800467936 /* StudyListCell.swift in Sources */,
 				8F8A673B2A39766300467936 /* UserViewModel.swift in Sources */,
 				8F8A672F2A39763400467936 /* Rank.swift in Sources */,
 				8F8A67372A39765700467936 /* StudyViewModel.swift in Sources */,
-				8F8A67412A39767B00467936 /* Extension.swift in Sources */,
+				8F8A67412A39767B00467936 /* Date+Conversion.swift in Sources */,
+				8FE5169B2A492EAF0059D720 /* Language.swift in Sources */,
 				8F8A67332A39764300467936 /* HomeView.swift in Sources */,
 				8F8A67312A39763800467936 /* User.swift in Sources */,
 				8F8A671A2A39755E00467936 /* MogongApp.swift in Sources */,
@@ -475,6 +515,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -507,6 +548,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
