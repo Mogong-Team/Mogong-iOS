@@ -71,7 +71,7 @@ struct StudyListCell: View {
 
 struct StudyListCell_Previews: PreviewProvider {
     static var previews: some View {
-        StudyListCell(study: Study(title: "한달동안 프로젝트 같이해요!", frequencyOfWeek: 2, durationOfMonth: 2, studyMode: .online, totalMemberCount: 5, introduction: "안녕하세요", memberPreference: "누구든 상관없어요", hashtags: ["#자바스크립트", "#앱개발", "#디자이너"], dueDate: Date(timeIntervalSinceNow: 24*3600*7), languages: [.javaScript, .figma, .swift], fields: [.backend, .designer], profitGoal: .no, recruitmentType: .teamProject, isBookMarked: true, isCompleted: false))
+        StudyListCell(study: Study(title: "한달동안 프로젝트 같이해요!", frequencyOfWeek: 2, durationOfMonth: 2, studyType: .teamProject,studyMode: .online, totalMemberCount: 5, introduction: "안녕하세요", memberPreference: "누구든 상관없어요", hashtags: ["#자바스크립트", "#앱개발", "#디자이너"], dueDate: Date(timeIntervalSinceNow: 24*3600*7), languages: [.javaScript, .figma, .swift], fields: [.backend, .designer], profitGoal: .no, isBookMarked: true, isCompleted: false))
     }
 }
 

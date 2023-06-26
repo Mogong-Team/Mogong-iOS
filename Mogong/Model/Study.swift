@@ -36,9 +36,10 @@ struct Study: Identifiable {
     let title: String
     let frequencyOfWeek: Int
     let durationOfMonth: Int
+    let studyType: StudyType
     let studyMode: StudyMode
     let totalMemberCount: Int
-    let currentMember: [User]
+    var currentMember: [User]
     let introduction: String
     let memberPreference: String
     let hashtags: [String]
@@ -47,16 +48,17 @@ struct Study: Identifiable {
     let languages: [Language]
     let fields: [Field]
     let profitGoal: ProfitGoal
-    let recruitmentType: StudyType
+    let bookMarkCount: Int
     
     let isBookMarked: Bool
     let isCompleted: Bool
 
-    init(title: String, frequencyOfWeek: Int, durationOfMonth: Int, studyMode: StudyMode, totalMemberCount: Int, introduction: String, memberPreference: String, hashtags: [String], dueDate: Date, languages: [Language], fields: [Field], profitGoal: ProfitGoal, recruitmentType: StudyType, isBookMarked: Bool, isCompleted: Bool) {
+    init(title: String, frequencyOfWeek: Int, durationOfMonth: Int, studyType: StudyType ,studyMode: StudyMode, totalMemberCount: Int, introduction: String, memberPreference: String, hashtags: [String], dueDate: Date, languages: [Language], fields: [Field], profitGoal: ProfitGoal, isBookMarked: Bool, isCompleted: Bool) {
         self.id = UUID().uuidString
         self.title = title
         self.frequencyOfWeek = frequencyOfWeek
         self.durationOfMonth = durationOfMonth
+        self.studyType = studyType
         self.studyMode = studyMode
         self.totalMemberCount = totalMemberCount
         self.currentMember = []
@@ -68,8 +70,30 @@ struct Study: Identifiable {
         self.languages = languages
         self.fields = fields
         self.profitGoal = profitGoal
-        self.recruitmentType = recruitmentType
         self.isBookMarked = isBookMarked
         self.isCompleted = isCompleted
+        self.bookMarkCount = 0
+    }
+    
+    init(id: String, title: String, frequencyOfWeek: Int, durationOfMonth: Int, studyType: StudyType, studyMode: StudyMode, totalMemberCount: Int, currentMember: [User], introduction: String, memberPreference: String, hashtags: [String], createDate: Date, dueDate: Date, languages: [Language], fields: [Field], profitGoal: ProfitGoal, isBookMarked: Bool, isCompleted: Bool, bookMarkCount: Int) {
+        self.id = id
+        self.title = title
+        self.frequencyOfWeek = frequencyOfWeek
+        self.durationOfMonth = durationOfMonth
+        self.studyType = studyType
+        self.studyMode = studyMode
+        self.totalMemberCount = totalMemberCount
+        self.currentMember = currentMember
+        self.introduction = introduction
+        self.memberPreference = memberPreference
+        self.hashtags = hashtags
+        self.createDate = createDate
+        self.dueDate = dueDate
+        self.languages = languages
+        self.fields = fields
+        self.profitGoal = profitGoal
+        self.isBookMarked = isBookMarked
+        self.isCompleted = isCompleted
+        self.bookMarkCount = bookMarkCount
     }
 }
