@@ -27,14 +27,8 @@ struct CreateStudy: View {
     @State private var showDatePicker = false
     @State private var showSelectLanguagesView = false
     
-    @State private var selectedNumberOfTimes = 0
-    @State private var selectedNumberOfPeople = 0
-    @State private var selectedDuration = 0
-    @State private var showPicker1 = false
-    
     let frequency = [1, 2, 3, 4, 5, 6, 7]
     let memberCount = [2, 3, 4, 5, 6, 7, 8, 9, 10]
-    let durations = ["1 week", "2 weeks", "3 weeks", "1 month"]
     
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -246,6 +240,9 @@ struct CreateStudy: View {
             NavigationStack {
                 SelectLanguageView(selectedLanguage: $selectedlanguages)
             }
+        }
+        .navigationDestination(isPresented: $isComplete) {
+            // next page
         }
     }
 }
