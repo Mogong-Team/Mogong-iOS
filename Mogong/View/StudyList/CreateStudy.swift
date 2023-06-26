@@ -230,6 +230,16 @@ struct CreateStudy: View {
             .padding(20)
         }
         .navigationTitle("스터디 생성")
+        .toolbar {
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                Button {
+                    dismiss()
+                } label: {
+                    Image(systemName: "xmark")
+                        .tint(.black)
+                }
+            }
+        }
         .sheet(isPresented: $showDatePicker) {
             DatePicker("", selection: $dueDate, displayedComponents: .date)
                 .datePickerStyle(.graphical)
@@ -249,28 +259,8 @@ struct CreateStudy: View {
 
 struct CreateStudy_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
+        NavigationStack {
             CreateStudy()
         }
     }
-}
-
-struct NoHitTesting: ViewModifier {
-    func body(content: Content) -> some View {
-        SwiftUIWrapper { content }.allowsHitTesting(false)
-    }
-}
-
-extension View {
-    func userInteractionDisabled() -> some View {
-        self.modifier(NoHitTesting())
-    }
-}
-
-struct SwiftUIWrapper<T: View>: UIViewControllerRepresentable {
-    let content: () -> T
-    func makeUIViewController(context: Context) -> UIHostingController<T> {
-        UIHostingController(rootView: content())
-    }
-    func updateUIViewController(_ uiViewController: UIHostingController<T>, context: Context) {}
 }
