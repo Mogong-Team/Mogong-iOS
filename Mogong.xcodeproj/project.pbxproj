@@ -30,6 +30,9 @@
 		8F8A676A2A42CD5100467936 /* StudyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A67692A42CD5100467936 /* StudyListView.swift */; };
 		8F8A676C2A42CD6D00467936 /* MyStudyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A676B2A42CD6D00467936 /* MyStudyView.swift */; };
 		8F8A676E2A42D16800467936 /* StudyListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A676D2A42D16800467936 /* StudyListCell.swift */; };
+		8FD8C1FE2A4BABCD00F21DD1 /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD8C1FD2A4BABCD00F21DD1 /* ChatListView.swift */; };
+		8FD8C2002A4BABD300F21DD1 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD8C1FF2A4BABD300F21DD1 /* ChatView.swift */; };
+		8FD8C2022A4BAC6400F21DD1 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD8C2012A4BAC6400F21DD1 /* Chat.swift */; };
 		8FE516902A4868120059D720 /* CreateStudy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE5168F2A4868120059D720 /* CreateStudy.swift */; };
 		8FE516932A4913460059D720 /* SelectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE516922A4913450059D720 /* SelectButton.swift */; };
 		8FE516952A4913700059D720 /* SingleLineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE516942A4913700059D720 /* SingleLineTextField.swift */; };
@@ -73,6 +76,9 @@
 		8F8A67692A42CD5100467936 /* StudyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyListView.swift; sourceTree = "<group>"; };
 		8F8A676B2A42CD6D00467936 /* MyStudyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStudyView.swift; sourceTree = "<group>"; };
 		8F8A676D2A42D16800467936 /* StudyListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyListCell.swift; sourceTree = "<group>"; };
+		8FD8C1FD2A4BABCD00F21DD1 /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
+		8FD8C1FF2A4BABD300F21DD1 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		8FD8C2012A4BAC6400F21DD1 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		8FE5168F2A4868120059D720 /* CreateStudy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateStudy.swift; sourceTree = "<group>"; };
 		8FE516922A4913450059D720 /* SelectButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectButton.swift; sourceTree = "<group>"; };
 		8FE516942A4913700059D720 /* SingleLineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleLineTextField.swift; sourceTree = "<group>"; };
@@ -165,6 +171,7 @@
 				8F8A672C2A39762F00467936 /* Study.swift */,
 				8F8A672E2A39763400467936 /* Rank.swift */,
 				8F8A67302A39763800467936 /* User.swift */,
+				8FD8C2012A4BAC6400F21DD1 /* Chat.swift */,
 				8FE5169A2A492EAF0059D720 /* Language.swift */,
 				8FE5169C2A4965310059D720 /* Application.swift */,
 			);
@@ -177,6 +184,7 @@
 				8F8A675B2A3AE14D00467936 /* Authentication */,
 				8F8A67442A39773600467936 /* ContentView.swift */,
 				8F8A67322A39764300467936 /* HomeView.swift */,
+				8FD8C1FC2A4BABB600F21DD1 /* Chat */,
 				8FE5168E2A4868010059D720 /* StudyList */,
 				8F8A676B2A42CD6D00467936 /* MyStudyView.swift */,
 				8F8A67462A39792D00467936 /* RankView.swift */,
@@ -214,6 +222,15 @@
 				8F8A67642A3B2EBB00467936 /* UsernameView.swift */,
 			);
 			path = Authentication;
+			sourceTree = "<group>";
+		};
+		8FD8C1FC2A4BABB600F21DD1 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				8FD8C1FD2A4BABCD00F21DD1 /* ChatListView.swift */,
+				8FD8C1FF2A4BABD300F21DD1 /* ChatView.swift */,
+			);
+			path = Chat;
 			sourceTree = "<group>";
 		};
 		8FE5168E2A4868010059D720 /* StudyList */ = {
@@ -369,6 +386,8 @@
 				8F8A676A2A42CD5100467936 /* StudyListView.swift in Sources */,
 				8F8A67652A3B2EBB00467936 /* UsernameView.swift in Sources */,
 				8F8A672D2A39762F00467936 /* Study.swift in Sources */,
+				8FD8C2002A4BABD300F21DD1 /* ChatView.swift in Sources */,
+				8FD8C1FE2A4BABCD00F21DD1 /* ChatListView.swift in Sources */,
 				8FE516932A4913460059D720 /* SelectButton.swift in Sources */,
 				8FE516A52A4989030059D720 /* HashtagView.swift in Sources */,
 				8F8A67472A39792D00467936 /* RankView.swift in Sources */,
@@ -382,6 +401,7 @@
 				8FE516902A4868120059D720 /* CreateStudy.swift in Sources */,
 				8F8A673F2A39767200467936 /* Login.swift in Sources */,
 				8F8A675F2A3AE30900467936 /* SocialLoginView.swift in Sources */,
+				8FD8C2022A4BAC6400F21DD1 /* Chat.swift in Sources */,
 				8FE516992A4927D00059D720 /* SelectLanguageView.swift in Sources */,
 				8F8A67352A39764D00467936 /* AuthView.swift in Sources */,
 				8F8A676E2A42D16800467936 /* StudyListCell.swift in Sources */,
