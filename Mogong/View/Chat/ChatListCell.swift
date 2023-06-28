@@ -1,5 +1,5 @@
 //
-//  ChatListView.swift
+//  ChatListCell.swift
 //  Mogong
 //
 //  Created by 심현석 on 2023/06/28.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ChatListView: View {
+struct ChatListCell: View {
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -17,9 +17,8 @@ struct ChatListView: View {
     }
 }
 
-struct ChatListView_Previews: PreviewProvider {
+struct ChatListCell_Previews: PreviewProvider {
     static var previews: some View {
-        ChatListView()
+        ChatListCell()
     }
 }
-

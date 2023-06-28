@@ -33,6 +33,8 @@
 		8FD8C1FE2A4BABCD00F21DD1 /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD8C1FD2A4BABCD00F21DD1 /* ChatListView.swift */; };
 		8FD8C2002A4BABD300F21DD1 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD8C1FF2A4BABD300F21DD1 /* ChatView.swift */; };
 		8FD8C2022A4BAC6400F21DD1 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD8C2012A4BAC6400F21DD1 /* Chat.swift */; };
+		8FD8C2042A4BADB300F21DD1 /* ChatListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD8C2032A4BADB300F21DD1 /* ChatListCell.swift */; };
+		8FD8C2062A4BAF6D00F21DD1 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD8C2052A4BAF6D00F21DD1 /* Message.swift */; };
 		8FE516902A4868120059D720 /* CreateStudy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE5168F2A4868120059D720 /* CreateStudy.swift */; };
 		8FE516932A4913460059D720 /* SelectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE516922A4913450059D720 /* SelectButton.swift */; };
 		8FE516952A4913700059D720 /* SingleLineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE516942A4913700059D720 /* SingleLineTextField.swift */; };
@@ -79,6 +81,8 @@
 		8FD8C1FD2A4BABCD00F21DD1 /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
 		8FD8C1FF2A4BABD300F21DD1 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		8FD8C2012A4BAC6400F21DD1 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		8FD8C2032A4BADB300F21DD1 /* ChatListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListCell.swift; sourceTree = "<group>"; };
+		8FD8C2052A4BAF6D00F21DD1 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		8FE5168F2A4868120059D720 /* CreateStudy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateStudy.swift; sourceTree = "<group>"; };
 		8FE516922A4913450059D720 /* SelectButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectButton.swift; sourceTree = "<group>"; };
 		8FE516942A4913700059D720 /* SingleLineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleLineTextField.swift; sourceTree = "<group>"; };
@@ -172,6 +176,7 @@
 				8F8A672E2A39763400467936 /* Rank.swift */,
 				8F8A67302A39763800467936 /* User.swift */,
 				8FD8C2012A4BAC6400F21DD1 /* Chat.swift */,
+				8FD8C2052A4BAF6D00F21DD1 /* Message.swift */,
 				8FE5169A2A492EAF0059D720 /* Language.swift */,
 				8FE5169C2A4965310059D720 /* Application.swift */,
 			);
@@ -228,6 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				8FD8C1FD2A4BABCD00F21DD1 /* ChatListView.swift */,
+				8FD8C2032A4BADB300F21DD1 /* ChatListCell.swift */,
 				8FD8C1FF2A4BABD300F21DD1 /* ChatView.swift */,
 			);
 			path = Chat;
@@ -392,6 +398,7 @@
 				8FE516A52A4989030059D720 /* HashtagView.swift in Sources */,
 				8F8A67472A39792D00467936 /* RankView.swift in Sources */,
 				8F8A67392A39765D00467936 /* RankViewModel.swift in Sources */,
+				8FD8C2042A4BADB300F21DD1 /* ChatListCell.swift in Sources */,
 				8FE516972A49138E0059D720 /* MultiLineTextField.swift in Sources */,
 				8F8A67452A39773600467936 /* ContentView.swift in Sources */,
 				8FE5169D2A4965310059D720 /* Application.swift in Sources */,
@@ -402,6 +409,7 @@
 				8F8A673F2A39767200467936 /* Login.swift in Sources */,
 				8F8A675F2A3AE30900467936 /* SocialLoginView.swift in Sources */,
 				8FD8C2022A4BAC6400F21DD1 /* Chat.swift in Sources */,
+				8FD8C2062A4BAF6D00F21DD1 /* Message.swift in Sources */,
 				8FE516992A4927D00059D720 /* SelectLanguageView.swift in Sources */,
 				8F8A67352A39764D00467936 /* AuthView.swift in Sources */,
 				8F8A676E2A42D16800467936 /* StudyListCell.swift in Sources */,

@@ -7,12 +7,14 @@
 
 import SwiftUI
 
-struct User: Identifiable{
+struct User: Identifiable, Hashable {
     let id: String
     let name: String
     let email: String
     var username: String
-    let joinedStudys: [Study]
+    var joinedStudys: [Study]
+    
+    var isCurrentUser: Bool = false
     
     init(name: String, email: String, username: String) {
         self.id = UUID().uuidString
@@ -20,6 +22,7 @@ struct User: Identifiable{
         self.email = email
         self.username = username
         self.joinedStudys = []
+        self.isCurrentUser = false
     }
     
     init(id: String, name: String, email: String, username: String) {
@@ -28,5 +31,6 @@ struct User: Identifiable{
         self.email = email
         self.username = username
         self.joinedStudys = []
+        self.isCurrentUser = false
     }
 }
