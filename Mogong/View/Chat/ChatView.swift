@@ -8,75 +8,92 @@
 import SwiftUI
 
 struct ChatView: View {
+    @EnvironmentObject var viewModel: UserViewModel
     @Environment(\.dismiss) var dismiss
-    
-    @State private var typedMessage: String = ""
-    
-    @State private var messages = [
-        Message(sender: User(id: "1", name: "김민수", email: "1@gmail.com", username: "김김민수"), message: "안녕하세요"),
-        Message(sender: User(id: "2", name: "최민수", email: "2@gmail.com", username: "최최민수"), message: "반갑습니다"),
-        Message(sender: User(id: "2", name: "최민수", email: "2@gmail.com", username: "최최민수"), message: "반갑습니다"),
-        Message(sender: User(id: "1", name: "김민수", email: "1@gmail.com", username: "김김민수"), message: "안녕하세요"),
-    ]
+        
+    var chat: Chat
     
     @State private var currentUser: User = User(id: "1", name: "김민수", email: "1@gmail.com", username: "김김민수")
     
+    @State private var message: String = ""
+    
     var body: some View {
         VStack {
-            ForEach(messages, id: \.self) { message in
-                HStack {
-                    if message.sender == currentUser {
-                        Spacer()
-                        Text(message.message)
-                            .padding()
-                            .background(
-                                ChatBubble(isCurrentUser: true)
-                                    .fill(Color.blue)
-                            )
-                            .foregroundColor(.white)
-                    } else {
-                        Text(message.message)
-                            .padding()
-                            .background(Color.gray)
-                            .foregroundColor(.white)
-                            .cornerRadius(10)
-                        Spacer()
+            ScrollView(showsIndicators: false) {
+                VStack {
+                    ForEach(chat.messages, id: \.self) { message in
+                        HStack {
+                            if message.sender.id == currentUser.id {
+                                Spacer()
+                                HStack {
+                                    Text(message.timestamp.toMessageString())
+                                        .font(Font.system(size: 12, weight: .regular))
+                                        .foregroundColor(.gray)
+
+                                    Text(message.message)
+                                        .padding()
+                                        .background(Color.blue)
+                                        .foregroundColor(.white)
+                                }
+                            } else {
+                                HStack {
+                                    Text(message.message)
+                                        .padding()
+                                        .background(Color.gray)
+                                    .foregroundColor(.white)
+                                    
+                                    Text(message.timestamp.toMessageString())
+                                        .font(Font.system(size: 12, weight: .regular))
+                                        .foregroundColor(.gray)
+                                }
+                                Spacer()
+                            }
+                        }
                     }
                 }
             }
-            
-            Spacer()
-            
-            HStack {
-                TextField("메시지를 입력하세요...", text: $typedMessage)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
+
+            //Spacer()
+
+            ZStack {
+                RoundedRectangle(cornerRadius: 20)
+                    .foregroundColor(.gray)
+                    .frame(height: 47)
                 
-                Button(action: {
+                HStack {
+                    Image(systemName: "circle.fill")
+                        .resizable()
+                        .frame(width: 27, height: 27)
+                        .scaledToFit()
+                        .clipShape(Circle())
                     
-                }, label: {
-                    Text("보내기")
-                })
+                    TextField("메시지를 입력하세요...", text: $message)
+                    
+                    Button(action: {
+                        
+                    }, label: {
+                        Image(systemName: "paperplane.fill")
+                    })
+                }
                 .padding()
             }
         }
-    }
-}
-
-struct ChatBubble: Shape {
-    var isCurrentUser: Bool
-    
-    func path(in rect: CGRect) -> Path {
-        let path = UIBezierPath(roundedRect: rect,
-                                byRoundingCorners: [.topLeft, .topRight, isCurrentUser ? .bottomLeft : .bottomRight],
-                                cornerRadii: CGSize(width: 15, height: 15))
-        
-        return Path(path.cgPath)
+        .padding(.horizontal, 20)
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 struct ChatView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatView()
+        ChatView(chat: Chat(
+            participant1:
+                User(id: "2", name: "최민수", email: "2@gmail.com", username: "최최민수"),
+            participant2:
+                User(id: "2", name: "최민수", email: "2@gmail.com", username: "최최민수"),
+            message: [
+                Message(sender: User(id: "1", name: "김민수", email: "1@gmail.com", username: "김김민수"), message: "안녕하세요"),
+                Message(sender: User(id: "2", name: "최민수", email: "2@gmail.com", username: "최최민수"), message: "반갑습니다"),
+            ]
+        ))
     }
 }

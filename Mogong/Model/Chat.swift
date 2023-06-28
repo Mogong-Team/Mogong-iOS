@@ -7,20 +7,16 @@
 
 import Foundation
 
-class Chat: Identifiable {
+struct Chat: Identifiable, Hashable {
     let id: String
     let participant1: User
     let participant2: User
     var messages: [Message]
     
-    init(participant1: User, participant2: User) {
+    init(participant1: User, participant2: User, message: [Message] = []) {
         self.id = UUID().uuidString
         self.participant1 = participant1
         self.participant2 = participant2
-        self.messages = []
-    }
-    
-    func addMessage(message: Message) {
-        messages.append(message)
+        self.messages = message
     }
 }
