@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8F78DB942A4BC9E20004F195 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F78DB932A4BC9E20004F195 /* ChatViewModel.swift */; };
 		8F78DB962A4BD8280004F195 /* TempHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F78DB952A4BD8270004F195 /* TempHomeView.swift */; };
+		8F78DBA12A4C0B340004F195 /* StudyDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F78DBA02A4C0B340004F195 /* StudyDetailView.swift */; };
 		8F78DB9A2A4C04490004F195 /* AlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F78DB992A4C04490004F195 /* AlarmView.swift */; };
 		8F78DB9C2A4C04A20004F195 /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F78DB9B2A4C04A20004F195 /* Alarm.swift */; };
 		8F78DB9E2A4C06820004F195 /* AlarmCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F78DB9D2A4C06820004F195 /* AlarmCell.swift */; };
@@ -59,6 +60,7 @@
 		8C495DE2ED845CC16581FE5B /* Pods-Mogong.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mogong.debug.xcconfig"; path = "Target Support Files/Pods-Mogong/Pods-Mogong.debug.xcconfig"; sourceTree = "<group>"; };
 		8F78DB932A4BC9E20004F195 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		8F78DB952A4BD8270004F195 /* TempHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempHomeView.swift; sourceTree = "<group>"; };
+		8F78DBA02A4C0B340004F195 /* StudyDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyDetailView.swift; sourceTree = "<group>"; };
 		8F78DB992A4C04490004F195 /* AlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmView.swift; sourceTree = "<group>"; };
 		8F78DB9B2A4C04A20004F195 /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
 		8F78DB9D2A4C06820004F195 /* AlarmCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmCell.swift; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 				8F8A675B2A3AE14D00467936 /* Authentication */,
 				8F8A67442A39773600467936 /* ContentView.swift */,
 				8F8A67322A39764300467936 /* HomeView.swift */,
+				8F78DBA02A4C0B340004F195 /* StudyDetailView.swift */,
 				8FD8C1FC2A4BABB600F21DD1 /* Chat */,
 				8F78DB9F2A4C06830004F195 /* Alarm */,
 				8FE5168E2A4868010059D720 /* StudyList */,
@@ -435,6 +438,7 @@
 				8FE516902A4868120059D720 /* CreateStudy.swift in Sources */,
 				8F8A673F2A39767200467936 /* Login.swift in Sources */,
 				8F8A675F2A3AE30900467936 /* SocialLoginView.swift in Sources */,
+				8F78DBA12A4C0B340004F195 /* StudyDetailView.swift in Sources */,
 				8FD8C2022A4BAC6400F21DD1 /* Chat.swift in Sources */,
 				8FD8C2062A4BAF6D00F21DD1 /* Message.swift in Sources */,
 				8FE516992A4927D00059D720 /* SelectLanguageView.swift in Sources */,
