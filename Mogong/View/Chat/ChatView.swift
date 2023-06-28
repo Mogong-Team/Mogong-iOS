@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ChatView: View {
     @EnvironmentObject var viewModel: UserViewModel
-    @Environment(\.dismiss) var dismiss
         
     var chat: Chat
     
