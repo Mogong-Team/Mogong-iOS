@@ -20,15 +20,18 @@ struct MogongApp: App {
     @StateObject var studyViewModel = StudyViewModel()
     @StateObject var rankViewModel = RankViewModel()
     @StateObject var userViewModel = UserViewModel()
+    @StateObject var chatViewModel = ChatViewModel()
     
     var body: some Scene {
         WindowGroup {
             //ContentView()
-            CreateStudy()
+            //CreateStudy()
+            TempHomeView()
                 .environmentObject(authViewModel)
                 .environmentObject(studyViewModel)
                 .environmentObject(rankViewModel)
                 .environmentObject(userViewModel)
+                .environmentObject(chatViewModel)
                 // SceneDelegate 설정
                 .onOpenURL(perform: { url in
                     if (AuthApi.isKakaoTalkLoginUrl(url)) {

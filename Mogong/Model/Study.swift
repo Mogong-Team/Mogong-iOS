@@ -31,7 +31,7 @@ enum ProfitGoal: String, CaseIterable {
     case no = "없음"
 }
 
-struct Study: Identifiable {
+struct Study: Identifiable, Hashable {
     let id: String
     let title: String
     let frequencyOfWeek: Int
