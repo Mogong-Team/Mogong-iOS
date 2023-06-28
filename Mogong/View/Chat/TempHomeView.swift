@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct TempHomeView: View {
-    @State private var isPresented = false
-    
     var body: some View {
         NavigationStack {
             VStack {
