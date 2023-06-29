@@ -14,7 +14,7 @@ struct StudyDeatailView: View {
         User(id: "1", name: "김방장", email: "a@gmail.com", username: "나방장"),
         User(id: "2", name: "박민수", email: "a@gmail.com", username: "박민수"),
         User(id: "3", name: "최민수", email: "a@gmail.com", username: "최민수")
-    ], introduction: "안녕하세요", memberPreference: "누구든 상관없어요", hashtags: ["#자바스크립트", "#앱개발", "#디자이너"], createDate: Date(), dueDate: Date(timeIntervalSinceNow: 24*3600*7), languages: [.javaScript, .figma, .swift], fields: [.backend, .designer], profitGoal: .no, isBookMarked: true, isCompleted: false, bookMarkCount: 5)
+    ], introduction: "안녕하세요", memberPreference: "누구든 상관없어요", hashtags: ["#자바스크립트", "#앱개발", "#디자이너"], createDate: Date(), dueDate: Date(timeIntervalSinceNow: 24*3600*7), languages: [.javaScript, .figma, .swift], fields: [.backend, .designer], profitGoal: .no, isBookMarked: true, isRecruitmentCompleted: false, bookMarkCount: 5)
     
     @Environment(\.dismiss) var dismiss
     @State private var isComplete: Bool = false
