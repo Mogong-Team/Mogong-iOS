@@ -39,6 +39,7 @@ struct Study: Identifiable, Hashable {
     let studyType: StudyType
     let studyMode: StudyMode
     let totalMemberCount: Int
+    let host: User
     var currentMember: [User]
     let introduction: String
     let memberPreference: String
@@ -53,7 +54,7 @@ struct Study: Identifiable, Hashable {
     let isBookMarked: Bool
     let isCompleted: Bool
 
-    init(title: String, frequencyOfWeek: Int, durationOfMonth: Int, studyType: StudyType ,studyMode: StudyMode, totalMemberCount: Int, introduction: String, memberPreference: String, hashtags: [String], dueDate: Date, languages: [Language], fields: [Field], profitGoal: ProfitGoal, isBookMarked: Bool, isCompleted: Bool) {
+    init(title: String, frequencyOfWeek: Int, durationOfMonth: Int, studyType: StudyType ,studyMode: StudyMode, totalMemberCount: Int, host: User, introduction: String, memberPreference: String, hashtags: [String], dueDate: Date, languages: [Language], fields: [Field], profitGoal: ProfitGoal, isBookMarked: Bool, isCompleted: Bool) {
         self.id = UUID().uuidString
         self.title = title
         self.frequencyOfWeek = frequencyOfWeek
@@ -61,7 +62,8 @@ struct Study: Identifiable, Hashable {
         self.studyType = studyType
         self.studyMode = studyMode
         self.totalMemberCount = totalMemberCount
-        self.currentMember = []
+        self.host = host
+        self.currentMember = [host]
         self.introduction = introduction
         self.memberPreference = memberPreference
         self.hashtags = hashtags
@@ -75,7 +77,7 @@ struct Study: Identifiable, Hashable {
         self.bookMarkCount = 0
     }
     
-    init(id: String, title: String, frequencyOfWeek: Int, durationOfMonth: Int, studyType: StudyType, studyMode: StudyMode, totalMemberCount: Int, currentMember: [User], introduction: String, memberPreference: String, hashtags: [String], createDate: Date, dueDate: Date, languages: [Language], fields: [Field], profitGoal: ProfitGoal, isBookMarked: Bool, isCompleted: Bool, bookMarkCount: Int) {
+    init(id: String, title: String, frequencyOfWeek: Int, durationOfMonth: Int, studyType: StudyType, studyMode: StudyMode, totalMemberCount: Int, host: User, currentMember: [User], introduction: String, memberPreference: String, hashtags: [String], createDate: Date, dueDate: Date, languages: [Language], fields: [Field], profitGoal: ProfitGoal, isBookMarked: Bool, isCompleted: Bool, bookMarkCount: Int) {
         self.id = id
         self.title = title
         self.frequencyOfWeek = frequencyOfWeek
@@ -83,6 +85,7 @@ struct Study: Identifiable, Hashable {
         self.studyType = studyType
         self.studyMode = studyMode
         self.totalMemberCount = totalMemberCount
+        self.host = host
         self.currentMember = currentMember
         self.introduction = introduction
         self.memberPreference = memberPreference
