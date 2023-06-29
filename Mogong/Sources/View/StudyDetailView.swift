@@ -130,7 +130,7 @@ struct detailView: View {
                 }
             } else if viewType == .member {
                 LazyVGrid(columns: [GridItem(), GridItem()]) {
-                    ForEach(study.currentMember, id: \.self) { member in
+                    ForEach(study.currentMembers, id: \.self) { member in
                         memberView(member: member)
                     }
                 }
@@ -140,7 +140,7 @@ struct detailView: View {
 }
 
 struct memberView: View {
-    var member: User
+    var member: Member
     
     var body: some View {
         HStack {
@@ -151,7 +151,7 @@ struct memberView: View {
                 .clipShape(Circle())
             
             VStack(alignment: .leading) {
-                Text(member.username)
+                Text(member.user.username)
                     .font(Font.system(size: 20, weight: .bold))
                     .foregroundColor(.black)
                 
