@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		8F78DB942A4BC9E20004F195 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F78DB932A4BC9E20004F195 /* ChatViewModel.swift */; };
 		8F78DB962A4BD8280004F195 /* TempHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F78DB952A4BD8270004F195 /* TempHomeView.swift */; };
-		8F78DBA12A4C0B340004F195 /* StudyDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F78DBA02A4C0B340004F195 /* StudyDetailView.swift */; };
 		8F78DB9A2A4C04490004F195 /* AlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F78DB992A4C04490004F195 /* AlarmView.swift */; };
 		8F78DB9C2A4C04A20004F195 /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F78DB9B2A4C04A20004F195 /* Alarm.swift */; };
 		8F78DB9E2A4C06820004F195 /* AlarmCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F78DB9D2A4C06820004F195 /* AlarmCell.swift */; };
+		8F78DBA12A4C0B340004F195 /* StudyDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F78DBA02A4C0B340004F195 /* StudyDetailView.swift */; };
 		8F8A671A2A39755E00467936 /* MogongApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A67192A39755E00467936 /* MogongApp.swift */; };
 		8F8A671E2A39756000467936 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F8A671D2A39756000467936 /* Assets.xcassets */; };
 		8F8A67212A39756000467936 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F8A67202A39756000467936 /* Preview Assets.xcassets */; };
@@ -36,6 +36,16 @@
 		8F8A676A2A42CD5100467936 /* StudyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A67692A42CD5100467936 /* StudyListView.swift */; };
 		8F8A676C2A42CD6D00467936 /* MyStudyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A676B2A42CD6D00467936 /* MyStudyView.swift */; };
 		8F8A676E2A42D16800467936 /* StudyListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A676D2A42D16800467936 /* StudyListCell.swift */; };
+		8F8CA84B2A4D0CAD002E8D15 /* Font+Pretendard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8CA84A2A4D0CAD002E8D15 /* Font+Pretendard.swift */; };
+		8F8CA84C2A4D1151002E8D15 /* Pretendard-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8F8CA8472A4D0C9D002E8D15 /* Pretendard-Black.otf */; };
+		8F8CA84D2A4D1153002E8D15 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8F8CA8482A4D0C9D002E8D15 /* Pretendard-Bold.otf */; };
+		8F8CA84E2A4D1155002E8D15 /* Pretendard-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8F8CA8422A4D0C9D002E8D15 /* Pretendard-ExtraBold.otf */; };
+		8F8CA84F2A4D1157002E8D15 /* Pretendard-ExtraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8F8CA8452A4D0C9D002E8D15 /* Pretendard-ExtraLight.otf */; };
+		8F8CA8502A4D115A002E8D15 /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8F8CA8462A4D0C9D002E8D15 /* Pretendard-Light.otf */; };
+		8F8CA8512A4D115C002E8D15 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8F8CA8432A4D0C9D002E8D15 /* Pretendard-Medium.otf */; };
+		8F8CA8522A4D115E002E8D15 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8F8CA8412A4D0C9D002E8D15 /* Pretendard-Regular.otf */; };
+		8F8CA8532A4D1161002E8D15 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8F8CA8442A4D0C9D002E8D15 /* Pretendard-SemiBold.otf */; };
+		8F8CA8542A4D1162002E8D15 /* Pretendard-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8F8CA8492A4D0C9D002E8D15 /* Pretendard-Thin.otf */; };
 		8FD8C1FE2A4BABCD00F21DD1 /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD8C1FD2A4BABCD00F21DD1 /* ChatListView.swift */; };
 		8FD8C2002A4BABD300F21DD1 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD8C1FF2A4BABD300F21DD1 /* ChatView.swift */; };
 		8FD8C2022A4BAC6400F21DD1 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD8C2012A4BAC6400F21DD1 /* Chat.swift */; };
@@ -60,10 +70,10 @@
 		8C495DE2ED845CC16581FE5B /* Pods-Mogong.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mogong.debug.xcconfig"; path = "Target Support Files/Pods-Mogong/Pods-Mogong.debug.xcconfig"; sourceTree = "<group>"; };
 		8F78DB932A4BC9E20004F195 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		8F78DB952A4BD8270004F195 /* TempHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempHomeView.swift; sourceTree = "<group>"; };
-		8F78DBA02A4C0B340004F195 /* StudyDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyDetailView.swift; sourceTree = "<group>"; };
 		8F78DB992A4C04490004F195 /* AlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmView.swift; sourceTree = "<group>"; };
 		8F78DB9B2A4C04A20004F195 /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
 		8F78DB9D2A4C06820004F195 /* AlarmCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmCell.swift; sourceTree = "<group>"; };
+		8F78DBA02A4C0B340004F195 /* StudyDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyDetailView.swift; sourceTree = "<group>"; };
 		8F8A67162A39755E00467936 /* Mogong.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mogong.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F8A67192A39755E00467936 /* MogongApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MogongApp.swift; sourceTree = "<group>"; };
 		8F8A671D2A39756000467936 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -82,7 +92,7 @@
 		8F8A67422A39768700467936 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
 		8F8A67442A39773600467936 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8F8A67462A39792D00467936 /* RankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankView.swift; sourceTree = "<group>"; };
-		8F8A674D2A39D97B00467936 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8F8A674D2A39D97B00467936 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F8A675A2A3ABFA200467936 /* Mogong.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Mogong.entitlements; sourceTree = "<group>"; };
 		8F8A675E2A3AE30900467936 /* SocialLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLoginView.swift; sourceTree = "<group>"; };
 		8F8A67622A3B24DF00467936 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -90,6 +100,16 @@
 		8F8A67692A42CD5100467936 /* StudyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyListView.swift; sourceTree = "<group>"; };
 		8F8A676B2A42CD6D00467936 /* MyStudyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStudyView.swift; sourceTree = "<group>"; };
 		8F8A676D2A42D16800467936 /* StudyListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyListCell.swift; sourceTree = "<group>"; };
+		8F8CA8412A4D0C9D002E8D15 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
+		8F8CA8422A4D0C9D002E8D15 /* Pretendard-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraBold.otf"; sourceTree = "<group>"; };
+		8F8CA8432A4D0C9D002E8D15 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
+		8F8CA8442A4D0C9D002E8D15 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
+		8F8CA8452A4D0C9D002E8D15 /* Pretendard-ExtraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraLight.otf"; sourceTree = "<group>"; };
+		8F8CA8462A4D0C9D002E8D15 /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
+		8F8CA8472A4D0C9D002E8D15 /* Pretendard-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Black.otf"; sourceTree = "<group>"; };
+		8F8CA8482A4D0C9D002E8D15 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
+		8F8CA8492A4D0C9D002E8D15 /* Pretendard-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Thin.otf"; sourceTree = "<group>"; };
+		8F8CA84A2A4D0CAD002E8D15 /* Font+Pretendard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Pretendard.swift"; sourceTree = "<group>"; };
 		8FD8C1FD2A4BABCD00F21DD1 /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
 		8FD8C1FF2A4BABD300F21DD1 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		8FD8C2012A4BAC6400F21DD1 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
@@ -160,16 +180,10 @@
 			isa = PBXGroup;
 			children = (
 				8F8A675A2A3ABFA200467936 /* Mogong.entitlements */,
-				8F8A674D2A39D97B00467936 /* Info.plist */,
-				8F8A67622A3B24DF00467936 /* GoogleService-Info.plist */,
 				8F8A67192A39755E00467936 /* MogongApp.swift */,
-				8F8A67272A3975E400467936 /* Service */,
-				8F8A67282A3975E500467936 /* Model */,
-				8F8A67292A3975E500467936 /* View */,
-				8F8A672B2A3975E600467936 /* ViewModel */,
-				8F8A672A2A3975E600467936 /* Utils */,
-				8F8A671D2A39756000467936 /* Assets.xcassets */,
-				8F8A671F2A39756000467936 /* Preview Content */,
+				8F8CA83A2A4D0B17002E8D15 /* Sources */,
+				8F8CA83B2A4D0B18002E8D15 /* Resources */,
+				8F8CA83C2A4D0B19002E8D15 /* Supporting Files */,
 			);
 			path = Mogong;
 			sourceTree = "<group>";
@@ -186,7 +200,8 @@
 			isa = PBXGroup;
 			children = (
 			);
-			path = Service;
+			name = Service;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		8F8A67282A3975E500467936 /* Model */ = {
@@ -240,8 +255,7 @@
 				8F8A673A2A39766300467936 /* UserViewModel.swift */,
 				8F78DB932A4BC9E20004F195 /* ChatViewModel.swift */,
 			);
-			name = ViewModel;
-			path = View;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		8F8A675B2A3AE14D00467936 /* Authentication */ = {
@@ -252,6 +266,78 @@
 				8F8A67642A3B2EBB00467936 /* UsernameView.swift */,
 			);
 			path = Authentication;
+			sourceTree = "<group>";
+		};
+		8F8CA83A2A4D0B17002E8D15 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				8F8A67272A3975E400467936 /* Service */,
+				8F8A67282A3975E500467936 /* Model */,
+				8F8A67292A3975E500467936 /* View */,
+				8F8A672B2A3975E600467936 /* ViewModel */,
+				8F8A672A2A3975E600467936 /* Utils */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		8F8CA83B2A4D0B18002E8D15 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8F8CA8402A4D0C69002E8D15 /* Image */,
+				8F8CA83F2A4D0C67002E8D15 /* Font */,
+				8F8CA83E2A4D0C64002E8D15 /* Launch Screen */,
+				8F8CA83D2A4D0C5D002E8D15 /* Color */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		8F8CA83C2A4D0B19002E8D15 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8F8A674D2A39D97B00467936 /* Info.plist */,
+				8F8A67622A3B24DF00467936 /* GoogleService-Info.plist */,
+				8F8A671F2A39756000467936 /* Preview Content */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8F8CA83D2A4D0C5D002E8D15 /* Color */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Color;
+			sourceTree = "<group>";
+		};
+		8F8CA83E2A4D0C64002E8D15 /* Launch Screen */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Launch Screen";
+			sourceTree = "<group>";
+		};
+		8F8CA83F2A4D0C67002E8D15 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				8F8CA8472A4D0C9D002E8D15 /* Pretendard-Black.otf */,
+				8F8CA8482A4D0C9D002E8D15 /* Pretendard-Bold.otf */,
+				8F8CA8422A4D0C9D002E8D15 /* Pretendard-ExtraBold.otf */,
+				8F8CA8452A4D0C9D002E8D15 /* Pretendard-ExtraLight.otf */,
+				8F8CA8462A4D0C9D002E8D15 /* Pretendard-Light.otf */,
+				8F8CA8432A4D0C9D002E8D15 /* Pretendard-Medium.otf */,
+				8F8CA8412A4D0C9D002E8D15 /* Pretendard-Regular.otf */,
+				8F8CA8442A4D0C9D002E8D15 /* Pretendard-SemiBold.otf */,
+				8F8CA8492A4D0C9D002E8D15 /* Pretendard-Thin.otf */,
+				8F8CA84A2A4D0CAD002E8D15 /* Font+Pretendard.swift */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		8F8CA8402A4D0C69002E8D15 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				8F8A671D2A39756000467936 /* Assets.xcassets */,
+			);
+			path = Image;
 			sourceTree = "<group>";
 		};
 		8FD8C1FC2A4BABB600F21DD1 /* Chat */ = {
@@ -359,9 +445,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F8CA8532A4D1161002E8D15 /* Pretendard-SemiBold.otf in Resources */,
+				8F8CA84F2A4D1157002E8D15 /* Pretendard-ExtraLight.otf in Resources */,
+				8F8CA8502A4D115A002E8D15 /* Pretendard-Light.otf in Resources */,
+				8F8CA8542A4D1162002E8D15 /* Pretendard-Thin.otf in Resources */,
 				8F8A67212A39756000467936 /* Preview Assets.xcassets in Resources */,
+				8F8CA84D2A4D1153002E8D15 /* Pretendard-Bold.otf in Resources */,
+				8F8CA84E2A4D1155002E8D15 /* Pretendard-ExtraBold.otf in Resources */,
 				8F8A671E2A39756000467936 /* Assets.xcassets in Resources */,
+				8F8CA84C2A4D1151002E8D15 /* Pretendard-Black.otf in Resources */,
+				8F8CA8522A4D115E002E8D15 /* Pretendard-Regular.otf in Resources */,
 				8F8A67632A3B24DF00467936 /* GoogleService-Info.plist in Resources */,
+				8F8CA8512A4D115C002E8D15 /* Pretendard-Medium.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,6 +544,7 @@
 				8FE516A32A4973280059D720 /* MemberIntroductionView.swift in Sources */,
 				8F8A672F2A39763400467936 /* Rank.swift in Sources */,
 				8F8A67372A39765700467936 /* StudyViewModel.swift in Sources */,
+				8F8CA84B2A4D0CAD002E8D15 /* Font+Pretendard.swift in Sources */,
 				8F8A67412A39767B00467936 /* Date+Conversion.swift in Sources */,
 				8FE5169B2A492EAF0059D720 /* Language.swift in Sources */,
 				8F8A67332A39764300467936 /* HomeView.swift in Sources */,
@@ -585,11 +681,11 @@
 				CODE_SIGN_ENTITLEMENTS = Mogong/Mogong.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Mogong/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Mogong/Supporting Files/Preview Content\"";
 				DEVELOPMENT_TEAM = 89BLGRU39K;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Mogong/Info.plist;
+				INFOPLIST_FILE = "Mogong/Supporting Files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -618,11 +714,11 @@
 				CODE_SIGN_ENTITLEMENTS = Mogong/Mogong.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Mogong/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Mogong/Supporting Files/Preview Content\"";
 				DEVELOPMENT_TEAM = 89BLGRU39K;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Mogong/Info.plist;
+				INFOPLIST_FILE = "Mogong/Supporting Files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
