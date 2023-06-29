@@ -10,7 +10,7 @@ import Foundation
 struct Application {
     let user: User
     let title: String
-    let field: String
+    let field: Field
     let introduction: String
     let experience: String
 }

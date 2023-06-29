@@ -112,6 +112,7 @@ struct StudyDetailView: View {
 struct StudyDetailView_Previews: PreviewProvider {
     static var previews: some View {
         StudyDetailView()
+            .environmentObject(StudyViewModel())
     }
 }
 

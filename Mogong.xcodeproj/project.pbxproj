@@ -64,6 +64,9 @@
 		8FE516A12A4969DA0059D720 /* StudyDeatailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE516A02A4969DA0059D720 /* StudyDeatailView.swift */; };
 		8FE516A32A4973280059D720 /* MemberIntroductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE516A22A4973280059D720 /* MemberIntroductionView.swift */; };
 		8FE516A52A4989030059D720 /* HashtagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE516A42A4989030059D720 /* HashtagView.swift */; };
+		8FF418A32A4D7B0B0090FA34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF418A22A4D7B0B0090FA34 /* AppDelegate.swift */; };
+		8FF418A52A4D7C6E0090FA34 /* MemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF418A42A4D7C6E0090FA34 /* MemberView.swift */; };
+		8FF418A72A4D7E650090FA34 /* ApplicationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF418A62A4D7E650090FA34 /* ApplicationViewModel.swift */; };
 		936083925F226246A2A6DD2D /* Pods_Mogong.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43543764F7659697C75D1DC0 /* Pods_Mogong.framework */; };
 /* End PBXBuildFile section */
 
@@ -130,6 +133,9 @@
 		8FE516A02A4969DA0059D720 /* StudyDeatailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyDeatailView.swift; sourceTree = "<group>"; };
 		8FE516A22A4973280059D720 /* MemberIntroductionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberIntroductionView.swift; sourceTree = "<group>"; };
 		8FE516A42A4989030059D720 /* HashtagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagView.swift; sourceTree = "<group>"; };
+		8FF418A22A4D7B0B0090FA34 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8FF418A42A4D7C6E0090FA34 /* MemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberView.swift; sourceTree = "<group>"; };
+		8FF418A62A4D7E650090FA34 /* ApplicationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationViewModel.swift; sourceTree = "<group>"; };
 		D667EF6094CA2926C5A20B00 /* Pods-Mogong.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mogong.release.xcconfig"; path = "Target Support Files/Pods-Mogong/Pods-Mogong.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -184,7 +190,6 @@
 			isa = PBXGroup;
 			children = (
 				8F8A675A2A3ABFA200467936 /* Mogong.entitlements */,
-				8F8A67192A39755E00467936 /* MogongApp.swift */,
 				8F8CA83A2A4D0B17002E8D15 /* Sources */,
 				8F8CA83B2A4D0B18002E8D15 /* Resources */,
 				8F8CA83C2A4D0B19002E8D15 /* Supporting Files */,
@@ -258,6 +263,7 @@
 				8F8A67382A39765D00467936 /* RankViewModel.swift */,
 				8F8A673A2A39766300467936 /* UserViewModel.swift */,
 				8F78DB932A4BC9E20004F195 /* ChatViewModel.swift */,
+				8FF418A62A4D7E650090FA34 /* ApplicationViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -275,6 +281,8 @@
 		8F8CA83A2A4D0B17002E8D15 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				8F8A67192A39755E00467936 /* MogongApp.swift */,
+				8FF418A22A4D7B0B0090FA34 /* AppDelegate.swift */,
 				8F8A67272A3975E400467936 /* Service */,
 				8F8A67282A3975E500467936 /* Model */,
 				8F8A67292A3975E500467936 /* View */,
@@ -349,6 +357,7 @@
 			children = (
 				8F8A676B2A42CD6D00467936 /* MyStudyView.swift */,
 				8F8CA8582A4D5D65002E8D15 /* MyStudyDetailView.swift */,
+				8FF418A42A4D7C6E0090FA34 /* MemberView.swift */,
 			);
 			path = MyStudy;
 			sourceTree = "<group>";
@@ -545,6 +554,7 @@
 				8F8A676C2A42CD6D00467936 /* MyStudyView.swift in Sources */,
 				8F78DB942A4BC9E20004F195 /* ChatViewModel.swift in Sources */,
 				8F78DB9A2A4C04490004F195 /* AlarmView.swift in Sources */,
+				8FF418A32A4D7B0B0090FA34 /* AppDelegate.swift in Sources */,
 				8FE516902A4868120059D720 /* CreateStudy.swift in Sources */,
 				8F8A673F2A39767200467936 /* Login.swift in Sources */,
 				8F8A675F2A3AE30900467936 /* SocialLoginView.swift in Sources */,
@@ -553,11 +563,13 @@
 				8FD8C2062A4BAF6D00F21DD1 /* Message.swift in Sources */,
 				8FE516992A4927D00059D720 /* SelectLanguageView.swift in Sources */,
 				8F8A67352A39764D00467936 /* AuthView.swift in Sources */,
+				8FF418A52A4D7C6E0090FA34 /* MemberView.swift in Sources */,
 				8F78DB9C2A4C04A20004F195 /* Alarm.swift in Sources */,
 				8F8A676E2A42D16800467936 /* StudyListCell.swift in Sources */,
 				8F8A673B2A39766300467936 /* UserViewModel.swift in Sources */,
 				8FE516A32A4973280059D720 /* MemberIntroductionView.swift in Sources */,
 				8F8A672F2A39763400467936 /* Rank.swift in Sources */,
+				8FF418A72A4D7E650090FA34 /* ApplicationViewModel.swift in Sources */,
 				8F8A67372A39765700467936 /* StudyViewModel.swift in Sources */,
 				8F8CA84B2A4D0CAD002E8D15 /* Font+Pretendard.swift in Sources */,
 				8F8A67412A39767B00467936 /* Date+Conversion.swift in Sources */,

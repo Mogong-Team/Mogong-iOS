@@ -170,6 +170,7 @@ struct StudyDeatailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
             StudyDeatailView()
+                .environmentObject(StudyViewModel())
         }
     }
 }

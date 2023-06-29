@@ -8,14 +8,15 @@
 import SwiftUI
 
 struct MyStudyDetailView: View {
+    @EnvironmentObject var viewModel: StudyViewModel
+    
     enum ViewType {
         case host
         case member
     }
+    @State private var viewType: ViewType = .member
     
-    @EnvironmentObject var viewModel: StudyViewModel
-    
-    @State private var viewType: ViewType = .host
+    @State private var showSecessionAlert = false
         
     var body: some View {
         ZStack {
@@ -36,30 +37,55 @@ struct MyStudyDetailView: View {
                         .foregroundColor(.white)
                        
                     ScrollView {
-                        VStack(alignment: .leading) {
-                            Text("스터디 소개글")
-                                .font(.pretendard(weight: .bold, size: 20))
-                            
-                            Spacer()
-                                .frame(height: 15)
-                            
-                            Text(viewModel.study.introduction)
-                            
-                            Spacer()
-                                .frame(height: 30)
-                            
-                            Text("스터디원을 소개합니다!")
-                                .font(.pretendard(weight: .bold, size: 20))
-                            
-                            LazyVGrid(columns: [GridItem(), GridItem(), GridItem()]) {
-                                ForEach(viewModel.study.currentMembers, id: \.self) { member in
-                                    memberView2(member: member)
-                                }
+                        VStack {
+                            VStack(alignment: .leading) {
                                 
-                                ForEach(Array(viewModel.study.requiredCountPerFieldDic()), id: \.key) { field, count in
-                                    ForEach(0..<count) { _ in
-                                        newMemberView(field: field)
+                                Text("스터디 소개글")
+                                    .font(.pretendard(weight: .bold, size: 20))
+                                
+                                Spacer()
+                                    .frame(height: 15)
+                                
+                                Text(viewModel.study.introduction)
+                                
+                                Spacer()
+                                    .frame(height: 30)
+                                
+                                Text("스터디원을 소개합니다!")
+                                    .font(.pretendard(weight: .bold, size: 20))
+                                
+                                LazyVGrid(columns: [GridItem(), GridItem(), GridItem()]) {
+                                    ForEach(viewModel.study.currentMembers, id: \.self) { member in
+                                        memberView2(member: member)
                                     }
+                                    
+                                    ForEach(Array(viewModel.study.requiredCountPerFieldDic()), id: \.key) { field, count in
+                                        ForEach(0..<count) { _ in
+                                            newMemberView(field: field)
+                                        }
+                                    }
+                                }
+                            }
+                            
+                            Spacer()
+                                .frame(height: 50)
+                            
+                            if viewType == .member {
+                                Button {
+                                    showSecessionAlert = true
+                                } label: {
+                                    Text("탈퇴하기")
+                                        .font(.pretendard(weight: .regular, size: 15))
+                                        .foregroundColor(.red)
+                                }
+                                .alert("탈퇴하기", isPresented: $showSecessionAlert) {
+                                    Button("확인", role: .destructive) {
+                                        // 탈퇴하기
+                                    }
+                                    
+                                    Button("취소", role: .cancel) { }
+                                } message: {
+                                    Text("정말로 탈퇴하시겠습니까?")
                                 }
                             }
                             
@@ -74,12 +100,14 @@ struct MyStudyDetailView: View {
         }
         .ignoresSafeArea()
         .toolbar {
-            ToolbarItemGroup(placement: .navigationBarTrailing) {
-                Button {
-                    
-                } label: {
-                    Image(systemName: "gearshape.fill")
-                        .foregroundColor(.black)
+            if viewType == .host {
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    Button {
+                        
+                    } label: {
+                        Image(systemName: "gearshape.fill")
+                            .foregroundColor(.black)
+                    }
                 }
             }
         }
