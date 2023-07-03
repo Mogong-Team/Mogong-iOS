@@ -12,6 +12,9 @@
 		8F78DB9C2A4C04A20004F195 /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F78DB9B2A4C04A20004F195 /* Alarm.swift */; };
 		8F78DB9E2A4C06820004F195 /* AlarmCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F78DB9D2A4C06820004F195 /* AlarmCell.swift */; };
 		8F78DBA12A4C0B340004F195 /* StudyIntroduceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F78DBA02A4C0B340004F195 /* StudyIntroduceView.swift */; };
+		8F7D0C0F2A52A7670073457A /* BookmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7D0C0E2A52A7670073457A /* BookmarkView.swift */; };
+		8F7D0C112A52A76C0073457A /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7D0C102A52A76C0073457A /* SettingView.swift */; };
+		8F7D0C132A52A9DB0073457A /* BookmarkCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7D0C122A52A9DB0073457A /* BookmarkCellView.swift */; };
 		8F8A671A2A39755E00467936 /* MogongApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A67192A39755E00467936 /* MogongApp.swift */; };
 		8F8A671E2A39756000467936 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F8A671D2A39756000467936 /* Assets.xcassets */; };
 		8F8A67212A39756000467936 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F8A67202A39756000467936 /* Preview Assets.xcassets */; };
@@ -55,7 +58,6 @@
 		8FE516932A4913460059D720 /* SelectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE516922A4913450059D720 /* SelectButton.swift */; };
 		8FE516952A4913700059D720 /* SingleLineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE516942A4913700059D720 /* SingleLineTextField.swift */; };
 		8FE516972A49138E0059D720 /* MultiLineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE516962A49138E0059D720 /* MultiLineTextField.swift */; };
-		8FE516992A4927D00059D720 /* SelectLanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE516982A4927D00059D720 /* SelectLanguageView.swift */; };
 		8FE5169B2A492EAF0059D720 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE5169A2A492EAF0059D720 /* Language.swift */; };
 		8FE5169D2A4965310059D720 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE5169C2A4965310059D720 /* Application.swift */; };
 		8FE5169F2A4965F40059D720 /* ApplicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE5169E2A4965F40059D720 /* ApplicationView.swift */; };
@@ -76,6 +78,9 @@
 		8F78DB9B2A4C04A20004F195 /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
 		8F78DB9D2A4C06820004F195 /* AlarmCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmCell.swift; sourceTree = "<group>"; };
 		8F78DBA02A4C0B340004F195 /* StudyIntroduceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyIntroduceView.swift; sourceTree = "<group>"; };
+		8F7D0C0E2A52A7670073457A /* BookmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkView.swift; sourceTree = "<group>"; };
+		8F7D0C102A52A76C0073457A /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		8F7D0C122A52A9DB0073457A /* BookmarkCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkCellView.swift; sourceTree = "<group>"; };
 		8F8A67162A39755E00467936 /* Mogong.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mogong.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F8A67192A39755E00467936 /* MogongApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MogongApp.swift; sourceTree = "<group>"; };
 		8F8A671D2A39756000467936 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -122,7 +127,6 @@
 		8FE516922A4913450059D720 /* SelectButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectButton.swift; sourceTree = "<group>"; };
 		8FE516942A4913700059D720 /* SingleLineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleLineTextField.swift; sourceTree = "<group>"; };
 		8FE516962A49138E0059D720 /* MultiLineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiLineTextField.swift; sourceTree = "<group>"; };
-		8FE516982A4927D00059D720 /* SelectLanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLanguageView.swift; sourceTree = "<group>"; };
 		8FE5169A2A492EAF0059D720 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		8FE5169C2A4965310059D720 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		8FE5169E2A4965F40059D720 /* ApplicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationView.swift; sourceTree = "<group>"; };
@@ -162,6 +166,17 @@
 				8F78DB9D2A4C06820004F195 /* AlarmCell.swift */,
 			);
 			path = Alarm;
+			sourceTree = "<group>";
+		};
+		8F7D0C0A2A52A7340073457A /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				8F8A67422A39768700467936 /* UserView.swift */,
+				8F7D0C0E2A52A7670073457A /* BookmarkView.swift */,
+				8F7D0C122A52A9DB0073457A /* BookmarkCellView.swift */,
+				8F7D0C102A52A76C0073457A /* SettingView.swift */,
+			);
+			path = MyPage;
 			sourceTree = "<group>";
 		};
 		8F8A670D2A39755E00467936 = {
@@ -236,7 +251,7 @@
 				8F78DB9F2A4C06830004F195 /* Alarm */,
 				8FE5168E2A4868010059D720 /* StudyList */,
 				8F8CA8552A4D18BB002E8D15 /* MyStudy */,
-				8F8A67422A39768700467936 /* UserView.swift */,
+				8F7D0C0A2A52A7340073457A /* MyPage */,
 				8FE516912A4912DC0059D720 /* Components */,
 			);
 			path = View;
@@ -373,7 +388,6 @@
 				8F8A67692A42CD5100467936 /* StudyListView.swift */,
 				8F8A676D2A42D16800467936 /* StudyListCell.swift */,
 				8FE5168F2A4868120059D720 /* CreateStudy.swift */,
-				8FE516982A4927D00059D720 /* SelectLanguageView.swift */,
 				8FE5169E2A4965F40059D720 /* ApplicationView.swift */,
 				8FE516A02A4969DA0059D720 /* StudyDetailView.swift */,
 				8FE516A22A4973280059D720 /* MemberIntroductionView.swift */,
@@ -540,6 +554,7 @@
 				8FE516972A49138E0059D720 /* MultiLineTextField.swift in Sources */,
 				8F8A67452A39773600467936 /* ContentView.swift in Sources */,
 				8FE5169D2A4965310059D720 /* Application.swift in Sources */,
+				8F7D0C132A52A9DB0073457A /* BookmarkCellView.swift in Sources */,
 				8F8A673D2A39766B00467936 /* AuthViewModel.swift in Sources */,
 				8F8CA8572A4D1E93002E8D15 /* CheckLabel.swift in Sources */,
 				8FE5169F2A4965F40059D720 /* ApplicationView.swift in Sources */,
@@ -553,8 +568,8 @@
 				8F78DBA12A4C0B340004F195 /* StudyIntroduceView.swift in Sources */,
 				8FD8C2022A4BAC6400F21DD1 /* Chat.swift in Sources */,
 				8FD8C2062A4BAF6D00F21DD1 /* Message.swift in Sources */,
-				8FE516992A4927D00059D720 /* SelectLanguageView.swift in Sources */,
 				8F8A67352A39764D00467936 /* AuthView.swift in Sources */,
+				8F7D0C0F2A52A7670073457A /* BookmarkView.swift in Sources */,
 				8FF418A52A4D7C6E0090FA34 /* MemberView.swift in Sources */,
 				8F78DB9C2A4C04A20004F195 /* Alarm.swift in Sources */,
 				8F8A676E2A42D16800467936 /* StudyListCell.swift in Sources */,
@@ -569,6 +584,7 @@
 				8F8A67332A39764300467936 /* TempHomeView.swift in Sources */,
 				8F8A67312A39763800467936 /* User.swift in Sources */,
 				8F8A671A2A39755E00467936 /* MogongApp.swift in Sources */,
+				8F7D0C112A52A76C0073457A /* SettingView.swift in Sources */,
 				8FE516A12A4969DA0059D720 /* StudyDetailView.swift in Sources */,
 				8F8A67432A39768700467936 /* UserView.swift in Sources */,
 				8F8CA8592A4D5D65002E8D15 /* MyStudyDetailView.swift in Sources */,

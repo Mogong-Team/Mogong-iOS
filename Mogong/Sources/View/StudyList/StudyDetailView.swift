@@ -10,6 +10,8 @@ import SwiftUI
 struct StudyDetailView: View {
     @EnvironmentObject var viewModel: StudyViewModel
     
+    var study: Study
+    
     @Environment(\.dismiss) var dismiss
     @State private var isComplete: Bool = false
     
@@ -24,11 +26,11 @@ struct StudyDetailView: View {
                                 .frame(width: 50, height: 20)
                                 .foregroundColor(.gray)
                             
-                            Label("\(viewModel.study.bookMarkCount)", systemImage: "bookmark.fill")
+                            Label("\(study.bookMarkCount)", systemImage: "bookmark.fill")
                                 .font(Font.system(size: 12))
                         }
                         
-                        Text(viewModel.study.title)
+                        Text(study.title)
                             .font(Font.system(size: 36, weight: .bold))
                             .multilineTextAlignment(.leading)
                         
@@ -38,7 +40,7 @@ struct StudyDetailView: View {
                                     .font(Font.system(size: 15, weight: .bold))
                                     .foregroundColor(.gray)
                                 
-                                Text(viewModel.study.studyType.rawValue)
+                                Text(study.studyType.rawValue)
                                     .font(Font.system(size: 15, weight: .bold))
                             }
                             
@@ -47,7 +49,7 @@ struct StudyDetailView: View {
                                     .font(Font.system(size: 15, weight: .bold))
                                     .foregroundColor(.gray)
                                 
-                                Text("\(viewModel.study.currentMembers.count) / \(viewModel.study.totalMemberCount)")
+                                Text("\(study.currentMembers.count) / \(viewModel.study.totalMemberCount)")
                                     .font(Font.system(size: 15, weight: .bold))
                             }
                             
@@ -56,7 +58,7 @@ struct StudyDetailView: View {
                                     .font(Font.system(size: 15, weight: .bold))
                                     .foregroundColor(.gray)
                                 
-                                Text(viewModel.study.studyMode.rawValue)
+                                Text(study.studyMode.rawValue)
                                     .font(Font.system(size: 15, weight: .bold))
                             }
                             
@@ -65,7 +67,7 @@ struct StudyDetailView: View {
                                     .font(Font.system(size: 15, weight: .bold))
                                     .foregroundColor(.gray)
                                 
-                                Text("\(viewModel.study.durationOfMonth)달")
+                                Text("\(study.durationOfMonth)달")
                                     .font(Font.system(size: 15, weight: .bold))
                             }
                             
@@ -75,7 +77,7 @@ struct StudyDetailView: View {
                                     .foregroundColor(.gray)
                                 
                                 LazyHGrid(rows: [GridItem()]) {
-                                    ForEach(viewModel.study.languages, id: \.self) { language in
+                                    ForEach(study.languages, id: \.self) { language in
                                         HashtagView(text: language.rawValue)
                                     }
                                 }
@@ -87,7 +89,7 @@ struct StudyDetailView: View {
                                     .foregroundColor(.gray)
                                 
                                 LazyHGrid(rows: [GridItem()]) {
-                                    ForEach(viewModel.study.fields, id: \.self) { field in
+                                    ForEach(study.fields, id: \.self) { field in
                                         HashtagView(text: field.rawValue)
                                     }
                                 }
@@ -98,7 +100,7 @@ struct StudyDetailView: View {
                                     .font(Font.system(size: 15, weight: .bold))
                                     .foregroundColor(.gray)
                                 
-                                Text(viewModel.study.profitGoal.rawValue)
+                                Text(study.profitGoal.rawValue)
                                     .font(Font.system(size: 15, weight: .bold))
                             }
                         }
@@ -113,7 +115,7 @@ struct StudyDetailView: View {
                         Text("프로젝트 소개")
                             .font(Font.system(size: 24, weight: .bold))
                         
-                        Text(viewModel.study.introduction)
+                        Text(study.introduction)
                     }
                     .padding(20)
                     
@@ -127,7 +129,7 @@ struct StudyDetailView: View {
                             .font(Font.system(size: 24, weight: .bold))
                         
                         LazyVGrid(columns: [GridItem(), GridItem()], alignment: .center, spacing: nil) {
-                            ForEach(viewModel.study.currentMembers, id: \.self) { member in
+                            ForEach(study.currentMembers, id: \.self) { member in
                                 MemberIntroductionView(username: member.user.username)
                             }
                         }
@@ -137,7 +139,7 @@ struct StudyDetailView: View {
                         Text("이런 분을 모셔요!")
                             .font(Font.system(size: 24, weight: .bold))
                         
-                        Text(viewModel.study.memberPreference)
+                        Text(study.memberPreference)
                     }
                     
                     VStack {
@@ -166,12 +168,12 @@ struct StudyDetailView: View {
     }
 }
 
-struct StudyDeatailView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack {
-            StudyDetailView()
-                .environmentObject(StudyViewModel())
-        }
-    }
-}
+//struct StudyDeatailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NavigationStack {
+//            StudyDetailView(study: <#T##Study#>)
+//                .environmentObject(StudyViewModel())
+//        }
+//    }
+//}
 

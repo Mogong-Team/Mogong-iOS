@@ -12,7 +12,7 @@ class StudyViewModel: ObservableObject {
     @Published var searchQuery: String = ""
     
     var study =
-    Study(id: "10", title: "한달동안 프로젝트 같이해요!", frequencyOfWeek: 2, durationOfMonth: 2,
+    Study(id: "10", title: "[창업/스타트업] 정부 지원 사업에 합격한 아이템으로 함께 MVP 제작할 개발자 구합니다.(2일 뒤 마감_편하게 연락주세요)", frequencyOfWeek: 2, durationOfMonth: 2,
           studyType: .teamProject, studyMode: .online, totalMemberCount: 5,
           requiredPositions: [
             Position(field: .backend, requiredFieldCount: 2),
@@ -34,7 +34,7 @@ class StudyViewModel: ObservableObject {
           isBookMarked: true, bookMarkCount: 5, isRecruitmentCompleted: false, isStudyCompleted: false)
     
     var studys = [
-        Study(id: "1", title: "스터디1 함께해요.", frequencyOfWeek: 2, durationOfMonth: 2,
+        Study(id: "1", title: "[창업/스타트업] 정부 지원 사업에 합격한 아이템으로 함께 MVP 제작할 개발자 구합니다.(2일 뒤 마감_편하게 연락주세요)", frequencyOfWeek: 2, durationOfMonth: 2,
               studyType: .teamProject, studyMode: .online, totalMemberCount: 5,
               requiredPositions: [
                 Position(field: .backend, requiredFieldCount: 2),

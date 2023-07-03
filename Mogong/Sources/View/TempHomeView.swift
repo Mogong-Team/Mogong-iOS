@@ -11,7 +11,7 @@ struct TempHomeView: View {
     var body: some View {
         VStack {
             NavigationLink {
-                StudyDetailView()
+                StudyListView()
             } label: {
                 Text("Study")
             }
