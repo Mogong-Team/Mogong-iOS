@@ -48,7 +48,7 @@ struct StudyListView: View {
             ScrollView {
                 ForEach(viewModel.studys) { study in
                     NavigationLink {
-                        // 스터디 상세 보기
+                        StudyDetailView()
                     } label: {
                         StudyListCell(study: study)
                             .background(Color(uiColor: .systemGray5))
@@ -68,7 +68,7 @@ struct StudyListView: View {
             
             ToolbarItemGroup(placement: .navigationBarTrailing) {
                 NavigationLink {
-                    // add study
+                    CreateStudy()
                 } label: {
                     Image(systemName: "plus.circle")
                         .tint(.black)

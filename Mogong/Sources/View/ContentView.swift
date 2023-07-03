@@ -16,43 +16,35 @@ struct ContentView: View {
         Group {
             if authViewModel.isLoggedIn {
                 TabView {
-                    NavigationView {
-                        HomeView()
+                    NavigationStack {
+                        TempHomeView()
                     }
                     .tabItem {
-                        Image(systemName: "heart.fill")
+                        Image(systemName: "house")
                         Text("Home")
                     }
                     
-                    NavigationView {
+                    NavigationStack {
                         StudyListView()
                     }
                     .tabItem {
-                        Image(systemName: "heart.fill")
+                        Image(systemName: "doc.text")
                         Text("Study List")
                     }
                     
-                    NavigationView {
+                    NavigationStack {
                         MyStudyView()
                     }
                     .tabItem {
-                        Image(systemName: "heart.fill")
+                        Image(systemName: "pencil")
                         Text("My Study")
                     }
                     
-                    NavigationView {
-                        RankView()
-                    }
-                    .tabItem {
-                        Image(systemName: "heart.fill")
-                        Text("Ranking")
-                    }
-                    
-                    NavigationView {
+                    NavigationStack {
                         UserView()
                     }
                     .tabItem {
-                        Image(systemName: "heart.fill")
+                        Image(systemName: "person")
                         Text("My Page")
                     }
                 }

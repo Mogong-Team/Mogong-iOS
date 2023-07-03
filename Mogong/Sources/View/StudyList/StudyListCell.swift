@@ -71,7 +71,26 @@ struct StudyListCell: View {
 
 struct StudyListCell_Previews: PreviewProvider {
     static var previews: some View {
-        StudyListCell(study: Study(title: "한달동안 프로젝트 같이해요!", frequencyOfWeek: 2, durationOfMonth: 2, studyType: .teamProject,studyMode: .online, totalMemberCount: 5, host: User(id: "1", name: "김방장", email: "a@gmail.com", username: "나방장"), introduction: "안녕하세요", memberPreference: "누구든 상관없어요", hashtags: ["#자바스크립트", "#앱개발", "#디자이너"], dueDate: Date(timeIntervalSinceNow: 24*3600*7), languages: [.javaScript, .figma, .swift], fields: [.backend, .designer], profitGoal: .no, isBookMarked: true, isCompleted: false))
+        StudyListCell(study:
+                        Study(id: "1", title: "한달동안 프로젝트 같이해요!", frequencyOfWeek: 2, durationOfMonth: 2,
+                              studyType: .teamProject, studyMode: .online, totalMemberCount: 5,
+                              requiredPositions: [
+                                Position(field: .backend, requiredFieldCount: 2),
+                                Position(field: .frontend, requiredFieldCount: 1),
+                                Position(field: .designer, requiredFieldCount: 1),
+                                Position(field: .ios, requiredFieldCount: 1)
+                              ],
+                              host: Member(user: User(id: "1", name: "김방장", email: "a@gmail.com", username: "나방장"), field: .backend),
+                              currentMember: [
+                                Member(user: User(id: "1", name: "김방장", email: "a@gmail.com", username: "나방장"), field: .backend),
+                                Member(user: User(id: "2", name: "박민수", email: "a@gmail.com", username: "박민수"), field: .frontend),
+                                Member(user: User(id: "3", name: "최민수", email: "a@gmail.com", username: "최민수"),  field: .ios)
+                              ],
+                              introduction: "안녕하세요", memberPreference: "누구든 상관없어요", hashtags: ["#자바스크립트", "#앱개발", "#디자이너"],
+                              createDate: Date(), dueDate: Date(timeIntervalSinceNow: 24*3600*7), languages: [.javaScript, .figma, .swift],
+                              fields: [.backend, .designer], profitGoal: .no,
+                              isBookMarked: true, bookMarkCount: 5, isRecruitmentCompleted: false, isStudyCompleted: false)
+        )
     }
 }
 

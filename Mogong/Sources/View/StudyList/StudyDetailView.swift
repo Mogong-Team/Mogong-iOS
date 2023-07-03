@@ -7,14 +7,8 @@
 
 import SwiftUI
 
-struct StudyDeatailView: View {
+struct StudyDetailView: View {
     @EnvironmentObject var viewModel: StudyViewModel
-    
-    @State private var study = Study(id: "1", title: "한달동안 프로젝트 같이해요!", frequencyOfWeek: 2, durationOfMonth: 2, studyType: .teamProject, studyMode: .online, totalMemberCount: 5, host: User(id: "1", name: "김방장", email: "a@gmail.com", username: "나방장"), currentMember: [
-        User(id: "1", name: "김방장", email: "a@gmail.com", username: "나방장"),
-        User(id: "2", name: "박민수", email: "a@gmail.com", username: "박민수"),
-        User(id: "3", name: "최민수", email: "a@gmail.com", username: "최민수")
-    ], introduction: "안녕하세요", memberPreference: "누구든 상관없어요", hashtags: ["#자바스크립트", "#앱개발", "#디자이너"], createDate: Date(), dueDate: Date(timeIntervalSinceNow: 24*3600*7), languages: [.javaScript, .figma, .swift], fields: [.backend, .designer], profitGoal: .no, isBookMarked: true, isCompleted: false, bookMarkCount: 5)
     
     @Environment(\.dismiss) var dismiss
     @State private var isComplete: Bool = false
@@ -30,11 +24,11 @@ struct StudyDeatailView: View {
                                 .frame(width: 50, height: 20)
                                 .foregroundColor(.gray)
                             
-                            Label("\(study.bookMarkCount)", systemImage: "bookmark.fill")
+                            Label("\(viewModel.study.bookMarkCount)", systemImage: "bookmark.fill")
                                 .font(Font.system(size: 12))
                         }
                         
-                        Text(study.title)
+                        Text(viewModel.study.title)
                             .font(Font.system(size: 36, weight: .bold))
                             .multilineTextAlignment(.leading)
                         
@@ -44,7 +38,7 @@ struct StudyDeatailView: View {
                                     .font(Font.system(size: 15, weight: .bold))
                                     .foregroundColor(.gray)
                                 
-                                Text(study.studyType.rawValue)
+                                Text(viewModel.study.studyType.rawValue)
                                     .font(Font.system(size: 15, weight: .bold))
                             }
                             
@@ -53,7 +47,7 @@ struct StudyDeatailView: View {
                                     .font(Font.system(size: 15, weight: .bold))
                                     .foregroundColor(.gray)
                                 
-                                Text("\(study.currentMember.count) / \(study.totalMemberCount)")
+                                Text("\(viewModel.study.currentMembers.count) / \(viewModel.study.totalMemberCount)")
                                     .font(Font.system(size: 15, weight: .bold))
                             }
                             
@@ -62,7 +56,7 @@ struct StudyDeatailView: View {
                                     .font(Font.system(size: 15, weight: .bold))
                                     .foregroundColor(.gray)
                                 
-                                Text(study.studyMode.rawValue)
+                                Text(viewModel.study.studyMode.rawValue)
                                     .font(Font.system(size: 15, weight: .bold))
                             }
                             
@@ -71,7 +65,7 @@ struct StudyDeatailView: View {
                                     .font(Font.system(size: 15, weight: .bold))
                                     .foregroundColor(.gray)
                                 
-                                Text("\(study.durationOfMonth)달")
+                                Text("\(viewModel.study.durationOfMonth)달")
                                     .font(Font.system(size: 15, weight: .bold))
                             }
                             
@@ -81,7 +75,7 @@ struct StudyDeatailView: View {
                                     .foregroundColor(.gray)
                                 
                                 LazyHGrid(rows: [GridItem()]) {
-                                    ForEach(study.languages, id: \.self) { language in
+                                    ForEach(viewModel.study.languages, id: \.self) { language in
                                         HashtagView(text: language.rawValue)
                                     }
                                 }
@@ -93,7 +87,7 @@ struct StudyDeatailView: View {
                                     .foregroundColor(.gray)
                                 
                                 LazyHGrid(rows: [GridItem()]) {
-                                    ForEach(study.fields, id: \.self) { field in
+                                    ForEach(viewModel.study.fields, id: \.self) { field in
                                         HashtagView(text: field.rawValue)
                                     }
                                 }
@@ -104,7 +98,7 @@ struct StudyDeatailView: View {
                                     .font(Font.system(size: 15, weight: .bold))
                                     .foregroundColor(.gray)
                                 
-                                Text(study.profitGoal.rawValue)
+                                Text(viewModel.study.profitGoal.rawValue)
                                     .font(Font.system(size: 15, weight: .bold))
                             }
                         }
@@ -119,7 +113,7 @@ struct StudyDeatailView: View {
                         Text("프로젝트 소개")
                             .font(Font.system(size: 24, weight: .bold))
                         
-                        Text(study.introduction)
+                        Text(viewModel.study.introduction)
                     }
                     .padding(20)
                     
@@ -133,8 +127,8 @@ struct StudyDeatailView: View {
                             .font(Font.system(size: 24, weight: .bold))
                         
                         LazyVGrid(columns: [GridItem(), GridItem()], alignment: .center, spacing: nil) {
-                            ForEach(study.currentMember) { member in
-                                MemberIntroductionView(username: member.username)
+                            ForEach(viewModel.study.currentMembers, id: \.self) { member in
+                                MemberIntroductionView(username: member.user.username)
                             }
                         }
                     }
@@ -143,7 +137,7 @@ struct StudyDeatailView: View {
                         Text("이런 분을 모셔요!")
                             .font(Font.system(size: 24, weight: .bold))
                         
-                        Text(study.memberPreference)
+                        Text(viewModel.study.memberPreference)
                     }
                     
                     VStack {
@@ -167,7 +161,7 @@ struct StudyDeatailView: View {
             }
         }
         .navigationDestination(isPresented: $isComplete) {
-            // next page
+            ApplicationView()
         }
     }
 }
@@ -175,7 +169,8 @@ struct StudyDeatailView: View {
 struct StudyDeatailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            StudyDeatailView()
+            StudyDetailView()
+                .environmentObject(StudyViewModel())
         }
     }
 }

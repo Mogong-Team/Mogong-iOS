@@ -14,7 +14,7 @@ import AuthenticationServices
 
 class AuthViewModel: NSObject, ObservableObject  {
     @Published var loginData = Login(id: "", name: "", email: "")
-    @Published var isLoggedIn: Bool = false
+    @Published var isLoggedIn: Bool = true
     
     let loginInstance = NaverThirdPartyLoginConnection.getSharedInstance()
     

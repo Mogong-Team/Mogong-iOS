@@ -12,7 +12,7 @@ struct User: Identifiable, Hashable {
     let name: String
     let email: String
     var username: String
-    var joinedStudys: [Study]
+    var joinedStudyIds: [String]
     
     var isCurrentUser: Bool = false
     
@@ -21,7 +21,7 @@ struct User: Identifiable, Hashable {
         self.name = name
         self.email = email
         self.username = username
-        self.joinedStudys = []
+        self.joinedStudyIds = []
         self.isCurrentUser = false
     }
     
@@ -30,7 +30,7 @@ struct User: Identifiable, Hashable {
         self.name = name
         self.email = email
         self.username = username
-        self.joinedStudys = []
+        self.joinedStudyIds = []
         self.isCurrentUser = false
     }
 }
