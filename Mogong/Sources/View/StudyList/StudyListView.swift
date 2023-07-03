@@ -48,7 +48,7 @@ struct StudyListView: View {
             ScrollView {
                 ForEach(viewModel.studys) { study in
                     NavigationLink {
-                        StudyDetailView()
+                        StudyDetailView(study: study)
                     } label: {
                         StudyListCell(study: study)
                             .background(Color(uiColor: .systemGray5))
@@ -77,6 +77,9 @@ struct StudyListView: View {
         }
         .searchable(text: $viewModel.searchQuery, prompt: "스터디 검색하기") {
             // search action
+        }
+        .onAppear {
+            print(viewModel.study)
         }
     }
 }

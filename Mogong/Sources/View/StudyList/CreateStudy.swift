@@ -9,27 +9,34 @@ import SwiftUI
 
 struct CreateStudy: View {
     @EnvironmentObject var viewModel: StudyViewModel
+    @EnvironmentObject var userViewModel: UserViewModel
     
     @Environment(\.dismiss) var dismiss
     
     @State private var title: String = ""
-    @State private var frequencyOfWeek: Int?
-    @State private var totalMemberCount: Int?
-    @State private var durationOfMonth: Int?
+    @State private var frequencyOfWeek: Int = 0
+    @State private var totalMemberCount: Int = 0
+    @State private var durationOfMonth: Int = 0
     @State private var selectedStudyType: StudyType?
     @State private var selectedStudyMode: StudyMode?
     @State private var introduction: String = ""
     @State private var memberPreference: String = ""
     @State private var selectProfitGoal: ProfitGoal?
     @State private var dueDate: Date = Date()
-    @State private var selectedlanguages = Set<Language>()
+    @State private var selectedHostPosition: Field?
     
     @State private var showDatePicker = false
-    @State private var showSelectLanguagesView = false
+    @State private var showSelectPositionView = false
     
-    let frequency = [1, 2, 3, 4, 5, 6, 7]
     let memberCount = [2, 3, 4, 5, 6, 7, 8, 9, 10]
+    let frequency = [1, 2, 3, 4, 5, 6, 7]
     let month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    
+    @State private var backendNeedCount: String = ""
+    @State private var frontendNeedCount: String = ""
+    @State private var aosNeedCount: String = ""
+    @State private var iosNeedCount: String = ""
+    @State private var designerNeedCount: String = ""
     
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -40,6 +47,100 @@ struct CreateStudy: View {
                         .frame(height: 25)
                     
                     SingleLineTextField(text: $title, placeHolder: "스터디를 소개할 제목을 적어주세요!")
+                }
+                
+                VStack {
+                    VStack(alignment: .leading) {
+                        Text("모집인원")
+                            .font(Font.system(size: 16))
+                            .frame(height: 25)
+                        
+                        VStack(spacing: 5) {
+                            HStack {
+                                Text("나의 포지션")
+                                    .foregroundColor(.gray)
+                                Spacer()
+                                Button {
+                                    // add picker
+                                    showSelectPositionView =  true
+                                } label: {
+                                    if selectedHostPosition == nil {
+                                        Text("선택")
+                                            .foregroundColor(.black)
+                                            .fontWeight(.bold)
+                                    } else {
+                                        Text(selectedHostPosition?.rawValue ?? "")
+                                            .foregroundColor(.black)
+                                    }
+                                }
+                            }
+                            
+                            HStack {
+                                Text("프론트엔드")
+                                    .foregroundColor(.gray)
+                                Spacer()
+                                TextField("인원", text: $frontendNeedCount)
+                                    .multilineTextAlignment(.center)
+                                    .frame(width: 50, height: 38)
+                                    .overlay {
+                                        RoundedRectangle(cornerRadius: 5)
+                                            .stroke(Color.gray, lineWidth: 1)
+                                    }
+                            }
+                            
+                            HStack {
+                                Text("백엔드")
+                                    .foregroundColor(.gray)
+                                Spacer()
+                                TextField("인원", text: $backendNeedCount)
+                                    .multilineTextAlignment(.center)
+                                    .frame(width: 50, height: 38)
+                                    .overlay {
+                                        RoundedRectangle(cornerRadius: 5)
+                                            .stroke(Color.gray, lineWidth: 1)
+                                    }
+                            }
+                            
+                            HStack {
+                                Text("디자이너")
+                                    .foregroundColor(.gray)
+                                Spacer()
+                                TextField("인원", text: $designerNeedCount)
+                                    .multilineTextAlignment(.center)
+                                    .frame(width: 50, height: 38)
+                                    .overlay {
+                                        RoundedRectangle(cornerRadius: 5)
+                                            .stroke(Color.gray, lineWidth: 1)
+                                    }
+                            }
+                            
+                            HStack {
+                                Text("안드로이드")
+                                    .foregroundColor(.gray)
+                                Spacer()
+                                TextField("인원", text: $aosNeedCount)
+                                    .multilineTextAlignment(.center)
+                                    .frame(width: 50, height: 38)
+                                    .overlay {
+                                        RoundedRectangle(cornerRadius: 5)
+                                            .stroke(Color.gray, lineWidth: 1)
+                                    }
+                            }
+                            
+                            HStack {
+                                Text("iOS")
+                                    .foregroundColor(.gray)
+                                Spacer()
+                                TextField("인원", text: $iosNeedCount)
+                                    .multilineTextAlignment(.center)
+                                    .frame(width: 50, height: 38)
+                                    .overlay {
+                                        RoundedRectangle(cornerRadius: 5)
+                                            .stroke(Color.gray, lineWidth: 1)
+                                    }
+                            }
+                        }
+                    }
                 }
                 
                 VStack(alignment: .leading) {
@@ -59,16 +160,16 @@ struct CreateStudy: View {
                                 }
                             } label: {
                                 HStack {
-                                    if let frequency = frequencyOfWeek {
-                                        Text("주 \(frequency)일")
-                                            .foregroundColor(.black)
-                                            .fontWeight(.bold)
-                                    } else {
+                                    if frequencyOfWeek == 0 {
                                         Text("일")
                                             .foregroundColor(Color(uiColor: .lightGray))
                                         
                                         Image(systemName: "arrowtriangle.down.fill")
                                             .foregroundColor(.gray)
+                                    } else {
+                                        Text("주 \(frequencyOfWeek)일")
+                                            .foregroundColor(.black)
+                                            .fontWeight(.bold)
                                     }
                                 }
                                 .font(Font.system(size: 16))
@@ -80,43 +181,6 @@ struct CreateStudy: View {
                                         .stroke(Color.gray, lineWidth: 1)
                                 }
                             }
-                        }
-                        
-                        VStack(alignment: .leading, spacing: 0) {
-                            Text("인원")
-                                .font(Font.system(size: 16))
-                                .frame(height: 25)
-                            
-                            Menu {
-                                ForEach(0..<memberCount.count, id: \.self) { count in
-                                    Button {
-                                        totalMemberCount = count
-                                    } label: {
-                                        Text("\(String(count))명")
-                                    }
-                                }
-                            } label: {
-                                HStack {
-                                    if let member = totalMemberCount {
-                                        Text("\(member)명")
-                                            .foregroundColor(.black)
-                                            .fontWeight(.bold)
-                                    } else {
-                                        Text("명")
-                                            .foregroundColor(Color(uiColor: .lightGray))
-                                        
-                                        Image(systemName: "chevron.down")
-                                            .foregroundColor(.gray)
-                                    }
-                                }
-                                .font(Font.system(size: 16))
-                                .padding(.horizontal, 13)
-                                .frame(height: 38)
-                                .frame(maxWidth: .infinity)
-                                .overlay {
-                                    RoundedRectangle(cornerRadius: 9)
-                                        .stroke(Color.gray, lineWidth: 1)
-                                }                            }
                         }
                         
                         VStack(alignment: .leading, spacing: 0) {
@@ -134,16 +198,16 @@ struct CreateStudy: View {
                                 }
                             } label: {
                                 HStack {
-                                    if let month = durationOfMonth {
-                                        Text("\(month)달")
-                                            .foregroundColor(.black)
-                                            .fontWeight(.bold)
-                                    } else {
+                                    if durationOfMonth == 0 {
                                         Text("달")
                                             .foregroundColor(Color(uiColor: .lightGray))
                                         
                                         Image(systemName: "chevron.down")
                                             .foregroundColor(.gray)
+                                    } else {
+                                        Text("\(durationOfMonth)달")
+                                            .foregroundColor(.black)
+                                            .fontWeight(.bold)
                                     }
                                 }
                                 .font(Font.system(size: 16))
@@ -173,9 +237,7 @@ struct CreateStudy: View {
                             selectedStudyType = .teamProject
                         }
                     }
-                }
-                
-                VStack(alignment: .leading) {
+                    
                     Text("스터디 방식")
                         .font(Font.system(size: 16))
                         .frame(height: 25)
@@ -230,21 +292,6 @@ struct CreateStudy: View {
                         }
                         .foregroundColor(.black)
                     }
-                    
-                    HStack {
-                        Text("사용 언어")
-                            .font(Font.system(size: 16))
-                            .frame(height: 25)
-                        
-                        Spacer()
-                        
-                        Button {
-                            // add picker
-                            showSelectLanguagesView =  true
-                        } label: {
-                            Image(systemName: "plus")
-                        }
-                    }
                 }
                 
                 VStack(alignment: .leading) {
@@ -274,12 +321,25 @@ struct CreateStudy: View {
                 VStack {
                     SelectButton(title: "스터디 생성", state: .selected) {
                         dismiss()
-                        // send data
+                        
+                        let study = Study(id: "11", title: title, frequencyOfWeek: frequencyOfWeek, durationOfMonth: durationOfMonth, studyType: selectedStudyType ?? .study, studyMode: selectedStudyMode ?? .both, totalMemberCount: totalMemberCount,
+                                          requiredPositions: [
+                            Position(field: .backend, requiredFieldCount: Int(backendNeedCount) ?? 0),
+                            Position(field: .frontend, requiredFieldCount: Int(frontendNeedCount) ?? 0),
+                            Position(field: .designer, requiredFieldCount: Int(designerNeedCount) ?? 0),
+                            Position(field: .aos, requiredFieldCount: Int(aosNeedCount) ?? 0),
+                            Position(field: .ios, requiredFieldCount: Int(iosNeedCount) ?? 0)
+                        ], host: Member(user: userViewModel.currentUser, field: selectedHostPosition ?? .backend), currentMember: [
+                            Member(user: userViewModel.currentUser, field: selectedHostPosition ?? .backend)
+                        ], introduction: introduction, memberPreference: memberPreference, hashtags: [], createDate: Date(), dueDate: dueDate, languages: [], fields: [], profitGoal: selectProfitGoal ?? .no, isBookMarked: false, bookMarkCount: 0, isRecruitmentCompleted: false, isStudyCompleted: false)
+    
+                        viewModel.studys.append(study)
                     }
                 }
             }
-            .padding(20)
+            .padding(.vertical, 10)
         }
+        .padding(.horizontal, 20)
         .navigationTitle("스터디 생성")
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
@@ -297,18 +357,68 @@ struct CreateStudy: View {
                 .environment(\.locale, Locale.init(identifier: "ko_KR"))
                 .presentationDetents([.fraction(0.5)])
         }
-        .sheet(isPresented: $showSelectLanguagesView) {
-            NavigationStack {
-                SelectLanguageView(selectedLanguage: $selectedlanguages)
+        .sheet(isPresented: $showSelectPositionView) {
+            //NavigationStack {
+                SelectHostPositionView(selectedHostPosition: $selectedHostPosition)
+                    .presentationDetents([.fraction(0.4)])
+            //}
+        }
+    }
+}
+
+struct SelectHostPositionView: View {
+    @Environment(\.dismiss) var dismiss
+    
+    @Binding var selectedHostPosition: Field?
+    
+    
+    var body: some View {
+        VStack {
+            VStack(spacing: 0) {
+                ForEach(Field.allCases, id: \.self) { field in
+                    Button {
+                        selectedHostPosition = field
+                    } label: {
+                        VStack {
+                            Text(field.rawValue)
+                                .foregroundColor(.black)
+                                .frame(height: 40)
+                            Rectangle()
+                                .frame(height: 1)
+                                .foregroundColor(Color(uiColor: .systemGray6))
+                        }
+                        .cornerRadius(5)
+                        .background(field == selectedHostPosition ? Color(uiColor: .systemGray5) : Color.white)
+                    }
+                }
+            }
+            .padding(.horizontal, 20)
+            .toolbar {
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "checkmark")
+                    }
+                }
+                
+                ToolbarItemGroup(placement: .navigationBarLeading) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "xmark")
+                    }
+                }
             }
         }
     }
 }
 
+
 struct CreateStudy_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationStack {
-            CreateStudy()
-        }
+        CreateStudy()
+            .environmentObject(StudyViewModel())
+            .environmentObject(UserViewModel())
     }
 }
