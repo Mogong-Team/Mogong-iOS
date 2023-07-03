@@ -11,7 +11,6 @@ struct CreateStudy: View {
     @EnvironmentObject var viewModel: StudyViewModel
     
     @Environment(\.dismiss) var dismiss
-    @State private var isComplete: Bool = false
     
     @State private var title: String = ""
     @State private var frequencyOfWeek: Int?
@@ -274,7 +273,7 @@ struct CreateStudy: View {
                 
                 VStack {
                     SelectButton(title: "스터디 생성", state: .selected) {
-                        isComplete = true
+                        dismiss()
                         // send data
                     }
                 }
@@ -302,9 +301,6 @@ struct CreateStudy: View {
             NavigationStack {
                 SelectLanguageView(selectedLanguage: $selectedlanguages)
             }
-        }
-        .navigationDestination(isPresented: $isComplete) {
-            // next page
         }
     }
 }

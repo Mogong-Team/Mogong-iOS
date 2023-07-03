@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct StudyDeatailView: View {
+struct StudyDetailView: View {
     @EnvironmentObject var viewModel: StudyViewModel
     
     @Environment(\.dismiss) var dismiss
@@ -161,7 +161,7 @@ struct StudyDeatailView: View {
             }
         }
         .navigationDestination(isPresented: $isComplete) {
-            // next page
+            ApplicationView()
         }
     }
 }
@@ -169,7 +169,7 @@ struct StudyDeatailView: View {
 struct StudyDeatailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            StudyDeatailView()
+            StudyDetailView()
                 .environmentObject(StudyViewModel())
         }
     }

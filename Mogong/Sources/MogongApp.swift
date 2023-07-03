@@ -25,11 +25,7 @@ struct MogongApp: App {
     
     var body: some Scene {
         WindowGroup {
-            //ContentView()
-            //CreateStudy()
-            //TempHomeView()
-            //StudyDetailView()
-            MyStudyView()
+            ContentView()
                 .environmentObject(authViewModel)
                 .environmentObject(studyViewModel)
                 .environmentObject(rankViewModel)

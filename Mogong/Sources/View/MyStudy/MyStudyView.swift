@@ -14,52 +14,72 @@ enum MyStudyType {
 
 struct MyStudyView: View {
     @EnvironmentObject var viewModel: StudyViewModel
+    @EnvironmentObject var userViewModel: UserViewModel
     
     @State private var type: MyStudyType = .ongoing
+    @State private var selectedButton: Int = 0
     
     var body: some View {
         VStack {
             HStack {
-                SelectButton(title: "진행중인 스터디", state: .selected) {
+                SelectButton(title: "진행중인 스터디", state: selectedButton == 0 ? .selected : .unselected) {
                     type = .ongoing
+                    selectedButton = 0
                 }
                 
-                SelectButton(title: "완주한 스터디", state: .unselected) {
+                SelectButton(title: "완주한 스터디", state: selectedButton == 1 ? .selected : .unselected) {
                     type = .completed
+                    selectedButton = 1
                 }
             }
             
             ScrollView {
                 VStack {
                     ForEach(viewModel.studys.filter { type ==  .ongoing ? !$0.isStudyCompleted : $0.isStudyCompleted }, id: \.self) { study in
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 33)
-                                .frame(height: 300)
-                                .foregroundColor(Color(uiColor: .systemGray6))
-                            
-                            if type == .ongoing {
-                                MyStudyCell(study: study)
-                            } else {
-                                MyStudyCell(study: study)
+                        NavigationLink {
+                            MyStudyDetailView(study: viewModel.study, viewType: study.host.user.id == userViewModel.currentUser.id ? .host : .member)
+                        } label: {
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 33)
+                                    .frame(height: 300)
+                                    .foregroundColor(Color(uiColor: .systemGray6))
+                                
+                                if type == .ongoing {
+                                    MyStudyCell(study: study, isHostIsCurrentUser: study.host.user.id == userViewModel.currentUser.id ? true : false)
+                                } else {
+                                    MyStudyCell(study: study, isHostIsCurrentUser: study.host.user.id == userViewModel.currentUser.id ? true : false)
+                                }
                             }
                         }
                     }
                 }
+                .padding(.vertical, 10)
             }
         }
-        .padding(20)
+        .padding(.horizontal, 20)
+        .toolbar {
+            ToolbarItemGroup(placement: .navigationBarLeading) {
+                Text("Mogong")
+                    .font(.title2)
+                    .fontWeight(.heavy)
+            }
+        }
     }
 }
 
 struct MyStudyCell: View {
     var study: Study
     
+    var isHostIsCurrentUser: Bool
+    
     var body: some View {
         VStack(alignment: .leading) {
-            Image(systemName: "crown.fill")
-                .resizable()
-                .frame(width: 45, height: 45)
-                .foregroundColor(.yellow)
+            if isHostIsCurrentUser {
+                Image(systemName: "crown.fill")
+                    .resizable()
+                    .frame(width: 45, height: 45)
+                    .foregroundColor(.yellow)
+            }
             
             Spacer()
             
@@ -75,19 +95,11 @@ struct MyStudyCell: View {
     }
 }
 
-//struct MyStudyBottomView: View {
-//    @Binding var type: MyStudyType
-//
-//    var body: some View {
-//        VStack {
-//
-//        }
-//    }
-//}
-
 struct MyStudyView_Previews: PreviewProvider {
     static var previews: some View {
         MyStudyView()
+            .environmentObject(UserViewModel())
+            .environmentObject(StudyViewModel())
     }
 }
 

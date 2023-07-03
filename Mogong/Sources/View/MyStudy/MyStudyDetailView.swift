@@ -7,14 +7,16 @@
 
 import SwiftUI
 
+enum HostMemberType {
+    case host
+    case member
+}
+
 struct MyStudyDetailView: View {
-    @EnvironmentObject var viewModel: StudyViewModel
     
-    enum ViewType {
-        case host
-        case member
-    }
-    @State private var viewType: ViewType = .member
+    var study: Study
+        
+    var viewType: HostMemberType
     
     @State private var showSecessionAlert = false
         
@@ -24,6 +26,7 @@ struct MyStudyDetailView: View {
             
             VStack {
                 Spacer()
+                    .frame(height: 130)
                 
                 Text("나의 스터디")
                     .font(.pretendard(weight: .bold, size: 28))
@@ -46,7 +49,7 @@ struct MyStudyDetailView: View {
                                 Spacer()
                                     .frame(height: 15)
                                 
-                                Text(viewModel.study.introduction)
+                                Text(study.introduction)
                                 
                                 Spacer()
                                     .frame(height: 30)
@@ -55,11 +58,15 @@ struct MyStudyDetailView: View {
                                     .font(.pretendard(weight: .bold, size: 20))
                                 
                                 LazyVGrid(columns: [GridItem(), GridItem(), GridItem()]) {
-                                    ForEach(viewModel.study.currentMembers, id: \.self) { member in
-                                        memberView2(member: member)
+                                    ForEach(study.currentMembers, id: \.self) { member in
+                                        NavigationLink {
+                                            MemberView()
+                                        } label: {
+                                            memberView2(member: member, viewType: viewType)
+                                        }
                                     }
                                     
-                                    ForEach(Array(viewModel.study.requiredCountPerFieldDic()), id: \.key) { field, count in
+                                    ForEach(Array(study.requiredCountPerFieldDic()), id: \.key) { field, count in
                                         ForEach(0..<count) { _ in
                                             newMemberView(field: field)
                                         }
@@ -95,15 +102,15 @@ struct MyStudyDetailView: View {
                     .padding(.vertical, 30)
                     .padding(.horizontal, 32)
                 }
-                .frame(height: UIScreen.main.bounds.height - 230)
+                .frame(maxHeight: .infinity)
             }
         }
         .ignoresSafeArea()
         .toolbar {
             if viewType == .host {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    Button {
-                        
+                    NavigationLink {
+                        CreateStudy()
                     } label: {
                         Image(systemName: "gearshape.fill")
                             .foregroundColor(.black)
@@ -116,8 +123,7 @@ struct MyStudyDetailView: View {
 
 struct MyStudyDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        MyStudyDetailView()
-            .environmentObject(StudyViewModel())
+        MyStudyDetailView(study: StudyViewModel().study, viewType: .host)
     }
 }
 
@@ -152,6 +158,10 @@ struct newMemberView: View {
 struct memberView2: View {
     var member: Member
     
+    var viewType: HostMemberType
+    
+    @State var showDropAlert: Bool = false
+    
     var body: some View {
         VStack {
             Image(systemName: "circle.fill")
@@ -168,6 +178,31 @@ struct memberView2: View {
             Text(member.field.rawValue)
                 .font(Font.system(size: 14, weight: .regular))
                 .foregroundColor(.gray)
+            
+            if viewType == .host {
+                Button {
+                    showDropAlert = true
+                } label: {
+                    ZStack {
+                        Color.red
+                        
+                        Text("강퇴하기")
+                            .font(.pretendard(weight: .regular, size: 16))
+                            .foregroundColor(.white)
+                    }
+                    .frame(height: 25)
+                    .cornerRadius(11)
+                }
+                .alert("강퇴하기", isPresented: $showDropAlert) {
+                    Button("확인", role: .destructive) {
+                        // 강퇴하기
+                    }
+                    
+                    Button("취소", role: .cancel) { }
+                } message: {
+                    Text("정말로 강퇴하시겠습니까?")
+                }
+            }
         }
     }
 }

@@ -12,6 +12,7 @@ struct ApplicationView: View {
     
     @Environment(\.dismiss) var dismiss
     @State private var isComplete: Bool = false
+    @State private var showChat: Bool = false
     
     @State private var title: String = ""
     @State private var field: String = ""
@@ -56,7 +57,7 @@ struct ApplicationView: View {
             
             HStack {
                 SelectButton(title: "문의하기", state: .unselected) {
-                    
+                    showChat = true
                 }
                 
                 SelectButton(title: "지원하기", state: .selected) {
@@ -78,6 +79,9 @@ struct ApplicationView: View {
         }
         .navigationDestination(isPresented: $isComplete) {
             // next page
+        }
+        .navigationDestination(isPresented: $showChat) {
+            ChatListView()
         }
     }
 }

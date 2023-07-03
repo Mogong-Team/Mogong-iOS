@@ -24,7 +24,7 @@ enum ViewType: Int {
     }
 }
 
-struct StudyDetailView: View {
+struct StudyIntroduceView: View {
     @EnvironmentObject var viewModel: StudyViewModel
     
     @State private var viewType: ViewType = .introduction
@@ -109,9 +109,9 @@ struct StudyDetailView: View {
     }
 }
 
-struct StudyDetailView_Previews: PreviewProvider {
+struct StudyIntroduceView_Previews: PreviewProvider {
     static var previews: some View {
-        StudyDetailView()
+        StudyIntroduceView()
             .environmentObject(StudyViewModel())
     }
 }
