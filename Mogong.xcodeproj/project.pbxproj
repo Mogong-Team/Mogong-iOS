@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F4125572A55029E005B5A1E /* NaviBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4125562A55029D005B5A1E /* NaviBackButton.swift */; };
 		8F78DB942A4BC9E20004F195 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F78DB932A4BC9E20004F195 /* ChatViewModel.swift */; };
 		8F78DB9A2A4C04490004F195 /* AlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F78DB992A4C04490004F195 /* AlarmView.swift */; };
 		8F78DB9C2A4C04A20004F195 /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F78DB9B2A4C04A20004F195 /* Alarm.swift */; };
@@ -73,6 +74,7 @@
 /* Begin PBXFileReference section */
 		43543764F7659697C75D1DC0 /* Pods_Mogong.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mogong.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C495DE2ED845CC16581FE5B /* Pods-Mogong.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mogong.debug.xcconfig"; path = "Target Support Files/Pods-Mogong/Pods-Mogong.debug.xcconfig"; sourceTree = "<group>"; };
+		8F4125562A55029D005B5A1E /* NaviBackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaviBackButton.swift; sourceTree = "<group>"; };
 		8F78DB932A4BC9E20004F195 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		8F78DB992A4C04490004F195 /* AlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmView.swift; sourceTree = "<group>"; };
 		8F78DB9B2A4C04A20004F195 /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
@@ -403,6 +405,7 @@
 				8FE516962A49138E0059D720 /* MultiLineTextField.swift */,
 				8FE516A42A4989030059D720 /* HashtagView.swift */,
 				8F8CA8562A4D1E93002E8D15 /* CheckLabel.swift */,
+				8F4125562A55029D005B5A1E /* NaviBackButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -581,6 +584,7 @@
 				8F8CA84B2A4D0CAD002E8D15 /* Font+Pretendard.swift in Sources */,
 				8F8A67412A39767B00467936 /* Date+Conversion.swift in Sources */,
 				8FE5169B2A492EAF0059D720 /* Language.swift in Sources */,
+				8F4125572A55029E005B5A1E /* NaviBackButton.swift in Sources */,
 				8F8A67332A39764300467936 /* TempHomeView.swift in Sources */,
 				8F8A67312A39763800467936 /* User.swift in Sources */,
 				8F8A671A2A39755E00467936 /* MogongApp.swift in Sources */,
