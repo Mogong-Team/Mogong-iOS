@@ -24,6 +24,10 @@ struct ContentView: View {
         tabBarAppearance.backgroundColor = .white
         UITabBar.appearance().standardAppearance = tabBarAppearance
         UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+        UITabBar.appearance().tintColor = .red
+        UITabBar.appearance().barTintColor = .red
+        UITabBar.appearance().unselectedItemTintColor = .red
+        tabBarAppearance.shadowColor = .clear
     }
     
     var body: some View {
@@ -64,6 +68,7 @@ struct ContentView: View {
                         }
                     }
                 }
+                .accentColor(.black)
             } else {
                 AuthView()
             }

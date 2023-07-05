@@ -66,8 +66,9 @@
 		8FE516A32A4973280059D720 /* MemberIntroductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE516A22A4973280059D720 /* MemberIntroductionView.swift */; };
 		8FE516A52A4989030059D720 /* HashtagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE516A42A4989030059D720 /* HashtagView.swift */; };
 		8FF418A32A4D7B0B0090FA34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF418A22A4D7B0B0090FA34 /* AppDelegate.swift */; };
-		8FF418A52A4D7C6E0090FA34 /* MemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF418A42A4D7C6E0090FA34 /* MemberView.swift */; };
+		8FF418A52A4D7C6E0090FA34 /* UserPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF418A42A4D7C6E0090FA34 /* UserPageView.swift */; };
 		8FF418A72A4D7E650090FA34 /* ApplicationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF418A62A4D7E650090FA34 /* ApplicationViewModel.swift */; };
+		8FF92E3B2A552FE3009ED6D5 /* TeamMemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF92E3A2A552FE3009ED6D5 /* TeamMemberView.swift */; };
 		936083925F226246A2A6DD2D /* Pods_Mogong.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43543764F7659697C75D1DC0 /* Pods_Mogong.framework */; };
 /* End PBXBuildFile section */
 
@@ -136,8 +137,9 @@
 		8FE516A22A4973280059D720 /* MemberIntroductionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberIntroductionView.swift; sourceTree = "<group>"; };
 		8FE516A42A4989030059D720 /* HashtagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagView.swift; sourceTree = "<group>"; };
 		8FF418A22A4D7B0B0090FA34 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8FF418A42A4D7C6E0090FA34 /* MemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberView.swift; sourceTree = "<group>"; };
+		8FF418A42A4D7C6E0090FA34 /* UserPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPageView.swift; sourceTree = "<group>"; };
 		8FF418A62A4D7E650090FA34 /* ApplicationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationViewModel.swift; sourceTree = "<group>"; };
+		8FF92E3A2A552FE3009ED6D5 /* TeamMemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamMemberView.swift; sourceTree = "<group>"; };
 		D667EF6094CA2926C5A20B00 /* Pods-Mogong.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mogong.release.xcconfig"; path = "Target Support Files/Pods-Mogong/Pods-Mogong.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -369,7 +371,7 @@
 			children = (
 				8F8A676B2A42CD6D00467936 /* MyStudyView.swift */,
 				8F8CA8582A4D5D65002E8D15 /* MyStudyDetailView.swift */,
-				8FF418A42A4D7C6E0090FA34 /* MemberView.swift */,
+				8FF418A42A4D7C6E0090FA34 /* UserPageView.swift */,
 			);
 			path = MyStudy;
 			sourceTree = "<group>";
@@ -406,6 +408,7 @@
 				8FE516A42A4989030059D720 /* HashtagView.swift */,
 				8F8CA8562A4D1E93002E8D15 /* CheckLabel.swift */,
 				8F4125562A55029D005B5A1E /* NaviBackButton.swift */,
+				8FF92E3A2A552FE3009ED6D5 /* TeamMemberView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -560,6 +563,7 @@
 				8F7D0C132A52A9DB0073457A /* BookmarkCellView.swift in Sources */,
 				8F8A673D2A39766B00467936 /* AuthViewModel.swift in Sources */,
 				8F8CA8572A4D1E93002E8D15 /* CheckLabel.swift in Sources */,
+				8FF92E3B2A552FE3009ED6D5 /* TeamMemberView.swift in Sources */,
 				8FE5169F2A4965F40059D720 /* ApplicationView.swift in Sources */,
 				8F8A676C2A42CD6D00467936 /* MyStudyView.swift in Sources */,
 				8F78DB942A4BC9E20004F195 /* ChatViewModel.swift in Sources */,
@@ -573,7 +577,7 @@
 				8FD8C2062A4BAF6D00F21DD1 /* Message.swift in Sources */,
 				8F8A67352A39764D00467936 /* AuthView.swift in Sources */,
 				8F7D0C0F2A52A7670073457A /* BookmarkView.swift in Sources */,
-				8FF418A52A4D7C6E0090FA34 /* MemberView.swift in Sources */,
+				8FF418A52A4D7C6E0090FA34 /* UserPageView.swift in Sources */,
 				8F78DB9C2A4C04A20004F195 /* Alarm.swift in Sources */,
 				8F8A676E2A42D16800467936 /* StudyListCell.swift in Sources */,
 				8F8A673B2A39766300467936 /* UserViewModel.swift in Sources */,
