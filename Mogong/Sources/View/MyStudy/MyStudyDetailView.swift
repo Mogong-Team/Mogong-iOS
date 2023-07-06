@@ -62,13 +62,13 @@ struct MyStudyDetailView: View {
                                         NavigationLink {
                                             UserPageView()
                                         } label: {
-                                            TeamMemberView(member: member, viewType: viewType)
+                                            VStakTeamMemberView(member: member, viewType: viewType)
                                         }
                                     }
                                     
                                     ForEach(Array(study.requiredCountPerFieldDic()), id: \.key) { field, count in
                                         ForEach(0..<count) { _ in
-                                            NewTeamMemberView(field: field)
+                                            VStackNewTeamMemberView(field: field)
                                         }
                                     }
                                 }
@@ -127,33 +127,7 @@ struct MyStudyDetailView_Previews: PreviewProvider {
     }
 }
 
-struct NewTeamMemberView: View {
-    var field: Field
-    
-    var body: some View {
-        VStack {
-            ZStack {
-                Image(systemName: "circle.fill")
-                    .resizable()
-                    .frame(width: 60, height: 60)
-                    .scaledToFit()
-                    .clipShape(Circle())
-                    .foregroundColor(.yellow)
-                
-                Text("New!")
-                    .font(.pretendard(weight: .bold, size: 15))
-            }
-            
-            Text("모집중!")
-                .font(Font.system(size: 20, weight: .bold))
-                .foregroundColor(.black)
-            
-            Text(field.rawValue)
-                .font(Font.system(size: 14, weight: .regular))
-                .foregroundColor(.gray)
-        }
-    }
-}
+
 
 
 

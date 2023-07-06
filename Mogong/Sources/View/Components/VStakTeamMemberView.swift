@@ -1,13 +1,13 @@
 //
-//  TeamMemberView.swift
+//  VStakTeamMemberView.swift
 //  Mogong
 //
-//  Created by 심현석 on 2023/07/05.
+//  Created by 심현석 on 2023/07/06.
 //
 
 import SwiftUI
 
-struct TeamMemberView: View {
+struct VStakTeamMemberView: View {
     var member: Member
     
     var viewType: HostMemberType

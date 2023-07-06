@@ -43,4 +43,19 @@ extension Date {
             return "방금 전"
         }
     }
+    
+    func dDayString() -> String {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.day], from: .now, to: self)
+        
+        guard let day = components.day else { return "" }
+        
+        if day > 0 {
+            return "D-\(day)"
+        } else if day < 0 {
+            return "D+\(-day)"
+        } else {
+            return "D-day"
+        }
+    }
 }

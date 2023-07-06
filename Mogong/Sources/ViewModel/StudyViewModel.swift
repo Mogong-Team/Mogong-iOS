@@ -9,7 +9,6 @@ import SwiftUI
 import Combine
 
 class StudyViewModel: ObservableObject {
-    @Published var searchQuery: String = ""
     
     var study =
     Study(id: "10", title: "[창업/스타트업] 정부 지원 사업에 합격한 아이템으로 함께 MVP 제작할 개발자 구합니다.(2일 뒤 마감_편하게 연락주세요)", frequencyOfWeek: 2, durationOfMonth: 2,
@@ -29,11 +28,11 @@ class StudyViewModel: ObservableObject {
             Member(user: User(id: "3", name: "김나연", email: "a@gmail.com", username: "나연나연"),  field: .designer),
           ],
           introduction: "안녕하세요", memberPreference: "누구든 상관없어요", hashtags: ["#자바스크립트", "#앱개발", "#디자이너"],
-          createDate: Date(), dueDate: Date(timeIntervalSinceNow: 24*3600*7), languages: [.javaScript, .figma, .swift],
+          createDate: Date(), dueDate: Date(), languages: [.javaScript, .figma, .swift],
           fields: [.backend, .designer], profitGoal: .no,
           isBookMarked: true, bookMarkCount: 5, isRecruitmentCompleted: false, isStudyCompleted: false)
     
-    var studys = [
+    @Published  var studys = [
         Study(id: "1", title: "[창업/스타트업] 정부 지원 사업에 합격한 아이템으로 함께 MVP 제작할 개발자 구합니다.(2일 뒤 마감_편하게 연락주세요)", frequencyOfWeek: 2, durationOfMonth: 2,
               studyType: .teamProject, studyMode: .online, totalMemberCount: 5,
               requiredPositions: [
@@ -51,7 +50,7 @@ class StudyViewModel: ObservableObject {
                 Member(user: User(id: "4", name: "김나연", email: "a@gmail.com", username: "나연나연"),  field: .designer),
               ],
               introduction: "안녕하세요", memberPreference: "누구든 상관없어요", hashtags: ["#자바스크립트", "#앱개발", "#디자이너"],
-              createDate: Date(), dueDate: Date(timeIntervalSinceNow: 24*3600*7), languages: [.javaScript, .figma, .swift],
+              createDate: Date(), dueDate: Date(timeIntervalSinceNow: 24*3600*1), languages: [.javaScript, .figma, .swift],
               fields: [.backend, .designer], profitGoal: .no,
               isBookMarked: true, bookMarkCount: 5, isRecruitmentCompleted: false, isStudyCompleted: false),
         
@@ -93,9 +92,36 @@ class StudyViewModel: ObservableObject {
                 Member(user: User(id: "4", name: "김나연", email: "a@gmail.com", username: "나연나연"),  field: .designer),
               ],
               introduction: "안녕하세요", memberPreference: "누구든 상관없어요", hashtags: ["#자바스크립트", "#앱개발", "#디자이너"],
-              createDate: Date(), dueDate: Date(timeIntervalSinceNow: 24*3600*7), languages: [.javaScript, .figma, .swift],
+              createDate: Date(), dueDate: Date(timeIntervalSinceNow: -24*3600*7), languages: [.javaScript, .figma, .swift],
               fields: [.backend, .designer], profitGoal: .no,
-              isBookMarked: true, bookMarkCount: 5, isRecruitmentCompleted: false, isStudyCompleted: true)
+              isBookMarked: true, bookMarkCount: 5, isRecruitmentCompleted: false, isStudyCompleted: true),
     ]
+    
+    @Published var myStudys = [Study]() // 서버에서 받아오기
+    @Published var filterdOngoingMyStudys = [Study]()
+    @Published var filterdCompletedMyStudys = [Study]()
+    @Published var myStudyStateIsOngoing: Bool = true
+    @Published var myStudySelectedStudyIndex: Int = 0
+    @Published var myStudyshowRemoveSheet: Bool = false
+    
+    @Published var searchQuery: String = ""
+    
+    private var cancellables: Set<AnyCancellable> = []
+    
+    init() {
+        $studys
+            .map { $0.filter { !$0.isStudyCompleted }}
+            .sink { [weak self] filterdStudys in
+                self?.filterdOngoingMyStudys = filterdStudys
+            }
+            .store(in: &cancellables)
+        
+        $studys
+            .map { $0.filter { $0.isStudyCompleted }}
+            .sink { [weak self] filterdStudys in
+                self?.filterdCompletedMyStudys = filterdStudys
+            }
+            .store(in: &cancellables)
+    }
 }
 
