@@ -1,5 +1,5 @@
 //
-//  MemberView.swift
+//  UserPageView.swift
 //  Mogong
 //
 //  Created by 심현석 on 2023/06/29.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MemberView: View {
+struct UserPageView: View {
     @EnvironmentObject var viewModel: ApplicationViewModel
     @State var isPresented: Bool = false
     
@@ -65,9 +65,9 @@ struct MemberView: View {
     }
 }
 
-struct MemberView_Previews: PreviewProvider {
+struct UserPageView_Previews: PreviewProvider {
     static var previews: some View {
-        MemberView()
+        UserPageView()
             .environmentObject(ApplicationViewModel())
     }
 }
