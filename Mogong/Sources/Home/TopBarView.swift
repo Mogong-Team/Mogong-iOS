@@ -9,7 +9,32 @@ import SwiftUI
 
 struct TopBarView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+//            Text("Study List Arr")
+        }
+        .toolbar {
+            ToolbarItemGroup(placement: .navigationBarLeading) {
+                Text("Mogong")
+                    .font(.title2)
+                    .fontWeight(.heavy)
+            }
+            
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                NavigationLink {
+                    ChatListView()
+                } label: {
+                    Image(systemName: "paperplane")
+                        .tint(.black)
+                }
+                
+                NavigationLink {
+                    AlarmView()
+                } label: {
+                    Image(systemName: "bell")
+                        .tint(.black)
+                }
+            }
+        }
     }
 }
 
