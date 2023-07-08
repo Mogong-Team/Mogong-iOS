@@ -7,70 +7,69 @@
 
 import SwiftUI
 
-enum StudyState {
-    case ongoing
-    case completed
-}
-
 struct MyStudyView: View {
     @EnvironmentObject var studyViewModel: StudyViewModel
     @EnvironmentObject var userViewModel: UserViewModel
-    
-    @State var selectedStudy: Study?
     
     var body: some View {
         ZStack {
             Color(uiColor: .systemGray6)
             
-            ScrollView {
+            ScrollView(showsIndicators: false) {
                 VStack {
-                    SelectStudyState()
+                    MyStudyStateSelect()
                         .padding(.horizontal, 20)
                     MyStudyList()
                 }
                 .padding(.top, 10)
                 .padding(.bottom, 20)
             }
-            .toolbar {
-                ToolbarItemGroup(placement: .navigationBarLeading) {
-                    Text("Mogong")
-                        .font(.title2)
-                        .fontWeight(.heavy)
-                }
-            }
         }
         .onAppear {
-            self.selectedStudy = studyViewModel.studys[0]
+            studyViewModel.myStudyStateIsOngoing = true
+            studyViewModel.myStudySelectedStudyIndex = 0
+        }
+        .toolbar {
+            ToolbarItemGroup(placement: .navigationBarLeading) {
+                Text("Mogong")
+                    .font(.title2)
+                    .fontWeight(.heavy)
+            }
         }
     }
 }
 
-struct SelectStudyState: View {
-    @EnvironmentObject private var viewModel: StudyViewModel
-    @State private var isOngoing: Bool = true
+struct MyStudyStateSelect: View {
+    @EnvironmentObject private var studyViewModel: StudyViewModel
     
     var body: some View {
         HStack {
-            StudyStateButton(title: "진행중인 스터디", studyCount: viewModel.studys.filter { !$0.isStudyCompleted }.count, isSelected: isOngoing ? true : false)
-                .onTapGesture {
-                    withAnimation {
-                        isOngoing = true
-                        viewModel.myStudyStateIsOngoing = true
-                        viewModel.myStudySelectedStudyIndex = 0
-                    }
+            StudyStateButton(
+                title: "진행중인 스터디",
+                studyCount: studyViewModel.studys.filter { !$0.isStudyCompleted }.count,
+                isSelected: studyViewModel.myStudyStateIsOngoing ? true : false
+            )
+            .onTapGesture {
+                withAnimation {
+                    studyViewModel.myStudyStateIsOngoing = true
+                    studyViewModel.myStudySelectedStudyIndex = 0
                 }
+            }
             
             Spacer()
                 .frame(width: 10)
             
-            StudyStateButton(title: "종료 스터디", studyCount: viewModel.studys.filter { $0.isStudyCompleted }.count, isSelected: isOngoing ? false : true)
-                .onTapGesture {
-                    withAnimation {
-                        isOngoing = false
-                        viewModel.myStudyStateIsOngoing = false
-                        viewModel.myStudySelectedStudyIndex = 0
-                    }
+            StudyStateButton(
+                title: "종료 스터디",
+                studyCount: studyViewModel.studys.filter { $0.isStudyCompleted }.count,
+                isSelected: studyViewModel.myStudyStateIsOngoing ? false : true
+            )
+            .onTapGesture {
+                withAnimation {
+                    studyViewModel.myStudyStateIsOngoing = false
+                    studyViewModel.myStudySelectedStudyIndex = 0
                 }
+            }
         }
     }
 }
@@ -78,7 +77,6 @@ struct SelectStudyState: View {
 struct StudyStateButton: View {
     var title: String
     var studyCount: Int
-    
     var isSelected: Bool
     
     var body: some View {
@@ -117,7 +115,7 @@ struct MyStudyList: View {
     @EnvironmentObject private var studyViewModel: StudyViewModel
     @EnvironmentObject private var userViewModel: UserViewModel
     
-    @State var selectedStudy: Study = StudyViewModel().studys[0]
+    @State var selectedStudy: Study = StudyViewModel().myStudyFilterdOngoingStudy[0]
     
     var body: some View {
         VStack {
@@ -126,48 +124,59 @@ struct MyStudyList: View {
                     HStack {
                         ForEach(
                             studyViewModel.myStudyStateIsOngoing
-                            ? Array(studyViewModel.filterdOngoingMyStudys.enumerated())
-                            : Array(studyViewModel.filterdCompletedMyStudys.enumerated())
+                            ? Array(studyViewModel.myStudyFilterdOngoingStudy.enumerated())
+                            : Array(studyViewModel.myStudyFilterdCompletedStudy.enumerated())
                             , id: \.element.id
-                        ) { index, study in
+                        )
+                        { index, study in
                             MyStudyListCell(
+                                isHost: currentUserIsHost(study),
+                                dDay: study.dueDate,
                                 isSelected: studyViewModel.myStudySelectedStudyIndex == index,
-                                isHost: isCurrentUserIsHost(study),
-                                dDay: study.dueDate
+                                isOngoing: studyViewModel.myStudyStateIsOngoing
                             )
                             .onTapGesture {
-                                withAnimation {
-                                    self.studyViewModel.myStudySelectedStudyIndex = index
-                                    proxy.scrollTo(index, anchor: .center)
-                                    self.selectedStudy = study
-                                }
+                                self.studyViewModel.myStudySelectedStudyIndex = index
                             }
-                            .onAppear {
-                                self.selectedStudy = study
-                            }
-                            .id(index)
+                            .id(index) // ScrollViewReader -> 없으면 scrollTo 활성화 안됨.
                         }
                     }
                     .padding(.horizontal, 20)
                 }
+                .onChange(of: studyViewModel.myStudySelectedStudyIndex)
+                { newIndex in
+                    self.selectedStudy =
+                    studyViewModel.myStudyStateIsOngoing
+                    ? studyViewModel.myStudyFilterdOngoingStudy[newIndex]
+                    : studyViewModel.myStudyFilterdCompletedStudy[newIndex]
+                    
+                    withAnimation {
+                        proxy.scrollTo(newIndex, anchor: .center)
+                    }
+                }
             }
             
-            MyStudyIntroduction(study: $selectedStudy)
+            MyStudyIntroduce(study: $selectedStudy)
                 .padding(.horizontal, 20)
+        }
+        .onChange(of: studyViewModel.myStudyStateIsOngoing) { isOngoing in
+            self.selectedStudy =
+            isOngoing
+            ? studyViewModel.myStudyFilterdOngoingStudy[0]
+            : studyViewModel.myStudyFilterdCompletedStudy[0]
         }
     }
     
-    func isCurrentUserIsHost(_ study: Study) -> Bool {
+    func currentUserIsHost(_ study: Study) -> Bool {
         return study.host.user.id == userViewModel.currentUser.id
     }
 }
 
 struct MyStudyListCell: View {
-    @EnvironmentObject private var studyViewModel: StudyViewModel
-    
-    var isSelected: Bool
     var isHost: Bool
     var dDay: Date
+    var isSelected: Bool
+    var isOngoing: Bool
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -184,7 +193,7 @@ struct MyStudyListCell: View {
             
             Spacer()
             
-            Text(studyViewModel.myStudyStateIsOngoing ? "스터디 출발" : "스터디 완주")
+            Text(isOngoing ? "스터디 출발" : "스터디 완주")
                 .font(.pretendard(weight: .semiBold, size: 14))
             Text(dDay.dDayString())
                 .font(.pretendard(weight: .bold, size: 40))
@@ -197,20 +206,16 @@ struct MyStudyListCell: View {
     }
 }
 
-struct MyStudyIntroduction: View {
+struct MyStudyIntroduce: View {
     @EnvironmentObject private var studyViewModel: StudyViewModel
     @EnvironmentObject private var userViewModel: UserViewModel
     @Binding var study: Study
-    
-    var currentUsrIsHost: Bool {
-        return study.host.user.id == userViewModel.currentUser.id
-    }
-    
+
     var body: some View {
         VStack(spacing: 30) {
             IntroduceTitle(study: $study)
             
-            if currentUsrIsHost {
+            if userViewModel.currentUserIsHost(study: study) {
                 NavigationLink {
                     // 방장 - 지원서 확인하기
                 } label: {
@@ -248,8 +253,6 @@ struct MyStudyIntroduction: View {
 }
 
 struct IntroduceTitle: View {
-    @EnvironmentObject private var studyViewModel: StudyViewModel
-    @EnvironmentObject private var userViewModel: UserViewModel
     @Binding var study: Study
     
     var body: some View {
@@ -270,12 +273,7 @@ struct IntroduceTitle: View {
 struct IntroduceMember: View {
     @EnvironmentObject private var studyViewModel: StudyViewModel
     @EnvironmentObject private var userViewModel: UserViewModel
-    @State private var showRemoveSheet: Bool = false
     @Binding var study: Study
-    
-    var currentUsrIsHost: Bool {
-        return study.host.user.id == userViewModel.currentUser.id
-    }
     
     var body: some View {
         VStack {
@@ -283,7 +281,7 @@ struct IntroduceMember: View {
                 Text("스터디원")
                     .font(.pretendard(weight: .bold, size: 20))
                 Spacer()
-                if currentUsrIsHost {
+                if userViewModel.currentUserIsHost(study: study) {
                     Text("내보내기")
                         .padding(.horizontal, 10)
                         .padding(.vertical, 5)
@@ -292,18 +290,21 @@ struct IntroduceMember: View {
                         .background(.blue)
                         .cornerRadius(15)
                         .onTapGesture {
-                            //self.showRemoveSheet = true
                             studyViewModel.myStudyshowRemoveSheet = true
                         }
                 }
             }
             
             LazyVGrid(columns: [GridItem(), GridItem()], spacing: 37) {
-                ForEach(studyViewModel.studys[studyViewModel.myStudySelectedStudyIndex].currentMembers, id: \.self) { member in
+                ForEach(study.currentMembers, id: \.self) { member in
                     NavigationLink {
                         UserPageView()
                     } label: {
-                        HStakTeamMemberView(member: member, isSelected: false)
+                        HStakTeamMemberView(
+                            member: member,
+                            isSelected: false,
+                            isHost: studyViewModel.isHostUser(study: study, member: member)
+                        )
                     }
                 }
                 
@@ -315,8 +316,8 @@ struct IntroduceMember: View {
             }
         }
         .sheet(isPresented: $studyViewModel.myStudyshowRemoveSheet) {
-            RemoveMemberView()
-                .presentationDetents([.fraction(0.8)])
+            RemoveMemberView(study: $study)
+                .presentationDetents([.fraction(0.7)])
         }
     }
 }

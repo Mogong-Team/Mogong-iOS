@@ -132,7 +132,11 @@ struct detailView: View {
             } else if viewType == .member {
                 LazyVGrid(columns: [GridItem(), GridItem()]) {
                     ForEach(study.currentMembers, id: \.self) { member in
-                        HStakTeamMemberView(member: member, isSelected: false)
+                        HStakTeamMemberView(
+                            member: member,
+                            isSelected: false,
+                            isHost: false
+                        )
                     }
                 }
             }

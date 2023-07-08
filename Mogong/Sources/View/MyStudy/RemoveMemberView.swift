@@ -11,8 +11,9 @@ struct RemoveMemberView: View {
     @EnvironmentObject private var studyViewModel: StudyViewModel
     @EnvironmentObject private var userViewModel: UserViewModel
     @Environment(\.dismiss) private var dismiss
+    @Binding var study: Study
     @State private var showRemoveReason: Bool = false
-    @State private var selectedMemberId: String? = nil
+    @State private var selectedMember: String?
     
     var body: some View {
         NavigationStack {
@@ -29,12 +30,12 @@ struct RemoveMemberView: View {
                     Spacer()
                 }
                 .padding(.bottom, 37)
-                RemoveMember(selectedMemberId: $selectedMemberId)
+                RemoveMember(study: $study, selectedMember: $selectedMember)
                 Spacer()
-                SelectButton(title: "다음", state: selectedMemberId == nil ? .unselected : .selected) {
+                SelectButton(title: "다음", state: selectedMember == nil ? .unselected : .selected) {
                     showRemoveReason = true
                 }
-                .disabled(selectedMemberId == nil)
+                .disabled(selectedMember == nil)
             }
             .padding(.horizontal, 20)
             .toolbar {
@@ -55,19 +56,24 @@ struct RemoveMemberView: View {
 struct RemoveMember: View {
     @EnvironmentObject private var studyViewModel: StudyViewModel
     @EnvironmentObject private var userViewModel: UserViewModel
-    @Binding var selectedMemberId: String?
+    @Binding var study: Study
+    @Binding var selectedMember: String?
     
     var body: some View {
         LazyVGrid(columns: [GridItem(), GridItem()], spacing: 30) {
-            ForEach(studyViewModel.studys[studyViewModel.myStudySelectedStudyIndex].currentMembers, id: \.self) { member in
-                HStakTeamMemberView(member: member, isSelected: member.user.id == selectedMemberId)
-                    .onTapGesture {
-                        if selectedMemberId == member.user.id {
-                            selectedMemberId = nil
-                        } else {
-                            selectedMemberId = member.user.id
-                        }
+            ForEach(study.currentMembers.filter { $0 != study.host }, id: \.self) { member in
+                HStakTeamMemberView(
+                    member: member,
+                    isSelected: selectedMember == member.user.id,
+                    isHost: false
+                )
+                .onTapGesture {
+                    if selectedMember == member.user.id {
+                        selectedMember = nil
+                    } else {
+                        selectedMember = member.user.id
                     }
+                }
             }
         }
     }

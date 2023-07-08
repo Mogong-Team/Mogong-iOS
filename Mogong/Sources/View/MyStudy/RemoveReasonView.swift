@@ -15,23 +15,33 @@ struct RemoveReasonView: View {
     @State private var reasonText: String = ""
     
     var body: some View {
-        VStack {
-            HStack {
-                VStack(alignment: .leading) {
-                    Text("내보내기")
-                        .font(.pretendard(weight: .semiBold, size: 24))
-                    Text("최대 한명 선택 가능합니다.")
-                        .font(.pretendard(weight: .medium, size: 18))
-                        .foregroundColor(.gray)
+        VStack(spacing: 0) {
+            ScrollView(showsIndicators: false) {
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("내보내기")
+                            .font(.pretendard(weight: .semiBold, size: 24))
+                        Text("최대 한명 선택 가능합니다.")
+                            .font(.pretendard(weight: .medium, size: 18))
+                            .foregroundColor(.gray)
+                    }
+                    Spacer()
                 }
-                Spacer()
+                
+                VStack {
+                    RemoveReasonCheck(selectedReason: $selectedReason)
+                        .padding(.bottom, 10)
+                    MultiLineTextField(text: $reasonText, placeHolder: "기타 사유를 입력해주세요.")
+                        .frame(height: 140)
+                    Spacer()
+                }
             }
-            RemoveReasonCheck(selectedReason: $selectedReason)
-            MultiLineTextField(text: $reasonText, placeHolder: "기타 사유를 입력해주세요.")
+            
             SelectButton(title: "강퇴하기", state: selectedReason == nil ? .unselected : .selected) {
                 studyViewModel.myStudyshowRemoveSheet = false
             }
             .disabled(selectedReason == nil)
+            .padding(.vertical, 10)
         }
         .padding(.horizontal, 20)
         .navigationBarBackButtonHidden()
@@ -43,6 +53,9 @@ struct RemoveReasonView: View {
                         studyViewModel.myStudyshowRemoveSheet = false
                     }
             }
+        }
+        .onTapGesture {
+            hideKeyboard()
         }
     }
 }

@@ -10,28 +10,45 @@ import SwiftUI
 struct HStakTeamMemberView: View {
     var member: Member
     var isSelected: Bool
+    var isHost: Bool
     
     var body: some View {
         HStack {
             ZStack {
-                Image(systemName: "circle.fill")
-                    .resizable()
-                    .frame(width: 60, height: 60)
-                    .scaledToFit()
-                    .clipShape(Circle())
-                    .overlay {
-                        Circle()
-                            .stroke(isSelected ? Color.red : Color.clear, lineWidth: 3)
-                    }
-                
                 if isSelected {
+                    Image(systemName: "circle.fill")
+                        .resizable()
+                        .frame(width: 60, height: 60)
+                        .scaledToFit()
+                        .clipShape(Circle())
+                        .overlay {
+                            Circle()
+                                .stroke(Color.red, lineWidth: 3)
+                        }
+                    
                     Image(systemName: "checkmark.circle.fill")
                         .resizable()
-                        .frame(width: 20, height: 20)
-                        .foregroundColor(.red)
-                        .padding(.leading, -30)
-                        .padding(.top, -30)
-                        .background(.gray)
+                        .frame(width: 25, height: 25)
+                        .foregroundStyle(.white, .red)
+                        .padding(.leading, -35)
+                        .padding(.top, -35)
+                } else {
+                    ZStack {
+                        Image(systemName: "circle.fill")
+                            .resizable()
+                            .frame(width: 60, height: 60)
+                            .scaledToFit()
+                            .clipShape(Circle())
+                        
+                        if isHost {
+                            Image(systemName: "bookmark.circle.fill")
+                                .resizable()
+                                .frame(width: 25, height: 25)
+                                .foregroundStyle(.white, .blue)
+                                .padding(.leading, -35)
+                                .padding(.top, -35)
+                        }
+                    }
                 }
             }
             
@@ -51,8 +68,21 @@ struct HStakTeamMemberView: View {
 struct HStakTeamMemberView_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            HStakTeamMemberView(member: Member(user: User(id: "1", name: "김민수", email: "a@gmail.com", username: "민수민수"), field: .backend), isSelected: true)
-            HStakTeamMemberView(member: Member(user: User(id: "1", name: "김민수", email: "a@gmail.com", username: "민수민수"), field: .backend), isSelected: false)
+            HStakTeamMemberView(
+                member: Member(user: User(id: "1", name: "김민수", email: "a@gmail.com", username: "민수민수"), field: .backend),
+                isSelected: true,
+                isHost: false
+            )
+            HStakTeamMemberView(
+                member: Member(user: User(id: "1", name: "김민수", email: "a@gmail.com", username: "민수민수"), field: .backend),
+                isSelected: false,
+                isHost: true
+            )
+            HStakTeamMemberView(
+                member: Member(user: User(id: "1", name: "김민수", email: "a@gmail.com", username: "민수민수"), field: .backend),
+                isSelected: false,
+                isHost: false
+            )
         }
         .environmentObject(ApplicationViewModel())
     }
