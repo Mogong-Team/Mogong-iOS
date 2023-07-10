@@ -53,4 +53,14 @@ class ApplicationViewModel: ObservableObject {
         introduction: "안녕하세요",
         experience: "없습니다."),
         ]
+    
+    // 신청서 승인
+    func approveApplication(index: Int) {
+        applications[index].status = .approved
+    }
+    
+    // 신청서 거절
+    func rejectApplication(index: Int) {
+        applications[index].status = .rejected
+    }
 }

@@ -7,6 +7,12 @@
 
 import Foundation
 
+enum ApplicationStatus: String, CaseIterable {
+    case pending = "대기중"
+    case approved = "승인됨"
+    case rejected = "거부됨"
+}
+
 struct Application: Identifiable, Hashable {
     let id: String
     let user: User
@@ -14,6 +20,7 @@ struct Application: Identifiable, Hashable {
     let field: Field
     let introduction: String
     let experience: String
+    var status: ApplicationStatus
     
     init(user: User, title: String, field: Field, introduction: String, experience: String) {
         self.id = UUID().uuidString
@@ -22,5 +29,6 @@ struct Application: Identifiable, Hashable {
         self.field = field
         self.introduction = introduction
         self.experience = experience
+        self.status = .pending
     }
 }
