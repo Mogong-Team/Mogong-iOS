@@ -9,12 +9,48 @@ import SwiftUI
 import Combine
 
 class ApplicationViewModel: ObservableObject {
-    
-    var application = Application(
+    @Published var application =
+        Application(
         user: User(id: "1", name: "김민수", email: "a@gmail.com", username: "민수민수"),
-        title: "백엔드 지원합니다.",
+        title: "backend 지원합니다.",
         field: .backend,
         introduction: "안녕하세요",
-        experience: "없습니다."
-    )
+        experience: "없습니다.")
+    
+    @Published var applications = [
+        Application(
+        user: User(id: "1", name: "김민수", email: "a@gmail.com", username: "민수민수"),
+        title: "backend 지원합니다.",
+        field: .backend,
+        introduction: "안녕하세요",
+        experience: "없습니다."),
+        
+        Application(
+        user: User(id: "1", name: "김민수", email: "a@gmail.com", username: "민수민수"),
+        title: "designer 지원합니다.",
+        field: .designer,
+        introduction: "안녕하세요",
+        experience: "없습니다."),
+        
+        Application(
+        user: User(id: "1", name: "김민수", email: "a@gmail.com", username: "민수민수"),
+        title: "frontend 지원합니다.",
+        field: .frontend,
+        introduction: "안녕하세요",
+        experience: "없습니다."),
+        
+        Application(
+        user: User(id: "1", name: "김민수", email: "a@gmail.com", username: "민수민수"),
+        title: "ios 지원합니다.",
+        field: .ios,
+        introduction: "안녕하세요",
+        experience: "없습니다."),
+        
+        Application(
+        user: User(id: "1", name: "김민수", email: "a@gmail.com", username: "민수민수"),
+        title: "aos 지원합니다.",
+        field: .aos,
+        introduction: "안녕하세요",
+        experience: "없습니다."),
+        ]
 }

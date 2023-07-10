@@ -20,6 +20,8 @@ struct ContentView: View {
         UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearence
         navBarAppearence.shadowColor = .clear
         
+        navBarAppearence.backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.white]
+        
         let tabBarAppearance = UITabBarAppearance()
         tabBarAppearance.backgroundColor = .white
         UITabBar.appearance().standardAppearance = tabBarAppearance

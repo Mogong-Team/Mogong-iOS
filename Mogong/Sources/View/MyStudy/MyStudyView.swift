@@ -217,7 +217,7 @@ struct MyStudyIntroduce: View {
             
             if userViewModel.currentUserIsHost(study: study) {
                 NavigationLink {
-                    // 방장 - 지원서 확인하기
+                    ApplicationListView(user: userViewModel.currentUser)
                 } label: {
                     HStack {
                         Text("지원서 확인하기")

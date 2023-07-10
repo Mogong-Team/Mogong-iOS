@@ -10,7 +10,7 @@ import Combine
 
 class StudyViewModel: ObservableObject {
     
-    var study =
+    @Published var study =
     Study(id: "10", title: "[창업/스타트업] 정부 지원 사업에 합격한 아이템으로 함께 MVP 제작할 개발자 구합니다.(2일 뒤 마감_편하게 연락주세요)", frequencyOfWeek: 2, durationOfMonth: 2,
           studyType: .teamProject, studyMode: .online, totalMemberCount: 5,
           requiredPositions: [
