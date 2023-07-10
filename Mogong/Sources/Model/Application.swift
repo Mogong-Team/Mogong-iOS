@@ -7,13 +7,13 @@
 
 import Foundation
 
-enum ApplicationStatus: String, CaseIterable {
+enum ApplicationStatus: String, CaseIterable, Codable {
     case pending = "대기중"
     case approved = "승인됨"
     case rejected = "거부됨"
 }
 
-struct Application: Identifiable, Hashable {
+struct Application: Identifiable, Hashable, Codable {
     let id: String
     let user: User
     let title: String

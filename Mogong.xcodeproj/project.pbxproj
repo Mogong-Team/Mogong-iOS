@@ -74,6 +74,9 @@
 		8FF09EE92A570AEB00630F19 /* VStakTeamMemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF09EE82A570AEB00630F19 /* VStakTeamMemberView.swift */; };
 		8FF09EEB2A570B5300630F19 /* VStackNewTeamMemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF09EEA2A570B5300630F19 /* VStackNewTeamMemberView.swift */; };
 		8FF09EED2A5934EC00630F19 /* View+hideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF09EEC2A5934EC00630F19 /* View+hideKeyboard.swift */; };
+		8FF2796C2A5BF4DB003B325F /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF2796B2A5BF4DB003B325F /* UserService.swift */; };
+		8FF2796E2A5BF500003B325F /* StudyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF2796D2A5BF500003B325F /* StudyService.swift */; };
+		8FF279702A5BF507003B325F /* ApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF2796F2A5BF507003B325F /* ApplicationService.swift */; };
 		8FF418A32A4D7B0B0090FA34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF418A22A4D7B0B0090FA34 /* AppDelegate.swift */; };
 		8FF418A52A4D7C6E0090FA34 /* UserPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF418A42A4D7C6E0090FA34 /* UserPageView.swift */; };
 		8FF418A72A4D7E650090FA34 /* ApplicationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF418A62A4D7E650090FA34 /* ApplicationViewModel.swift */; };
@@ -153,6 +156,9 @@
 		8FF09EE82A570AEB00630F19 /* VStakTeamMemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VStakTeamMemberView.swift; sourceTree = "<group>"; };
 		8FF09EEA2A570B5300630F19 /* VStackNewTeamMemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VStackNewTeamMemberView.swift; sourceTree = "<group>"; };
 		8FF09EEC2A5934EC00630F19 /* View+hideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+hideKeyboard.swift"; sourceTree = "<group>"; };
+		8FF2796B2A5BF4DB003B325F /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		8FF2796D2A5BF500003B325F /* StudyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyService.swift; sourceTree = "<group>"; };
+		8FF2796F2A5BF507003B325F /* ApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationService.swift; sourceTree = "<group>"; };
 		8FF418A22A4D7B0B0090FA34 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8FF418A42A4D7C6E0090FA34 /* UserPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPageView.swift; sourceTree = "<group>"; };
 		8FF418A62A4D7E650090FA34 /* ApplicationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationViewModel.swift; sourceTree = "<group>"; };
@@ -239,6 +245,9 @@
 		8F8A67272A3975E400467936 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				8FF2796B2A5BF4DB003B325F /* UserService.swift */,
+				8FF2796D2A5BF500003B325F /* StudyService.swift */,
+				8FF2796F2A5BF507003B325F /* ApplicationService.swift */,
 			);
 			name = Service;
 			path = ..;
@@ -599,6 +608,7 @@
 				8F78DB9A2A4C04490004F195 /* AlarmView.swift in Sources */,
 				8FF418A32A4D7B0B0090FA34 /* AppDelegate.swift in Sources */,
 				8FE516902A4868120059D720 /* CreateStudy.swift in Sources */,
+				8FF279702A5BF507003B325F /* ApplicationService.swift in Sources */,
 				8FF09EE52A56A99400630F19 /* RemoveReasonView.swift in Sources */,
 				8F8A673F2A39767200467936 /* Login.swift in Sources */,
 				8F8A675F2A3AE30900467936 /* SocialLoginView.swift in Sources */,
@@ -620,11 +630,13 @@
 				8FF09EDF2A569B6900630F19 /* HStakTeamMemberView.swift in Sources */,
 				8FF09EED2A5934EC00630F19 /* View+hideKeyboard.swift in Sources */,
 				8FE5169B2A492EAF0059D720 /* Language.swift in Sources */,
+				8FF2796E2A5BF500003B325F /* StudyService.swift in Sources */,
 				8F4125572A55029E005B5A1E /* NaviBackButton.swift in Sources */,
 				8F8A67332A39764300467936 /* TempHomeView.swift in Sources */,
 				8F8A67312A39763800467936 /* User.swift in Sources */,
 				8F8A671A2A39755E00467936 /* MogongApp.swift in Sources */,
 				8F7D0C112A52A76C0073457A /* SettingView.swift in Sources */,
+				8FF2796C2A5BF4DB003B325F /* UserService.swift in Sources */,
 				8FE516A12A4969DA0059D720 /* StudyDetailView.swift in Sources */,
 				8F8A67432A39768700467936 /* UserView.swift in Sources */,
 				8F8CA8592A4D5D65002E8D15 /* MyStudyDetailView.swift in Sources */,
