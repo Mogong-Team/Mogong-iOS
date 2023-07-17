@@ -159,6 +159,7 @@
 		8FF2796B2A5BF4DB003B325F /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		8FF2796D2A5BF500003B325F /* StudyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyService.swift; sourceTree = "<group>"; };
 		8FF2796F2A5BF507003B325F /* ApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationService.swift; sourceTree = "<group>"; };
+		8FF279772A5CDC2D003B325F /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		8FF418A22A4D7B0B0090FA34 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8FF418A42A4D7C6E0090FA34 /* UserPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPageView.swift; sourceTree = "<group>"; };
 		8FF418A62A4D7E650090FA34 /* ApplicationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationViewModel.swift; sourceTree = "<group>"; };
@@ -208,6 +209,7 @@
 		8F8A670D2A39755E00467936 = {
 			isa = PBXGroup;
 			children = (
+				8FF279772A5CDC2D003B325F /* Config.xcconfig */,
 				8F8A67182A39755E00467936 /* Mogong */,
 				8F8A67172A39755E00467936 /* Products */,
 				E87B95DDFFF3746F3B31FFB7 /* Pods */,

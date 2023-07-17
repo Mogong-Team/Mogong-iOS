@@ -236,7 +236,7 @@ struct MyStudyIntroduce: View {
                 } label: {
                     HStack {
                         Spacer()
-                        Text("스터디 완료 기록 적으러 가기")
+                        Text("스터디 출석체크")
                         Spacer()
                     }
                     .padding()
