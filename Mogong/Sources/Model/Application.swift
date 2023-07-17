@@ -7,10 +7,28 @@
 
 import Foundation
 
-struct Application {
+enum ApplicationStatus: String, CaseIterable, Codable {
+    case pending = "대기중"
+    case approved = "승인됨"
+    case rejected = "거부됨"
+}
+
+struct Application: Identifiable, Hashable, Codable {
+    let id: String
     let user: User
     let title: String
     let field: Field
     let introduction: String
     let experience: String
+    var status: ApplicationStatus
+    
+    init(user: User, title: String, field: Field, introduction: String, experience: String) {
+        self.id = UUID().uuidString
+        self.user = user
+        self.title = title
+        self.field = field
+        self.introduction = introduction
+        self.experience = experience
+        self.status = .pending
+    }
 }

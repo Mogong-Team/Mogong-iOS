@@ -50,6 +50,8 @@
 		8F8CA8542A4D1162002E8D15 /* Pretendard-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8F8CA8492A4D0C9D002E8D15 /* Pretendard-Thin.otf */; };
 		8F8CA8572A4D1E93002E8D15 /* CheckLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8CA8562A4D1E93002E8D15 /* CheckLabel.swift */; };
 		8F8CA8592A4D5D65002E8D15 /* MyStudyDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8CA8582A4D5D65002E8D15 /* MyStudyDetailView.swift */; };
+		8FA028002A5BC865001B17F6 /* ApplicationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA027FF2A5BC865001B17F6 /* ApplicationListView.swift */; };
+		8FA028022A5BD3EC001B17F6 /* ApplicationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA028012A5BD3EC001B17F6 /* ApplicationDetailView.swift */; };
 		8FD8C1FE2A4BABCD00F21DD1 /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD8C1FD2A4BABCD00F21DD1 /* ChatListView.swift */; };
 		8FD8C2002A4BABD300F21DD1 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD8C1FF2A4BABD300F21DD1 /* ChatView.swift */; };
 		8FD8C2022A4BAC6400F21DD1 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD8C2012A4BAC6400F21DD1 /* Chat.swift */; };
@@ -72,6 +74,9 @@
 		8FF09EE92A570AEB00630F19 /* VStakTeamMemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF09EE82A570AEB00630F19 /* VStakTeamMemberView.swift */; };
 		8FF09EEB2A570B5300630F19 /* VStackNewTeamMemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF09EEA2A570B5300630F19 /* VStackNewTeamMemberView.swift */; };
 		8FF09EED2A5934EC00630F19 /* View+hideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF09EEC2A5934EC00630F19 /* View+hideKeyboard.swift */; };
+		8FF2796C2A5BF4DB003B325F /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF2796B2A5BF4DB003B325F /* UserService.swift */; };
+		8FF2796E2A5BF500003B325F /* StudyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF2796D2A5BF500003B325F /* StudyService.swift */; };
+		8FF279702A5BF507003B325F /* ApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF2796F2A5BF507003B325F /* ApplicationService.swift */; };
 		8FF418A32A4D7B0B0090FA34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF418A22A4D7B0B0090FA34 /* AppDelegate.swift */; };
 		8FF418A52A4D7C6E0090FA34 /* UserPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF418A42A4D7C6E0090FA34 /* UserPageView.swift */; };
 		8FF418A72A4D7E650090FA34 /* ApplicationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF418A62A4D7E650090FA34 /* ApplicationViewModel.swift */; };
@@ -127,6 +132,8 @@
 		8F8CA84A2A4D0CAD002E8D15 /* Font+Pretendard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Pretendard.swift"; sourceTree = "<group>"; };
 		8F8CA8562A4D1E93002E8D15 /* CheckLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckLabel.swift; sourceTree = "<group>"; };
 		8F8CA8582A4D5D65002E8D15 /* MyStudyDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStudyDetailView.swift; sourceTree = "<group>"; };
+		8FA027FF2A5BC865001B17F6 /* ApplicationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationListView.swift; sourceTree = "<group>"; };
+		8FA028012A5BD3EC001B17F6 /* ApplicationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationDetailView.swift; sourceTree = "<group>"; };
 		8FD8C1FD2A4BABCD00F21DD1 /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
 		8FD8C1FF2A4BABD300F21DD1 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		8FD8C2012A4BAC6400F21DD1 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
@@ -149,6 +156,10 @@
 		8FF09EE82A570AEB00630F19 /* VStakTeamMemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VStakTeamMemberView.swift; sourceTree = "<group>"; };
 		8FF09EEA2A570B5300630F19 /* VStackNewTeamMemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VStackNewTeamMemberView.swift; sourceTree = "<group>"; };
 		8FF09EEC2A5934EC00630F19 /* View+hideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+hideKeyboard.swift"; sourceTree = "<group>"; };
+		8FF2796B2A5BF4DB003B325F /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		8FF2796D2A5BF500003B325F /* StudyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyService.swift; sourceTree = "<group>"; };
+		8FF2796F2A5BF507003B325F /* ApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationService.swift; sourceTree = "<group>"; };
+		8FF279772A5CDC2D003B325F /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		8FF418A22A4D7B0B0090FA34 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8FF418A42A4D7C6E0090FA34 /* UserPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPageView.swift; sourceTree = "<group>"; };
 		8FF418A62A4D7E650090FA34 /* ApplicationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationViewModel.swift; sourceTree = "<group>"; };
@@ -198,6 +209,7 @@
 		8F8A670D2A39755E00467936 = {
 			isa = PBXGroup;
 			children = (
+				8FF279772A5CDC2D003B325F /* Config.xcconfig */,
 				8F8A67182A39755E00467936 /* Mogong */,
 				8F8A67172A39755E00467936 /* Products */,
 				E87B95DDFFF3746F3B31FFB7 /* Pods */,
@@ -235,6 +247,9 @@
 		8F8A67272A3975E400467936 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				8FF2796B2A5BF4DB003B325F /* UserService.swift */,
+				8FF2796D2A5BF500003B325F /* StudyService.swift */,
+				8FF2796F2A5BF507003B325F /* ApplicationService.swift */,
 			);
 			name = Service;
 			path = ..;
@@ -387,6 +402,8 @@
 				8FF09EE42A56A99400630F19 /* RemoveReasonView.swift */,
 				8F8CA8582A4D5D65002E8D15 /* MyStudyDetailView.swift */,
 				8FF418A42A4D7C6E0090FA34 /* UserPageView.swift */,
+				8FA027FF2A5BC865001B17F6 /* ApplicationListView.swift */,
+				8FA028012A5BD3EC001B17F6 /* ApplicationDetailView.swift */,
 			);
 			path = MyStudy;
 			sourceTree = "<group>";
@@ -574,6 +591,7 @@
 				8F78DB9E2A4C06820004F195 /* AlarmCell.swift in Sources */,
 				8FE516932A4913460059D720 /* SelectButton.swift in Sources */,
 				8FE516A52A4989030059D720 /* HashtagView.swift in Sources */,
+				8FA028022A5BD3EC001B17F6 /* ApplicationDetailView.swift in Sources */,
 				8FF09EEB2A570B5300630F19 /* VStackNewTeamMemberView.swift in Sources */,
 				8FF09EE92A570AEB00630F19 /* VStakTeamMemberView.swift in Sources */,
 				8F8A67392A39765D00467936 /* RankViewModel.swift in Sources */,
@@ -582,6 +600,7 @@
 				8F8A67452A39773600467936 /* ContentView.swift in Sources */,
 				8FE5169D2A4965310059D720 /* Application.swift in Sources */,
 				8F7D0C132A52A9DB0073457A /* BookmarkCellView.swift in Sources */,
+				8FA028002A5BC865001B17F6 /* ApplicationListView.swift in Sources */,
 				8F8A673D2A39766B00467936 /* AuthViewModel.swift in Sources */,
 				8F8CA8572A4D1E93002E8D15 /* CheckLabel.swift in Sources */,
 				8FE5169F2A4965F40059D720 /* ApplicationView.swift in Sources */,
@@ -591,6 +610,7 @@
 				8F78DB9A2A4C04490004F195 /* AlarmView.swift in Sources */,
 				8FF418A32A4D7B0B0090FA34 /* AppDelegate.swift in Sources */,
 				8FE516902A4868120059D720 /* CreateStudy.swift in Sources */,
+				8FF279702A5BF507003B325F /* ApplicationService.swift in Sources */,
 				8FF09EE52A56A99400630F19 /* RemoveReasonView.swift in Sources */,
 				8F8A673F2A39767200467936 /* Login.swift in Sources */,
 				8F8A675F2A3AE30900467936 /* SocialLoginView.swift in Sources */,
@@ -612,11 +632,13 @@
 				8FF09EDF2A569B6900630F19 /* HStakTeamMemberView.swift in Sources */,
 				8FF09EED2A5934EC00630F19 /* View+hideKeyboard.swift in Sources */,
 				8FE5169B2A492EAF0059D720 /* Language.swift in Sources */,
+				8FF2796E2A5BF500003B325F /* StudyService.swift in Sources */,
 				8F4125572A55029E005B5A1E /* NaviBackButton.swift in Sources */,
 				8F8A67332A39764300467936 /* TempHomeView.swift in Sources */,
 				8F8A67312A39763800467936 /* User.swift in Sources */,
 				8F8A671A2A39755E00467936 /* MogongApp.swift in Sources */,
 				8F7D0C112A52A76C0073457A /* SettingView.swift in Sources */,
+				8FF2796C2A5BF4DB003B325F /* UserService.swift in Sources */,
 				8FE516A12A4969DA0059D720 /* StudyDetailView.swift in Sources */,
 				8F8A67432A39768700467936 /* UserView.swift in Sources */,
 				8F8CA8592A4D5D65002E8D15 /* MyStudyDetailView.swift in Sources */,
