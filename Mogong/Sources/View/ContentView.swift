@@ -48,6 +48,7 @@ struct ContentView: View {
                         Text("My Page")
                     }
                 }
+                .border(Color.red)
             } else {
                 AuthView()
             }
