@@ -46,58 +46,80 @@ struct SocialLoginView: View {
                     }
                 }
             } label: {
-                Text("K")
-                    .frame(width: 50, height: 50)
-                    .background(.yellow)
-                    .foregroundColor(.black)
-                    .clipShape(Circle())
+                ZStack {
+                    Circle()
+                        .frame(width: 73, height: 73)
+                        .foregroundColor(.yellow)
+                    
+                    Image(systemName: "message.fill")
+                        .resizable()
+                        .frame(width: 25, height: 22)
+                        .foregroundColor(.black)
+                }
             }
+            .padding(15)
+//            .border(Color.red)
             
-            Button {
-                // 네이버 앱이 깔려져 있을때
-                if NaverThirdPartyLoginConnection
-                    .getSharedInstance()
-                    .isPossibleToOpenNaverApp()
-                {
-                    NaverThirdPartyLoginConnection.getSharedInstance().delegate = viewModel.self
-                    NaverThirdPartyLoginConnection
-                        .getSharedInstance()
-                        .requestThirdPartyLogin() // 로그인 요청
-                    print(#function)
-                }
-                // 네이버 앱이 안깔려져 있을때 -> 웹에서 로그인 요청
-                else {
-                    NaverThirdPartyLoginConnection
-                        .getSharedInstance()
-                        .requestThirdPartyLogin()
-                }
-            } label: {
-                Text("N")
-                    .frame(width: 50, height: 50)
-                    .background(.green)
-                    .foregroundColor(.white)
-                    .clipShape(Circle())
-            }
+//            Button {
+//                // 네이버 앱이 깔려져 있을때
+//                if NaverThirdPartyLoginConnection
+//                    .getSharedInstance()
+//                    .isPossibleToOpenNaverApp()
+//                {
+//                    NaverThirdPartyLoginConnection.getSharedInstance().delegate = viewModel.self
+//                    NaverThirdPartyLoginConnection
+//                        .getSharedInstance()
+//                        .requestThirdPartyLogin() // 로그인 요청
+//                    print(#function)
+//                }
+//                // 네이버 앱이 안깔려져 있을때 -> 웹에서 로그인 요청
+//                else {
+//                    NaverThirdPartyLoginConnection
+//                        .getSharedInstance()
+//                        .requestThirdPartyLogin()
+//                }
+//            } label: {
+//                Text("N")
+//                    .frame(width: 50, height: 50)
+//                    .background(.green)
+//                    .foregroundColor(.white)
+//                    .clipShape(Circle())
+//            }
             
             Button {
                 handleGoogleSignIn()
             } label: {
-                Text("G")
-                    .frame(width: 50, height: 50)
+                Image(systemName: "g.circle.fill")
+                    .resizable()
+                    .frame(width: 73, height: 73)
                     .background(.blue)
                     .foregroundColor(.white)
                     .clipShape(Circle())
             }
+            .padding(15)
+//            .border(Color.red)
             
             Button {
                 viewModel.signInWithApple()
             } label: {
-                Image(systemName: "applelogo")
-                    .frame(width: 50, height: 50)
-                    .background(.black)
-                    .foregroundColor(.white)
-                    .clipShape(Circle())
+                ZStack {
+                    Circle()
+                        .frame(width: 73, height: 73)
+                        .foregroundColor(.black)
+                    
+                    Image(systemName: "applelogo")
+                        .resizable()
+                        .frame(width: 20, height: 23)
+                        .foregroundColor(.white)
+                }
+//                Image(systemName: "applelogo")
+//                    .resizable()
+//                    .frame(width: 100, height: 100)
+//                    .background(.black)
+//                    .foregroundColor(.white)
+//                    .clipShape(Circle())
             }
+            .padding(15)
         }
     }
     

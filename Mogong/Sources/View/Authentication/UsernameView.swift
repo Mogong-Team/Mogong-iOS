@@ -9,40 +9,46 @@ import SwiftUI
 
 struct UsernameView: View {
     @Environment(\.dismiss) var dismiss
-    @State private var username = ""
+    @State private var username = "123"
+    @State private var isUsernameAvailable = false
+    @State private var isUsernameChecked = false
     
     var body: some View {
-        VStack {
-            Spacer()
-                .frame(maxHeight: 100)
-            
-            Text("닉네임을 입려해주세요.")
-                .font(.largeTitle)
-            
-            Spacer()
-                .frame(maxHeight: 100)
-            
-            VStack(spacing: 10) {
-                TextField("닉네임", text: $username)
-                    .padding()
-                    .overlay {
-                        RoundedRectangle(cornerRadius: 5)
-                            .stroke(.gray, lineWidth: 1)
-                    }
-                
-                NavigationLink {
+        VStack(alignment: .leading) {
+            Text("모공에 오신걸\n환영합니다\n닉네임을 설정해주세요.")
+                .font(
+                    Font.custom("Pretendard", size: 32)
+                        .weight(.bold)
+                )
+                .padding(.top)
+
+            VStack(alignment: .leading) {
+                HStack(spacing: 15) {
+                    TextField("10글자 이내로 설정해주세요.", text: $username)
+                        .padding()
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 7)
+                                .stroke(.gray, lineWidth: 1)
+                                .frame(width: 270, height: 44)
+                        }
                     
-                } label: {
-                    Text("입력")
-                        .frame(width: 300, height: 50)
-                        .foregroundColor(.white)
-                        .background(.black)
-                        .cornerRadius(5)
+                    Button {
+                        checkUsernameAvailability()
+                    } label: {
+                        Text("중복확인")
+                            .frame(width: 88, height: 44)
+                            .foregroundColor(.white)
+                            .background(Color(red: 0, green: 0.78, blue: 0.96))
+                            .cornerRadius(7)
+                    }
+                }
+                .frame(width: 370)
+                
+                if isUsernameChecked {
+                    Text(isUsernameAvailable ? "사용 가능한 아이디입니다." : "사용 불가능한 아이디입니다.")
+                        .foregroundColor(isUsernameAvailable ? .green : .red)
                 }
             }
-            .frame(width: 300)
-            
-            Spacer()
         }
         .navigationBarBackButtonHidden()
         .toolbar {
@@ -55,6 +61,11 @@ struct UsernameView: View {
                 }
             }
         }
+    }
+    
+    func checkUsernameAvailability() {
+        isUsernameAvailable = !username.isEmpty
+        isUsernameChecked = true
     }
 }
 
