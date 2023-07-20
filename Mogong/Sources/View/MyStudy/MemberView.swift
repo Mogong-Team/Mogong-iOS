@@ -15,36 +15,55 @@ struct MemberView: View {
         VStack {
             Image(systemName: "circle.fill")
                 .resizable()
-                .frame(width: 60, height: 60)
+                .frame(width: 92, height: 92)
                 .scaledToFit()
                 .clipShape(Circle())
                 .foregroundColor(.gray)
+                .padding(.top, 50)
             
             Text(viewModel.application.user.username)
-                .font(Font.system(size: 20, weight: .bold))
+                .font(Font.custom("Pretendard", size: 28)
+                    .weight(.bold))
                 .foregroundColor(.black)
             
-            Text(viewModel.application.field.rawValue)
-                .font(Font.system(size: 14, weight: .regular))
-                .foregroundColor(.gray)
+            ZStack {
+                Rectangle()
+                .foregroundColor(.clear)
+                .frame(width: 141, height: 30)
+                .background(Color(red: 0.46, green: 0.77, blue: 1))
+                .cornerRadius(30)
+                
+                Text(viewModel.application.field.rawValue)
+                    .font(Font.custom("Pretendard", size: 16))
+                    .foregroundColor(.white)
+            }
+            
             
             HStack {
                 VStack(alignment: .leading) {
                     Text("간단한 자기소개")
-                        .font(.pretendard(weight: .bold, size: 20))
+                        .font(
+                            Font.custom("Pretendard", size: 18)
+                            .weight(.bold)
+                        )
+                        .frame(width: 120, height: 25, alignment: .topLeading)
                     
                     Spacer()
                         .frame(height: 15)
                     
                     Text(viewModel.application.introduction)
+                        .foregroundColor(Color(red: 0.57, green: 0.56, blue: 0.56))
+                        .frame(width: 350, height: 180, alignment: .topLeading)
                     
                     Spacer()
-                        .frame(height: 30)
+                        .frame(height: 10)
                     
                     Text("프로젝트 경험 여부")
                         .font(.pretendard(weight: .bold, size: 20))
                     
                     Text(viewModel.application.experience)
+                        .foregroundColor(Color(red: 0.57, green: 0.56, blue: 0.56))
+                        .frame(width: 350, height: 180, alignment: .topLeading)
                 }
                 
                 Spacer()
