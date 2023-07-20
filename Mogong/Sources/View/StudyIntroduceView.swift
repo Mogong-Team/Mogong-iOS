@@ -132,33 +132,13 @@ struct detailView: View {
             } else if viewType == .member {
                 LazyVGrid(columns: [GridItem(), GridItem()]) {
                     ForEach(study.currentMembers, id: \.self) { member in
-                        memberView(member: member)
+                        HStakTeamMemberView(
+                            member: member,
+                            isSelected: false,
+                            isHost: false
+                        )
                     }
                 }
-            }
-        }
-    }
-}
-
-struct memberView: View {
-    var member: Member
-    
-    var body: some View {
-        HStack {
-            Image(systemName: "circle.fill")
-                .resizable()
-                .frame(width: 60, height: 60)
-                .scaledToFit()
-                .clipShape(Circle())
-            
-            VStack(alignment: .leading) {
-                Text(member.user.username)
-                    .font(Font.system(size: 20, weight: .bold))
-                    .foregroundColor(.black)
-                
-                Text("프론트엔드")
-                    .font(Font.system(size: 14, weight: .regular))
-                    .foregroundColor(.gray)
             }
         }
     }

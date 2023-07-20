@@ -34,6 +34,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         let serverClientID = "com.googleusercontent.apps.445750195734-da9230k2r5min42eioscrp2uibiei6ch"
         GIDSignIn.sharedInstance.configuration = GIDConfiguration(clientID: clientID, serverClientID: serverClientID)
         
+        
+        
         return true
     }
 }

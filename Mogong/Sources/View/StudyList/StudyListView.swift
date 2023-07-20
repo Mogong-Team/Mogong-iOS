@@ -78,9 +78,6 @@ struct StudyListView: View {
         .searchable(text: $viewModel.searchQuery, prompt: "스터디 검색하기") {
             // search action
         }
-        .onAppear {
-            print(viewModel.study)
-        }
     }
 }
 

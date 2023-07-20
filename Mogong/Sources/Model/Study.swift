@@ -18,7 +18,7 @@ enum StudyMode: String, CaseIterable {
     case both = "온/오프라인"
 }
 
-enum Field: String, CaseIterable {
+enum Field: String, CaseIterable, Codable {
     case frontend = "프론트엔드"
     case backend = "백엔드"
     case designer = "디자이너"

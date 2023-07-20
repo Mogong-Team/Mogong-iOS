@@ -60,15 +60,15 @@ struct MyStudyDetailView: View {
                                 LazyVGrid(columns: [GridItem(), GridItem(), GridItem()]) {
                                     ForEach(study.currentMembers, id: \.self) { member in
                                         NavigationLink {
-                                            MemberView()
+                                            UserPageView()
                                         } label: {
-                                            memberView2(member: member, viewType: viewType)
+                                            VStakTeamMemberView(member: member, viewType: viewType)
                                         }
                                     }
                                     
                                     ForEach(Array(study.requiredCountPerFieldDic()), id: \.key) { field, count in
                                         ForEach(0..<count) { _ in
-                                            newMemberView(field: field)
+                                            VStackNewTeamMemberView(field: field)
                                         }
                                     }
                                 }
@@ -127,83 +127,7 @@ struct MyStudyDetailView_Previews: PreviewProvider {
     }
 }
 
-struct newMemberView: View {
-    var field: Field
-    
-    var body: some View {
-        VStack {
-            ZStack {
-                Image(systemName: "circle.fill")
-                    .resizable()
-                    .frame(width: 60, height: 60)
-                    .scaledToFit()
-                    .clipShape(Circle())
-                    .foregroundColor(.yellow)
-                
-                Text("New!")
-                    .font(.pretendard(weight: .bold, size: 15))
-            }
-            
-            Text("모집중!")
-                .font(Font.system(size: 20, weight: .bold))
-                .foregroundColor(.black)
-            
-            Text(field.rawValue)
-                .font(Font.system(size: 14, weight: .regular))
-                .foregroundColor(.gray)
-        }
-    }
-}
 
-struct memberView2: View {
-    var member: Member
-    
-    var viewType: HostMemberType
-    
-    @State var showDropAlert: Bool = false
-    
-    var body: some View {
-        VStack {
-            Image(systemName: "circle.fill")
-                .resizable()
-                .frame(width: 60, height: 60)
-                .scaledToFit()
-                .clipShape(Circle())
-                .foregroundColor(.gray)
-            
-            Text(member.user.username)
-                .font(Font.system(size: 20, weight: .bold))
-                .foregroundColor(.black)
-            
-            Text(member.field.rawValue)
-                .font(Font.system(size: 14, weight: .regular))
-                .foregroundColor(.gray)
-            
-            if viewType == .host {
-                Button {
-                    showDropAlert = true
-                } label: {
-                    ZStack {
-                        Color.red
-                        
-                        Text("강퇴하기")
-                            .font(.pretendard(weight: .regular, size: 16))
-                            .foregroundColor(.white)
-                    }
-                    .frame(height: 25)
-                    .cornerRadius(11)
-                }
-                .alert("강퇴하기", isPresented: $showDropAlert) {
-                    Button("확인", role: .destructive) {
-                        // 강퇴하기
-                    }
-                    
-                    Button("취소", role: .cancel) { }
-                } message: {
-                    Text("정말로 강퇴하시겠습니까?")
-                }
-            }
-        }
-    }
-}
+
+
 
