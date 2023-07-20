@@ -7,9 +7,18 @@
 
 import SwiftUI
 
+/*
+ - ongoing: 진행중
+ - completed: 종료
+ */
 enum MyStudyType {
     case ongoing
     case completed
+}
+
+enum MyStudyMember {
+    case leader
+    case member
 }
 
 struct MyStudyView: View {
@@ -22,16 +31,27 @@ struct MyStudyView: View {
     var body: some View {
         VStack {
             HStack {
-                SelectButton(title: "진행중인 스터디", state: selectedButton == 0 ? .selected : .unselected) {
+                SelectButton(title: "가입한 스터디", state: selectedButton == 0 ? .selected : .unselected) {
                     type = .ongoing
                     selectedButton = 0
                 }
                 
-                SelectButton(title: "완주한 스터디", state: selectedButton == 1 ? .selected : .unselected) {
+                SelectButton(title: "종료된 스터디", state: selectedButton == 1 ? .selected : .unselected) {
                     type = .completed
                     selectedButton = 1
                 }
             }
+            
+            ScrollView(.horizontal) {
+                HStack {
+                    
+                    Text("HHH")
+                    
+                }
+            }
+            .frame(height: 250)
+            .border(Color.red)
+
             
             ScrollView {
                 VStack {
