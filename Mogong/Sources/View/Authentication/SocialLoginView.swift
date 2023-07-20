@@ -46,20 +46,20 @@ struct SocialLoginView: View {
                     }
                 }
             } label: {
-                ZStack {
-                    Circle()
-                        .frame(width: 73, height: 73)
-                        .foregroundColor(.yellow)
-                    
-                    Image(systemName: "message.fill")
-                        .resizable()
-                        .frame(width: 25, height: 22)
-                        .foregroundColor(.black)
-                }
+                Image("kakaoLogo")
+                    .frame(width: 73, height: 73)
+//                ZStack {
+//                    Circle()
+//                        .frame(width: 73, height: 73)
+//                        .foregroundColor(.yellow)
+//
+//                    Image(systemName: "message.fill")
+//                        .resizable()
+//                        .frame(width: 25, height: 22)
+//                        .foregroundColor(.black)
+//                }
             }
-            .padding(15)
-//            .border(Color.red)
-            
+          
 //            Button {
 //                // 네이버 앱이 깔려져 있을때
 //                if NaverThirdPartyLoginConnection
@@ -96,22 +96,22 @@ struct SocialLoginView: View {
                     .foregroundColor(.white)
                     .clipShape(Circle())
             }
-            .padding(15)
-//            .border(Color.red)
-            
+
             Button {
                 viewModel.signInWithApple()
             } label: {
-                ZStack {
-                    Circle()
-                        .frame(width: 73, height: 73)
-                        .foregroundColor(.black)
-                    
-                    Image(systemName: "applelogo")
-                        .resizable()
-                        .frame(width: 20, height: 23)
-                        .foregroundColor(.white)
-                }
+                Image("appleLogo")
+                    .frame(width: 73, height: 73)
+//                ZStack {
+//                    Circle()
+//                        .frame(width: 73, height: 73)
+//                        .foregroundColor(.black)
+//
+//                    Image(systemName: "applelogo")
+//                        .resizable()
+//                        .frame(width: 20, height: 23)
+//                        .foregroundColor(.white)
+//                }
 //                Image(systemName: "applelogo")
 //                    .resizable()
 //                    .frame(width: 100, height: 100)
@@ -119,7 +119,6 @@ struct SocialLoginView: View {
 //                    .foregroundColor(.white)
 //                    .clipShape(Circle())
             }
-            .padding(15)
         }
     }
     

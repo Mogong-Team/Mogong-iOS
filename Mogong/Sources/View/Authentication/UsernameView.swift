@@ -9,7 +9,7 @@ import SwiftUI
 
 struct UsernameView: View {
     @Environment(\.dismiss) var dismiss
-    @State private var username = "123"
+    @State private var username = ""
     @State private var isUsernameAvailable = false
     @State private var isUsernameChecked = false
     
@@ -49,6 +49,8 @@ struct UsernameView: View {
                         .foregroundColor(isUsernameAvailable ? .green : .red)
                 }
             }
+            Spacer().frame(height: 300)
+
         }
         .navigationBarBackButtonHidden()
         .toolbar {
