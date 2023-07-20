@@ -70,6 +70,7 @@ struct ContentView: View {
                         }
                     }
                 }
+                .border(Color.red)
                 .accentColor(.black)
             } else {
                 AuthView()
