@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ChatListCell: View {
     @EnvironmentObject var viewModel: UserViewModel
-    @EnvironmentObject var userViewModel: UserViewModel
     
     var chat: Chat
     
