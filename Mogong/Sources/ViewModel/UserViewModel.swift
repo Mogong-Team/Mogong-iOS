@@ -9,8 +9,9 @@ import SwiftUI
 import Combine
 
 class UserViewModel: ObservableObject {
+    var currentUser = User(id: "1", name: "김민수", email: "minsu@gmail.com", username: "김민수")
     //@Published var currentUser: User
-    var currentUser = User(id: "1", name: "김민수", email: "1@gmail.com", username: "김김민수")
+    //var currentUser = User(id: "1", name: "김민수", email: "1@gmail.com", username: "김김민수")
 
     func currentUserIsHost(study: Study) -> Bool {
         return study.host.user.id == currentUser.id
