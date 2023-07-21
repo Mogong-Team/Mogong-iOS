@@ -18,7 +18,7 @@ struct SocialLoginView: View {
     @EnvironmentObject var viewModel: AuthViewModel
     
     var body: some View {
-        HStack {
+        HStack(spacing: 50) {
             Button {
                 if (UserApi.isKakaoTalkLoginAvailable()) {
                     UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
@@ -48,18 +48,45 @@ struct SocialLoginView: View {
             } label: {
                 Image("kakaoLogo")
                     .frame(width: 73, height: 73)
-//                ZStack {
-//                    Circle()
-//                        .frame(width: 73, height: 73)
-//                        .foregroundColor(.yellow)
-//
-//                    Image(systemName: "message.fill")
-//                        .resizable()
-//                        .frame(width: 25, height: 22)
-//                        .foregroundColor(.black)
-//                }
             }
-          
+            
+            Button {
+                handleGoogleSignIn()
+            } label: {
+                Image("googleLogo")
+                    .frame(width: 73, height: 73)
+            }
+
+            Button {
+                viewModel.signInWithApple()
+            } label: {
+                Image("appleLogo")
+                    .frame(width: 73, height: 73)
+            }
+        }
+    }
+    
+    func handleGoogleSignIn() {
+        guard let rootVC = UIApplication.shared.windows.first?.rootViewController else { return }
+        
+        GIDSignIn.sharedInstance.signIn(withPresenting: rootVC) { signInResult, error in
+            if let error = error {
+                print(error)
+            } else {
+                
+            }
+        }
+    }
+}
+
+struct SocialLoginView_Previews: PreviewProvider {
+    static var previews: some View {
+        SocialLoginView()
+    }
+}
+
+
+// 네이버 로그인 버튼
 //            Button {
 //                // 네이버 앱이 깔려져 있을때
 //                if NaverThirdPartyLoginConnection
@@ -85,58 +112,3 @@ struct SocialLoginView: View {
 //                    .foregroundColor(.white)
 //                    .clipShape(Circle())
 //            }
-            
-            Button {
-                handleGoogleSignIn()
-            } label: {
-                Image(systemName: "g.circle.fill")
-                    .resizable()
-                    .frame(width: 73, height: 73)
-                    .background(.blue)
-                    .foregroundColor(.white)
-                    .clipShape(Circle())
-            }
-
-            Button {
-                viewModel.signInWithApple()
-            } label: {
-                Image("appleLogo")
-                    .frame(width: 73, height: 73)
-//                ZStack {
-//                    Circle()
-//                        .frame(width: 73, height: 73)
-//                        .foregroundColor(.black)
-//
-//                    Image(systemName: "applelogo")
-//                        .resizable()
-//                        .frame(width: 20, height: 23)
-//                        .foregroundColor(.white)
-//                }
-//                Image(systemName: "applelogo")
-//                    .resizable()
-//                    .frame(width: 100, height: 100)
-//                    .background(.black)
-//                    .foregroundColor(.white)
-//                    .clipShape(Circle())
-            }
-        }
-    }
-    
-    func handleGoogleSignIn() {
-        guard let rootVC = UIApplication.shared.windows.first?.rootViewController else { return }
-        
-        GIDSignIn.sharedInstance.signIn(withPresenting: rootVC) { signInResult, error in
-            if let error = error {
-                print(error)
-            } else {
-                
-            }
-        }
-    }
-}
-
-struct SocialLoginView_Previews: PreviewProvider {
-    static var previews: some View {
-        SocialLoginView()
-    }
-}

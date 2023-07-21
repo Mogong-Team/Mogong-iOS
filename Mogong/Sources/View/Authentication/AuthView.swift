@@ -13,7 +13,7 @@ struct AuthView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Image("LoginMogongLogo")
+                Image("mogongLogo")
                     .padding(20)
                 
                 Image("LoginMainImg")
@@ -29,7 +29,6 @@ struct AuthView: View {
                     Text("책임감 있는 팀원들을 만나봐요!")
                         .font(.body)
                         .foregroundColor(.gray)
-                    
                 }
                 .padding(30)
                 
@@ -39,15 +38,6 @@ struct AuthView: View {
                 
                 SocialLoginView()
                     .padding()
-                
-                // 피그마에는 없어서 일단 주석처리
-//                NavigationLink {
-//
-//                } label: {
-//                    Text("문의하기")
-//                        .font(.body)
-//                        .foregroundColor(.gray)
-//                }
             }
             .navigationBarHidden(true)
             .accentColor(.red)
@@ -60,3 +50,13 @@ struct AuthView_Previews: PreviewProvider {
         AuthView()
     }
 }
+
+
+// 피그마에는 없어서 일단 주석처리
+//                NavigationLink {
+//
+//                } label: {
+//                    Text("문의하기")
+//                        .font(.body)
+//                        .foregroundColor(.gray)
+//                }
