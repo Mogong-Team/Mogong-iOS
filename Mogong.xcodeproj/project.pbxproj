@@ -302,6 +302,7 @@
 		8F8A67292A3975E500467936 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5CFBC2FA2A5969460021B6EC /* Home */,
 				8F8A67442A39773600467936 /* ContentView.swift */,
 				8F8A675B2A3AE14D00467936 /* Authentication */,
 				8F8A67322A39764300467936 /* TempHomeView.swift */,
@@ -351,7 +352,6 @@
 		8F8CA83A2A4D0B17002E8D15 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				5CFBC2FA2A5969460021B6EC /* Home */,
 				8F8A67192A39755E00467936 /* MogongApp.swift */,
 				8FF418A22A4D7B0B0090FA34 /* AppDelegate.swift */,
 				8F8A67272A3975E400467936 /* Service */,
