@@ -13,7 +13,7 @@ struct ClippyStudyView: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text("스크랩이 많은 스터디")
-                .font(.largeTitle)
+                .font(.system(size: 20))
                 .fontWeight(.bold)
 
             Text("관심 집중 스터디에요!")
