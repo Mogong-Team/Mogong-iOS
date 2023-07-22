@@ -20,7 +20,7 @@ struct CompletedStudyCell: View {
                         Image(systemName: "pencil")
                             .resizable()
                         
-                        VStack {
+                        VStack() {
                             Spacer()
                             Text(study.title)
                                 .foregroundColor(.black)
@@ -31,7 +31,7 @@ struct CompletedStudyCell: View {
                     }
                 }
             }
-            .frame(width: 135, height: 185, alignment: .leading)
+            .frame(width: 130, height: 185, alignment: .leading)
             .background(Color(uiColor: .white))
             .cornerRadius(15)
             .shadow(color: .gray, radius: 5, x: 2, y: 2)

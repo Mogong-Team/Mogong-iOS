@@ -24,12 +24,12 @@ struct CompletedStudyView: View {
                 HStack(spacing: 15) {
                     ForEach(viewModel.studys) { study in
                         CompletedStudyCell(study: study)
-                            .frame(height: 200)
+                            .frame(width: 140, height: 200)
                     }
                 }
             }
         }
-        .frame(width: 350)
+        .frame(width: 380)
         .padding()
     }
 }
