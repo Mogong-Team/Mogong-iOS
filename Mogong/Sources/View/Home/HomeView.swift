@@ -16,11 +16,9 @@ struct HomeView: View {
                 NavigationView {
                     VStack {
                         TopBarView()
-                            .padding()
                         
                         ScrollView {
                             CompletedStudyView()
-                                .padding()
                             ClippyStudyView()
                         }
                         

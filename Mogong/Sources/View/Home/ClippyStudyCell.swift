@@ -25,7 +25,7 @@ struct ClippyStudyCell: View {
     
     var body: some View {
         NavigationLink {
-            StudyListView()
+            // 선택한 스터디에 맞는 뷰로 이동하는 코드
         } label: {
             VStack(alignment: .leading, spacing: 10) {
                 HStack {
@@ -56,10 +56,11 @@ struct ClippyStudyCell: View {
                 }
             }
             .padding(10)
-            .frame(width: 349, height: 80, alignment: .leading)
+            .foregroundColor(.clear)
+            .frame(width: 360, height: 80, alignment: .leading)
             .background(Color(uiColor: .white))
             .cornerRadius(15)
-            .shadow(color: .gray, radius: 5, x: 2, y: 2)
+            .shadow(color: .gray, radius: 2.5, x: 4, y: 4)
         }
     }
 }
