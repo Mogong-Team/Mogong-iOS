@@ -10,7 +10,7 @@ import SwiftUI
 struct TopBarView: View {
     var body: some View {
         VStack {
-//            Text("Study List Arr")
+            
         }
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarLeading) {

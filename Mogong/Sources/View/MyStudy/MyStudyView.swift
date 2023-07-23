@@ -12,28 +12,29 @@ struct MyStudyView: View {
     @EnvironmentObject var userViewModel: UserViewModel
     
     var body: some View {
-        ZStack {
-            Color(uiColor: .systemGray6)
-            
-            ScrollView(showsIndicators: false) {
-                VStack {
-                    MyStudyStateSelect()
-                        .padding(.horizontal, 20)
-                    MyStudyList()
+        NavigationView {
+            VStack {
+                TopBarView()
+                
+                ZStack {
+                    Color(uiColor: .systemGray6)
+                    
+                    ScrollView(showsIndicators: false) {
+                        VStack {
+                            MyStudyStateSelect()
+                                .padding(.horizontal, 20)
+                            MyStudyList()
+                        }
+                        .padding(.top, 10)
+                        .padding(.bottom, 20)
+                    }
                 }
-                .padding(.top, 10)
-                .padding(.bottom, 20)
-            }
-        }
-        .onAppear {
-            studyViewModel.myStudyStateIsOngoing = true
-            studyViewModel.myStudySelectedStudyIndex = 0
-        }
-        .toolbar {
-            ToolbarItemGroup(placement: .navigationBarLeading) {
-                Text("Mogong")
-                    .font(.title2)
-                    .fontWeight(.heavy)
+                .onAppear {
+                    studyViewModel.myStudyStateIsOngoing = true
+                    studyViewModel.myStudySelectedStudyIndex = 0
+                }
+                
+                TabBarView()
             }
         }
     }
@@ -45,7 +46,7 @@ struct MyStudyStateSelect: View {
     var body: some View {
         HStack {
             StudyStateButton(
-                title: "진행중인 스터디",
+                title: "내가 가입한 스터디",
                 studyCount: studyViewModel.studys.filter { !$0.isStudyCompleted }.count,
                 isSelected: studyViewModel.myStudyStateIsOngoing ? true : false
             )
