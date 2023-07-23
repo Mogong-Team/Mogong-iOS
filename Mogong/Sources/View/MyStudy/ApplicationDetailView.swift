@@ -24,6 +24,7 @@ struct ApplicationDetailView: View {
                             .scaledToFit()
                             .clipShape(Circle())
                             .foregroundColor(.gray)
+                            .padding(20)
                         
                         Text(application.user.username)
                             .font(.pretendard(weight: .bold, size: 28))
