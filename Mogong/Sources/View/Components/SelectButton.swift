@@ -23,21 +23,31 @@ struct SelectButton: View {
         } label: {
             ZStack {
                 if state == .unselected {
-                    Color.gray
+                    Color.white
                     
                     Text(title)
-                        .font(Font.system(size: 18, weight: .medium))
-                        .foregroundColor(.white)
+                        .font(.pretendard(weight: .medium, size: 16))
+                        .foregroundColor(Color(red: 0.7, green: 0.7, blue: 0.7))
+                    
+                    Rectangle()
+                        .foregroundColor(.clear)
+                        .overlay(
+                        RoundedRectangle(cornerRadius: 9)
+                        .inset(by: 0.5)
+                        .stroke(Color(red: 0.86, green: 0.96, blue: 0.99), lineWidth: 1)
+                        )
+                    
+                    
                 } else {
-                    Color.blue
+                    Color(red: 0, green: 0.78, blue: 0.96)
                     
                     Text(title)
-                        .font(Font.system(size: 18, weight: .medium))
+                        .font(.pretendard(weight: .medium, size: 16))
                         .foregroundColor(.white)
                 }
             }
             .frame(height: 42)
-            .cornerRadius(12)
+            .cornerRadius(9)
         }
     }
     

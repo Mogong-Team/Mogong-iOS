@@ -43,32 +43,69 @@ struct CreateStudy: View {
     
     var body: some View {
         ScrollView(showsIndicators: false) {
-            VStack {
+            VStack(alignment: .leading) {
+                Text("모집 형태")
+                    .font(.pretendard(weight: .medium, size: 16))
+                
+                HStack {
+                    SelectButton(title: "스터디", state: selectedStudyType == .study ? .selected : .unselected) {
+                        selectedStudyType = .study
+                    }
+                    
+                    SelectButton(title: "팀 프로젝트", state: selectedStudyType == .teamProject ? .selected : .unselected) {
+                        selectedStudyType = .teamProject
+                    }
+                }
+                .padding(.bottom, 30)
+
+                
+                VStack(alignment: .leading) {
+                    Text("스터디 방식")
+                        .font(.pretendard(weight: .medium, size: 16))
+                    
+                    HStack {
+                        SelectButton(title: "오프라인", state: selectedStudyMode == .offline ? .selected : .unselected) {
+                            selectedStudyMode = .offline
+                        }
+                        
+                        SelectButton(title: "온라인", state: selectedStudyMode == .online ? .selected : .unselected) {
+                            selectedStudyMode = .online
+                        }
+                        
+                        SelectButton(title: "온/오프라인", state: selectedStudyMode == .both ? .selected : .unselected) {
+                            selectedStudyMode = .both
+                        }
+                    }
+                    .padding(.bottom, 30)
+                }
+                
+                
+                
                 VStack(alignment: .leading) {
                     Text("제목")
-                        .font(Font.system(size: 16))
-                        .frame(height: 25)
+                        .font(.pretendard(weight: .medium, size: 16))
                     
                     SingleLineTextField(text: $title, placeHolder: "스터디를 소개할 제목을 적어주세요!")
                 }
+                .padding(.bottom, 20)
                 
                 VStack(alignment: .leading) {
                     Text("스터디 소개글")
-                        .font(Font.system(size: 16))
-                        .frame(height: 25)
+                        .font(.pretendard(weight: .medium, size: 16))
                     
                     MultiLineTextField(text: $introduction, placeHolder: "나의 스터디를 소개할 글을 입력해주세요")
                         .frame(height: 180)
                 }
+                .padding(.bottom, 20)
                 
                 VStack(alignment: .leading) {
                     Text("이런 팀원을 뽑아요!")
-                        .font(Font.system(size: 16))
-                        .frame(height: 25)
+                        .font(.pretendard(weight: .medium, size: 16))
                     
                     MultiLineTextField(text: $memberPreference, placeHolder: "팀원의 자격요건을 적어주세요!")
                         .frame(height: 180)
                 }
+                .padding(.bottom, 20)
                 
                 VStack {
                     HStack {
@@ -88,41 +125,7 @@ struct CreateStudy: View {
                         .foregroundColor(.black)
                     }
                 }
-                
-                VStack(alignment: .leading) {
-                    Text("스터디 방식")
-                        .font(Font.system(size: 16))
-                        .frame(height: 25)
-                    
-                    HStack {
-                        SelectButton(title: "오프라인", state: selectedStudyMode == .offline ? .selected : .unselected) {
-                            selectedStudyMode = .offline
-                        }
-                        
-                        SelectButton(title: "온라인", state: selectedStudyMode == .online ? .selected : .unselected) {
-                            selectedStudyMode = .online
-                        }
-                        
-                        SelectButton(title: "온/오프라인", state: selectedStudyMode == .both ? .selected : .unselected) {
-                            selectedStudyMode = .both
-                        }
-                    }
-                    
-                    Text("모집 형태")
-                        .font(Font.system(size: 16))
-                        .frame(height: 25)
-                    
-                    HStack {
-                        SelectButton(title: "스터디", state: selectedStudyType == .study ? .selected : .unselected) {
-                            selectedStudyType = .study
-                        }
-                        
-                        SelectButton(title: "팀 프로젝트", state: selectedStudyType == .teamProject ? .selected : .unselected) {
-                            selectedStudyType = .teamProject
-                        }
-                    }
-
-                }
+                .padding(.bottom, 20)
                 
                 VStack {
                     SelectButton(title: "다음", state: .selected) {
