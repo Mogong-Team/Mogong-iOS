@@ -42,7 +42,7 @@ struct StudyIntroduceView: View {
                             .font(Font.system(size: 15, weight: .bold))
                             .foregroundColor(.white)
                         
-                        Text(viewModel.study.title)
+                        Text("123123")
                             .font(Font.system(size: 28, weight: .bold))
                             .foregroundColor(.white)
                     }
