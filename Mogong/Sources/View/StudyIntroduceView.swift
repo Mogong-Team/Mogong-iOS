@@ -42,7 +42,7 @@ struct StudyIntroduceView: View {
                             .font(Font.system(size: 15, weight: .bold))
                             .foregroundColor(.white)
                         
-                        Text(viewModel.study.title)
+                        Text("123123")
                             .font(Font.system(size: 28, weight: .bold))
                             .foregroundColor(.white)
                     }
@@ -95,7 +95,7 @@ struct StudyIntroduceView: View {
                         Spacer()
                             .frame(height: 10)
                         
-                        detailView(study: viewModel.study, viewType: $viewType)
+                        detailView(study: viewModel.studys[0], viewType: $viewType)
                         
                         Spacer()
                     }

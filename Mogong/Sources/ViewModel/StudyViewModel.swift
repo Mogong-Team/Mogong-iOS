@@ -9,127 +9,54 @@ import SwiftUI
 import Combine
 
 class StudyViewModel: ObservableObject {
+    @Published var studys = [Study]()
+    @Published var tempStudys = [TempStudy]()
     
-    @Published var study =
-    Study(id: "10", title: "[창업/스타트업] 정부 지원 사업에 합격한 아이템으로 함께 MVP 제작할 개발자 구합니다.(2일 뒤 마감_편하게 연락주세요)", frequencyOfWeek: 2, durationOfMonth: 2,
-          studyType: .teamProject, studyMode: .online, totalMemberCount: 5,
-          requiredPositions: [
-            Position(field: .backend, requiredFieldCount: 2),
-            Position(field: .frontend, requiredFieldCount: 1),
-            Position(field: .designer, requiredFieldCount: 3),
-            Position(field: .ios, requiredFieldCount: 1)
-          ],
-          host:
-            Member(user: User(id: "1", name: "김민수", email: "a@gmail.com", username: "민수민수"), field: .backend),
-          currentMember: [
-            Member(user: User(id: "1", name: "김민수", email: "a@gmail.com", username: "민수민수"), field: .backend),
-            Member(user: User(id: "2", name: "김종민", email: "a@gmail.com", username: "종민종민"), field: .frontend),
-            Member(user: User(id: "3", name: "김정수", email: "a@gmail.com", username: "정수정수"),  field: .ios),
-            Member(user: User(id: "3", name: "김나연", email: "a@gmail.com", username: "나연나연"),  field: .designer),
-          ],
-          introduction: "안녕하세요", memberPreference: "누구든 상관없어요", hashtags: ["#자바스크립트", "#앱개발", "#디자이너"],
-          createDate: Date(), dueDate: Date(), languages: [.javaScript, .figma, .swift],
-          fields: [.backend, .designer], profitGoal: .no,
-          isBookMarked: true, bookMarkCount: 5, isRecruitmentCompleted: false, isStudyCompleted: false)
+    //MARK: - 스터디 생성
     
-    @Published  var studys = [
-        Study(id: "1", title: "[창업/스타트업] 정부 지원 사업에 합격한 아이템으로 함께 MVP 제작할 개발자 구합니다.(2일 뒤 마감_편하게 연락주세요)", frequencyOfWeek: 2, durationOfMonth: 2,
-              studyType: .teamProject, studyMode: .online, totalMemberCount: 5,
-              requiredPositions: [
-                Position(field: .backend, requiredFieldCount: 2),
-                Position(field: .frontend, requiredFieldCount: 1),
-                Position(field: .designer, requiredFieldCount: 1),
-                Position(field: .ios, requiredFieldCount: 1)
-              ],
-              host:
-                Member(user: User(id: "1", name: "김민수", email: "a@gmail.com", username: "민수민수"), field: .backend),
-              currentMember: [
-                Member(user: User(id: "1", name: "김민수", email: "a@gmail.com", username: "민수민수"), field: .backend),
-                Member(user: User(id: "2", name: "김종민", email: "a@gmail.com", username: "종민종민"), field: .frontend),
-                Member(user: User(id: "3", name: "김정수", email: "a@gmail.com", username: "정수정수"),  field: .ios),
-                Member(user: User(id: "4", name: "김나연", email: "a@gmail.com", username: "나연나연"),  field: .designer),
-              ],
-              introduction: "안녕하세요", memberPreference: "누구든 상관없어요", hashtags: ["#자바스크립트", "#앱개발", "#디자이너"],
-              createDate: Date(), dueDate: Date(timeIntervalSinceNow: 24*3600*1), languages: [.javaScript, .figma, .swift],
-              fields: [.backend, .designer], profitGoal: .no,
-              isBookMarked: true, bookMarkCount: 5, isRecruitmentCompleted: false, isStudyCompleted: false),
-        
-        Study(id: "2", title: "스터디2 함께해요.", frequencyOfWeek: 2, durationOfMonth: 2,
-              studyType: .teamProject, studyMode: .online, totalMemberCount: 5,
-              requiredPositions: [
-                Position(field: .backend, requiredFieldCount: 2),
-                Position(field: .frontend, requiredFieldCount: 1),
-                Position(field: .designer, requiredFieldCount: 1),
-                Position(field: .ios, requiredFieldCount: 1)
-              ],
-              host:
-                Member(user: User(id: "2", name: "김종민", email: "a@gmail.com", username: "종민종민"), field: .frontend),
-              currentMember: [
-                Member(user: User(id: "1", name: "김민수", email: "a@gmail.com", username: "민수민수"), field: .backend),
-                Member(user: User(id: "2", name: "김종민", email: "a@gmail.com", username: "종민종민"), field: .frontend),
-                Member(user: User(id: "3", name: "김정수", email: "a@gmail.com", username: "정수정수"),  field: .ios),
-                Member(user: User(id: "4", name: "김나연", email: "a@gmail.com", username: "나연나연"),  field: .designer),
-              ],
-              introduction: "안녕하세요", memberPreference: "누구든 상관없어요", hashtags: ["#자바스크립트", "#앱개발", "#디자이너"],
-              createDate: Date(), dueDate: Date(timeIntervalSinceNow: 24*3600*7), languages: [.javaScript, .figma, .swift],
-              fields: [.backend, .designer], profitGoal: .no,
-              isBookMarked: true, bookMarkCount: 5, isRecruitmentCompleted: false, isStudyCompleted: false),
-        
-        Study(id: "3", title: "스터디3 함께해요.", frequencyOfWeek: 2, durationOfMonth: 2,
-              studyType: .teamProject, studyMode: .online, totalMemberCount: 5,
-              requiredPositions: [
-                Position(field: .backend, requiredFieldCount: 2),
-                Position(field: .frontend, requiredFieldCount: 1),
-                Position(field: .designer, requiredFieldCount: 1),
-                Position(field: .ios, requiredFieldCount: 1)
-              ],
-              host:
-                Member(user: User(id: "3", name: "김정수", email: "a@gmail.com", username: "정수정수"),  field: .ios),
-              currentMember: [
-                Member(user: User(id: "1", name: "김민수", email: "a@gmail.com", username: "민수민수"), field: .backend),
-                Member(user: User(id: "2", name: "김종민", email: "a@gmail.com", username: "종민종민"), field: .frontend),
-                Member(user: User(id: "3", name: "김정수", email: "a@gmail.com", username: "정수정수"),  field: .ios),
-                Member(user: User(id: "4", name: "김나연", email: "a@gmail.com", username: "나연나연"),  field: .designer),
-              ],
-              introduction: "안녕하세요", memberPreference: "누구든 상관없어요", hashtags: ["#자바스크립트", "#앱개발", "#디자이너"],
-              createDate: Date(), dueDate: Date(timeIntervalSinceNow: -24*3600*7), languages: [.javaScript, .figma, .swift],
-              fields: [.backend, .designer], profitGoal: .no,
-              isBookMarked: true, bookMarkCount: 5, isRecruitmentCompleted: false, isStudyCompleted: true),
-        
-        Study(id: "4", title: "스터디4 함께해요.", frequencyOfWeek: 2, durationOfMonth: 2,
-              studyType: .teamProject, studyMode: .online, totalMemberCount: 5,
-              requiredPositions: [
-                Position(field: .backend, requiredFieldCount: 2),
-                Position(field: .frontend, requiredFieldCount: 1),
-                Position(field: .designer, requiredFieldCount: 1),
-                Position(field: .ios, requiredFieldCount: 1)
-              ],
-              host:
-                Member(user: User(id: "4", name: "김나연", email: "a@gmail.com", username: "나연나연"),  field: .designer),
-              currentMember: [
-                Member(user: User(id: "1", name: "김민수", email: "a@gmail.com", username: "민수민수"), field: .backend),
-                Member(user: User(id: "2", name: "김종민", email: "a@gmail.com", username: "종민종민"), field: .frontend),
-                Member(user: User(id: "3", name: "김정수", email: "a@gmail.com", username: "정수정수"),  field: .ios),
-                Member(user: User(id: "4", name: "김나연", email: "a@gmail.com", username: "나연나연"),  field: .designer),
-              ],
-              introduction: "안녕하세요", memberPreference: "누구든 상관없어요", hashtags: ["#자바스크립트", "#앱개발", "#디자이너"],
-              createDate: Date(), dueDate: Date(timeIntervalSinceNow: -24*3600*7), languages: [.javaScript, .figma, .swift],
-              fields: [.backend, .designer], profitGoal: .no,
-              isBookMarked: true, bookMarkCount: 5, isRecruitmentCompleted: false, isStudyCompleted: true),
-    ]
+    @Published private var studyMode: StudyMode?
+    @Published private var studyType: StudyType?
+    @Published private var title: String = ""
+    @Published private var introduction: String = ""
+    @Published private var goal: String = ""
+    @Published private var memberPreference: String = ""
+    @Published private var dueDate: Date = Date()
+    @Published private var showDatePicker = false
     
-    @Published var myStudys = [Study]() // 서버에서 받아오기
+    @Published private var frequencyOfWeek: Int = 0
+    @Published private var durationOfMonth: Int = 0
+    @Published private var language: Field?
+    @Published private var numberOfRecruits: Int = 0
+
+    @Published private var hostPosition: Field?
+    @Published private var backendNeedCount: String = ""
+    @Published private var frontendNeedCount: String = ""
+    @Published private var aosNeedCount: String = ""
+    @Published private var iosNeedCount: String = ""
+    @Published private var designerNeedCount: String = ""
+    @Published private var selectProfitGoal: ProfitGoal?
+    
+    //MARK: - 마아스터디
+    
+    /// 모든 스터디에서 마이스터디 가져오는 방법
+    /// 1) viewModel에서 필터링 - 데이터량이 적으면 서버와 연동보다  받아온 모든 스터디에서 필터링하는게 빠름
+    /// 2) 서버에서 받아오기 - 이용자 수가 많을 수록 필요성 높아짐
+    @Published var myStudys = [Study]()
     @Published var myStudyFilterdOngoingStudy = [Study]()
     @Published var myStudyFilterdCompletedStudy = [Study]()
     @Published var myStudyStateIsOngoing: Bool = true
     @Published var myStudySelectedStudyIndex: Int = 0
     @Published var myStudyshowRemoveSheet: Bool = false
     
+    //MARK: - 기타
+    
     @Published var searchQuery: String = ""
     
     private var cancellables: Set<AnyCancellable> = []
     
     init() {
+        initStudys()
+        
         $studys
             .map { $0.filter { !$0.isStudyCompleted }}
             .sink { [weak self] filterdStudys in
@@ -144,9 +71,8 @@ class StudyViewModel: ObservableObject {
             }
             .store(in: &cancellables)
     }
-    
+
     func isHostUser(study: Study, member: Member) -> Bool {
         return study.host.user.id == member.user.id
     }
 }
-

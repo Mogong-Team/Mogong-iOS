@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F0314992A6E29BC001C430A /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0314982A6E29BC001C430A /* Position.swift */; };
+		8F03149B2A6E2F6F001C430A /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F03149A2A6E2F6F001C430A /* Member.swift */; };
 		5C11C9642A53F5A500618943 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C11C9632A53F5A500618943 /* HomeView.swift */; };
 		5CFBC2FC2A5969A60021B6EC /* CompletedStudyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFBC2FB2A5969A60021B6EC /* CompletedStudyCell.swift */; };
 		5CFBC2FE2A5969B40021B6EC /* ClippyStudyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFBC2FD2A5969B40021B6EC /* ClippyStudyCell.swift */; };
@@ -59,6 +61,7 @@
 		8F8CA8592A4D5D65002E8D15 /* MyStudyDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8CA8582A4D5D65002E8D15 /* MyStudyDetailView.swift */; };
 		8FA028002A5BC865001B17F6 /* ApplicationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA027FF2A5BC865001B17F6 /* ApplicationListView.swift */; };
 		8FA028022A5BD3EC001B17F6 /* ApplicationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA028012A5BD3EC001B17F6 /* ApplicationDetailView.swift */; };
+		8FC6B3B92A6E130700B3A482 /* TempStudy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC6B3B82A6E130700B3A482 /* TempStudy.swift */; };
 		8FD8C1FE2A4BABCD00F21DD1 /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD8C1FD2A4BABCD00F21DD1 /* ChatListView.swift */; };
 		8FD8C2002A4BABD300F21DD1 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD8C1FF2A4BABD300F21DD1 /* ChatView.swift */; };
 		8FD8C2022A4BAC6400F21DD1 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD8C2012A4BAC6400F21DD1 /* Chat.swift */; };
@@ -81,6 +84,9 @@
 		8FF09EE92A570AEB00630F19 /* VStakTeamMemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF09EE82A570AEB00630F19 /* VStakTeamMemberView.swift */; };
 		8FF09EEB2A570B5300630F19 /* VStackNewTeamMemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF09EEA2A570B5300630F19 /* VStackNewTeamMemberView.swift */; };
 		8FF09EED2A5934EC00630F19 /* View+hideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF09EEC2A5934EC00630F19 /* View+hideKeyboard.swift */; };
+		8FF26A392A6646D400149972 /* GeneralStudy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF26A382A6646D400149972 /* GeneralStudy.swift */; };
+		8FF26A3C2A6646E100149972 /* ProjectStudy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF26A3B2A6646E100149972 /* ProjectStudy.swift */; };
+		8FF26A3E2A6669D700149972 /* Color+hexColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF26A3D2A6669D700149972 /* Color+hexColor.swift */; };
 		8FF2796C2A5BF4DB003B325F /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF2796B2A5BF4DB003B325F /* UserService.swift */; };
 		8FF2796E2A5BF500003B325F /* StudyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF2796D2A5BF500003B325F /* StudyService.swift */; };
 		8FF279702A5BF507003B325F /* ApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF2796F2A5BF507003B325F /* ApplicationService.swift */; };
@@ -100,6 +106,8 @@
 		5CFBC3032A596F8F0021B6EC /* TopBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarView.swift; sourceTree = "<group>"; };
 		5CFBC3052A596FA40021B6EC /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		8C495DE2ED845CC16581FE5B /* Pods-Mogong.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mogong.debug.xcconfig"; path = "Target Support Files/Pods-Mogong/Pods-Mogong.debug.xcconfig"; sourceTree = "<group>"; };
+		8F0314982A6E29BC001C430A /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
+		8F03149A2A6E2F6F001C430A /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		8F4125562A55029D005B5A1E /* NaviBackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaviBackButton.swift; sourceTree = "<group>"; };
 		8F78DB932A4BC9E20004F195 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		8F78DB992A4C04490004F195 /* AlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmView.swift; sourceTree = "<group>"; };
@@ -148,6 +156,7 @@
 		8F8CA8582A4D5D65002E8D15 /* MyStudyDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStudyDetailView.swift; sourceTree = "<group>"; };
 		8FA027FF2A5BC865001B17F6 /* ApplicationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationListView.swift; sourceTree = "<group>"; };
 		8FA028012A5BD3EC001B17F6 /* ApplicationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationDetailView.swift; sourceTree = "<group>"; };
+		8FC6B3B82A6E130700B3A482 /* TempStudy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempStudy.swift; sourceTree = "<group>"; };
 		8FD8C1FD2A4BABCD00F21DD1 /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
 		8FD8C1FF2A4BABD300F21DD1 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		8FD8C2012A4BAC6400F21DD1 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
@@ -170,6 +179,9 @@
 		8FF09EE82A570AEB00630F19 /* VStakTeamMemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VStakTeamMemberView.swift; sourceTree = "<group>"; };
 		8FF09EEA2A570B5300630F19 /* VStackNewTeamMemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VStackNewTeamMemberView.swift; sourceTree = "<group>"; };
 		8FF09EEC2A5934EC00630F19 /* View+hideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+hideKeyboard.swift"; sourceTree = "<group>"; };
+		8FF26A382A6646D400149972 /* GeneralStudy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralStudy.swift; sourceTree = "<group>"; };
+		8FF26A3B2A6646E100149972 /* ProjectStudy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectStudy.swift; sourceTree = "<group>"; };
+		8FF26A3D2A6669D700149972 /* Color+hexColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+hexColor.swift"; sourceTree = "<group>"; };
 		8FF2796B2A5BF4DB003B325F /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		8FF2796D2A5BF500003B325F /* StudyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyService.swift; sourceTree = "<group>"; };
 		8FF2796F2A5BF507003B325F /* ApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationService.swift; sourceTree = "<group>"; };
@@ -288,6 +300,9 @@
 			children = (
 				8F8A673E2A39767200467936 /* Login.swift */,
 				8F8A672C2A39762F00467936 /* Study.swift */,
+				8FC6B3B82A6E130700B3A482 /* TempStudy.swift */,
+				8F0314982A6E29BC001C430A /* Position.swift */,
+				8F03149A2A6E2F6F001C430A /* Member.swift */,
 				8F8A672E2A39763400467936 /* Rank.swift */,
 				8F8A67302A39763800467936 /* User.swift */,
 				8FD8C2012A4BAC6400F21DD1 /* Chat.swift */,
@@ -322,6 +337,7 @@
 			children = (
 				8F8A67402A39767B00467936 /* Date+Conversion.swift */,
 				8FF09EEC2A5934EC00630F19 /* View+hideKeyboard.swift */,
+				8FF26A3D2A6669D700149972 /* Color+hexColor.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -452,7 +468,7 @@
 			children = (
 				8F8A67692A42CD5100467936 /* StudyListView.swift */,
 				8F8A676D2A42D16800467936 /* StudyListCell.swift */,
-				8FE5168F2A4868120059D720 /* CreateStudy.swift */,
+				8FF26A372A66469800149972 /* CreateStudy */,
 				8FE5169E2A4965F40059D720 /* ApplicationView.swift */,
 				8FE516A02A4969DA0059D720 /* StudyDetailView.swift */,
 				8FE516A22A4973280059D720 /* MemberIntroductionView.swift */,
@@ -475,6 +491,16 @@
 				8FF09EE02A569B7200630F19 /* HStackNewTeamMemberView.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		8FF26A372A66469800149972 /* CreateStudy */ = {
+			isa = PBXGroup;
+			children = (
+				8FE5168F2A4868120059D720 /* CreateStudy.swift */,
+				8FF26A382A6646D400149972 /* GeneralStudy.swift */,
+				8FF26A3B2A6646E100149972 /* ProjectStudy.swift */,
+			);
+			path = CreateStudy;
 			sourceTree = "<group>";
 		};
 		E87B95DDFFF3746F3B31FFB7 /* Pods */ = {
@@ -624,6 +650,7 @@
 				5CFBC3042A596F8F0021B6EC /* TopBarView.swift in Sources */,
 				8FE516932A4913460059D720 /* SelectButton.swift in Sources */,
 				8FE516A52A4989030059D720 /* HashtagView.swift in Sources */,
+				8F03149B2A6E2F6F001C430A /* Member.swift in Sources */,
 				8FA028022A5BD3EC001B17F6 /* ApplicationDetailView.swift in Sources */,
 				8FF09EEB2A570B5300630F19 /* VStackNewTeamMemberView.swift in Sources */,
 				8FF09EE92A570AEB00630F19 /* VStakTeamMemberView.swift in Sources */,
@@ -633,6 +660,8 @@
 				8F8A67452A39773600467936 /* ContentView.swift in Sources */,
 				8FE5169D2A4965310059D720 /* Application.swift in Sources */,
 				8F7D0C132A52A9DB0073457A /* BookmarkCellView.swift in Sources */,
+				8FC6B3B92A6E130700B3A482 /* TempStudy.swift in Sources */,
+				8FF26A3C2A6646E100149972 /* ProjectStudy.swift in Sources */,
 				8FA028002A5BC865001B17F6 /* ApplicationListView.swift in Sources */,
 				8F8A673D2A39766B00467936 /* AuthViewModel.swift in Sources */,
 				8F8CA8572A4D1E93002E8D15 /* CheckLabel.swift in Sources */,
@@ -643,6 +672,7 @@
 				8FF09EE12A569B7200630F19 /* HStackNewTeamMemberView.swift in Sources */,
 				8F78DB9A2A4C04490004F195 /* AlarmView.swift in Sources */,
 				8FF418A32A4D7B0B0090FA34 /* AppDelegate.swift in Sources */,
+				8FF26A3E2A6669D700149972 /* Color+hexColor.swift in Sources */,
 				8FE516902A4868120059D720 /* CreateStudy.swift in Sources */,
 				8FF279702A5BF507003B325F /* ApplicationService.swift in Sources */,
 				8FF09EE52A56A99400630F19 /* RemoveReasonView.swift in Sources */,
@@ -657,6 +687,7 @@
 				8FF418A52A4D7C6E0090FA34 /* UserPageView.swift in Sources */,
 				8F78DB9C2A4C04A20004F195 /* Alarm.swift in Sources */,
 				8F8A676E2A42D16800467936 /* StudyListCell.swift in Sources */,
+				8F0314992A6E29BC001C430A /* Position.swift in Sources */,
 				8F8A673B2A39766300467936 /* UserViewModel.swift in Sources */,
 				8FE516A32A4973280059D720 /* MemberIntroductionView.swift in Sources */,
 				8F8A672F2A39763400467936 /* Rank.swift in Sources */,
@@ -669,6 +700,7 @@
 				8FF09EED2A5934EC00630F19 /* View+hideKeyboard.swift in Sources */,
 				8FE5169B2A492EAF0059D720 /* Language.swift in Sources */,
 				8FF2796E2A5BF500003B325F /* StudyService.swift in Sources */,
+				8FF26A392A6646D400149972 /* GeneralStudy.swift in Sources */,
 				8F4125572A55029E005B5A1E /* NaviBackButton.swift in Sources */,
 				8F8A67332A39764300467936 /* TempHomeView.swift in Sources */,
 				8F8A67312A39763800467936 /* User.swift in Sources */,

@@ -49,7 +49,7 @@ struct StudyDetailView: View {
                                     .font(Font.system(size: 15, weight: .bold))
                                     .foregroundColor(.gray)
                                 
-                                Text("\(study.currentMembers.count) / \(viewModel.study.totalMemberCount)")
+                                Text("\(study.currentMembers.count) / \(viewModel.studys[0].totalMemberCount)")
                                     .font(Font.system(size: 15, weight: .bold))
                             }
                             

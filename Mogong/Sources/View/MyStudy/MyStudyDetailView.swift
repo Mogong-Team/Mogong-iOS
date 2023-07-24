@@ -123,7 +123,10 @@ struct MyStudyDetailView: View {
 
 struct MyStudyDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        MyStudyDetailView(study: StudyViewModel().study, viewType: .host)
+        MyStudyDetailView(
+            study: StudyViewModel().studys[0],
+            viewType: .host
+        )
     }
 }
 
