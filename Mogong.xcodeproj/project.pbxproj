@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8F0314992A6E29BC001C430A /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0314982A6E29BC001C430A /* Position.swift */; };
-		8F03149B2A6E2F6F001C430A /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F03149A2A6E2F6F001C430A /* Member.swift */; };
 		5C11C9642A53F5A500618943 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C11C9632A53F5A500618943 /* HomeView.swift */; };
 		5CFBC2FC2A5969A60021B6EC /* CompletedStudyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFBC2FB2A5969A60021B6EC /* CompletedStudyCell.swift */; };
 		5CFBC2FE2A5969B40021B6EC /* ClippyStudyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFBC2FD2A5969B40021B6EC /* ClippyStudyCell.swift */; };
@@ -16,6 +14,9 @@
 		5CFBC3022A5969D40021B6EC /* CompletedStudyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFBC3012A5969D40021B6EC /* CompletedStudyView.swift */; };
 		5CFBC3042A596F8F0021B6EC /* TopBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFBC3032A596F8F0021B6EC /* TopBarView.swift */; };
 		5CFBC3062A596FA40021B6EC /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFBC3052A596FA40021B6EC /* TabBarView.swift */; };
+		8F0314992A6E29BC001C430A /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0314982A6E29BC001C430A /* Position.swift */; };
+		8F03149B2A6E2F6F001C430A /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F03149A2A6E2F6F001C430A /* Member.swift */; };
+		8F03149F2A6E5B59001C430A /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F03149E2A6E5B59001C430A /* ActionButton.swift */; };
 		8F4125572A55029E005B5A1E /* NaviBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4125562A55029D005B5A1E /* NaviBackButton.swift */; };
 		8F78DB942A4BC9E20004F195 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F78DB932A4BC9E20004F195 /* ChatViewModel.swift */; };
 		8F78DB9A2A4C04490004F195 /* AlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F78DB992A4C04490004F195 /* AlarmView.swift */; };
@@ -108,6 +109,7 @@
 		8C495DE2ED845CC16581FE5B /* Pods-Mogong.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mogong.debug.xcconfig"; path = "Target Support Files/Pods-Mogong/Pods-Mogong.debug.xcconfig"; sourceTree = "<group>"; };
 		8F0314982A6E29BC001C430A /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
 		8F03149A2A6E2F6F001C430A /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
+		8F03149E2A6E5B59001C430A /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 		8F4125562A55029D005B5A1E /* NaviBackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaviBackButton.swift; sourceTree = "<group>"; };
 		8F78DB932A4BC9E20004F195 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		8F78DB992A4C04490004F195 /* AlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmView.swift; sourceTree = "<group>"; };
@@ -480,6 +482,7 @@
 			isa = PBXGroup;
 			children = (
 				8FE516922A4913450059D720 /* SelectButton.swift */,
+				8F03149E2A6E5B59001C430A /* ActionButton.swift */,
 				8FE516942A4913700059D720 /* SingleLineTextField.swift */,
 				8FE516962A49138E0059D720 /* MultiLineTextField.swift */,
 				8FE516A42A4989030059D720 /* HashtagView.swift */,
@@ -710,6 +713,7 @@
 				8FE516A12A4969DA0059D720 /* StudyDetailView.swift in Sources */,
 				8F8A67432A39768700467936 /* UserView.swift in Sources */,
 				8F8CA8592A4D5D65002E8D15 /* MyStudyDetailView.swift in Sources */,
+				8F03149F2A6E5B59001C430A /* ActionButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
