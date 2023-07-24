@@ -95,7 +95,7 @@ struct StudyIntroduceView: View {
                         Spacer()
                             .frame(height: 10)
                         
-                        detailView(study: viewModel.study, viewType: $viewType)
+                        detailView(study: viewModel.studys[0], viewType: $viewType)
                         
                         Spacer()
                     }
