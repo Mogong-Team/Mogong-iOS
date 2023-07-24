@@ -35,42 +35,19 @@ struct ContentView: View {
     var body: some View {
         Group {
             if authViewModel.isLoggedIn {
-                TabView {
-                    Group {
-                        NavigationStack {
-                            TempHomeView()
-                        }
-                        .tabItem {
-                            Image(systemName: "house")
-                            Text("Home")
+                NavigationView {
+                    VStack {
+                        TopBarView()
+                        
+                        ScrollView {
+                            CompletedStudyView()
+                            ClippyStudyView()
                         }
                         
-                        NavigationStack {
-                            StudyListView()
-                        }
-                        .tabItem {
-                            Image(systemName: "doc.text")
-                            Text("Study List")
-                        }
-                        
-                        NavigationStack {
-                            MyStudyView()
-                        }
-                        .tabItem {
-                            Image(systemName: "pencil")
-                            Text("My Study")
-                        }
-                        
-                        NavigationStack {
-                            UserView()
-                        }
-                        .tabItem {
-                            Image(systemName: "person")
-                            Text("My Page")
-                        }
+                        TabBarView()
                     }
                 }
-                .accentColor(.black)
+                
             } else {
                 AuthView()
             }

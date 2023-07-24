@@ -11,9 +11,9 @@ struct CompletedStudyView: View {
     @EnvironmentObject var viewModel: StudyViewModel
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: 12) {
             Text("방금 완주한 스터디")
-                .font(.largeTitle)
+                .font(.system(size: 20))
                 .fontWeight(.bold)
             
             Text("방금 완주한 따끈따끈한 스터디 목록을 살펴보세요!")
@@ -21,14 +21,15 @@ struct CompletedStudyView: View {
                 .foregroundColor(.gray)
             
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 16) {
+                HStack(spacing: 15) {
                     ForEach(viewModel.studys) { study in
                         CompletedStudyCell(study: study)
+                            .frame(width: 140, height: 200)
                     }
                 }
             }
         }
-//        .padding(.top, 30)
+        .frame(width: 380)
         .padding()
     }
 }

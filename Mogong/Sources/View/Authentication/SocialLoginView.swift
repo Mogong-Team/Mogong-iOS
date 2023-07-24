@@ -18,7 +18,7 @@ struct SocialLoginView: View {
     @EnvironmentObject var viewModel: AuthViewModel
     
     var body: some View {
-        HStack {
+        HStack(spacing: 50) {
             Button {
                 if (UserApi.isKakaoTalkLoginAvailable()) {
                     UserApi.shared.loginWithKakaoTalk {(oauthToken, error) in
@@ -46,57 +46,22 @@ struct SocialLoginView: View {
                     }
                 }
             } label: {
-                Text("K")
-                    .frame(width: 50, height: 50)
-                    .background(.yellow)
-                    .foregroundColor(.black)
-                    .clipShape(Circle())
-            }
-            
-            Button {
-                // 네이버 앱이 깔려져 있을때
-                if NaverThirdPartyLoginConnection
-                    .getSharedInstance()
-                    .isPossibleToOpenNaverApp()
-                {
-                    NaverThirdPartyLoginConnection.getSharedInstance().delegate = viewModel.self
-                    NaverThirdPartyLoginConnection
-                        .getSharedInstance()
-                        .requestThirdPartyLogin() // 로그인 요청
-                    print(#function)
-                }
-                // 네이버 앱이 안깔려져 있을때 -> 웹에서 로그인 요청
-                else {
-                    NaverThirdPartyLoginConnection
-                        .getSharedInstance()
-                        .requestThirdPartyLogin()
-                }
-            } label: {
-                Text("N")
-                    .frame(width: 50, height: 50)
-                    .background(.green)
-                    .foregroundColor(.white)
-                    .clipShape(Circle())
+                Image("kakaoLogo")
+                    .frame(width: 73, height: 73)
             }
             
             Button {
                 handleGoogleSignIn()
             } label: {
-                Text("G")
-                    .frame(width: 50, height: 50)
-                    .background(.blue)
-                    .foregroundColor(.white)
-                    .clipShape(Circle())
+                Image("googleLogo")
+                    .frame(width: 73, height: 73)
             }
-            
+
             Button {
                 viewModel.signInWithApple()
             } label: {
-                Image(systemName: "applelogo")
-                    .frame(width: 50, height: 50)
-                    .background(.black)
-                    .foregroundColor(.white)
-                    .clipShape(Circle())
+                Image("appleLogo")
+                    .frame(width: 73, height: 73)
             }
         }
     }
@@ -119,3 +84,31 @@ struct SocialLoginView_Previews: PreviewProvider {
         SocialLoginView()
     }
 }
+
+
+// 네이버 로그인 버튼
+//            Button {
+//                // 네이버 앱이 깔려져 있을때
+//                if NaverThirdPartyLoginConnection
+//                    .getSharedInstance()
+//                    .isPossibleToOpenNaverApp()
+//                {
+//                    NaverThirdPartyLoginConnection.getSharedInstance().delegate = viewModel.self
+//                    NaverThirdPartyLoginConnection
+//                        .getSharedInstance()
+//                        .requestThirdPartyLogin() // 로그인 요청
+//                    print(#function)
+//                }
+//                // 네이버 앱이 안깔려져 있을때 -> 웹에서 로그인 요청
+//                else {
+//                    NaverThirdPartyLoginConnection
+//                        .getSharedInstance()
+//                        .requestThirdPartyLogin()
+//                }
+//            } label: {
+//                Text("N")
+//                    .frame(width: 50, height: 50)
+//                    .background(.green)
+//                    .foregroundColor(.white)
+//                    .clipShape(Circle())
+//            }

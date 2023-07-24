@@ -1,5 +1,5 @@
 //
-//  CompletedStudyCell.swift
+//  ClippyStudyCell.swift
 //  Mogong
 //
 //  Created by 예강이다 on 2023/07/08.
@@ -7,41 +7,67 @@
 
 import SwiftUI
 
-struct CompletedStudyCell: View {
+struct ClippyStudyCell: View {
+    
+    // 필요한 데이터
+    // 모집상태(모집중, 모집완료(Bool))
+    // 북마크 횟수(Int)
+    // 스터디 제목(String)
+    
+//    let clippyStudy: Clippy
+
+//    // 모집상태
+//    var isRecruitmentState = false
+//    // 스터디 완료
+//    var istStudyCompleted = false
+    
     var study: Study
     
     var body: some View {
         NavigationLink {
-            StudyListView()
+            // 선택한 스터디에 맞는 뷰로 이동하는 코드
         } label: {
-            VStack(alignment: .leading, spacing: 0) {
-                HStack(alignment: .bottom) {
-                    ZStack {
-                        Image(systemName: "pencil")
-                            .resizable()
-                        
-                        VStack {
-                            Spacer()
-                            Text(study.title)
-                                .foregroundColor(.black)
-                                .fontWeight(.bold)
-                                .lineLimit(3)
-                                .padding(10)
-                        }
+            VStack(alignment: .leading, spacing: 10) {
+                HStack {
+                    Text(study.isRecruitmentCompleted ? "모집완료" : "모집중")
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 5)
+                        .padding(.vertical, 3)
+                        .background(study.isRecruitmentCompleted ? Color.gray : Color.yellow)
+                        .cornerRadius(5)
+                    
+                    // 북마크 색상은 고정
+                    HStack {
+                        Image(systemName: "bookmark.fill")
+                            .foregroundColor(.blue)
+                        Text(String(study.bookMarkCount))
                     }
+                    Spacer()
+                    Image(systemName: "chevron.forward")
+                        
+                }
+                
+                HStack {
+                    Text(study.title)
+                        .foregroundColor(.black)
+                        .fontWeight(.bold)
+                        .lineLimit(1)
+                        .frame(alignment: .leading)
                 }
             }
-            .frame(width: 135, height: 185, alignment: .leading)
+            .padding(10)
+            .foregroundColor(.clear)
+            .frame(width: 360, height: 80, alignment: .leading)
             .background(Color(uiColor: .white))
             .cornerRadius(15)
-            .shadow(color: .gray, radius: 5, x: 2, y: 2)
+            .shadow(color: .gray, radius: 2.5, x: 4, y: 4)
         }
     }
 }
 
-struct CompletedStudyCell_Previews: PreviewProvider {
+struct ClippyStudyCell_Previews: PreviewProvider {
     static var previews: some View {
-        CompletedStudyCell(study:
+        ClippyStudyCell(study:
                             Study(id: "10", title: "[창업/스타트업] 정부 지원 사업에 합격한 아이템으로 함께 MVP 제작할 개발자 구합니다.(2일 뒤 마감_편하게 연락주세요)", frequencyOfWeek: 2, durationOfMonth: 2,
                                   studyType: .teamProject, studyMode: .online, totalMemberCount: 5,
                                   requiredPositions: [

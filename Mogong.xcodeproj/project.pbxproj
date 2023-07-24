@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		8F0314992A6E29BC001C430A /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0314982A6E29BC001C430A /* Position.swift */; };
 		8F03149B2A6E2F6F001C430A /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F03149A2A6E2F6F001C430A /* Member.swift */; };
+		5C11C9642A53F5A500618943 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C11C9632A53F5A500618943 /* HomeView.swift */; };
+		5CFBC2FC2A5969A60021B6EC /* CompletedStudyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFBC2FB2A5969A60021B6EC /* CompletedStudyCell.swift */; };
+		5CFBC2FE2A5969B40021B6EC /* ClippyStudyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFBC2FD2A5969B40021B6EC /* ClippyStudyCell.swift */; };
+		5CFBC3002A5969C80021B6EC /* ClippyStudyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFBC2FF2A5969C80021B6EC /* ClippyStudyView.swift */; };
+		5CFBC3022A5969D40021B6EC /* CompletedStudyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFBC3012A5969D40021B6EC /* CompletedStudyView.swift */; };
+		5CFBC3042A596F8F0021B6EC /* TopBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFBC3032A596F8F0021B6EC /* TopBarView.swift */; };
+		5CFBC3062A596FA40021B6EC /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFBC3052A596FA40021B6EC /* TabBarView.swift */; };
 		8F4125572A55029E005B5A1E /* NaviBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4125562A55029D005B5A1E /* NaviBackButton.swift */; };
 		8F78DB942A4BC9E20004F195 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F78DB932A4BC9E20004F195 /* ChatViewModel.swift */; };
 		8F78DB9A2A4C04490004F195 /* AlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F78DB992A4C04490004F195 /* AlarmView.swift */; };
@@ -91,6 +98,13 @@
 
 /* Begin PBXFileReference section */
 		43543764F7659697C75D1DC0 /* Pods_Mogong.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mogong.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C11C9632A53F5A500618943 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		5CFBC2FB2A5969A60021B6EC /* CompletedStudyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedStudyCell.swift; sourceTree = "<group>"; };
+		5CFBC2FD2A5969B40021B6EC /* ClippyStudyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClippyStudyCell.swift; sourceTree = "<group>"; };
+		5CFBC2FF2A5969C80021B6EC /* ClippyStudyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClippyStudyView.swift; sourceTree = "<group>"; };
+		5CFBC3012A5969D40021B6EC /* CompletedStudyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedStudyView.swift; sourceTree = "<group>"; };
+		5CFBC3032A596F8F0021B6EC /* TopBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarView.swift; sourceTree = "<group>"; };
+		5CFBC3052A596FA40021B6EC /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		8C495DE2ED845CC16581FE5B /* Pods-Mogong.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mogong.debug.xcconfig"; path = "Target Support Files/Pods-Mogong/Pods-Mogong.debug.xcconfig"; sourceTree = "<group>"; };
 		8F0314982A6E29BC001C430A /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
 		8F03149A2A6E2F6F001C430A /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
@@ -190,6 +204,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5CFBC2FA2A5969460021B6EC /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				5C11C9632A53F5A500618943 /* HomeView.swift */,
+				5CFBC2FF2A5969C80021B6EC /* ClippyStudyView.swift */,
+				5CFBC2FD2A5969B40021B6EC /* ClippyStudyCell.swift */,
+				5CFBC3012A5969D40021B6EC /* CompletedStudyView.swift */,
+				5CFBC2FB2A5969A60021B6EC /* CompletedStudyCell.swift */,
+				5CFBC3032A596F8F0021B6EC /* TopBarView.swift */,
+				5CFBC3052A596FA40021B6EC /* TabBarView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		8C553550B3D6F9F48E9D5446 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -289,6 +317,7 @@
 		8F8A67292A3975E500467936 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5CFBC2FA2A5969460021B6EC /* Home */,
 				8F8A67442A39773600467936 /* ContentView.swift */,
 				8F8A675B2A3AE14D00467936 /* Authentication */,
 				8F8A67322A39764300467936 /* TempHomeView.swift */,
@@ -612,9 +641,13 @@
 				8F8A67652A3B2EBB00467936 /* UsernameView.swift in Sources */,
 				8F8A672D2A39762F00467936 /* Study.swift in Sources */,
 				8FD8C2002A4BABD300F21DD1 /* ChatView.swift in Sources */,
+				5CFBC3002A5969C80021B6EC /* ClippyStudyView.swift in Sources */,
+				5CFBC3022A5969D40021B6EC /* CompletedStudyView.swift in Sources */,
 				8FD8C1FE2A4BABCD00F21DD1 /* ChatListView.swift in Sources */,
 				8FF09EE32A56A06800630F19 /* RemoveMemberView.swift in Sources */,
 				8F78DB9E2A4C06820004F195 /* AlarmCell.swift in Sources */,
+				5CFBC2FC2A5969A60021B6EC /* CompletedStudyCell.swift in Sources */,
+				5CFBC3042A596F8F0021B6EC /* TopBarView.swift in Sources */,
 				8FE516932A4913460059D720 /* SelectButton.swift in Sources */,
 				8FE516A52A4989030059D720 /* HashtagView.swift in Sources */,
 				8F03149B2A6E2F6F001C430A /* Member.swift in Sources */,
@@ -634,6 +667,7 @@
 				8F8CA8572A4D1E93002E8D15 /* CheckLabel.swift in Sources */,
 				8FE5169F2A4965F40059D720 /* ApplicationView.swift in Sources */,
 				8F8A676C2A42CD6D00467936 /* MyStudyView.swift in Sources */,
+				5CFBC3062A596FA40021B6EC /* TabBarView.swift in Sources */,
 				8F78DB942A4BC9E20004F195 /* ChatViewModel.swift in Sources */,
 				8FF09EE12A569B7200630F19 /* HStackNewTeamMemberView.swift in Sources */,
 				8F78DB9A2A4C04490004F195 /* AlarmView.swift in Sources */,
@@ -648,6 +682,7 @@
 				8FD8C2022A4BAC6400F21DD1 /* Chat.swift in Sources */,
 				8FD8C2062A4BAF6D00F21DD1 /* Message.swift in Sources */,
 				8F8A67352A39764D00467936 /* AuthView.swift in Sources */,
+				5C11C9642A53F5A500618943 /* HomeView.swift in Sources */,
 				8F7D0C0F2A52A7670073457A /* BookmarkView.swift in Sources */,
 				8FF418A52A4D7C6E0090FA34 /* UserPageView.swift in Sources */,
 				8F78DB9C2A4C04A20004F195 /* Alarm.swift in Sources */,
@@ -659,6 +694,7 @@
 				8FF418A72A4D7E650090FA34 /* ApplicationViewModel.swift in Sources */,
 				8F8A67372A39765700467936 /* StudyViewModel.swift in Sources */,
 				8F8CA84B2A4D0CAD002E8D15 /* Font+Pretendard.swift in Sources */,
+				5CFBC2FE2A5969B40021B6EC /* ClippyStudyCell.swift in Sources */,
 				8F8A67412A39767B00467936 /* Date+Conversion.swift in Sources */,
 				8FF09EDF2A569B6900630F19 /* HStakTeamMemberView.swift in Sources */,
 				8FF09EED2A5934EC00630F19 /* View+hideKeyboard.swift in Sources */,
@@ -804,7 +840,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Mogong/Supporting Files/Preview Content\"";
-				DEVELOPMENT_TEAM = 89BLGRU39K;
+				DEVELOPMENT_TEAM = DM3CXND59Y;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Mogong/Supporting Files/Info.plist";

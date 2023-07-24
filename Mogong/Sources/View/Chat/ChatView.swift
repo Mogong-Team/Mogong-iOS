@@ -24,22 +24,23 @@ struct ChatView: View {
                         HStack {
                             if message.sender.id == currentUser.id {
                                 Spacer()
-                                HStack {
+                                VStack {
+                                    Text(message.message)
+                                        .padding()
+                                        .background(Color(red: 0, green: 0.78, blue: 0.96))
+                                        .foregroundColor(.white)
+                                        .cornerRadius(8)
                                     Text(message.timestamp.toMessageString())
                                         .font(Font.system(size: 12, weight: .regular))
                                         .foregroundColor(.gray)
-
-                                    Text(message.message)
-                                        .padding()
-                                        .background(Color.blue)
-                                        .foregroundColor(.white)
                                 }
                             } else {
-                                HStack {
+                                VStack {
                                     Text(message.message)
                                         .padding()
-                                        .background(Color.gray)
+                                        .background(Color(red: 0.77, green: 0.77, blue: 0.77))
                                     .foregroundColor(.white)
+                                    .cornerRadius(8)
                                     
                                     Text(message.timestamp.toMessageString())
                                         .font(Font.system(size: 12, weight: .regular))
