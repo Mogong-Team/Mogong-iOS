@@ -19,14 +19,16 @@ struct UserPageView: View {
                 .scaledToFit()
                 .clipShape(Circle())
                 .foregroundColor(.gray)
+                .padding(.top, 40)
             
             Text(viewModel.application.user.username)
-                .font(Font.system(size: 20, weight: .bold))
+                .font(Font.system(size: 28, weight: .bold))
                 .foregroundColor(.black)
             
             Text(viewModel.application.field.rawValue)
-                .font(Font.system(size: 14, weight: .regular))
+                .font(Font.system(size: 16, weight: .regular))
                 .foregroundColor(.gray)
+                .padding(.bottom, 50)
             
             HStack {
                 VStack(alignment: .leading) {
@@ -37,6 +39,7 @@ struct UserPageView: View {
                         .frame(height: 15)
                     
                     Text(viewModel.application.introduction)
+                    
                     
                     Spacer()
                         .frame(height: 30)

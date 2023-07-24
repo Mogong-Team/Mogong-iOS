@@ -34,6 +34,10 @@ struct RemoveMemberView: View {
                 Spacer()
                 SelectButton(title: "다음", state: selectedMember == nil ? .unselected : .selected) {
                     showRemoveReason = true
+                    
+                    if let memberId = selectedMember {
+                        study.currentMembers.removeAll{ $0.user.id == memberId }
+                    }
                 }
                 .disabled(selectedMember == nil)
             }

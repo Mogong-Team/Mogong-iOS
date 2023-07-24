@@ -12,32 +12,33 @@ struct MyStudyView: View {
     @EnvironmentObject var userViewModel: UserViewModel
     
     var body: some View {
-        ZStack {
-            Color(uiColor: .systemGray6)
-            
-            ScrollView(showsIndicators: false) {
+            NavigationView {
                 VStack {
-                    MyStudyStateSelect()
-                        .padding(.horizontal, 20)
-                    MyStudyList()
+                    TopBarView()
+                    
+                    ZStack {
+                        Color(uiColor: .systemGray6)
+                        
+                        ScrollView(showsIndicators: false) {
+                            VStack {
+                                MyStudyStateSelect()
+                                    .padding(.horizontal, 20)
+                                MyStudyList()
+                            }
+                            .padding(.top, 10)
+                            .padding(.bottom, 20)
+                        }
+                    }
+                    .onAppear {
+                        studyViewModel.myStudyStateIsOngoing = true
+                        studyViewModel.myStudySelectedStudyIndex = 0
+                    }
+                    
+                    TabBarView()
                 }
-                .padding(.top, 10)
-                .padding(.bottom, 20)
-            }
-        }
-        .onAppear {
-            studyViewModel.myStudyStateIsOngoing = true
-            studyViewModel.myStudySelectedStudyIndex = 0
-        }
-        .toolbar {
-            ToolbarItemGroup(placement: .navigationBarLeading) {
-                Text("Mogong")
-                    .font(.title2)
-                    .fontWeight(.heavy)
             }
         }
     }
-}
 
 struct MyStudyStateSelect: View {
     @EnvironmentObject private var studyViewModel: StudyViewModel

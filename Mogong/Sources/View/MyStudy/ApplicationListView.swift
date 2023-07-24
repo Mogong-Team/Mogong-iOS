@@ -55,14 +55,18 @@ struct ApplicationList: View {
             ApplicationDetailView(application: application)
         } label: {
             ZStack {
-                VStack(alignment: .leading, spacing: 0) {
+                ZStack(alignment: .bottomLeading) {
                     Rectangle()
-                        .frame(width: 80, height: 20)
+                        .frame(width: 80, height: 125)
+                        .cornerRadius(16)
+                    
                     Rectangle()
+                        .frame(width: 350, height: 110)
+                        .cornerRadius(16)
                 }
-                .foregroundColor(Color(uiColor: .systemMint))
+                .foregroundColor(Color(red: 0, green: 0.78, blue: 0.96))
                 
-                VStack(alignment: .leading, spacing: 0) {
+                VStack(alignment: .leading) {
                     HStack {
                         Spacer()
                         Text("2023.7.3")
@@ -75,12 +79,8 @@ struct ApplicationList: View {
                             .scaledToFit()
                             .clipShape(Circle())
                             .foregroundColor(.gray)
-                        Spacer()
-                        Image(systemName: "ellipsis")
                     }
-                    
-                    Spacer()
-                    
+
                     VStack {
                         Text("프론트엔드")
                             .padding(.vertical, 3)
@@ -90,21 +90,24 @@ struct ApplicationList: View {
                             .background(.yellow)
                             .cornerRadius(10)
                     }
-                    .padding(.bottom, 5)
+//                    .padding(5)
                     
                     HStack {
-                        Text("녹차라떼")
+                        Text("녹차라떼샷추가")
                             .font(.pretendard(weight: .bold, size: 20))
                             .foregroundColor(.white)
+                        
                         Spacer()
+                        
                         Text("#스터디비기너")
                             .font(.pretendard(weight: .bold, size: 20))
                             .foregroundColor(.gray)
-                    }
-                    .padding(.bottom, 5)
-                }
+                    }//HStack
+                    .padding(5)
+                    .padding(.bottom, 20)
+                }//VStack
                 .padding(.horizontal, 12)
-            }
+            }//ZStack
             .frame(height: 140)
         }
     }
