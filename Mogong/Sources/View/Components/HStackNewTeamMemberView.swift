@@ -36,3 +36,12 @@ struct HStackNewTeamMemberView: View {
         }
     }
 }
+
+struct HStackNewTeamMemberView_Previews: PreviewProvider {
+    static var previews: some View {
+        VStack {
+            HStackNewTeamMemberView(field: .backend)
+            HStackNewTeamMemberView(field: .ios)
+        }
+    }
+}

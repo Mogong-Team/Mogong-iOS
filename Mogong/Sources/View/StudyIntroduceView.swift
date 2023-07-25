@@ -95,7 +95,7 @@ struct StudyIntroduceView: View {
                         Spacer()
                             .frame(height: 10)
                         
-                        detailView(study: viewModel.studys[0], viewType: $viewType)
+                        detailView(study: viewModel.studys2[0], viewType: $viewType)
                         
                         Spacer()
                     }
@@ -117,7 +117,7 @@ struct StudyIntroduceView_Previews: PreviewProvider {
 }
 
 struct detailView: View {
-    var study: Study
+    var study: Study2
     @Binding var viewType: ViewType
     
     var body: some View {

@@ -58,3 +58,12 @@ struct VStakTeamMemberView: View {
         }
     }
 }
+
+struct VStakTeamMemberView_Previews: PreviewProvider {
+    static var previews: some View {
+        VStack {
+            VStakTeamMemberView(member: Member.member1, viewType: .host)
+            VStakTeamMemberView(member: Member.member1, viewType: .member)
+        }
+    }
+}

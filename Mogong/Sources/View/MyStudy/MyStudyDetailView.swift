@@ -14,7 +14,7 @@ enum HostMemberType {
 
 struct MyStudyDetailView: View {
     
-    var study: Study
+    var study: Study2
         
     var viewType: HostMemberType
     
@@ -124,7 +124,7 @@ struct MyStudyDetailView: View {
 struct MyStudyDetailView_Previews: PreviewProvider {
     static var previews: some View {
         MyStudyDetailView(
-            study: StudyViewModel().studys[0],
+            study: StudyViewModel().studys2[0],
             viewType: .host
         )
     }

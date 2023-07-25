@@ -57,8 +57,8 @@ struct SelectStudyCategoryButton: View {
                                  ? Color(hexColor: "00C7F4")
                                  : Color(hexColor: "8E8E8E"))
                 .onTapGesture {
-                    viewModel.selectedCategory = category
                     // TODO: GET Stduy
+                    viewModel.selectedCategory = category
                 }
             
             VStack {
@@ -112,12 +112,12 @@ struct SelectStudyStateButton: View {
                 }
             }
             .onTapGesture {
+                // TODO: GET Study
                 if viewModel.selectedState == state {
                     viewModel.selectedState = nil
                 } else {
                     viewModel.selectedState = state
                 }
-                // TODO: GET Study
             }
     }
 }
@@ -134,8 +134,8 @@ struct SelectStudyFilter: View {
                  : "최신순")
                 .font(.pretendard(weight: .bold, size: 14))
                 .onTapGesture {
-                    viewModel.isPopularFilter.toggle()
                     // TODO: GET Study
+                    viewModel.isPopularFilter.toggle()
                 }
         }
     }
@@ -152,12 +152,15 @@ struct StudyList: View {
                         .padding(.vertical, 16)
                     
                     ForEach(viewModel.studys) { study in
-                        NavigationLink {
-                            StudyDetailView(study: study)
-                        } label: {
-                            StudyListCell(study: study)
-                                .padding(.bottom, 18)
-                        }
+                        StudyListCell(study: study)
+                            .padding(.bottom, 18)
+                            .onTapGesture {
+                                viewModel.presentStudyDetail = true
+                                viewModel.selectedStudy = study
+                            }
+                            .navigationDestination(isPresented: $viewModel.presentStudyDetail) {
+                                //StudyDetailView()
+                            }
                     }
                 }
                 .padding(.horizontal, 20)

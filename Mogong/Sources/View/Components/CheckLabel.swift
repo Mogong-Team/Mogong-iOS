@@ -9,16 +9,13 @@ import SwiftUI
 
 struct CheckLabel: View {
     var text: String
-    var isHighlighted: Bool
     
     var body: some View {
         VStack {
             Label {
                 Text(text)
                     .font(.pretendard(weight: .bold, size: 12))
-                    .foregroundColor(isHighlighted
-                                     ? .black
-                                     : Color(hexColor: "7C7979"))
+                    .foregroundColor(Color(hexColor: "7C7979"))
             } icon: {
                 Image("vector")
                     .foregroundColor(Color(hexColor: "76C5FF"))

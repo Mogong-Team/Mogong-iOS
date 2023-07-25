@@ -9,18 +9,17 @@ import SwiftUI
 
 struct StudyListCell: View {
     @EnvironmentObject var viewModel: StudyViewModel
-    
     let study: Study
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack(alignment: .top) {
                 HStack(spacing: 5) {
-                    RoundRectangleText(text: "프로젝트형",
+                    RoundRectangleText(text: study.category.rawValue,
                                        background: Color(hexColor: "FF6B00"))
-                    RoundRectangleText(text: "모집중",
+                    RoundRectangleText(text: study.state.rawValue,
                                        background: Color(hexColor: "FFB800"))
-                    Text("~ 6월 28일")
+                    Text("~ \(study.dueDate.toMonthString())")
                         .font(.pretendard(weight: .semiBold, size: 14))
                         .foregroundColor(Color(hexColor: "7C7979"))
                     Spacer()
@@ -34,8 +33,8 @@ struct StudyListCell: View {
                 .frame(width: 18, height: 28)
                 .foregroundColor(Color(hexColor: "00C7F4"))
                 .onTapGesture {
-                    viewModel.isBookmarked.toggle()
                     // TODO: 북마크
+                    viewModel.isBookmarked.toggle()
                 }
             }
             
@@ -49,9 +48,17 @@ struct StudyListCell: View {
                                 background: Color(hexColor: "00C7F4"))
             
             VStack(alignment: .leading, spacing: 10) {
-                CheckLabel(text: study.studyMode.rawValue, isHighlighted: false)
-                CheckLabel(text: "참여 인원 10명 / 주 3회 진행 (2개월)", isHighlighted: false)
-                CheckLabel(text: "프론트엔드 / 하이브리드 모집", isHighlighted: false)
+                CheckLabel(text: study.loaction.rawValue)
+                
+                if study.category == .generalStudy {
+                    CheckLabel(text: "참여 인원 \(study.numberOfRecruits)명 / 주 \(study.frequencyOfWeek)회 진행 (\(study.durationOfMonth)개월)")
+                } else if study.category == .projectStudy {
+                    CheckLabel(text: "참여 인원 \(viewModel.numberOfRecruits(study: study))명 / 주 \(study.frequencyOfWeek)회 진행 (\(study.durationOfMonth)개월)")
+                }
+                
+                if study.category == .projectStudy {
+                    CheckLabel(text: "\(viewModel.positions(study: study)) 모집")
+                }
             }
         }
         .padding(.bottom, 20)
@@ -108,26 +115,7 @@ struct RoundRectangleLabel: View {
 struct StudyListCell_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            StudyListCell(study:
-                            Study(id: "1", title: "한달동안 프로젝트 같이해요!ㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎㅎ", frequencyOfWeek: 2, durationOfMonth: 2,
-                                  studyType: .teamProject, studyMode: .online, totalMemberCount: 5,
-                                  requiredPositions: [
-                                    Position(field: .backend, requiredFieldCount: 2),
-                                    Position(field: .frontend, requiredFieldCount: 1),
-                                    Position(field: .designer, requiredFieldCount: 1),
-                                    Position(field: .ios, requiredFieldCount: 1)
-                                  ],
-                                  host: Member(user: User(id: "1", name: "김방장", email: "a@gmail.com", username: "나방장"), field: .backend),
-                                  currentMember: [
-                                    Member(user: User(id: "1", name: "김방장", email: "a@gmail.com", username: "나방장"), field: .backend),
-                                    Member(user: User(id: "2", name: "박민수", email: "a@gmail.com", username: "박민수"), field: .frontend),
-                                    Member(user: User(id: "3", name: "최민수", email: "a@gmail.com", username: "최민수"),  field: .ios)
-                                  ],
-                                  introduction: "안녕하세요", memberPreference: "누구든 상관없어요", hashtags: ["#자바스크립트", "#앱개발", "#디자이너"],
-                                  createDate: Date(), dueDate: Date(timeIntervalSinceNow: 24*3600*7), languages: [.javaScript, .figma, .swift],
-                                  fields: [.backend, .designer], profitGoal: .no,
-                                  isBookMarked: true, bookMarkCount: 5, isRecruitmentCompleted: false, isStudyCompleted: false)
-            )
+            StudyListCell(study: Study.study1)
         }
         .padding(20)
         .environmentObject(StudyViewModel())

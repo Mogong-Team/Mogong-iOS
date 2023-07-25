@@ -35,3 +35,11 @@ struct VStackNewTeamMemberView: View {
     }
 }
 
+struct VStackNewTeamMemberView_Previews: PreviewProvider {
+    static var previews: some View {
+        VStack {
+            VStackNewTeamMemberView(field: .backend)
+            VStackNewTeamMemberView(field: .ios)
+        }
+    }
+}

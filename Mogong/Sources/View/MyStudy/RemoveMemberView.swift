@@ -11,7 +11,7 @@ struct RemoveMemberView: View {
     @EnvironmentObject private var studyViewModel: StudyViewModel
     @EnvironmentObject private var userViewModel: UserViewModel
     @Environment(\.dismiss) private var dismiss
-    @Binding var study: Study
+    @Binding var study: Study2
     @State private var showRemoveReason: Bool = false
     @State private var selectedMember: String?
     
@@ -60,7 +60,7 @@ struct RemoveMemberView: View {
 struct RemoveMember: View {
     @EnvironmentObject private var studyViewModel: StudyViewModel
     @EnvironmentObject private var userViewModel: UserViewModel
-    @Binding var study: Study
+    @Binding var study: Study2
     @Binding var selectedMember: String?
     
     var body: some View {

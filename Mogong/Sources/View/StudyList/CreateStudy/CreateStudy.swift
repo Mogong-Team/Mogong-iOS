@@ -83,7 +83,7 @@ struct CreateStudy: View {
                             showDatePicker = true
                         } label: {
                             Image(systemName: "calendar")
-                            Text(dueDate.toString())
+                            Text(dueDate.toYearString())
                         }
                         .foregroundColor(.black)
                     }

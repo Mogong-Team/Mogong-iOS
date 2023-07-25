@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BookmarkCellView: View {
-    var study: Study
+    var study: Study2
     
     var body: some View {
         VStack {
@@ -48,10 +48,9 @@ struct BookmarkCellView: View {
             
             HStack {
                 VStack {
-                    CheckLabel(text: "111", isHighlighted: false)
-                    CheckLabel(text: "111", isHighlighted: false)
+                    CheckLabel(text: "111")
+                    CheckLabel(text: "111")
                 }
-                
                 Spacer()
             }
         }
@@ -60,7 +59,7 @@ struct BookmarkCellView: View {
 
 struct BookmarkCellView_Previews: PreviewProvider {
     static var previews: some View {
-        BookmarkCellView(study: Study(id: "10", title: "[창업/스타트업] 정부 지원 사업에 합격한 아이템으로 함께 MVP 제작할 개발자 구합니다.(2일 뒤 마감_편하게 연락주세요)", frequencyOfWeek: 2, durationOfMonth: 2,
+        BookmarkCellView(study: Study2(id: "10", title: "[창업/스타트업] 정부 지원 사업에 합격한 아이템으로 함께 MVP 제작할 개발자 구합니다.(2일 뒤 마감_편하게 연락주세요)", frequencyOfWeek: 2, durationOfMonth: 2,
                                       studyType: .teamProject, studyMode: .online, totalMemberCount: 5,
                                       requiredPositions: [
                                         Position(field: .backend, requiredFieldCount: 2),

@@ -11,3 +11,7 @@ struct Member2: Hashable {
     let user: User
     let position: Position2
 }
+
+extension Member2 {
+    static var member1 = Member2(user: User.user1, position: .backend)
+}
