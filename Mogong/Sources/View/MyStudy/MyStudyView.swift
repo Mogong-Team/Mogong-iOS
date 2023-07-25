@@ -47,7 +47,7 @@ struct MyStudyStateSelect: View {
         HStack {
             StudyStateButton(
                 title: "진행중인 스터디",
-                studyCount: studyViewModel.studys.filter { !$0.isStudyCompleted }.count,
+                studyCount: studyViewModel.studys.filter { $0.state != .ended }.count,
                 isSelected: studyViewModel.myStudyStateIsOngoing ? true : false
             )
             .onTapGesture {
@@ -62,7 +62,7 @@ struct MyStudyStateSelect: View {
             
             StudyStateButton(
                 title: "종료 스터디",
-                studyCount: studyViewModel.studys.filter { $0.isStudyCompleted }.count,
+                studyCount: studyViewModel.studys.filter { $0.state == .ended }.count,
                 isSelected: studyViewModel.myStudyStateIsOngoing ? false : true
             )
             .onTapGesture {
@@ -169,7 +169,7 @@ struct MyStudyList: View {
     }
     
     func currentUserIsHost(_ study: Study) -> Bool {
-        return study.host.user.id == userViewModel.currentUser.id
+        return study.host.id == userViewModel.currentUser.id
     }
 }
 
@@ -309,11 +309,11 @@ struct IntroduceMember: View {
                     }
                 }
                 
-                ForEach(Array(study.requiredCountPerFieldDic()), id: \.key) { field, count in
-                    ForEach(0..<count) { _ in
-                        HStackNewTeamMemberView(field: field)
-                    }
-                }
+//                ForEach(Array(study.requiredCountPerFieldDic()), id: \.key) { field, count in
+//                    ForEach(0..<count) { _ in
+//                        HStackNewTeamMemberView(field: field)
+//                    }
+//                }
             }
         }
         .sheet(isPresented: $studyViewModel.myStudyshowRemoveSheet) {

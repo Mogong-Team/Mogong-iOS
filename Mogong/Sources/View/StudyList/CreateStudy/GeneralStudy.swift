@@ -44,7 +44,7 @@ struct GeneralStudy: View {
             Spacer()
             
             SelectButton(title: "완료", state: .selected) {
-                
+                // TODO: Post Study
             }
         }
         .navigationTitle("스터디 생성: 일반 스터디")

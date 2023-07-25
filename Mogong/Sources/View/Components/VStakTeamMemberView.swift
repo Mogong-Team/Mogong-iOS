@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct VStakTeamMemberView: View {
-    var member: Member
+    var member: Member2
     
     var viewType: HostMemberType
     
@@ -27,7 +27,7 @@ struct VStakTeamMemberView: View {
                 .font(Font.system(size: 20, weight: .bold))
                 .foregroundColor(.black)
             
-            Text(member.field.rawValue)
+            Text(member.position.rawValue)
                 .font(Font.system(size: 14, weight: .regular))
                 .foregroundColor(.gray)
             
@@ -55,6 +55,15 @@ struct VStakTeamMemberView: View {
                     Text("정말로 강퇴하시겠습니까?")
                 }
             }
+        }
+    }
+}
+
+struct VStakTeamMemberView_Previews: PreviewProvider {
+    static var previews: some View {
+        VStack {
+            VStakTeamMemberView(member: Member2.member1, viewType: .host)
+            VStakTeamMemberView(member: Member2.member1, viewType: .member)
         }
     }
 }

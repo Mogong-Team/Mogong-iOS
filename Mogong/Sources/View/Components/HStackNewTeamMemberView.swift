@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HStackNewTeamMemberView: View {
-    var field: Field
+    var position: Position2
     
     var body: some View {
         HStack {
@@ -29,10 +29,19 @@ struct HStackNewTeamMemberView: View {
                     .font(Font.system(size: 20, weight: .bold))
                     .foregroundColor(.black)
                 
-                Text(field.rawValue)
+                Text(position.rawValue)
                     .font(Font.system(size: 14, weight: .regular))
                     .foregroundColor(.gray)
             }
+        }
+    }
+}
+
+struct HStackNewTeamMemberView_Previews: PreviewProvider {
+    static var previews: some View {
+        VStack {
+            HStackNewTeamMemberView(position: .backend)
+            HStackNewTeamMemberView(position: .ios)
         }
     }
 }

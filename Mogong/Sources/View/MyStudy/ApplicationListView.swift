@@ -28,7 +28,7 @@ struct ApplicationListView: View {
                 }
                 .padding(.bottom, 45)
                 
-                ForEach(viewModel.applications, id: \.self) { application in
+                ForEach(viewModel.applications) { application in
                     ApplicationList(application: application)
                 }
             }

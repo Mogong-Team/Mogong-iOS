@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Language: String, CaseIterable {
+enum Language: String, CaseIterable, Codable {
     // iOS
     case swift = "Swift"
     

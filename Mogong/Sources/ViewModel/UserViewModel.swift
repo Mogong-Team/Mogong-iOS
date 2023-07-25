@@ -14,10 +14,10 @@ class UserViewModel: ObservableObject {
     //var currentUser = User(id: "1", name: "김민수", email: "1@gmail.com", username: "김김민수")
 
     func currentUserIsHost(study: Study) -> Bool {
-        return study.host.user.id == currentUser.id
+        return study.host.id == currentUser.id
     }
     
-    func currentUserIsHost(member: Member) -> Bool {
+    func currentUserIsHost(member: Member2) -> Bool {
         return member.user.id == currentUser.id
     }
     

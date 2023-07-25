@@ -15,11 +15,10 @@ struct CheckLabel: View {
             Label {
                 Text(text)
                     .font(.pretendard(weight: .bold, size: 12))
-                    .foregroundColor(.gray)
+                    .foregroundColor(Color(hexColor: "7C7979"))
             } icon: {
-                Image(systemName: "checkmark")
-                    .foregroundColor(.blue)
-                    .fontWeight(.bold)
+                Image("vector")
+                    .foregroundColor(Color(hexColor: "76C5FF"))
             }
         }
     }

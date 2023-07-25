@@ -65,7 +65,7 @@ struct RemoveMember: View {
     
     var body: some View {
         LazyVGrid(columns: [GridItem(), GridItem()], spacing: 30) {
-            ForEach(study.currentMembers.filter { $0 != study.host }, id: \.self) { member in
+            ForEach(study.currentMembers.filter { $0.user.id != study.host.id }, id: \.self) { member in
                 HStakTeamMemberView(
                     member: member,
                     isSelected: selectedMember == member.user.id,

@@ -36,7 +36,7 @@ struct BookmarkView: View {
                 
                 ScrollView {
                     VStack {
-                        ForEach(viewModel.studys, id: \.self) { study in
+                        ForEach(viewModel.studys) { study in
                             BookmarkCellView(study: study)
                                 .padding()
                                 .background(.white)
