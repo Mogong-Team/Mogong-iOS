@@ -14,7 +14,7 @@ struct MyStudyView: View {
     var body: some View {
             NavigationView {
                 VStack {
-                    TopBarView()
+                    NavigationBarView()
                     
                     ZStack {
                         Color(uiColor: .systemGray6)
