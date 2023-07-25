@@ -7,16 +7,14 @@
 
 import SwiftUI
 
-struct TopBarView: View {
+struct NavigationBarView: View {
     var body: some View {
         VStack {
 //            Text("Study List Arr")
         }
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarLeading) {
-                Text("Mogong")
-                    .font(.title2)
-                    .fontWeight(.heavy)
+                Image("nav_mogongLogo")
             }
             
             ToolbarItemGroup(placement: .navigationBarTrailing) {
@@ -38,8 +36,8 @@ struct TopBarView: View {
     }
 }
 
-struct TopBarView_Previews: PreviewProvider {
+struct NavigationBarView_Previews: PreviewProvider {
     static var previews: some View {
-        TopBarView()
+        NavigationBarView()
     }
 }

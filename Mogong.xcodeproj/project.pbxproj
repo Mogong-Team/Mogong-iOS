@@ -12,7 +12,7 @@
 		5CFBC2FE2A5969B40021B6EC /* ClippyStudyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFBC2FD2A5969B40021B6EC /* ClippyStudyCell.swift */; };
 		5CFBC3002A5969C80021B6EC /* ClippyStudyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFBC2FF2A5969C80021B6EC /* ClippyStudyView.swift */; };
 		5CFBC3022A5969D40021B6EC /* CompletedStudyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFBC3012A5969D40021B6EC /* CompletedStudyView.swift */; };
-		5CFBC3042A596F8F0021B6EC /* TopBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFBC3032A596F8F0021B6EC /* TopBarView.swift */; };
+		5CFBC3042A596F8F0021B6EC /* NavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFBC3032A596F8F0021B6EC /* NavigationBarView.swift */; };
 		5CFBC3062A596FA40021B6EC /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFBC3052A596FA40021B6EC /* TabBarView.swift */; };
 		8F0314992A6E29BC001C430A /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0314982A6E29BC001C430A /* Position.swift */; };
 		8F03149B2A6E2F6F001C430A /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F03149A2A6E2F6F001C430A /* Member.swift */; };
@@ -104,7 +104,7 @@
 		5CFBC2FD2A5969B40021B6EC /* ClippyStudyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClippyStudyCell.swift; sourceTree = "<group>"; };
 		5CFBC2FF2A5969C80021B6EC /* ClippyStudyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClippyStudyView.swift; sourceTree = "<group>"; };
 		5CFBC3012A5969D40021B6EC /* CompletedStudyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedStudyView.swift; sourceTree = "<group>"; };
-		5CFBC3032A596F8F0021B6EC /* TopBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarView.swift; sourceTree = "<group>"; };
+		5CFBC3032A596F8F0021B6EC /* NavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarView.swift; sourceTree = "<group>"; };
 		5CFBC3052A596FA40021B6EC /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		8C495DE2ED845CC16581FE5B /* Pods-Mogong.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mogong.debug.xcconfig"; path = "Target Support Files/Pods-Mogong/Pods-Mogong.debug.xcconfig"; sourceTree = "<group>"; };
 		8F0314982A6E29BC001C430A /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
@@ -214,7 +214,7 @@
 				5CFBC2FD2A5969B40021B6EC /* ClippyStudyCell.swift */,
 				5CFBC3012A5969D40021B6EC /* CompletedStudyView.swift */,
 				5CFBC2FB2A5969A60021B6EC /* CompletedStudyCell.swift */,
-				5CFBC3032A596F8F0021B6EC /* TopBarView.swift */,
+				5CFBC3032A596F8F0021B6EC /* NavigationBarView.swift */,
 				5CFBC3052A596FA40021B6EC /* TabBarView.swift */,
 			);
 			path = Home;
@@ -650,7 +650,7 @@
 				8FF09EE32A56A06800630F19 /* RemoveMemberView.swift in Sources */,
 				8F78DB9E2A4C06820004F195 /* AlarmCell.swift in Sources */,
 				5CFBC2FC2A5969A60021B6EC /* CompletedStudyCell.swift in Sources */,
-				5CFBC3042A596F8F0021B6EC /* TopBarView.swift in Sources */,
+				5CFBC3042A596F8F0021B6EC /* NavigationBarView.swift in Sources */,
 				8FE516932A4913460059D720 /* SelectButton.swift in Sources */,
 				8FE516A52A4989030059D720 /* HashtagView.swift in Sources */,
 				8F03149B2A6E2F6F001C430A /* Member.swift in Sources */,

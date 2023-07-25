@@ -37,7 +37,7 @@ struct ContentView: View {
             if authViewModel.isLoggedIn {
                 NavigationView {
                     VStack {
-                        TopBarView()
+                        NavigationBarView()
                         
                         ScrollView {
                             CompletedStudyView()
