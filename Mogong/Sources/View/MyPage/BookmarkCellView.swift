@@ -48,8 +48,8 @@ struct BookmarkCellView: View {
             
             HStack {
                 VStack {
-                    descriptionView(des: "1111")
-                    descriptionView(des: "1111")
+                    CheckLabel(text: "111", isHighlighted: false)
+                    CheckLabel(text: "111", isHighlighted: false)
                 }
                 
                 Spacer()

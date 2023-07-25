@@ -7,6 +7,18 @@
 
 import Foundation
 
+enum StudyCategory: String {
+    case all = "전체"
+    case generalStudy = "일반형"
+    case projectStudy = "프로젝트형"
+}
+
+enum StudyState: String {
+    case recruiting = "모집중"
+    case completed = "모집완료"
+    case ended = "스터디종료"
+}
+
 struct TempStudy: Identifiable {
     let id: String = UUID().uuidString
     
@@ -35,11 +47,6 @@ struct TempStudy: Identifiable {
 }
 
 extension TempStudy {
-    enum StudyCategory: String {
-        case generalStudy = "스터디"
-        case projectStudy = "팀 프로젝트"
-    }
-
     enum StudyLocation: String {
         case online = "온라인"
         case offline = "오프라인"
@@ -49,12 +56,6 @@ extension TempStudy {
     enum RevenuePurpose: String {
         case withRevenue = "있음"
         case withoutRevenue = "없음"
-    }
-
-    enum StudyState: String {
-        case recruiting = "모집중"
-        case completed = "모집완료"
-        case ended = "스터디종료"
     }
 }
 

@@ -11,6 +11,10 @@ import Combine
 class StudyViewModel: ObservableObject {
     @Published var studys = [Study]()
     @Published var tempStudys = [TempStudy]()
+    @Published var selectedCategory: StudyCategory = .all
+    @Published var selectedState: StudyState?
+    @Published var isPopularFilter: Bool = true
+    @Published var isBookmarked: Bool = false
     
     //MARK: - 스터디 생성
     
