@@ -12,70 +12,64 @@ struct MyStudyView: View {
     @EnvironmentObject var userViewModel: UserViewModel
     
     var body: some View {
-            NavigationView {
-                VStack {
-                    NavigationBarView()
-                    
-                    ZStack {
-                        Color(uiColor: .systemGray6)
-                        
-                        ScrollView(showsIndicators: false) {
-                            VStack {
-                                MyStudyStateSelect()
-                                    .padding(.horizontal, 20)
-                                MyStudyList()
-                            }
-                            .padding(.top, 10)
-                            .padding(.bottom, 20)
-                        }
+        NavigationView {
+            VStack {
+                NavigationBarView()
+                SelectState()
+                    .padding(.horizontal, 20)
+                    .padding(.top, 10)
+                    .padding(.bottom, 5)
+                ScrollView(showsIndicators: false) {
+                    VStack {
+                        MyStudyList()
                     }
-                    .onAppear {
-                        studyViewModel.myStudyStateIsOngoing = true
-                        studyViewModel.myStudySelectedStudyIndex = 0
-                    }
-                    
-                    TabBarView()
+                    .padding(.top, 10)
+                    .padding(.bottom, 20)
                 }
+                .onAppear {
+                    studyViewModel.selectedMyStudyStateIsEnded = false
+                    studyViewModel.selectedMyStudyIndex = 0
+                    // TODO: Get Study
+                }
+                TabBarView()
             }
         }
     }
+}
 
-struct MyStudyStateSelect: View {
+struct SelectState: View {
     @EnvironmentObject private var studyViewModel: StudyViewModel
     
     var body: some View {
-        HStack {
-            StudyStateButton(
+        HStack(spacing: 10) {
+            SelectStateButton(
                 title: "진행중인 스터디",
                 studyCount: studyViewModel.studys.filter { $0.state != .ended }.count,
-                isSelected: studyViewModel.myStudyStateIsOngoing ? true : false
+                isSelected: studyViewModel.selectedMyStudyStateIsEnded ? false : true
             )
             .onTapGesture {
                 withAnimation {
-                    studyViewModel.myStudyStateIsOngoing = true
-                    studyViewModel.myStudySelectedStudyIndex = 0
+                    studyViewModel.selectedMyStudyStateIsEnded = false
+                    studyViewModel.selectedMyStudyIndex = 0
                 }
             }
             
-            Spacer()
-                .frame(width: 10)
-            
-            StudyStateButton(
+            SelectStateButton(
                 title: "종료 스터디",
                 studyCount: studyViewModel.studys.filter { $0.state == .ended }.count,
-                isSelected: studyViewModel.myStudyStateIsOngoing ? false : true
+                isSelected: studyViewModel.selectedMyStudyStateIsEnded ? true : false
             )
             .onTapGesture {
                 withAnimation {
-                    studyViewModel.myStudyStateIsOngoing = false
-                    studyViewModel.myStudySelectedStudyIndex = 0
+                    studyViewModel.selectedMyStudyStateIsEnded = true
+                    studyViewModel.selectedMyStudyIndex = 0
                 }
             }
         }
     }
 }
 
-struct StudyStateButton: View {
+struct SelectStateButton: View {
     var title: String
     var studyCount: Int
     var isSelected: Bool
@@ -84,31 +78,28 @@ struct StudyStateButton: View {
         HStack(spacing: 5) {
             if isSelected {
                 Spacer()
-                
                 Image(systemName: "circle.fill")
                     .resizable()
-                    .foregroundColor(.blue)
+                    .foregroundColor(Color(hexColor: "0090FF"))
                     .frame(width: 10, height: 10)
-                
                 Text(title)
-                    .font(Font.system(size: 16, weight: .bold))
+                    .font(.pretendard(weight: .bold, size: 16))
                     .foregroundColor(.black)
-                
                 Text("\(studyCount)")
-                    .foregroundColor(Color(uiColor: .systemGray5))
+                    .foregroundColor(Color(hexColor: "D9D9D9"))
                     .font(.pretendard(weight: .semiBold, size: 14))
-                
                 Spacer()
             } else {
                 Text(title)
-                    .font(Font.system(size: 16, weight: .medium))
-                    .foregroundColor(Color(uiColor: .systemGray5))
+                    .font(.pretendard(weight: .medium, size: 16))
+                    .foregroundColor(Color(hexColor: "CACACA"))
                     .padding(.horizontal, 15)
             }
         }
         .padding(.vertical, 8)
         .background(.white)
         .cornerRadius(12)
+        .shadow(color: Color(white: 0, opacity: 0.1), radius: 5, x: 0, y: 0)
     }
 }
 
@@ -116,60 +107,58 @@ struct MyStudyList: View {
     @EnvironmentObject private var studyViewModel: StudyViewModel
     @EnvironmentObject private var userViewModel: UserViewModel
     
-    @State var selectedStudy: Study = StudyViewModel().myStudyFilterdOngoingStudy[0]
-    
     var body: some View {
         VStack {
             ScrollViewReader { proxy in
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                         ForEach(
-                            studyViewModel.myStudyStateIsOngoing
-                            ? Array(studyViewModel.myStudyFilterdOngoingStudy.enumerated())
-                            : Array(studyViewModel.myStudyFilterdCompletedStudy.enumerated())
+                            studyViewModel.selectedMyStudyStateIsEnded
+                            ? Array(studyViewModel.filterdEndedMyStudy.enumerated())
+                            : Array(studyViewModel.filterdOngoingMyStudy.enumerated())
                             , id: \.element.id
-                        )
-                        { index, study in
+                        ) { index, study in
                             MyStudyListCell(
-                                isHost: currentUserIsHost(study),
+                                isHost: userViewModel.currentUserIsHost(study: study),
                                 dDay: study.dueDate,
-                                isSelected: studyViewModel.myStudySelectedStudyIndex == index,
-                                isOngoing: studyViewModel.myStudyStateIsOngoing
+                                isSelected: studyViewModel.selectedMyStudyIndex == index,
+                                isOngoing: !studyViewModel.selectedMyStudyStateIsEnded
                             )
                             .onTapGesture {
-                                self.studyViewModel.myStudySelectedStudyIndex = index
+                                studyViewModel.selectedMyStudyIndex = index
+                                studyViewModel.selectedStudy = study
                             }
                             .id(index) // ScrollViewReader -> 없으면 scrollTo 활성화 안됨.
                         }
                     }
                     .padding(.horizontal, 20)
+                    .padding(.bottom, 15)
                 }
-                .onChange(of: studyViewModel.myStudySelectedStudyIndex)
-                { newIndex in
-                    self.selectedStudy =
-                    studyViewModel.myStudyStateIsOngoing
-                    ? studyViewModel.myStudyFilterdOngoingStudy[newIndex]
-                    : studyViewModel.myStudyFilterdCompletedStudy[newIndex]
-                    
+                .onChange(of: studyViewModel.selectedMyStudyIndex) { newIndex in
                     withAnimation {
                         proxy.scrollTo(newIndex, anchor: .center)
                     }
                 }
             }
             
-            MyStudyIntroduce(study: $selectedStudy)
-                .padding(.horizontal, 20)
+            if studyViewModel.selectedMyStudyStateIsEnded && studyViewModel.filterdEndedMyStudy.isEmpty {
+                MyStudyEmptyView()
+            } else if !studyViewModel.selectedMyStudyStateIsEnded && studyViewModel.filterdOngoingMyStudy.isEmpty {
+                MyStudyEmptyView()
+            } else {
+                MyStudyIntroduce()
+                    .padding(.horizontal, 20)
+            }
         }
-        .onChange(of: studyViewModel.myStudyStateIsOngoing) { isOngoing in
-            self.selectedStudy =
-            isOngoing
-            ? studyViewModel.myStudyFilterdOngoingStudy[0]
-            : studyViewModel.myStudyFilterdCompletedStudy[0]
+        .onChange(of: studyViewModel.selectedMyStudyStateIsEnded) { _ in
+            if studyViewModel.selectedMyStudyStateIsEnded {
+                guard let firstStudy = studyViewModel.filterdEndedMyStudy.first else { return }
+                studyViewModel.selectedStudy = firstStudy
+            } else {
+                guard let firstStudy = studyViewModel.filterdEndedMyStudy.first else { return }
+                studyViewModel.selectedStudy = firstStudy
+            }
         }
-    }
-    
-    func currentUserIsHost(_ study: Study) -> Bool {
-        return study.host.id == userViewModel.currentUser.id
     }
 }
 
@@ -186,7 +175,7 @@ struct MyStudyListCell: View {
                     Image(systemName: "bookmark.circle.fill")
                         .resizable()
                         .frame(width: 28, height: 28)
-                        .foregroundColor(.orange)
+                        .foregroundColor(Color(hexColor: "FFA215"))
                 }
                 Spacer()
                 Text(isHost ? "내가 방장!" : "나는 팀원!")
@@ -199,10 +188,14 @@ struct MyStudyListCell: View {
             Text(dDay.dDayString())
                 .font(.pretendard(weight: .bold, size: 40))
         }
-        .foregroundColor(isSelected ? .white : Color(uiColor: .systemGray4))
+        .foregroundColor(isSelected
+                         ? .white
+                         : Color(hexColor: "C5C5C5"))
         .padding()
         .frame(width: 191, height: 191)
-        .background(isSelected ? .blue : Color(uiColor: .systemGray5))
+        .background(isSelected
+                    ? Color(hexColor: "00C7F4")
+                    : Color(hexColor: "EAEDF4"))
         .cornerRadius(16)
     }
 }
@@ -210,61 +203,55 @@ struct MyStudyListCell: View {
 struct MyStudyIntroduce: View {
     @EnvironmentObject private var studyViewModel: StudyViewModel
     @EnvironmentObject private var userViewModel: UserViewModel
-    @Binding var study: Study
 
     var body: some View {
-        VStack(spacing: 30) {
-            IntroduceTitle(study: $study)
-            
-            if userViewModel.currentUserIsHost(study: study) {
+        VStack(spacing: 20) {
+            NavigationLink {
+                // TODO: 출석 체크
+            } label: {
+                Text("스터디 출석체크")
+                .font(.pretendard(weight: .bold, size: 20))
+                .foregroundColor(.white)
+                .frame(maxWidth: .infinity)
+                .frame(height: 48)
+                .background(Color(hexColor: "FFA215"))
+                .cornerRadius(30)
+            }
+            IntroduceTitle()
+            if userViewModel.currentUserIsHost(study: studyViewModel.selectedStudy) {
                 NavigationLink {
                     ApplicationListView(user: userViewModel.currentUser)
                 } label: {
                     HStack {
-                        Text("지원서 확인하기")
+                        Text("지원자 리스트")
                         Spacer()
                         Text(">")
                     }
                     .padding()
                     .font(.pretendard(weight: .bold, size: 20))
                     .foregroundColor(.white)
-                    .background(.blue)
-                    .cornerRadius(10)
-                }
-            } else {
-                NavigationLink {
-                    // 팀원 - 스터디 완료 기록
-                } label: {
-                    HStack {
-                        Spacer()
-                        Text("스터디 출석체크")
-                        Spacer()
-                    }
-                    .padding()
-                    .font(.pretendard(weight: .bold, size: 20))
-                    .foregroundColor(.white)
-                    .background(.orange)
-                    .cornerRadius(10)
+                    .background(Color(hexColor: "00C7F4"))
+                    .cornerRadius(30)
                 }
             }
-            
-            IntroduceMember(study: $study)
+            IntroduceMember()
         }
     }
 }
 
 struct IntroduceTitle: View {
-    @Binding var study: Study
+    @EnvironmentObject private var studyViewModel: StudyViewModel
     
     var body: some View {
         HStack {
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 15) {
                 Text("스터디 이름")
                     .font(.pretendard(weight: .bold, size: 20))
-                Text(study.title)
+                Text(studyViewModel.selectedStudy.title)
                     .font(.pretendard(weight: .medium, size: 18))
                     .foregroundColor(.gray)
                     .lineLimit(nil)
+                    .lineSpacing(3)
             }
             Spacer()
         }
@@ -274,37 +261,35 @@ struct IntroduceTitle: View {
 struct IntroduceMember: View {
     @EnvironmentObject private var studyViewModel: StudyViewModel
     @EnvironmentObject private var userViewModel: UserViewModel
-    @Binding var study: Study
     
     var body: some View {
-        VStack {
+        VStack(spacing: 30) {
             HStack {
                 Text("스터디원")
                     .font(.pretendard(weight: .bold, size: 20))
                 Spacer()
-                if userViewModel.currentUserIsHost(study: study) {
+                if userViewModel.currentUserIsHost(study: studyViewModel.selectedStudy) {
                     Text("내보내기")
-                        .padding(.horizontal, 10)
-                        .padding(.vertical, 5)
                         .font(.pretendard(weight: .medium, size: 14))
                         .foregroundColor(.white)
-                        .background(.blue)
+                        .frame(width: 67, height: 25)
+                        .background(Color(hexColor: "91B9F2"))
                         .cornerRadius(15)
                         .onTapGesture {
-                            studyViewModel.myStudyshowRemoveSheet = true
+                            studyViewModel.showRemoveMember = true
                         }
                 }
             }
             
             LazyVGrid(columns: [GridItem(), GridItem()], spacing: 37) {
-                ForEach(study.currentMembers, id: \.self) { member in
+                ForEach(studyViewModel.selectedStudy.currentMembers, id: \.self) { member in
                     NavigationLink {
                         UserPageView()
                     } label: {
                         HStakTeamMemberView(
                             member: member,
                             isSelected: false,
-                            isHost: studyViewModel.isHostUser(study: study, member: member)
+                            isHost: studyViewModel.isHostUser(study: studyViewModel.selectedStudy, member: member)
                         )
                     }
                 }
@@ -316,9 +301,24 @@ struct IntroduceMember: View {
 //                }
             }
         }
-        .sheet(isPresented: $studyViewModel.myStudyshowRemoveSheet) {
-            RemoveMemberView(study: $study)
+        .sheet(isPresented: $studyViewModel.showRemoveMember) {
+            RemoveMemberView()
                 .presentationDetents([.fraction(0.7)])
+        }
+    }
+}
+
+struct MyStudyEmptyView: View {
+    @EnvironmentObject private var studyViewModel: StudyViewModel
+
+    var body: some View {
+        VStack {
+            Spacer()
+                .frame(height: 250)
+            Text(studyViewModel.selectedMyStudyStateIsEnded
+                 ? "종료된 스터디가 없습니다."
+                 : "진행중인 스터디가 없습니다.")
+            .font(.pretendard(weight: .semiBold, size: 18))
         }
     }
 }

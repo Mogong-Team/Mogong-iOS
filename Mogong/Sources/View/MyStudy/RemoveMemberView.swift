@@ -11,7 +11,6 @@ struct RemoveMemberView: View {
     @EnvironmentObject private var studyViewModel: StudyViewModel
     @EnvironmentObject private var userViewModel: UserViewModel
     @Environment(\.dismiss) private var dismiss
-    @Binding var study: Study
     @State private var showRemoveReason: Bool = false
     @State private var selectedMember: String?
     
@@ -30,13 +29,13 @@ struct RemoveMemberView: View {
                     Spacer()
                 }
                 .padding(.bottom, 37)
-                RemoveMember(study: $study, selectedMember: $selectedMember)
+                RemoveMember(selectedMember: $selectedMember)
                 Spacer()
                 SelectButton(title: "다음", state: selectedMember == nil ? .unselected : .selected) {
                     showRemoveReason = true
                     
                     if let memberId = selectedMember {
-                        study.currentMembers.removeAll{ $0.user.id == memberId }
+                        studyViewModel.selectedStudy.currentMembers.removeAll{ $0.user.id == memberId }
                     }
                 }
                 .disabled(selectedMember == nil)
@@ -60,12 +59,11 @@ struct RemoveMemberView: View {
 struct RemoveMember: View {
     @EnvironmentObject private var studyViewModel: StudyViewModel
     @EnvironmentObject private var userViewModel: UserViewModel
-    @Binding var study: Study
     @Binding var selectedMember: String?
     
     var body: some View {
         LazyVGrid(columns: [GridItem(), GridItem()], spacing: 30) {
-            ForEach(study.currentMembers.filter { $0.user.id != study.host.id }, id: \.self) { member in
+            ForEach(studyViewModel.selectedStudy.currentMembers.filter { $0.user.id != studyViewModel.selectedStudy.host.id }, id: \.self) { member in
                 HStakTeamMemberView(
                     member: member,
                     isSelected: selectedMember == member.user.id,

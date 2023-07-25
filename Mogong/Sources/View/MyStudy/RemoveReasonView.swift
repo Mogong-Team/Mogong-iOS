@@ -38,7 +38,7 @@ struct RemoveReasonView: View {
             }
             
             SelectButton(title: "강퇴하기", state: selectedReason == nil ? .unselected : .selected) {
-                studyViewModel.myStudyshowRemoveSheet = false
+                studyViewModel.showRemoveMember = false
             }
             .disabled(selectedReason == nil)
             .padding(.vertical, 10)
@@ -50,7 +50,7 @@ struct RemoveReasonView: View {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
                 Image(systemName: "xmark")
                     .onTapGesture {
-                        studyViewModel.myStudyshowRemoveSheet = false
+                        studyViewModel.showRemoveMember = false
                     }
             }
         }

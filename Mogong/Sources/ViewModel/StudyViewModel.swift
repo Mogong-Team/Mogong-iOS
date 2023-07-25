@@ -10,9 +10,8 @@ import Combine
 
 class StudyViewModel: ObservableObject {
     
-    //@Published var studys2 = [Study2]()
     @Published var studys = [Study]()
-    //@Published var selectedStudy: Study = Study.tempStudy
+    //@Published var selectedStudy: Study?
     @Published var selectedStudy: Study = Study.study1
     
     // MARK: - 스터디리스트
@@ -52,12 +51,11 @@ class StudyViewModel: ObservableObject {
     /// 모든 스터디에서 마이스터디 가져오는 방법
     /// 1) viewModel에서 필터링 - 데이터량이 적으면 서버와 연동보다  받아온 모든 스터디에서 필터링하는게 빠름
     /// 2) 서버에서 받아오기 - 이용자 수가 많을 수록 필요성 높아짐
-    @Published var myStudys = [Study]()
-    @Published var myStudyFilterdOngoingStudy = [Study]()
-    @Published var myStudyFilterdCompletedStudy = [Study]()
-    @Published var myStudyStateIsOngoing: Bool = true
-    @Published var myStudySelectedStudyIndex: Int = 0
-    @Published var myStudyshowRemoveSheet: Bool = false
+    @Published var filterdOngoingMyStudy = [Study]()
+    @Published var filterdEndedMyStudy = [Study]()
+    @Published var selectedMyStudyStateIsEnded: Bool = false
+    @Published var selectedMyStudyIndex: Int = 0
+    @Published var showRemoveMember: Bool = false
     
     //MARK: - 기타
     
@@ -68,19 +66,19 @@ class StudyViewModel: ObservableObject {
     init() {
         initStudys()
         
-//        $studys2
-//            .map { $0.filter { !$0.isStudyCompleted }}
-//            .sink { [weak self] filterdStudys in
-//                self?.myStudyFilterdOngoingStudy = filterdStudys
-//            }
-//            .store(in: &cancellables)
-//
-//        $studys2
-//            .map { $0.filter { $0.isStudyCompleted }}
-//            .sink { [weak self] filterdStudys in
-//                self?.myStudyFilterdCompletedStudy = filterdStudys
-//            }
-//            .store(in: &cancellables)
+        $studys
+            .map { $0.filter { $0.state != .ended } }
+            .sink { [weak self] filterdStudys in
+                self?.filterdOngoingMyStudy = filterdStudys
+            }
+            .store(in: &cancellables)
+
+        $studys
+            .map { $0.filter { $0.state == .ended }}
+            .sink { [weak self] filterdStudys in
+                self?.filterdEndedMyStudy = filterdStudys
+            }
+            .store(in: &cancellables)
     }
 
     func isHostUser(study: Study, member: Member2) -> Bool {
