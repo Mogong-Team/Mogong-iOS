@@ -43,8 +43,9 @@ struct TabBarView: View {
             }
         }
 //        .Style(DefaultTabBarStyle())
-        .frame(height: 60)
+        .frame(height: 47)
         .edgesIgnoringSafeArea(.bottom) // Safe Area의 아래 여백 무시
+//        .border(Color.red)
     }
 }
 
