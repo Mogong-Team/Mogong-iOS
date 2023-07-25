@@ -13,20 +13,20 @@ enum ApplicationStatus: String, CaseIterable, Codable {
     case rejected = "거부됨"
 }
 
-struct Application: Identifiable, Hashable, Codable {
+struct Application: Identifiable, Codable {
     let id: String
     let user: User
     let title: String
-    let field: Field
+    let position: Position2
     let introduction: String
     let experience: String
     var status: ApplicationStatus
     
-    init(user: User, title: String, field: Field, introduction: String, experience: String) {
+    init(user: User, title: String, position: Position2, introduction: String, experience: String) {
         self.id = UUID().uuidString
         self.user = user
         self.title = title
-        self.field = field
+        self.position = position
         self.introduction = introduction
         self.experience = experience
         self.status = .pending

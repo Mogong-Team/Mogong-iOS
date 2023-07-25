@@ -47,7 +47,7 @@ struct MyStudyStateSelect: View {
         HStack {
             StudyStateButton(
                 title: "진행중인 스터디",
-                studyCount: studyViewModel.studys2.filter { !$0.isStudyCompleted }.count,
+                studyCount: studyViewModel.studys.filter { $0.state != .ended }.count,
                 isSelected: studyViewModel.myStudyStateIsOngoing ? true : false
             )
             .onTapGesture {
@@ -62,7 +62,7 @@ struct MyStudyStateSelect: View {
             
             StudyStateButton(
                 title: "종료 스터디",
-                studyCount: studyViewModel.studys2.filter { $0.isStudyCompleted }.count,
+                studyCount: studyViewModel.studys.filter { $0.state == .ended }.count,
                 isSelected: studyViewModel.myStudyStateIsOngoing ? false : true
             )
             .onTapGesture {
@@ -116,7 +116,7 @@ struct MyStudyList: View {
     @EnvironmentObject private var studyViewModel: StudyViewModel
     @EnvironmentObject private var userViewModel: UserViewModel
     
-    @State var selectedStudy: Study2 = StudyViewModel().myStudyFilterdOngoingStudy[0]
+    @State var selectedStudy: Study = StudyViewModel().myStudyFilterdOngoingStudy[0]
     
     var body: some View {
         VStack {
@@ -168,8 +168,8 @@ struct MyStudyList: View {
         }
     }
     
-    func currentUserIsHost(_ study: Study2) -> Bool {
-        return study.host.user.id == userViewModel.currentUser.id
+    func currentUserIsHost(_ study: Study) -> Bool {
+        return study.host.id == userViewModel.currentUser.id
     }
 }
 
@@ -210,7 +210,7 @@ struct MyStudyListCell: View {
 struct MyStudyIntroduce: View {
     @EnvironmentObject private var studyViewModel: StudyViewModel
     @EnvironmentObject private var userViewModel: UserViewModel
-    @Binding var study: Study2
+    @Binding var study: Study
 
     var body: some View {
         VStack(spacing: 30) {
@@ -254,7 +254,7 @@ struct MyStudyIntroduce: View {
 }
 
 struct IntroduceTitle: View {
-    @Binding var study: Study2
+    @Binding var study: Study
     
     var body: some View {
         HStack {
@@ -274,7 +274,7 @@ struct IntroduceTitle: View {
 struct IntroduceMember: View {
     @EnvironmentObject private var studyViewModel: StudyViewModel
     @EnvironmentObject private var userViewModel: UserViewModel
-    @Binding var study: Study2
+    @Binding var study: Study
     
     var body: some View {
         VStack {
@@ -309,11 +309,11 @@ struct IntroduceMember: View {
                     }
                 }
                 
-                ForEach(Array(study.requiredCountPerFieldDic()), id: \.key) { field, count in
-                    ForEach(0..<count) { _ in
-                        HStackNewTeamMemberView(field: field)
-                    }
-                }
+//                ForEach(Array(study.requiredCountPerFieldDic()), id: \.key) { field, count in
+//                    ForEach(0..<count) { _ in
+//                        HStackNewTeamMemberView(field: field)
+//                    }
+//                }
             }
         }
         .sheet(isPresented: $studyViewModel.myStudyshowRemoveSheet) {

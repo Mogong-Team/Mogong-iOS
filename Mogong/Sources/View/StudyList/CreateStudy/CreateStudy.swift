@@ -10,33 +10,8 @@ import SwiftUI
 struct CreateStudy: View {
     @EnvironmentObject var viewModel: StudyViewModel
     @EnvironmentObject var userViewModel: UserViewModel
-    
-    @Environment(\.dismiss) var dismiss
-    
-    @State private var title: String = ""
-    @State private var introduction: String = ""
-    @State private var memberPreference: String = ""
-    @State private var dueDate: Date = Date()
-    @State private var selectedStudyType: StudyType?
-    @State private var selectedStudyMode: StudyMode?
+
     @State private var showDatePicker = false
-    
-    @State private var frequencyOfWeek: Int = 0
-    @State private var durationOfMonth: Int = 0
-    
-    @State private var selectedHostPosition: Field?
-    @State private var totalMemberCount: Int = 0
-    @State private var backendNeedCount: String = ""
-    @State private var frontendNeedCount: String = ""
-    @State private var aosNeedCount: String = ""
-    @State private var iosNeedCount: String = ""
-    @State private var designerNeedCount: String = ""
-    @State private var selectProfitGoal: ProfitGoal?
-    
-    let memberCount = [2, 3, 4, 5, 6, 7, 8, 9, 10]
-    let frequency = [1, 2, 3, 4, 5, 6, 7]
-    let month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-    
     @State private var showSelectPositionView = false
     @State private var showGeneralStudy = false
     @State private var showProjectStudy = false
@@ -49,7 +24,7 @@ struct CreateStudy: View {
                         .font(Font.system(size: 16))
                         .frame(height: 25)
                     
-                    SingleLineTextField(text: $title, placeHolder: "스터디를 소개할 제목을 적어주세요!")
+                    SingleLineTextField(text: $viewModel.title, placeHolder: "스터디를 소개할 제목을 적어주세요!")
                 }
                 
                 VStack(alignment: .leading) {
@@ -57,7 +32,7 @@ struct CreateStudy: View {
                         .font(Font.system(size: 16))
                         .frame(height: 25)
                     
-                    MultiLineTextField(text: $introduction, placeHolder: "나의 스터디를 소개할 글을 입력해주세요")
+                    MultiLineTextField(text: $viewModel.introduction, placeHolder: "나의 스터디를 소개할 글을 입력해주세요")
                         .frame(height: 180)
                 }
                 
@@ -66,7 +41,7 @@ struct CreateStudy: View {
                         .font(Font.system(size: 16))
                         .frame(height: 25)
                     
-                    MultiLineTextField(text: $memberPreference, placeHolder: "팀원의 자격요건을 적어주세요!")
+                    MultiLineTextField(text: $viewModel.memberPreference, placeHolder: "팀원의 자격요건을 적어주세요!")
                         .frame(height: 180)
                 }
                 
@@ -83,7 +58,7 @@ struct CreateStudy: View {
                             showDatePicker = true
                         } label: {
                             Image(systemName: "calendar")
-                            Text(dueDate.toYearString())
+                            Text(viewModel.dueDate.toYearString())
                         }
                         .foregroundColor(.black)
                     }
@@ -95,16 +70,25 @@ struct CreateStudy: View {
                         .frame(height: 25)
                     
                     HStack {
-                        SelectButton(title: "오프라인", state: selectedStudyMode == .offline ? .selected : .unselected) {
-                            selectedStudyMode = .offline
+                        SelectButton(title: "오프라인",
+                                     state: viewModel.location == .offline
+                                     ? .selected
+                                     : .unselected) {
+                            viewModel.location = .offline
                         }
                         
-                        SelectButton(title: "온라인", state: selectedStudyMode == .online ? .selected : .unselected) {
-                            selectedStudyMode = .online
+                        SelectButton(title: "온라인",
+                                     state: viewModel.location == .online
+                                     ? .selected
+                                     : .unselected) {
+                            viewModel.location = .online
                         }
                         
-                        SelectButton(title: "온/오프라인", state: selectedStudyMode == .both ? .selected : .unselected) {
-                            selectedStudyMode = .both
+                        SelectButton(title: "온/오프라인",
+                                     state: viewModel.location == .both
+                                     ? .selected
+                                     : .unselected) {
+                            viewModel.location = .both
                         }
                     }
                     
@@ -113,12 +97,18 @@ struct CreateStudy: View {
                         .frame(height: 25)
                     
                     HStack {
-                        SelectButton(title: "스터디", state: selectedStudyType == .study ? .selected : .unselected) {
-                            selectedStudyType = .study
+                        SelectButton(title: "일반 스터디",
+                                     state: viewModel.category == .generalStudy
+                                     ? .selected
+                                     : .unselected) {
+                            viewModel.category = .generalStudy
                         }
                         
-                        SelectButton(title: "팀 프로젝트", state: selectedStudyType == .teamProject ? .selected : .unselected) {
-                            selectedStudyType = .teamProject
+                        SelectButton(title: "프로젝트 스터디",
+                                     state: viewModel.category == .projectStudy
+                                     ? .selected
+                                     : .unselected) {
+                            viewModel.category = .projectStudy
                         }
                     }
 
@@ -126,7 +116,7 @@ struct CreateStudy: View {
                 
                 VStack {
                     SelectButton(title: "다음", state: .selected) {
-                        if selectedStudyType == .study {
+                        if viewModel.category == .generalStudy {
                             showGeneralStudy = true
                         } else {
                             showProjectStudy = true
@@ -140,16 +130,15 @@ struct CreateStudy: View {
         .navigationTitle("스터디 생성")
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
-                Button {
-                    dismiss()
-                } label: {
-                    Image(systemName: "xmark")
-                        .tint(.black)
-                }
+                Image(systemName: "xmark")
+                    .foregroundColor(.black)
+                    .onTapGesture {
+                        viewModel.presentStudyDetail = false
+                    }
             }
         }
         .sheet(isPresented: $showDatePicker) {
-            DatePicker("", selection: $dueDate, displayedComponents: .date)
+            DatePicker("", selection: $viewModel.dueDate, displayedComponents: .date)
                 .datePickerStyle(.graphical)
                 .environment(\.locale, Locale.init(identifier: "ko_KR"))
                 .presentationDetents([.fraction(0.5)])
@@ -165,19 +154,17 @@ struct CreateStudy: View {
 
 struct SelectHostPositionView: View {
     @Environment(\.dismiss) var dismiss
-    
-    @Binding var selectedHostPosition: Field?
-    
+    @Binding var selectedHostPosition: Position2?
     
     var body: some View {
         VStack {
             VStack(spacing: 0) {
-                ForEach(Field.allCases, id: \.self) { field in
+                ForEach(Position2.allCases, id: \.self) { position in
                     Button {
-                        selectedHostPosition = field
+                        selectedHostPosition = position
                     } label: {
                         VStack {
-                            Text(field.rawValue)
+                            Text(position.rawValue)
                                 .foregroundColor(.black)
                                 .frame(height: 40)
                             Rectangle()
@@ -185,7 +172,9 @@ struct SelectHostPositionView: View {
                                 .foregroundColor(Color(uiColor: .systemGray6))
                         }
                         .cornerRadius(5)
-                        .background(field == selectedHostPosition ? Color(uiColor: .systemGray5) : Color.white)
+                        .background(position == selectedHostPosition
+                                    ? Color(uiColor: .systemGray5)
+                                    : Color.white)
                     }
                 }
             }

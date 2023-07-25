@@ -16,7 +16,7 @@ class ApplicationViewModel: ObservableObject {
         Application(
         user: User(id: "1", name: "김민수", email: "a@gmail.com", username: "민수민수"),
         title: "backend 지원합니다.",
-        field: .backend,
+        position: .backend,
         introduction: "안녕하세요",
         experience: "없습니다.")
     
@@ -24,35 +24,35 @@ class ApplicationViewModel: ObservableObject {
         Application(
         user: User(id: "1", name: "김민수", email: "a@gmail.com", username: "민수민수"),
         title: "backend 지원합니다.",
-        field: .backend,
+        position: .backend,
         introduction: "안녕하세요",
         experience: "없습니다."),
         
         Application(
         user: User(id: "1", name: "김민수", email: "a@gmail.com", username: "민수민수"),
         title: "designer 지원합니다.",
-        field: .designer,
+        position: .designer,
         introduction: "안녕하세요",
         experience: "없습니다."),
         
         Application(
         user: User(id: "1", name: "김민수", email: "a@gmail.com", username: "민수민수"),
         title: "frontend 지원합니다.",
-        field: .frontend,
+        position: .frontend,
         introduction: "안녕하세요",
         experience: "없습니다."),
         
         Application(
         user: User(id: "1", name: "김민수", email: "a@gmail.com", username: "민수민수"),
         title: "ios 지원합니다.",
-        field: .ios,
+        position: .ios,
         introduction: "안녕하세요",
         experience: "없습니다."),
         
         Application(
         user: User(id: "1", name: "김민수", email: "a@gmail.com", username: "민수민수"),
         title: "aos 지원합니다.",
-        field: .aos,
+        position: .aos,
         introduction: "안녕하세요",
         experience: "없습니다."),
         ]

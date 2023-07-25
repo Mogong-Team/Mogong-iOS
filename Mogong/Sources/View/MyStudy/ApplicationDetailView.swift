@@ -28,7 +28,7 @@ struct ApplicationDetailView: View {
                         Text(application.user.username)
                             .font(.pretendard(weight: .bold, size: 28))
                         
-                        Text("\(application.field.rawValue) 지원")
+                        Text("\(application.position.rawValue) 지원")
                             .padding(.vertical, 3)
                             .padding(.horizontal, 20)
                             .font(.pretendard(weight: .regular, size: 16))
@@ -81,7 +81,7 @@ struct ApplicationDetailView_Previews: PreviewProvider {
         ApplicationDetailView(application: Application(
             user: User(id: "1", name: "김민수", email: "a@gmail.com", username: "민수민수"),
             title: "backend 지원합니다.",
-            field: .backend,
+            position: .backend,
             introduction: "안녕하세요",
             experience: "없습니다.")
         )

@@ -14,7 +14,7 @@ enum HostMemberType {
 
 struct MyStudyDetailView: View {
     
-    var study: Study2
+    var study: Study
         
     var viewType: HostMemberType
     
@@ -66,11 +66,11 @@ struct MyStudyDetailView: View {
                                         }
                                     }
                                     
-                                    ForEach(Array(study.requiredCountPerFieldDic()), id: \.key) { field, count in
-                                        ForEach(0..<count) { _ in
-                                            VStackNewTeamMemberView(field: field)
-                                        }
-                                    }
+//                                    ForEach(Array(study.requiredCountPerFieldDic()), id: \.key) { field, count in
+//                                        ForEach(0..<count) { _ in
+//                                            VStackNewTeamMemberView(field: field)
+//                                        }
+//                                    }
                                 }
                             }
                             
@@ -124,7 +124,7 @@ struct MyStudyDetailView: View {
 struct MyStudyDetailView_Previews: PreviewProvider {
     static var previews: some View {
         MyStudyDetailView(
-            study: StudyViewModel().studys2[0],
+            study: Study.study1,
             viewType: .host
         )
     }

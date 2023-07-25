@@ -22,7 +22,7 @@ struct CompletedStudyView: View {
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 15) {
-                    ForEach(viewModel.studys2) { study in
+                    ForEach(viewModel.studys) { study in
                         CompletedStudyCell(study: study)
                             .frame(width: 140, height: 200)
                     }

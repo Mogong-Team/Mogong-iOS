@@ -11,7 +11,7 @@ struct RemoveMemberView: View {
     @EnvironmentObject private var studyViewModel: StudyViewModel
     @EnvironmentObject private var userViewModel: UserViewModel
     @Environment(\.dismiss) private var dismiss
-    @Binding var study: Study2
+    @Binding var study: Study
     @State private var showRemoveReason: Bool = false
     @State private var selectedMember: String?
     
@@ -60,12 +60,12 @@ struct RemoveMemberView: View {
 struct RemoveMember: View {
     @EnvironmentObject private var studyViewModel: StudyViewModel
     @EnvironmentObject private var userViewModel: UserViewModel
-    @Binding var study: Study2
+    @Binding var study: Study
     @Binding var selectedMember: String?
     
     var body: some View {
         LazyVGrid(columns: [GridItem(), GridItem()], spacing: 30) {
-            ForEach(study.currentMembers.filter { $0 != study.host }, id: \.self) { member in
+            ForEach(study.currentMembers.filter { $0.user.id != study.host.id }, id: \.self) { member in
                 HStakTeamMemberView(
                     member: member,
                     isSelected: selectedMember == member.user.id,

@@ -25,7 +25,7 @@ struct UserPageView: View {
                 .font(Font.system(size: 28, weight: .bold))
                 .foregroundColor(.black)
             
-            Text(viewModel.application.field.rawValue)
+            Text(viewModel.application.position.rawValue)
                 .font(Font.system(size: 16, weight: .regular))
                 .foregroundColor(.gray)
                 .padding(.bottom, 50)

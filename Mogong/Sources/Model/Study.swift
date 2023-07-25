@@ -7,20 +7,31 @@
 
 import Foundation
 
-enum StudyCategory: String {
+enum StudyCategory: String, Codable {
     case all = "전체"
     case generalStudy = "일반형"
     case projectStudy = "프로젝트형"
 }
 
-enum StudyState: String {
+enum StudyLocation: String, Codable {
+    case online = "온라인"
+    case offline = "오프라인"
+    case both = "온/오프라인"
+}
+
+enum RevenuePurpose: String, Codable {
+    case withRevenue = "있음"
+    case withoutRevenue = "없음"
+}
+
+enum StudyState: String, Codable {
     case recruiting = "모집중"
     case completed = "모집완료"
     case ended = "스터디종료"
 }
 
-struct Study: Identifiable {
-    let id: String = UUID().uuidString
+struct Study: Identifiable, Codable {
+    var id: String = UUID().uuidString
     
     var category: StudyCategory
     var loaction: StudyLocation
@@ -47,17 +58,6 @@ struct Study: Identifiable {
 }
 
 extension Study {
-    enum StudyLocation: String {
-        case online = "온라인"
-        case offline = "오프라인"
-        case both = "온/오프라인"
-    }
-    
-    enum RevenuePurpose: String {
-        case withRevenue = "있음"
-        case withoutRevenue = "없음"
-    }
-    
     static var study1 = Study(
         category: .projectStudy,
         loaction: .online,

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct VStackNewTeamMemberView: View {
-    var field: Field
+    var position: Position2
     
     var body: some View {
         VStack {
@@ -28,7 +28,7 @@ struct VStackNewTeamMemberView: View {
                 .font(Font.system(size: 20, weight: .bold))
                 .foregroundColor(.black)
             
-            Text(field.rawValue)
+            Text(position.rawValue)
                 .font(Font.system(size: 14, weight: .regular))
                 .foregroundColor(.gray)
         }
@@ -38,8 +38,8 @@ struct VStackNewTeamMemberView: View {
 struct VStackNewTeamMemberView_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            VStackNewTeamMemberView(field: .backend)
-            VStackNewTeamMemberView(field: .ios)
+            VStackNewTeamMemberView(position: .backend)
+            VStackNewTeamMemberView(position: .ios)
         }
     }
 }
