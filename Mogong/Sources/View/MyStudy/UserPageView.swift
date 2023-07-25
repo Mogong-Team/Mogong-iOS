@@ -63,7 +63,8 @@ struct UserPageView: View {
         }
         .padding(.horizontal, 20)
         .navigationDestination(isPresented: $isPresented) {
-            ChatView(chat: Chat(participant1: User(name: "김민수민수", email: "", username: "민수민수"), participant2: User(name: "박민수민수", email: "", username: "박수박수")))
+            ChatView(chat: Chat(participant1: User.user1,
+                                participant2: User.user2))
         }
     }
 }

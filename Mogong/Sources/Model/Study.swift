@@ -136,7 +136,7 @@ extension Study {
         numberOfRecruits: 0,
         positionInfos: [
         ],
-        host: User(name: "", email: "", username: ""),
+        host: User(id: "", name: "", email: "", username: ""),
         currentMembers: [
         ],
         createDate: Date(),
@@ -199,7 +199,7 @@ extension StudyViewModel {
                     PositionInfo(position: .planner, requiredCount: 2)
                 ],
                 revenuePurpose: .withRevenue,
-                host: User.user1,
+                host: User.user2,
                 currentMembers: [
                     Member2(user: User.user1, position: .planner),
                     Member2(user: User.user2, position: .ios),
@@ -225,10 +225,10 @@ extension StudyViewModel {
                 numberOfRecruits: 5,
                 positionInfos: [
                 ],
-                host: User.user1,
+                host: User.user3,
                 currentMembers: [
-                    Member2(user: User.user1, position: .planner),
-                    Member2(user: User.user2, position: .ios),
+                    Member2(user: User.user3, position: .planner),
+                    Member2(user: User.user4, position: .ios),
                 ],
                 createDate: Date(),
                 state: .recruiting,
