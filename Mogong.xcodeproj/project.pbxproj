@@ -24,7 +24,6 @@
 		8F78DB9E2A4C06820004F195 /* AlarmCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F78DB9D2A4C06820004F195 /* AlarmCell.swift */; };
 		8F78DBA12A4C0B340004F195 /* StudyIntroduceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F78DBA02A4C0B340004F195 /* StudyIntroduceView.swift */; };
 		8F7D0C0F2A52A7670073457A /* BookmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7D0C0E2A52A7670073457A /* BookmarkView.swift */; };
-		8F7D0C112A52A76C0073457A /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7D0C102A52A76C0073457A /* SettingView.swift */; };
 		8F7D0C132A52A9DB0073457A /* BookmarkCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7D0C122A52A9DB0073457A /* BookmarkCellView.swift */; };
 		8F8A671A2A39755E00467936 /* MogongApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A67192A39755E00467936 /* MogongApp.swift */; };
 		8F8A671E2A39756000467936 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F8A671D2A39756000467936 /* Assets.xcassets */; };
@@ -76,6 +75,8 @@
 		8FE5169F2A4965F40059D720 /* ApplicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE5169E2A4965F40059D720 /* ApplicationView.swift */; };
 		8FE516A12A4969DA0059D720 /* StudyDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE516A02A4969DA0059D720 /* StudyDetailView.swift */; };
 		8FE516A52A4989030059D720 /* HashtagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE516A42A4989030059D720 /* HashtagView.swift */; };
+		8FEBA8642A70AFA9009275BD /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEBA8632A70AFA9009275BD /* SettingView.swift */; };
+		8FEBA8662A70AFDF009275BD /* EditUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEBA8652A70AFDF009275BD /* EditUserInfo.swift */; };
 		8FF09EDF2A569B6900630F19 /* HStakTeamMemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF09EDE2A569B6900630F19 /* HStakTeamMemberView.swift */; };
 		8FF09EE12A569B7200630F19 /* HStackNewTeamMemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF09EE02A569B7200630F19 /* HStackNewTeamMemberView.swift */; };
 		8FF09EE32A56A06800630F19 /* RemoveMemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF09EE22A56A06800630F19 /* RemoveMemberView.swift */; };
@@ -115,7 +116,6 @@
 		8F78DB9D2A4C06820004F195 /* AlarmCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmCell.swift; sourceTree = "<group>"; };
 		8F78DBA02A4C0B340004F195 /* StudyIntroduceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyIntroduceView.swift; sourceTree = "<group>"; };
 		8F7D0C0E2A52A7670073457A /* BookmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkView.swift; sourceTree = "<group>"; };
-		8F7D0C102A52A76C0073457A /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		8F7D0C122A52A9DB0073457A /* BookmarkCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkCellView.swift; sourceTree = "<group>"; };
 		8F8A67162A39755E00467936 /* Mogong.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mogong.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F8A67192A39755E00467936 /* MogongApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MogongApp.swift; sourceTree = "<group>"; };
@@ -170,6 +170,8 @@
 		8FE5169E2A4965F40059D720 /* ApplicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationView.swift; sourceTree = "<group>"; };
 		8FE516A02A4969DA0059D720 /* StudyDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyDetailView.swift; sourceTree = "<group>"; };
 		8FE516A42A4989030059D720 /* HashtagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagView.swift; sourceTree = "<group>"; };
+		8FEBA8632A70AFA9009275BD /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		8FEBA8652A70AFDF009275BD /* EditUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserInfo.swift; sourceTree = "<group>"; };
 		8FF09EDE2A569B6900630F19 /* HStakTeamMemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HStakTeamMemberView.swift; sourceTree = "<group>"; };
 		8FF09EE02A569B7200630F19 /* HStackNewTeamMemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HStackNewTeamMemberView.swift; sourceTree = "<group>"; };
 		8FF09EE22A56A06800630F19 /* RemoveMemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveMemberView.swift; sourceTree = "<group>"; };
@@ -240,7 +242,6 @@
 				8F8A67422A39768700467936 /* UserView.swift */,
 				8F7D0C0E2A52A7670073457A /* BookmarkView.swift */,
 				8F7D0C122A52A9DB0073457A /* BookmarkCellView.swift */,
-				8F7D0C102A52A76C0073457A /* SettingView.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -323,7 +324,7 @@
 				8FE5168E2A4868010059D720 /* StudyList */,
 				8F8CA8552A4D18BB002E8D15 /* MyStudy */,
 				8F7D0C0A2A52A7340073457A /* MyPage */,
-				8FEBA85D2A70AB24009275BD /* Setting */,
+				8FEBA8622A70AF95009275BD /* Setting */,
 				8FE516912A4912DC0059D720 /* Components */,
 			);
 			path = View;
@@ -344,8 +345,8 @@
 			children = (
 				8F8A673C2A39766B00467936 /* AuthViewModel.swift */,
 				8F8A67362A39765700467936 /* StudyViewModel.swift */,
-				8F8A67382A39765D00467936 /* RankViewModel.swift */,
 				8F8A673A2A39766300467936 /* UserViewModel.swift */,
+				8F8A67382A39765D00467936 /* RankViewModel.swift */,
 				8F78DB932A4BC9E20004F195 /* ChatViewModel.swift */,
 				8FF418A62A4D7E650090FA34 /* ApplicationViewModel.swift */,
 			);
@@ -491,9 +492,11 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
-		8FEBA85D2A70AB24009275BD /* Setting */ = {
+		8FEBA8622A70AF95009275BD /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				8FEBA8632A70AFA9009275BD /* SettingView.swift */,
+				8FEBA8652A70AFDF009275BD /* EditUserInfo.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -690,12 +693,14 @@
 				8F7D0C0F2A52A7670073457A /* BookmarkView.swift in Sources */,
 				8FF418A52A4D7C6E0090FA34 /* UserPageView.swift in Sources */,
 				8F78DB9C2A4C04A20004F195 /* Alarm.swift in Sources */,
+				8FEBA8642A70AFA9009275BD /* SettingView.swift in Sources */,
 				8F8A676E2A42D16800467936 /* StudyListCell.swift in Sources */,
 				8F0314992A6E29BC001C430A /* Position.swift in Sources */,
 				8F8A673B2A39766300467936 /* UserViewModel.swift in Sources */,
 				8F8A672F2A39763400467936 /* Rank.swift in Sources */,
 				8FF418A72A4D7E650090FA34 /* ApplicationViewModel.swift in Sources */,
 				8F8A67372A39765700467936 /* StudyViewModel.swift in Sources */,
+				8FEBA8662A70AFDF009275BD /* EditUserInfo.swift in Sources */,
 				8F8CA84B2A4D0CAD002E8D15 /* Font+Pretendard.swift in Sources */,
 				5CFBC2FE2A5969B40021B6EC /* ClippyStudyCell.swift in Sources */,
 				8F8A67412A39767B00467936 /* Date+Conversion.swift in Sources */,
@@ -708,7 +713,6 @@
 				8F8A67312A39763800467936 /* User.swift in Sources */,
 				8FA362F12A6FA7B900BE64B0 /* MemberVstack.swift in Sources */,
 				8F8A671A2A39755E00467936 /* MogongApp.swift in Sources */,
-				8F7D0C112A52A76C0073457A /* SettingView.swift in Sources */,
 				8FF2796C2A5BF4DB003B325F /* UserService.swift in Sources */,
 				8FE516A12A4969DA0059D720 /* StudyDetailView.swift in Sources */,
 				8F8A67432A39768700467936 /* UserView.swift in Sources */,

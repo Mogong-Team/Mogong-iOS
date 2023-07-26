@@ -15,17 +15,19 @@ class UserViewModel: ObservableObject {
         return study.host.id == currentUser.id
     }
     
-    func currentUserIsHost(member: Member2) -> Bool {
-        return member.user.id == currentUser.id
+    func getUserInfo() {
+        // TODO: get User
     }
     
-    // 스터디 스크랩
+    func updateUserInfo() {
+        // TODO: POST User
+    }
+    
     func bookmarkStudy(_ study: Study) {
         // TODO: 실제로 스터디를 스크랩하는 로직을 여기에 작성합니다.
         currentUser.bookmarkedStudyIds.append(study.id)
     }
     
-    // 스터디 스크랩 취소
     func removeBookmark(for study: Study) {
         // TODO: 실제로 스터디 스크랩을 취소하는 로직을 여기에 작성합니다.
         currentUser.bookmarkedStudyIds.removeAll(where: { $0 == study.id })
