@@ -89,96 +89,12 @@ extension Study {
             User.user2,
             User.user3,
         ])
-    
-    static var study2 = Study(
-        category: .generalStudy,
-        loaction: .online,
-        title: "[창업/스타트업] 정부 지원 사업에 합격한 아이템으로 함께 MVP 제작할 개발자 구합니다.(2일 뒤 마감_편하게 연락주세요)",
-        introduction: "화이팅",
-        goal: "이번달까지 출시가 목표입니다.",
-        memberPreference: "아무나 상관없습니다.",
-        dueDate: Date(),
-        frequencyOfWeek: 2,
-        durationOfMonth: 3,
-        languages: [.swift, .kotlin],
-        numberOfRecruits: 5,
-        positionInfos: [
-            PositionInfo(position: .backend, requiredCount: 2, language: [.django]),
-            PositionInfo(position: .ios, requiredCount: 2, language: [.swift]),
-            PositionInfo(position: .designer, requiredCount: 2, language: [.figma]),
-        ],
-        revenuePurpose: .withRevenue,
-        host: User.user1,
-        currentMembers: [
-            Member2(user: User.user1, position: .backend),
-            Member2(user: User.user2, position: .ios),
-            Member2(user: User.user3, position: .backend),
-            Member2(user: User.user4, position: .designer),
-        ],
-        createDate: Date(),
-        state: .recruiting,
-        bookMarkedUsers: [
-            User.user2,
-            User.user3,
-        ])
-    
-    static var tempStudy = Study(
-        category: .all,
-        loaction: .both,
-        title: "",
-        introduction: "",
-        goal: "",
-        memberPreference: "",
-        dueDate: Date(),
-        frequencyOfWeek: 0,
-        durationOfMonth: 0,
-        languages: [],
-        numberOfRecruits: 0,
-        positionInfos: [
-        ],
-        host: User(id: "", name: "", email: "", username: ""),
-        currentMembers: [
-        ],
-        createDate: Date(),
-        state: .completed,
-        bookMarkedUsers: [
-        ])
 }
 
 extension StudyViewModel {
     func initStudys() {
         studys = [
-            Study(
-                category: .projectStudy,
-                loaction: .online,
-                title: "[창업/스타트업] 정부 지원 사업에 합격한 아이템으로 함께 MVP 제작할 개발자 구합니다.(2일 뒤 마감_편하게 연락주세요)",
-                introduction: "화이팅",
-                goal: "이번달까지 출시가 목표입니다.",
-                memberPreference: "아무나 상관없습니다.",
-                dueDate: Date(),
-                frequencyOfWeek: 2,
-                durationOfMonth: 3,
-                languages: [.swift, .kotlin],
-                numberOfRecruits: 5,
-                positionInfos: [
-                    PositionInfo(position: .backend, requiredCount: 2, language: [.django]),
-                    PositionInfo(position: .ios, requiredCount: 2, language: [.swift]),
-                    PositionInfo(position: .designer, requiredCount: 2, language: [.figma]),
-                ],
-                revenuePurpose: .withRevenue,
-                host: User.user1,
-                currentMembers: [
-                    Member2(user: User.user1, position: .backend),
-                    Member2(user: User.user2, position: .ios),
-                    Member2(user: User.user3, position: .backend),
-                    Member2(user: User.user4, position: .designer),
-                ],
-                createDate: Date(),
-                state: .recruiting,
-                bookMarkedUsers: [
-                    User.user2,
-                    User.user3,
-                ]),
+            Study.study1,
             
             Study(
                 category: .projectStudy,

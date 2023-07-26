@@ -45,25 +45,7 @@ struct ChatListCell: View {
 
 struct ChatListCell_Previews: PreviewProvider {
     static var previews: some View {
-        return ChatListCell(chat: Chat(
-                    participant1: User(id: "2", name: "최민수", email: "2@gmail.com", username: "최최민수"),
-                    participant2: User(id: "2", name: "최민수", email: "2@gmail.com", username: "최최민수"),
-                    message: [
-                        Message(sender: User(id: "1", name: "김민수", email: "1@gmail.com", username: "김김민수"), message: "안녕하세요"),
-                        Message(sender: User(id: "2", name: "최민수", email: "2@gmail.com", username: "최최민수"), message: "반갑습니다"),
-                    ]
-                ))
-                .environmentObject(UserViewModel())
-//
-//        ChatListCell(chat: Chat(
-//            participant1:
-//                User(id: "2", name: "최민수", email: "2@gmail.com", username: "최최민수"),
-//            participant2:
-//                User(id: "2", name: "최민수", email: "2@gmail.com", username: "최최민수"),
-//            message: [
-//                Message(sender: User(id: "1", name: "김민수", email: "1@gmail.com", username: "김김민수"), message: "안녕하세요"),
-//                Message(sender: User(id: "2", name: "최민수", email: "2@gmail.com", username: "최최민수"), message: "반갑습니다"),
-//            ]
-//        ))
+        return ChatListCell(chat: Chat.chat1)
+        .environmentObject(UserViewModel())
     }
 }

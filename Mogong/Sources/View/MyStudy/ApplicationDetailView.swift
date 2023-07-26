@@ -78,13 +78,7 @@ struct ApplicationDetailView: View {
 
 struct ApplicationDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ApplicationDetailView(application: Application(
-            user: User(id: "1", name: "김민수", email: "a@gmail.com", username: "민수민수"),
-            title: "backend 지원합니다.",
-            position: .backend,
-            introduction: "안녕하세요",
-            experience: "없습니다.")
-        )
+        ApplicationDetailView(application: Application.application1)
         .environmentObject(ApplicationViewModel())
     }
 }

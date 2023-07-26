@@ -40,7 +40,7 @@ struct ApplicationListView: View {
 
 struct ApplicationListView_Previews: PreviewProvider {
     static var previews: some View {
-        ApplicationListView(user: User(id: "1", name: "김민수", email: "1@gmail.com", username: "김김민수"))
+        ApplicationListView(user: User.user1)
             .environmentObject(ApplicationViewModel())
     }
 }

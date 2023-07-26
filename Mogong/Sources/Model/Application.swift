@@ -32,3 +32,12 @@ struct Application: Identifiable, Codable {
         self.status = .pending
     }
 }
+
+extension Application {
+    static var application1 = Application(
+        user: User.user1,
+        title: "안녕하세요.",
+        position: .backend,
+        introduction: "반갑습니다.",
+        experience: "없습니다.")
+}
