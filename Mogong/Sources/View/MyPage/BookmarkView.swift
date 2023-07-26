@@ -16,17 +16,18 @@ struct BookmarkView: View {
             VStack(alignment: .leading, spacing: 20) {
                 NaviBackButton()
                 
-                HStack(spacing: 10) {
+                HStack(spacing: 12) {
                     Image(systemName: "bookmark.fill")
                         .resizable()
-                        .frame(width: 15, height: 23)
+                        .frame(width: 15, height: 21)
+                        .foregroundColor(Color(hexColor: "00C7F4"))
                     Text("스크랩한 스터디")
-                        .font(.pretendard(weight: .bold, size: 28))
+                        .font(.pretendard(weight: .bold, size: 24))
+                        .foregroundColor(Color(hexColor: "4E4E4E"))
                     Spacer()
                 }
             }
             .ignoresSafeArea()
-            .foregroundColor(Color(hexColor: "4E4E4E"))
             .padding(20)
             .background(Color(hexColor: "E8F5FF"))
             
