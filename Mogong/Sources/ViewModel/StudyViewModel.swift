@@ -34,17 +34,22 @@ class StudyViewModel: ObservableObject {
     
     @Published var frequencyOfWeek: Int = 0
     @Published var durationOfMonth: Int = 0
-    @Published var language: Language?
+    @Published var language: [Language] = []
     @Published var numberOfRecruits: Int = 0
 
-    @Published var hostPosition: Position2?
-    @Published var backendPositionInfo: PositionInfo?
-    @Published var frontendPositionInfo: PositionInfo?
-    @Published var aosPositionInfo: PositionInfo?
-    @Published var iosPositionInfo: PositionInfo?
-    @Published var designerPositionInfo: PositionInfo?
-    @Published var plannerPositionInfo: PositionInfo?
+    @Published var hostPosition: Position?
+    @Published var positionInfoBackend: PositionInfo?
+    @Published var positionInfoFrontend: PositionInfo?
+    @Published var positionInfoiOS: PositionInfo?
+    @Published var positionInfoAOS: PositionInfo?
+    @Published var positionInfoCross: PositionInfo?
+    @Published var positionInfoDesigner: PositionInfo?
+    @Published var positionInfoPlanner: PositionInfo?
     @Published var revenuePurpose: RevenuePurpose?
+    
+    var positionInfos: [PositionInfo] {
+        return [positionInfoBackend, positionInfoFrontend, positionInfoiOS, positionInfoAOS, positionInfoCross, positionInfoDesigner, positionInfoPlanner].compactMap { $0 }
+    }
     
     // MARK: - 마이스터디
     
@@ -81,7 +86,7 @@ class StudyViewModel: ObservableObject {
             .store(in: &cancellables)
     }
 
-    func isHostUser(study: Study, member: Member2) -> Bool {
+    func isHostUser(study: Study, member: Member) -> Bool {
         return study.host.id == member.user.id
     }
     
@@ -97,5 +102,9 @@ class StudyViewModel: ObservableObject {
             .filter { $0.requiredCount != 0 }
             .map { $0.position.rawValue }
             .joined(separator: " / ")
+    }
+    
+    func createStudy() {
+        // TODO: POST Study
     }
 }

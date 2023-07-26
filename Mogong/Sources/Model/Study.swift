@@ -50,11 +50,11 @@ struct Study: Identifiable, Codable {
     var revenuePurpose: RevenuePurpose?
     
     var host: User
-    var currentMembers: [Member2]
-    var createDate: Date
-    var state: StudyState
+    var currentMembers: [Member]
+    var createDate: Date = Date()
+    var state: StudyState = .recruiting
     
-    var bookMarkedUsers: [User]
+    var bookMarkedUsers: [User] = []
 }
 
 extension Study {
@@ -78,10 +78,10 @@ extension Study {
         revenuePurpose: .withRevenue,
         host: User.user1,
         currentMembers: [
-            Member2(user: User.user1, position: .backend),
-            Member2(user: User.user2, position: .ios),
-            Member2(user: User.user3, position: .backend),
-            Member2(user: User.user4, position: .designer),
+            Member(user: User.user1, position: .backend),
+            Member(user: User.user2, position: .ios),
+            Member(user: User.user3, position: .backend),
+            Member(user: User.user4, position: .designer),
         ],
         createDate: Date(),
         state: .recruiting,
@@ -117,8 +117,8 @@ extension StudyViewModel {
                 revenuePurpose: .withRevenue,
                 host: User.user2,
                 currentMembers: [
-                    Member2(user: User.user1, position: .planner),
-                    Member2(user: User.user2, position: .ios),
+                    Member(user: User.user1, position: .planner),
+                    Member(user: User.user2, position: .ios),
                 ],
                 createDate: Date(),
                 state: .recruiting,
@@ -143,8 +143,8 @@ extension StudyViewModel {
                 ],
                 host: User.user3,
                 currentMembers: [
-                    Member2(user: User.user3, position: .planner),
-                    Member2(user: User.user4, position: .ios),
+                    Member(user: User.user3, position: .planner),
+                    Member(user: User.user4, position: .ios),
                 ],
                 createDate: Date(),
                 state: .recruiting,
@@ -155,3 +155,51 @@ extension StudyViewModel {
         ]
     }
 }
+
+//mutating func addMember(_ member: Member) {
+//    if let index = requiredPositions.firstIndex(where: { $0.field == member.field }) {
+//        requiredPositions[index].currentCount += 1
+//    }
+//
+//    currentMembers.append(member)
+//}
+//
+//mutating func removeMember(_ member: Member) {
+//    if let index = requiredPositions.firstIndex(where: { $0.field == member.field }) {
+//        requiredPositions[index].currentCount -= 1
+//    }
+//
+//    if let index = currentMembers.firstIndex(where: { $0.user.id == member.user.id }) {
+//        currentMembers.remove(at: index)
+//    }
+//}
+//
+//func requiredCountForTotal() -> Int {
+//    return requiredPositions.reduce(0) { result, position in
+//        return result + position.requiredFieldCount
+//    }
+//}
+//
+//func requiredCountPerField(field: Field) -> Int {
+//    return requiredPositions.first(where: { $0.field == field })?.requiredFieldCount ?? 0
+//}
+//
+//func currentCount(field: Field) -> Int {
+//    return currentMembers.filter { $0.field == field }.count
+//}
+//
+//func requiredCountPerFieldDic() -> [Field : Int] {
+//    var dictionary = [Field : Int]()
+//
+//    requiredPositions.forEach {
+//        dictionary[$0.field] = $0.requiredFieldCount
+//    }
+//
+//    currentMembers.forEach {
+//        if let existingField = dictionary[$0.field] {
+//            dictionary[$0.field] = existingField - 1
+//        }
+//    }
+//
+//    return dictionary
+//}

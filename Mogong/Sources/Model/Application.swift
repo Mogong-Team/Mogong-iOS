@@ -17,12 +17,12 @@ struct Application: Identifiable, Codable {
     let id: String
     let user: User
     let title: String
-    let position: Position2
+    let position: Position
     let introduction: String
     let experience: String
     var status: ApplicationStatus
     
-    init(user: User, title: String, position: Position2, introduction: String, experience: String) {
+    init(user: User, title: String, position: Position, introduction: String, experience: String) {
         self.id = UUID().uuidString
         self.user = user
         self.title = title

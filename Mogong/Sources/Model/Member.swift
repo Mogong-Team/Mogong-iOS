@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct Member2: Hashable, Codable {
+struct Member: Hashable, Codable {
     let user: User
-    let position: Position2
+    let position: Position
 }
 
-extension Member2 {
-    static var member1 = Member2(user: User.user1, position: .backend)
+extension Member {
+    static var member1 = Member(user: User.user1, position: .backend)
 }
