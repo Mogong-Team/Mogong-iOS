@@ -11,35 +11,31 @@ struct TabBarView: View {
     var body: some View {
         TabView {
             NavigationStack {
-//                TempHomeView()
+                TempHomeView()
             }
             .tabItem {
-                Image(systemName: "house")
-                Text("Home")
+                Label("Home", systemImage: "house")
             }
             
             NavigationStack {
                 StudyListView()
             }
             .tabItem {
-                Image(systemName: "doc.text")
-                Text("Study List")
+                Label("Study List", systemImage: "doc.text")
             }
             
             NavigationStack {
                 MyStudyView()
             }
             .tabItem {
-                Image(systemName: "pencil")
-                Text("My Study")
+                Label("My Study", systemImage: "pencil")
             }
             
             NavigationStack {
                 UserView()
             }
             .tabItem {
-                Image(systemName: "person")
-                Text("My Page")
+                Label("My Page", systemImage: "person")
             }
         }
 //        .Style(DefaultTabBarStyle())

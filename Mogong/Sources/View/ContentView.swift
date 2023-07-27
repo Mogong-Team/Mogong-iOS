@@ -43,7 +43,6 @@ struct ContentView: View {
                             CompletedStudyView()
                             ClippyStudyView()
                         }
-                        
                         TabBarView()
                     }
                 }
