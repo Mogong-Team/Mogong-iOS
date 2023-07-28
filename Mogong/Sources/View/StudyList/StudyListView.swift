@@ -54,7 +54,7 @@ struct SelectStudyCategoryButton: View {
             Text(category.rawValue)
                 .font(.pretendard(weight: .bold, size: 14))
                 .foregroundColor(viewModel.selectedCategory == category
-                                 ? Color(hexColor: "00C7F4")
+                                 ? Color.main
                                  : Color(hexColor: "8E8E8E"))
                 .onTapGesture {
                     // TODO: GET Stduy
@@ -68,7 +68,7 @@ struct SelectStudyCategoryButton: View {
                            ? 2
                            : 1)
                     .foregroundColor(viewModel.selectedCategory == category
-                                     ? Color(hexColor: "00C7F4")
+                                     ? Color.main
                                      : Color(hexColor: "CFF6FF"))
             }
         }
@@ -99,16 +99,16 @@ struct SelectStudyStateButton: View {
             .font(.pretendard(weight: .bold, size: 14))
             .foregroundColor(viewModel.selectedState == state
                              ? .white
-                             : Color(hexColor: "00C7F4"))
+                             : Color.main)
             .background(viewModel.selectedState == state
-                        ? Color(hexColor: "00C7F4")
+                        ? Color.main
                         : .white)
             .cornerRadius(9)
             .shadow(color: Color(white: 0, opacity: 0.2), radius: 1, x: 2, y: 2)
             .overlay {
                 if viewModel.selectedState != state {
                     RoundedRectangle(cornerRadius: 9)
-                        .stroke(Color(hexColor: "00C7F4"), lineWidth: 1)
+                        .stroke(Color.main, lineWidth: 1)
                 }
             }
             .onTapGesture {
@@ -128,7 +128,7 @@ struct SelectStudyFilter: View {
     var body: some View {
         HStack {
             Image(systemName: "arrow.up.arrow.down")
-                .foregroundColor(Color(hexColor: "00C7F4"))
+                .foregroundColor(Color.main)
             Text(viewModel.isPopularFilter
                  ? "인기순"
                  : "최신순")

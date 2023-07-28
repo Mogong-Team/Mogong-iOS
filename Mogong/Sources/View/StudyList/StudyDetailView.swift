@@ -50,7 +50,7 @@ struct Introduction: View {
         VStack(alignment: .leading, spacing: 0) {
             RoundRectangleLabel(text: "1000",
                                 image: Image(systemName: "bookmark.fill"),
-                                background: Color(hexColor: "00C7F4"))
+                                background: Color.main)
             .padding(.bottom, 10)
             
             Text(viewModel.selectedStudy.title)
@@ -130,7 +130,7 @@ struct RecruitmentStateContent: View {
                     .foregroundColor(.white)
                     .padding(.vertical, 8)
                     .padding(.horizontal, 10)
-                    .background(Color(hexColor: "00C7F4"))
+                    .background(Color.main)
                     .cornerRadius(8)
             }
         }

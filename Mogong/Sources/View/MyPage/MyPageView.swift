@@ -40,7 +40,7 @@ struct UserInfo: View {
                 .frame(width: 92, height: 92)
             
             VStack(alignment: .leading) {
-                RoundRectangleText(text: "Level 1", background: Color(hexColor: "FFDA30"))
+                RoundRectangleText(text: "Level 1", background: Color.member)
                 Text(viewModel.currentUser.username)
                     .font(.pretendard(weight: .bold, size: 28))
                     .foregroundColor(Color(hexColor: "4E4E4E"))
@@ -69,7 +69,7 @@ struct UserBadge: View {
                     Image(systemName: "bookmark.fill")
                         .resizable()
                         .frame(width: 7, height: 10)
-                        .foregroundColor(Color(hexColor: "00C7F4"))
+                        .foregroundColor(Color.main)
                     Text("스크랩 스터디")
                         .font(.pretendard(weight: .semiBold, size: 12))
                         .foregroundColor(Color(hexColor: "545454"))

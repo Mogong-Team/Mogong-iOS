@@ -194,7 +194,7 @@ struct MyStudyListCell: View {
         .padding()
         .frame(width: 191, height: 191)
         .background(isSelected
-                    ? Color(hexColor: "00C7F4")
+                    ? Color.main
                     : Color(hexColor: "EAEDF4"))
         .cornerRadius(16)
     }
@@ -230,7 +230,7 @@ struct MyStudyIntroduce: View {
                     .padding()
                     .font(.pretendard(weight: .bold, size: 20))
                     .foregroundColor(.white)
-                    .background(Color(hexColor: "00C7F4"))
+                    .background(Color.main)
                     .cornerRadius(30)
                 }
             }
