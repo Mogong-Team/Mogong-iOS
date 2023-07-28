@@ -20,7 +20,7 @@ struct BookmarkView: View {
                     Image(systemName: "bookmark.fill")
                         .resizable()
                         .frame(width: 15, height: 21)
-                        .foregroundColor(Color(hexColor: "00C7F4"))
+                        .foregroundColor(Color.main)
                     Text("스크랩한 스터디")
                         .font(.pretendard(weight: .bold, size: 24))
                         .foregroundColor(Color(hexColor: "4E4E4E"))

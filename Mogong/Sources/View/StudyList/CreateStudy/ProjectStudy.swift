@@ -90,7 +90,7 @@ struct ProjectStudySelectProfitGoal: View {
                     .foregroundColor(isProfitable ? .white : Color(hexColor: "D9D9D9"))
                     .frame(maxWidth: .infinity)
                     .frame(height: 46)
-                    .background(isProfitable ? Color(hexColor: "00C7F4") : .white)
+                    .background(isProfitable ? Color.main : .white)
                     .cornerRadius(9)
                     .overlay {
                         if !isProfitable {
@@ -107,7 +107,7 @@ struct ProjectStudySelectProfitGoal: View {
                     .foregroundColor(!isProfitable ? .white : Color(hexColor: "D9D9D9"))
                     .frame(maxWidth: .infinity)
                     .frame(height: 46)
-                    .background(!isProfitable ? Color(hexColor: "00C7F4") : .white)
+                    .background(!isProfitable ? Color.main : .white)
                     .cornerRadius(9)
                     .overlay {
                         if isProfitable {

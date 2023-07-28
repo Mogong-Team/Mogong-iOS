@@ -31,7 +31,7 @@ struct StudyListCell: View {
                       : "bookmark")
                 .resizable()
                 .frame(width: 18, height: 28)
-                .foregroundColor(Color(hexColor: "00C7F4"))
+                .foregroundColor(Color.main)
                 .onTapGesture {
                     // TODO: 북마크
                     viewModel.isBookmarked.toggle()
@@ -45,7 +45,7 @@ struct StudyListCell: View {
             
             RoundRectangleLabel(text: "스터디 비기너",
                                 image: Image(systemName: "mic.fill"),
-                                background: Color(hexColor: "00C7F4"))
+                                background: Color.main)
             
             VStack(alignment: .leading, spacing: 10) {
                 CheckLabel(text: study.loaction.rawValue)

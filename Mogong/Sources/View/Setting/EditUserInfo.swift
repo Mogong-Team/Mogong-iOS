@@ -40,7 +40,7 @@ struct EditUserInfo: View {
                     .font(.pretendard(weight: .medium, size: 20))
                 TextField("닉네임 변경", text: $viewModel.currentUser.username)
                     .font(.pretendard(weight: .medium, size: 20))
-                    .foregroundColor(Color(hexColor: "00C7F4"))
+                    .foregroundColor(Color.main)
                     .multilineTextAlignment(.trailing)
             }
             .padding(20)

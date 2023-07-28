@@ -17,7 +17,7 @@ struct HashtagView: View {
                 .foregroundColor(.white)
                 .padding(.horizontal, 10)
                 .padding(.vertical, 4)
-                .background(Color(hexColor: "00C7F4"))
+                .background(Color.main)
                 .cornerRadius(16)
         }
     }

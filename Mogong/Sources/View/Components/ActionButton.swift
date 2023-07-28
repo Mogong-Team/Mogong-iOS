@@ -34,7 +34,7 @@ struct ActionButtonStyle: ButtonStyle {
             .frame(maxWidth: .infinity)
             .foregroundColor(.white)
             .background(isEnabled
-                        ? Color(hexColor: "00C7F4")
+                        ? Color.main
                         : Color(uiColor: .systemGray4))
             .cornerRadius(30)
     }
