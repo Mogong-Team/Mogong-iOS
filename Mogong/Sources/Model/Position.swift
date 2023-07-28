@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Position2: String, CaseIterable, Hashable, Codable {
+enum Position: String, CaseIterable, Hashable, Codable {
     case backend = "백엔드"
     case frontend = "프론트엔드"
     case ios = "iOS"
@@ -37,7 +37,7 @@ enum Position2: String, CaseIterable, Hashable, Codable {
 }
 
 struct PositionInfo: Hashable, Codable {
-    var position: Position2
+    var position: Position
     var requiredCount: Int = 0
     var currentCount: Int = 0
     var language: [Language] = []

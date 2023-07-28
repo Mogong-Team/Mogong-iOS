@@ -17,12 +17,12 @@ struct Application: Identifiable, Codable {
     let id: String
     let user: User
     let title: String
-    let position: Position2
+    let position: Position
     let introduction: String
     let experience: String
     var status: ApplicationStatus
     
-    init(user: User, title: String, position: Position2, introduction: String, experience: String) {
+    init(user: User, title: String, position: Position, introduction: String, experience: String) {
         self.id = UUID().uuidString
         self.user = user
         self.title = title
@@ -31,4 +31,13 @@ struct Application: Identifiable, Codable {
         self.experience = experience
         self.status = .pending
     }
+}
+
+extension Application {
+    static var application1 = Application(
+        user: User.user1,
+        title: "안녕하세요.",
+        position: .backend,
+        introduction: "반갑습니다.",
+        experience: "없습니다.")
 }

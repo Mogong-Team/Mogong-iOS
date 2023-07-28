@@ -7,6 +7,26 @@
 
 import Foundation
 
+struct Message: Identifiable, Hashable {
+    let id: String
+    var sender: User
+    let message: String
+    let timestamp: Date
+    
+    init(sender: User, message: String, timestamp: Date = Date()) {
+        self.id = UUID().uuidString
+        self.sender = sender
+        self.message = message
+        self.timestamp = timestamp
+    }
+}
+
+extension Message {
+    static var message1 = Message(sender: User.user1, message: "안녕하세요")
+    static var message2 = Message(sender: User.user2, message: "반갑습니다")
+}
+
+
 struct Chat: Identifiable, Hashable {
     let id: String
     let participant1: User
@@ -19,4 +39,14 @@ struct Chat: Identifiable, Hashable {
         self.participant2 = participant2
         self.messages = message
     }
+}
+
+extension Chat {
+    static var chat1 = Chat(
+        participant1: User.user1,
+        participant2: User.user1,
+        message: [
+            Message.message1,
+            Message.message2
+        ])
 }

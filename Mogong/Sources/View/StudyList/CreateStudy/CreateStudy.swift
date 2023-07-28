@@ -154,12 +154,12 @@ struct CreateStudy: View {
 
 struct SelectHostPositionView: View {
     @Environment(\.dismiss) var dismiss
-    @Binding var selectedHostPosition: Position2?
+    @Binding var selectedHostPosition: Position?
     
     var body: some View {
         VStack {
             VStack(spacing: 0) {
-                ForEach(Position2.allCases, id: \.self) { position in
+                ForEach(Position.allCases, id: \.self) { position in
                     Button {
                         selectedHostPosition = position
                     } label: {

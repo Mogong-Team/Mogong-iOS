@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct MemberVstack: View {
-    var member: Member2
+    var member: Member
     var isHost: Bool
     
     var body: some View {
         VStack {
             ZStack {
                 ZStack {
-                    Image(systemName: "circle.fill")
+                    Image(member.user.userimageString)
                         .resizable()
                         .frame(width: 92, height: 92)
                         .scaledToFit()
@@ -49,8 +49,8 @@ struct MemberVstack: View {
 struct MemberVstack_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            MemberVstack(member: Member2.member1, isHost: true)
-            MemberVstack(member: Member2.member1, isHost: false)
+            MemberVstack(member: Member.member1, isHost: true)
+            MemberVstack(member: Member.member1, isHost: false)
         }
     }
 }

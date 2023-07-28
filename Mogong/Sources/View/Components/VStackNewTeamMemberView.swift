@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct VStackNewTeamMemberView: View {
-    var position: Position2
+    var position: Position
     
     var body: some View {
         VStack {

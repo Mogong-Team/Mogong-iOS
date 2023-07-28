@@ -12,7 +12,7 @@ struct ChatView: View {
         
     var chat: Chat
     
-    @State private var currentUser: User = User(id: "1", name: "김민수", email: "1@gmail.com", username: "김김민수")
+    @State private var currentUser: User = User.user1
     
     @State private var message: String = ""
     
@@ -85,15 +85,6 @@ struct ChatView: View {
 
 struct ChatView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatView(chat: Chat(
-            participant1:
-                User(id: "2", name: "최민수", email: "2@gmail.com", username: "최최민수"),
-            participant2:
-                User(id: "2", name: "최민수", email: "2@gmail.com", username: "최최민수"),
-            message: [
-                Message(sender: User(id: "1", name: "김민수", email: "1@gmail.com", username: "김김민수"), message: "안녕하세요"),
-                Message(sender: User(id: "2", name: "최민수", email: "2@gmail.com", username: "최최민수"), message: "반갑습니다"),
-            ]
-        ))
+        ChatView(chat: Chat.chat1)
     }
 }

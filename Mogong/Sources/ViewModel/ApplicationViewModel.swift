@@ -13,8 +13,8 @@ class ApplicationViewModel: ObservableObject {
     let applicationService = ApplicationService.shared
     
     @Published var application =
-        Application(
-        user: User(id: "1", name: "김민수", email: "a@gmail.com", username: "민수민수"),
+    Application(
+        user: User.user1,
         title: "backend 지원합니다.",
         position: .backend,
         introduction: "안녕하세요",
@@ -22,40 +22,40 @@ class ApplicationViewModel: ObservableObject {
     
     @Published var applications = [
         Application(
-        user: User(id: "1", name: "김민수", email: "a@gmail.com", username: "민수민수"),
-        title: "backend 지원합니다.",
-        position: .backend,
-        introduction: "안녕하세요",
-        experience: "없습니다."),
+            user: User.user1,
+            title: "backend 지원합니다.",
+            position: .backend,
+            introduction: "안녕하세요",
+            experience: "없습니다."),
         
         Application(
-        user: User(id: "1", name: "김민수", email: "a@gmail.com", username: "민수민수"),
-        title: "designer 지원합니다.",
-        position: .designer,
-        introduction: "안녕하세요",
-        experience: "없습니다."),
+            user: User.user2,
+            title: "designer 지원합니다.",
+            position: .designer,
+            introduction: "안녕하세요",
+            experience: "없습니다."),
         
         Application(
-        user: User(id: "1", name: "김민수", email: "a@gmail.com", username: "민수민수"),
-        title: "frontend 지원합니다.",
-        position: .frontend,
-        introduction: "안녕하세요",
-        experience: "없습니다."),
+            user: User.user3,
+            title: "frontend 지원합니다.",
+            position: .frontend,
+            introduction: "안녕하세요",
+            experience: "없습니다."),
         
         Application(
-        user: User(id: "1", name: "김민수", email: "a@gmail.com", username: "민수민수"),
-        title: "ios 지원합니다.",
-        position: .ios,
-        introduction: "안녕하세요",
-        experience: "없습니다."),
+            user: User.user4,
+            title: "ios 지원합니다.",
+            position: .ios,
+            introduction: "안녕하세요",
+            experience: "없습니다."),
         
         Application(
-        user: User(id: "1", name: "김민수", email: "a@gmail.com", username: "민수민수"),
-        title: "aos 지원합니다.",
-        position: .aos,
-        introduction: "안녕하세요",
-        experience: "없습니다."),
-        ]
+            user: User.user5,
+            title: "aos 지원합니다.",
+            position: .aos,
+            introduction: "안녕하세요",
+            experience: "없습니다."),
+    ]
     
     var cancellables = Set<AnyCancellable>()
     

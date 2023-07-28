@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HStakTeamMemberView: View {
-    var member: Member2
+    var member: Member
     var isSelected: Bool
     var isHost: Bool
     
@@ -69,17 +69,17 @@ struct HStakTeamMemberView_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
             HStakTeamMemberView(
-                member: Member2.member1,
+                member: Member.member1,
                 isSelected: true,
                 isHost: false
             )
             HStakTeamMemberView(
-                member: Member2.member1,
+                member: Member.member1,
                 isSelected: false,
                 isHost: true
             )
             HStakTeamMemberView(
-                member: Member2.member1,
+                member: Member.member1,
                 isSelected: false,
                 isHost: false
             )

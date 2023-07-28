@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct VStakTeamMemberView: View {
-    var member: Member2
+    var member: Member
     
     var viewType: HostMemberType
     
@@ -62,8 +62,8 @@ struct VStakTeamMemberView: View {
 struct VStakTeamMemberView_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            VStakTeamMemberView(member: Member2.member1, viewType: .host)
-            VStakTeamMemberView(member: Member2.member1, viewType: .member)
+            VStakTeamMemberView(member: Member.member1, viewType: .host)
+            VStakTeamMemberView(member: Member.member1, viewType: .member)
         }
     }
 }
