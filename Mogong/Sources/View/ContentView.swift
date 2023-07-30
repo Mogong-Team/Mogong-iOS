@@ -36,14 +36,25 @@ struct ContentView: View {
         Group {
             if authViewModel.isLoggedIn {
                 NavigationView {
-                    VStack {
-                        NavigationBarView()
-                        
-                        ScrollView {
+                    TabView {
+                        VStack {
+                            NavigationBarView()
+                            
+    //                        ScrollView {
+    //                            CompletedStudyView()
+    //                            ClippyStudyView()
+    //                        }
                             CompletedStudyView()
+                                .tabItem {
+                                    Label("Home", systemImage: "house")
+                                }
                             ClippyStudyView()
+                                .tabItem {
+                                    Label("study list", systemImage: "doc.text")
+                                }
+                            
+//                            TabBarView()
                         }
-                        TabBarView()
                     }
                 }
                 

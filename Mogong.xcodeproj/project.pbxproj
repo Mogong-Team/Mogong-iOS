@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5C010B6F2A764E7D00001627 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C010B6E2A764E7D00001627 /* MainTabView.swift */; };
 		5C11C9642A53F5A500618943 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C11C9632A53F5A500618943 /* HomeView.swift */; };
 		5CFBC2FC2A5969A60021B6EC /* CompletedStudyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFBC2FB2A5969A60021B6EC /* CompletedStudyCell.swift */; };
 		5CFBC2FE2A5969B40021B6EC /* ClippyStudyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFBC2FD2A5969B40021B6EC /* ClippyStudyCell.swift */; };
@@ -99,6 +100,7 @@
 
 /* Begin PBXFileReference section */
 		43543764F7659697C75D1DC0 /* Pods_Mogong.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mogong.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C010B6E2A764E7D00001627 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		5C11C9632A53F5A500618943 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		5CFBC2FB2A5969A60021B6EC /* CompletedStudyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedStudyCell.swift; sourceTree = "<group>"; };
 		5CFBC2FD2A5969B40021B6EC /* ClippyStudyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClippyStudyCell.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 				5CFBC2FB2A5969A60021B6EC /* CompletedStudyCell.swift */,
 				5CFBC3032A596F8F0021B6EC /* NavigationBarView.swift */,
 				5CFBC3052A596FA40021B6EC /* TabBarView.swift */,
+				5C010B6E2A764E7D00001627 /* MainTabView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -682,6 +685,7 @@
 				8F8A673F2A39767200467936 /* Login.swift in Sources */,
 				8F8A675F2A3AE30900467936 /* SocialLoginView.swift in Sources */,
 				8F78DBA12A4C0B340004F195 /* StudyIntroduceView.swift in Sources */,
+				5C010B6F2A764E7D00001627 /* MainTabView.swift in Sources */,
 				8FD8C2022A4BAC6400F21DD1 /* Chat.swift in Sources */,
 				8FD8C2062A4BAF6D00F21DD1 /* Message.swift in Sources */,
 				8F8A67352A39764D00467936 /* AuthView.swift in Sources */,

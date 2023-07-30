@@ -31,7 +31,6 @@ struct MyStudyView: View {
                     studyViewModel.selectedMyStudyIndex = 0
                     // TODO: Get Study
                 }
-                TabBarView()
             }
         }
     }

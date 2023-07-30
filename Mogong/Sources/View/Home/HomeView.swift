@@ -21,7 +21,6 @@ struct HomeView: View {
                             CompletedStudyView()
                             ClippyStudyView()
                         }
-                        TabBarView()
                     }
                 }
             } else {
