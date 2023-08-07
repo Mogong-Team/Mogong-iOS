@@ -23,11 +23,11 @@ struct SelectButton: View {
         } label: {
             ZStack {
                 if state == .unselected {
-                    Color.gray
+                    Color.white
                     
                     Text(title)
                         .font(Font.system(size: 18, weight: .medium))
-                        .foregroundColor(.white)
+                        .foregroundColor(.gray)
                 } else {
                     Color.blue
                     
@@ -38,6 +38,10 @@ struct SelectButton: View {
             }
             .frame(height: 42)
             .cornerRadius(12)
+            .overlay {
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color.gray, lineWidth: 1)
+            }
         }
     }
     

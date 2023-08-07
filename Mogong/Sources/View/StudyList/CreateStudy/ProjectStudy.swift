@@ -11,55 +11,62 @@ struct ProjectStudy: View {
     @EnvironmentObject var viewModel: StudyViewModel
 
     var body: some View {
-        ScrollView(showsIndicators: false) {
-            VStack(spacing: 16) {
-                HStack {
-                    Text("나의 사용 언어")
-                    Spacer()
-                    Text("Java")
-                }
-                
-                HStack {
-                    Text("나의 포지션")
-                    Spacer()
-                    Text("프론트엔드")
-                }
-                
-                HStack {
-                    Text("모집 인원")
-                    Spacer()
-                    Text("0명")
-                }
-                
+        NavigationStack {
+            ScrollView(showsIndicators: false) {
                 VStack(spacing: 16) {
-                    ProjectStudyPositionInfo()
-                    ProjectStudyPositionInfo()
-                    ProjectStudyPositionInfo()
-                    ProjectStudyPositionInfo()
-                    ProjectStudyPositionInfo()
-                    ProjectStudyPositionInfo()
-                    ProjectStudyPositionInfo()
-                    ProjectStudyPositionInfo()
+                    HStack {
+                        Text("나의 포지션")
+                        Spacer()
+                        Text("프론트엔드")
+                    }
+                    
+                    HStack {
+                        Text("모집 인원")
+                        Spacer()
+                        Text("0명")
+                    }
+                    
+                    VStack(spacing: 16) {
+                        ProjectStudyPositionInfo(ProjectsStudyPosition: "프론트엔드")
+                        ProjectStudyPositionInfo(ProjectsStudyPosition: "백엔드")
+                        ProjectStudyPositionInfo(ProjectsStudyPosition: "AOS")
+                        ProjectStudyPositionInfo(ProjectsStudyPosition: "iOS")
+                        ProjectStudyPositionInfo(ProjectsStudyPosition: "하이브리드")
+                        ProjectStudyPositionInfo(ProjectsStudyPosition: "디자인")
+                        ProjectStudyPositionInfo(ProjectsStudyPosition: "기획")
+                        ProjectStudyPositionInfo(ProjectsStudyPosition: "기타")
+                    }
+                    ProjectStudySelectProfitGoal()
+                    Spacer()
+                    
+                    SelectButton(title: "완료", state: .selected) {
+                        // TODO: Post Study
+                    }
                 }
-                ProjectStudySelectProfitGoal()
-                Spacer()
-                
-                SelectButton(title: "완료", state: .selected) {
-                    // TODO: Post Study
+            }
+            .navigationTitle("스터디 생성: 프로젝트형")
+            .navigationBarTitleDisplayMode(.large)
+            .padding(.horizontal, 20)
+            .toolbar {
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    Image(systemName: "xmark")
+                        .foregroundColor(.black)
+                        .onTapGesture {
+                            viewModel.presentStudyDetail = false
+                        }
                 }
             }
         }
-        .navigationTitle("스터디 생성: 프로젝트형")
-        .navigationBarTitleDisplayMode(.large)
-        .padding(.horizontal, 20)
     }
 }
 
 struct ProjectStudyPositionInfo: View {
+    var ProjectsStudyPosition: String = ""
+    
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text("프론트엔드")
+                Text(ProjectsStudyPosition)
                     .font(.pretendard(weight: .bold, size: 18))
                     .foregroundColor(Color(hexColor: "727272"))
                 Text("2명 / Swift / Vue")
@@ -79,7 +86,7 @@ struct ProjectStudyPositionInfo: View {
 }
 
 struct ProjectStudySelectProfitGoal: View {
-    @State private var isProfitable: Bool = true
+    @State private var isProfitable: Bool = false
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
