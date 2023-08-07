@@ -34,9 +34,9 @@ struct RemoveMemberView: View {
                 SelectButton(title: "다음", state: selectedMember == nil ? .unselected : .selected) {
                     showRemoveReason = true
                     
-                    if let memberId = selectedMember {
-                        studyViewModel.selectedStudy.currentMembers.removeAll{ $0.user.id == memberId }
-                    }
+//                    if let memberId = selectedMember {
+//                        studyViewModel.selectedStudy.currentMembers.removeAll{ $0.user.id == memberId }
+//                    }
                 }
                 .disabled(selectedMember == nil)
             }
@@ -78,5 +78,13 @@ struct RemoveMember: View {
                 }
             }
         }
+    }
+}
+
+struct RemoveMemberView_Previews: PreviewProvider {
+    static var previews: some View {
+        RemoveMemberView()
+            .environmentObject(StudyViewModel())
+            .environmentObject(UserViewModel())
     }
 }

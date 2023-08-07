@@ -19,6 +19,7 @@ struct MyStudyView: View {
                     .padding(.horizontal, 20)
                     .padding(.top, 10)
                     .padding(.bottom, 5)
+                
                 ScrollView(showsIndicators: false) {
                     VStack {
                         MyStudyList()
@@ -31,7 +32,6 @@ struct MyStudyView: View {
                     studyViewModel.selectedMyStudyIndex = 0
                     // TODO: Get Study
                 }
-                TabBarView()
             }
         }
     }

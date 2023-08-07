@@ -110,3 +110,11 @@ struct RemoveReasonCheckButton: View {
     }
 }
             
+
+struct RemoveReasonView_Previews: PreviewProvider {
+    static var previews: some View {
+        RemoveReasonView()
+            .environmentObject(StudyViewModel())
+            .environmentObject(UserViewModel())
+    }
+}
