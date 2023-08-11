@@ -29,7 +29,7 @@ struct ActionButtonStyle: ButtonStyle {
     
     func makeBody(configuration: Configuration) -> some View {
         return configuration.label
-            .font(.system(size: 18, weight: .bold))
+            .font(.pretendard(weight: .regular, size: 18))
             .padding(.vertical, 11)
             .frame(maxWidth: .infinity)
             .foregroundColor(.white)

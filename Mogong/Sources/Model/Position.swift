@@ -42,3 +42,23 @@ struct PositionInfo: Hashable, Codable {
     var currentCount: Int = 0
     var language: [Language] = []
 }
+
+enum GeneralStudyCategory: String, CaseIterable, Hashable, Codable {
+    case backend = "백엔드"
+    case frontend = "프론트엔드"
+    case mobile = "모바일"
+    case etc = "기타"
+    
+    var language: [Language] {
+        switch self {
+        case .backend:
+            return [.python, .ruby, .go, .rust, .php, .nodejs, .spring, .django]
+        case .frontend:
+            return [.javaScript, .typescript, .react, .angular, .vue, .html, .css]
+        case .mobile:
+            return [.swift, .kotlin, .flutter, .reactNative]
+        case .etc:
+            return [.figma, .photoshop]
+        }
+    }
+}
