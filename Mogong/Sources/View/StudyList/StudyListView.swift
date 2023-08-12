@@ -11,25 +11,28 @@ struct StudyListView: View {
     @EnvironmentObject var viewModel: StudyViewModel
     
     var body: some View {
-        VStack(spacing: 0) {
-            SelectStudyCategory()
-                .padding(.horizontal, 20)
-            StudyList()
-        }
-        .toolbar {
-            ToolbarItemGroup(placement: .navigationBarLeading) {
-                Text("Mogong")
-                    .font(.title2)
-                    .fontWeight(.heavy)
+        NavigationStack {
+            VStack(spacing: 0) {
+                SelectStudyCategory()
+                    .padding(.horizontal, 20)
+                StudyList()
             }
-            
-            ToolbarItemGroup(placement: .navigationBarTrailing) {
-                NavigationLink {
-                    CreateStudy()
-                } label: {
-                    Image(systemName: "plus.circle")
-                        .foregroundColor(.black)
+            .toolbar {
+                ToolbarItemGroup(placement: .navigationBarLeading) {
+                    Text("Mogong")
+                        .font(.title2)
+                        .fontWeight(.heavy)
                 }
+                
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    Image(systemName: "plus")
+                        .onTapGesture {
+                            viewModel.presentCreateStudy = true
+                        }
+                }
+            }
+            .navigationDestination(isPresented: $viewModel.presentCreateStudy) {
+                CreateStudy()
             }
         }
     }
@@ -159,7 +162,7 @@ struct StudyList: View {
                                 viewModel.selectedStudy = study
                             }
                             .navigationDestination(isPresented: $viewModel.presentStudyDetail) {
-                                //StudyDetailView()
+                                StudyDetailView()
                             }
                     }
                 }

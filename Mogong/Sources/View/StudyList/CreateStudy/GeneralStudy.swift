@@ -12,10 +12,7 @@ struct GeneralStudy: View {
     @State private var selectedCategory: GeneralStudyCategory = .backend
         
     var body: some View {
-            VStack(alignment: .leading, spacing: 16) {
-                Text("스터디 생성 : 일반 스터디")
-                    .font(.pretendard(weight: .bold, size: 26))
-                
+            VStack {
                 ScrollView(showsIndicators: false) {
                     VStack(alignment: .leading) {
                         Text("공통 학습 분야 선택")
@@ -56,12 +53,21 @@ struct GeneralStudy: View {
                 }
                 
                 ActionButton("생성하기") {
+                    viewModel.presentCreateStudy = true
                     // TODO: Post Study
                 }
             }
-//            .navigationTitle("스터디 생성: 일반 스터디")
-//            .navigationBarTitleDisplayMode(.large)
             .padding(.horizontal, 20)
+            .navigationTitle("스터디 생성 : 일반 스터디")
+            .navigationBarTitleDisplayMode(.large)
+            .toolbar {
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    Image(systemName: "xmark")
+                        .onTapGesture {
+                            viewModel.presentCreateStudy = false
+                        }
+                }
+            }
     }
 }
 
