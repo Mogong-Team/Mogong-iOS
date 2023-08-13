@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5C11C9642A53F5A500618943 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C11C9632A53F5A500618943 /* HomeView.swift */; };
+		5C8321652A88C68F0030BFAE /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8321642A88C68F0030BFAE /* UserView.swift */; };
 		5CFBC2FC2A5969A60021B6EC /* CompletedStudyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFBC2FB2A5969A60021B6EC /* CompletedStudyCell.swift */; };
 		5CFBC2FE2A5969B40021B6EC /* ClippyStudyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFBC2FD2A5969B40021B6EC /* ClippyStudyCell.swift */; };
 		5CFBC3002A5969C80021B6EC /* ClippyStudyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFBC2FF2A5969C80021B6EC /* ClippyStudyView.swift */; };
@@ -38,7 +39,6 @@
 		8F8A673D2A39766B00467936 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A673C2A39766B00467936 /* AuthViewModel.swift */; };
 		8F8A673F2A39767200467936 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A673E2A39767200467936 /* Login.swift */; };
 		8F8A67412A39767B00467936 /* Date+Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A67402A39767B00467936 /* Date+Conversion.swift */; };
-		8F8A67432A39768700467936 /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A67422A39768700467936 /* MyPageView.swift */; };
 		8F8A67452A39773600467936 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A67442A39773600467936 /* ContentView.swift */; };
 		8F8A675F2A3AE30900467936 /* SocialLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A675E2A3AE30900467936 /* SocialLoginView.swift */; };
 		8F8A67632A3B24DF00467936 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8F8A67622A3B24DF00467936 /* GoogleService-Info.plist */; };
@@ -99,6 +99,7 @@
 /* Begin PBXFileReference section */
 		43543764F7659697C75D1DC0 /* Pods_Mogong.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mogong.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C11C9632A53F5A500618943 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		5C8321642A88C68F0030BFAE /* UserView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
 		5CFBC2FB2A5969A60021B6EC /* CompletedStudyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedStudyCell.swift; sourceTree = "<group>"; };
 		5CFBC2FD2A5969B40021B6EC /* ClippyStudyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClippyStudyCell.swift; sourceTree = "<group>"; };
 		5CFBC2FF2A5969C80021B6EC /* ClippyStudyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClippyStudyView.swift; sourceTree = "<group>"; };
@@ -131,7 +132,6 @@
 		8F8A673C2A39766B00467936 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		8F8A673E2A39767200467936 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		8F8A67402A39767B00467936 /* Date+Conversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Conversion.swift"; sourceTree = "<group>"; };
-		8F8A67422A39768700467936 /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
 		8F8A67442A39773600467936 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8F8A674D2A39D97B00467936 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F8A675A2A3ABFA200467936 /* Mogong.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Mogong.entitlements; sourceTree = "<group>"; };
@@ -248,7 +248,7 @@
 		8F7D0C0A2A52A7340073457A /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
-				8F8A67422A39768700467936 /* MyPageView.swift */,
+				5C8321642A88C68F0030BFAE /* UserView.swift */,
 				8F7D0C0E2A52A7670073457A /* BookmarkView.swift */,
 			);
 			path = MyPage;
@@ -700,6 +700,7 @@
 				8F8A672F2A39763400467936 /* Rank.swift in Sources */,
 				8FF418A72A4D7E650090FA34 /* ApplicationViewModel.swift in Sources */,
 				8F8A67372A39765700467936 /* StudyViewModel.swift in Sources */,
+				5C8321652A88C68F0030BFAE /* UserView.swift in Sources */,
 				8FEBA8662A70AFDF009275BD /* EditUserInfo.swift in Sources */,
 				8F8CA84B2A4D0CAD002E8D15 /* Font+Pretendard.swift in Sources */,
 				5CFBC2FE2A5969B40021B6EC /* ClippyStudyCell.swift in Sources */,
@@ -715,7 +716,6 @@
 				8F8A671A2A39755E00467936 /* MogongApp.swift in Sources */,
 				8FF2796C2A5BF4DB003B325F /* UserService.swift in Sources */,
 				8FE516A12A4969DA0059D720 /* StudyDetailView.swift in Sources */,
-				8F8A67432A39768700467936 /* MyPageView.swift in Sources */,
 				8F8CA8592A4D5D65002E8D15 /* MyStudyDetailView.swift in Sources */,
 				8F03149F2A6E5B59001C430A /* ActionButton.swift in Sources */,
 			);
