@@ -9,14 +9,13 @@ import SwiftUI
 
 struct SettingView: View {
     @EnvironmentObject var viewModel: UserViewModel
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
     
     @State private var username = "민수민수"
     @State private var changeUsername: Bool = false
     @FocusState var focuseUsername: Bool
     
     var body: some View {
-        NavigationView {
             VStack(spacing: 20) {
                 Spacer().frame(height: 30)
                 NavigationLink {
@@ -74,13 +73,14 @@ struct SettingView: View {
             .padding(.horizontal, 20)
             .navigationBarTitle("설정", displayMode: .large)
             .navigationBarTitleDisplayMode(.inline)
-            .navigationBarItems(trailing: Button(action: {
-                presentationMode.wrappedValue.dismiss() // 모달 닫기
-            }) {
-                Image(systemName: "xmark")
-                    .foregroundColor(.black)
-            })
-        }
+            .navigationBarBackButtonHidden()
+            .navigationBarItems(trailing:
+                                    Image(systemName: "xmark")
+                .foregroundColor(.black)
+                .onTapGesture {
+                    dismiss()
+                }
+            )
     }
 }
 

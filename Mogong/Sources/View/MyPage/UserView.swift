@@ -12,29 +12,24 @@ struct UserView: View {
     @State private var showingSettings = false
     
     var body: some View {
-        NavigationView {
             VStack(alignment: .leading) {
                 UserInfo()
                     .padding(.bottom, 20)
                 UserBadge()
-                
-                TabBarView()
             }
             .padding(.horizontal, 20)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        showingSettings.toggle()
-                    }) {
-                        Image(systemName: "gearshape.fill")
-                    }
+                    Image("setting")
+                        .onTapGesture {
+                            showingSettings = true
+                        }
                 }
             }
-            .sheet(isPresented: $showingSettings) {
+            .navigationDestination(isPresented: $showingSettings) {
                 SettingView()
             }
         }
-    }
 }
 
 struct UserInfo: View {
@@ -97,6 +92,7 @@ struct UserInfo: View {
             ImagePicker(selectedImage: $inputImage)
         }
     }
+    
     func loadImage() {
         guard let inputImage = inputImage else { return }
         image = Image(uiImage: inputImage)
@@ -206,10 +202,6 @@ struct Badge: View {
         }
     }
 }
-
-
-
-
 
 struct UserView_Previews: PreviewProvider {
     static var previews: some View {
