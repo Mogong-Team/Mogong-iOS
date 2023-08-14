@@ -9,63 +9,78 @@ import SwiftUI
 
 struct SettingView: View {
     @EnvironmentObject var viewModel: UserViewModel
+    @Environment(\.presentationMode) var presentationMode
     
     @State private var username = "민수민수"
     @State private var changeUsername: Bool = false
     @FocusState var focuseUsername: Bool
     
     var body: some View {
-        VStack(spacing: 20) {
-            NavigationLink {
-                EditUserInfo()
-            } label: {
-                rightArrowLabel(title: "프로필 수정")
-            }
-            Divider()
-            
+        NavigationView {
             VStack(spacing: 20) {
+                Spacer().frame(height: 30)
                 NavigationLink {
-                    
+//                    EditUserInfo()
                 } label: {
-                    rightArrowLabel(title: "서비스 이용약관")
-                }
-                Divider()
-                
-                NavigationLink {
-                    
-                } label: {
-                    rightArrowLabel(title: "개인정보 처리방침")
-                }
-                Divider()
-                
-                HStack {
-                    Text("앱 버전")
-                        .font(.pretendard(weight: .bold, size: 18))
-                    Spacer()
-                    Text("1.0")
-                        .font(.pretendard(weight: .regular, size: 18))
-                }
-                Divider()
-            }
-            
-            HStack {
-                Text("로그아웃")
-                    .onTapGesture {
-                        // TODO: Logout User
+//                    rightArrowLabel(title: "닉네임")
+                    HStack {
+                        Text("닉네임")
+                            .font(.pretendard(weight: .bold, size: 18))
+                            .foregroundColor(.black)
+                        Spacer()
+                        Text("\(username)")
+                            .foregroundColor(.black)
+                        Image(systemName: "chevron.right")
+                            .foregroundColor(.black)
                     }
+                }
+                Divider()
+                
+                VStack(spacing: 20) {
+                    NavigationLink {
+                        
+                    } label: {
+                        rightArrowLabel(title: "서비스 이용약관")
+                    }
+                    Divider()
+                    
+                    NavigationLink {
+                        
+                    } label: {
+                        rightArrowLabel(title: "개인정보 처리방침")
+                    }
+                    Divider()
+                    
+                    HStack {
+                        Text("앱 버전")
+                            .font(.pretendard(weight: .bold, size: 18))
+                        Spacer()
+                        Text("1.0")
+                            .font(.pretendard(weight: .regular, size: 18))
+                    }
+                    Divider()
+                }
                 Spacer()
-                Text("탈퇴하기")
-                    .foregroundColor(.red)
-                    .onTapGesture {
-                        // TODO: delete User
-                    }
+        
+                HStack {
+                    Text("탈퇴하기")
+                        .foregroundColor(.red)
+                        .onTapGesture {
+                            // TODO: delete User
+                        }
+                }
+                Spacer()
             }
-            
-            Spacer()
+            .padding(.horizontal, 20)
+            .navigationBarTitle("설정", displayMode: .large)
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarItems(trailing: Button(action: {
+                presentationMode.wrappedValue.dismiss() // 모달 닫기
+            }) {
+                Image(systemName: "xmark")
+                    .foregroundColor(.black)
+            })
         }
-        .padding(.horizontal, 20)
-        .navigationTitle("설정")
-        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
