@@ -162,7 +162,7 @@ struct UserBadge: View {
                         .font(.pretendard(weight: .semiBold, size: 12))
                         .foregroundColor(Color(hexColor: "545454"))
                         .onTapGesture {
-                            presentBookmarkView = true
+                            presentBookmarkView.toggle()
                         }
                 }
                 .padding(.horizontal, 15)
