@@ -11,42 +11,38 @@ struct StudyListView: View {
     @EnvironmentObject var viewModel: StudyViewModel
     
     var body: some View {
-        NavigationStack {
-            VStack(spacing: 0) {
-                SelectStudyCategory()
-                    .padding(.horizontal, 20)
-                    .padding(.top, 10)
-                StudyList()
+        VStack(spacing: 0) {
+            SelectStudyCategory()
+                .padding(.horizontal, 20)
+                .padding(.top, 10)
+            StudyList()
+        }
+        .toolbar {
+            ToolbarItemGroup(placement: .navigationBarLeading) {
+                Image("nav_mogongLogo")
             }
-            .toolbar {
-                ToolbarItemGroup(placement: .navigationBarLeading) {
-                    Image("nav_mogongLogo")
+            
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                NavigationLink {
+                    ChatListView()
+                } label: {
+                    Image("message")
                 }
-                
-                ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    NavigationLink {
-                        ChatListView()
-                    } label: {
-                        Image("message")
-                    }
-                    
-                    NavigationLink {
-                        AlarmView()
-                    } label: {
-                        Image("add")
-                    }
 
-                    NavigationLink {
-                        AlarmView()
-                    } label: {
-                        Image("bell_unalarmed")
-                        //TODO: 알람왔을 떄 아이콘 변경
+                Image("add")
+                    .onTapGesture {
+                        viewModel.presentCreateStudy = true
                     }
+                
+                NavigationLink {
+                    SearchStudyView()
+                } label: {
+                    Image("search")
                 }
             }
-            .navigationDestination(isPresented: $viewModel.presentCreateStudy) {
-                CreateStudy()
-            }
+        }
+        .navigationDestination(isPresented: $viewModel.presentCreateStudy) {
+            CreateStudy()
         }
     }
 }
@@ -174,9 +170,6 @@ struct StudyList: View {
                                 viewModel.presentStudyDetail = true
                                 viewModel.selectedStudy = study
                             }
-                            .navigationDestination(isPresented: $viewModel.presentStudyDetail) {
-                                StudyDetailView()
-                            }
                     }
                 }
                 .padding(.horizontal, 20)
@@ -186,12 +179,15 @@ struct StudyList: View {
                 proxy.scrollTo(1, anchor: .top)
             }
         }
+        .navigationDestination(isPresented: $viewModel.presentStudyDetail) {
+            StudyDetailView()
+        }
     }
 }
 
 struct StudyListView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
+        NavigationStack {
             StudyListView()
                 .environmentObject(StudyViewModel())
         }

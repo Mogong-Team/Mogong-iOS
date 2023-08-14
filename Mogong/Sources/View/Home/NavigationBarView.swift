@@ -28,8 +28,8 @@ struct NavigationBarView: View {
                 NavigationLink {
                     AlarmView()
                 } label: {
-                    Image(systemName: "bell")
-                        .tint(.black)
+                    Image("bell_unalarmed")
+                    //TODO: 알람왔을 떄 아이콘 변경
                 }
             }
         }

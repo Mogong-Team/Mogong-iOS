@@ -34,10 +34,47 @@ struct Application: Identifiable, Codable {
 }
 
 extension Application {
-    static var application1 = Application(
+    static var application = Application(
         user: User.user1,
         title: "안녕하세요.",
         position: .backend,
         introduction: "반갑습니다.",
         experience: "없습니다.")
+    
+    static var applications = [
+        Application(
+            user: User.user1,
+            title: "backend 지원합니다.",
+            position: .backend,
+            introduction: "안녕하세요",
+            experience: "없습니다."),
+        
+        Application(
+            user: User.user2,
+            title: "designer 지원합니다.",
+            position: .designer,
+            introduction: "안녕하세요",
+            experience: "없습니다."),
+        
+        Application(
+            user: User.user3,
+            title: "frontend 지원합니다.",
+            position: .frontend,
+            introduction: "안녕하세요",
+            experience: "없습니다."),
+        
+        Application(
+            user: User.user4,
+            title: "ios 지원합니다.",
+            position: .ios,
+            introduction: "안녕하세요",
+            experience: "없습니다."),
+        
+        Application(
+            user: User.user5,
+            title: "aos 지원합니다.",
+            position: .aos,
+            introduction: "안녕하세요",
+            experience: "없습니다."),
+    ]
 }

@@ -17,48 +17,47 @@ struct ChatListView: View {
         VStack {
             messagesView
         }
+        .navigationTitle("메세지")
+        .navigationBarTitleDisplayMode(.inline)
     }
     
     private var messagesView: some View {
-        NavigationView {
-            List {
-                ForEach(viewModel.chats, id: \.self) { chat in
-                    HStack(spacing: 16) {
-                        Image(systemName: "person.fill")
-                            .font(.system(size: 32))
-                            .padding(8)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 44)
-                                    .stroke(Color(.label), lineWidth: 1)
-                            )
-                        
-                        VStack(alignment: .leading) {
-                            Text(viewModel.user1.username)
-                                .font(.system(size: 16, weight: .bold))
-                            Text("Hiiii")
-                                .font(.system(size: 14))
-                                .foregroundColor(Color(.lightGray))
-                        }
-                        Spacer()
-                        
-                        Text("10:30")
-                            .font(.system(size: 14, weight: .semibold))
+        List {
+            ForEach(viewModel.chats, id: \.self) { chat in
+                HStack(spacing: 16) {
+                    Image(systemName: "person.fill")
+                        .font(.system(size: 32))
+                        .padding(8)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 44)
+                                .stroke(Color(.label), lineWidth: 1)
+                        )
+                    
+                    VStack(alignment: .leading) {
+                        Text(viewModel.user1.username)
+                            .font(.system(size: 16, weight: .bold))
+                        Text("Hiiii")
+                            .font(.system(size: 14))
                             .foregroundColor(Color(.lightGray))
                     }
-                    .padding(.vertical, 8)
-                    .swipeActions {
-                        Button(action: {
-//                            deleteChatRecord(chatRecord)
-                        }, label: {
-                            Text("나가기")
-                        })
-                        .tint(.red)
-                    }
+                    Spacer()
+                    
+                    Text("10:30")
+                        .font(.system(size: 14, weight: .semibold))
+                        .foregroundColor(Color(.lightGray))
+                }
+                .padding(.vertical, 8)
+                .swipeActions {
+                    Button(action: {
+                        //                            deleteChatRecord(chatRecord)
+                    }, label: {
+                        Text("나가기")
+                    })
+                    .tint(.red)
                 }
             }
-            .listStyle(.plain)
-            .navigationBarHidden(true)
         }
+        .listStyle(.plain)
     }
 
         
@@ -84,9 +83,11 @@ struct ChatListView: View {
 
 struct ChatListView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatListView()
-            .environmentObject(ChatViewModel())
-            .environmentObject(UserViewModel())
+        NavigationStack {
+            ChatListView()
+                .environmentObject(ChatViewModel())
+                .environmentObject(UserViewModel())
+        }
     }
 }
 

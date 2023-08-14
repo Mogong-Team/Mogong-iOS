@@ -23,6 +23,11 @@ class StudyViewModel: ObservableObject {
     @Published var presentStudyDetail: Bool = false
     @Published var presentCreateStudy: Bool = false
     
+    // MARK: - 스터디 상세
+    
+    @Published var presentApplicationStudy: Bool = false
+    @Published var presentTest: Bool = false
+    
     // MARK: - 스터디 생성
     
     @Published var category: StudyCategory?
