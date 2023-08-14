@@ -12,25 +12,42 @@ struct MyStudyView: View {
     @EnvironmentObject var userViewModel: UserViewModel
     
     var body: some View {
-        NavigationView {
-            VStack {
-                NavigationBarView()
-                SelectState()
-                    .padding(.horizontal, 20)
-                    .padding(.top, 10)
-                    .padding(.bottom, 5)
-                
-                ScrollView(showsIndicators: false) {
-                    VStack {
-                        MyStudyList()
-                    }
-                    .padding(.top, 10)
-                    .padding(.bottom, 20)
+        VStack {
+            SelectState()
+                .padding(.horizontal, 20)
+                .padding(.top, 20)
+                .padding(.bottom, 5)
+            
+            ScrollView(showsIndicators: false) {
+                VStack {
+                    MyStudyList()
                 }
-                .onAppear {
-                    studyViewModel.selectedMyStudyStateIsEnded = false
-                    studyViewModel.selectedMyStudyIndex = 0
-                    // TODO: Get Study
+                .padding(.top, 10)
+                .padding(.bottom, 20)
+            }
+            .onAppear {
+                studyViewModel.selectedMyStudyStateIsEnded = false
+                studyViewModel.selectedMyStudyIndex = 0
+                // TODO: Get Study
+            }
+        }
+        .toolbar {
+            ToolbarItemGroup(placement: .navigationBarLeading) {
+                Image("nav_mogongLogo")
+            }
+            
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                NavigationLink {
+                    ChatListView()
+                } label: {
+                    Image("message")
+                }
+
+                NavigationLink {
+                    AlarmView()
+                } label: {
+                    Image("bell_unalarmed")
+                    //TODO: 알람왔을 떄 아이콘 변경
                 }
             }
         }
@@ -325,9 +342,11 @@ struct MyStudyEmptyView: View {
 
 struct MyStudyView_Previews: PreviewProvider {
     static var previews: some View {
-        MyStudyView()
-            .environmentObject(UserViewModel())
-            .environmentObject(StudyViewModel())
+        NavigationStack {
+            MyStudyView()
+                .environmentObject(UserViewModel())
+                .environmentObject(StudyViewModel())
+        }
     }
 }
 

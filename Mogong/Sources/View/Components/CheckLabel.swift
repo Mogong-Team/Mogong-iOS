@@ -23,3 +23,11 @@ struct CheckLabel: View {
         }
     }
 }
+
+struct CheckLabel_Previews: PreviewProvider {
+    static var previews: some View {
+        VStack {
+            CheckLabel(text: "안녕하세요.")
+        }
+    }
+}

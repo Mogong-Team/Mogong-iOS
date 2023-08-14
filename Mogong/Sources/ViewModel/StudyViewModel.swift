@@ -21,6 +21,7 @@ class StudyViewModel: ObservableObject {
     @Published var isPopularFilter: Bool = true
     @Published var isBookmarked: Bool = false
     @Published var presentStudyDetail: Bool = false
+    @Published var presentCreateStudy: Bool = false
     
     // MARK: - 스터디 생성
     

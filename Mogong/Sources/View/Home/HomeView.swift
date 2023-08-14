@@ -8,28 +8,15 @@
 import SwiftUI
 
 struct HomeView: View {
-    @EnvironmentObject var authViewModel: AuthViewModel
     
     var body: some View {
-        Group {
-            if authViewModel.isLoggedIn {
-                NavigationView {
-                    VStack {
-                        NavigationBarView()
-                        
-                        ScrollView {
-                            CompletedStudyView()
-                            ClippyStudyView()
-                        }
-                        TabBarView()
-                    }
-                }
-            } else {
-                AuthView()
+        VStack {
+            NavigationBarView()
+            
+            ScrollView {
+                CompletedStudyView()
+                ClippyStudyView()
             }
-        }
-        .onAppear {
-            authViewModel.checkIfLoggedIn()
         }
     }
 }
@@ -37,10 +24,6 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
-            .environmentObject(AuthViewModel())
-            .environmentObject(StudyViewModel())
-            .environmentObject(RankViewModel())
-            .environmentObject(UserViewModel())
     }
 }
 

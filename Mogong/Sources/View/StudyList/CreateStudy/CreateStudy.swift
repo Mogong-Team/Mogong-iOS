@@ -17,7 +17,6 @@ struct CreateStudy: View {
     @State private var showProjectStudy = false
     
     var body: some View {
-        NavigationStack {
             ScrollView(showsIndicators: false) {
                 VStack (spacing: 50) {
                     VStack(alignment: .leading, spacing: 10) {
@@ -130,6 +129,7 @@ struct CreateStudy: View {
             }
             .padding(.horizontal, 20)
             .navigationTitle("스터디 생성")
+            .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Image(systemName: "xmark")
@@ -151,7 +151,6 @@ struct CreateStudy: View {
             .navigationDestination(isPresented: $showProjectStudy, destination: {
                 ProjectStudy()
         })
-        }
     }
 }
 

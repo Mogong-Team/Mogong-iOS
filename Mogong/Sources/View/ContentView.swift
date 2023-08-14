@@ -35,19 +35,7 @@ struct ContentView: View {
     var body: some View {
         Group {
             if authViewModel.isLoggedIn {
-                NavigationView {
-                    VStack {
-                        NavigationBarView()
-                        
-                        ScrollView {
-                            CompletedStudyView()
-                            ClippyStudyView()
-                        }
-                        
-                        TabBarView()
-                    }
-                }
-                
+                TabBar()
             } else {
                 AuthView()
             }
@@ -55,6 +43,67 @@ struct ContentView: View {
         .onAppear {
             authViewModel.checkIfLoggedIn()
         }
+    }
+}
+
+struct TabBar: View {
+    @State private var selectedTab = 0
+    
+    var body: some View {
+        TabView(selection: $selectedTab) {
+            NavigationStack {
+                HomeView()
+            }
+            .tabItem {
+                if selectedTab == 0 {
+                    Image("home_selected")
+                } else {
+                    Image("home_unselected")
+                }
+                Text("Home")
+            }
+            .tag(0)
+            
+            NavigationStack {
+                StudyListView()
+            }
+            .tabItem {
+                if selectedTab == 1 {
+                    Image("studylist_selected")
+                } else {
+                    Image("studylist_unselected")
+                }
+                Text("Study List")
+            }
+            .tag(1)
+            
+            NavigationStack {
+                MyStudyView()
+            }
+            .tabItem {
+                if selectedTab == 2 {
+                    Image("mystudy_selected")
+                } else {
+                    Image("mystudy_unselected")
+                }
+                Text("My Study")
+            }
+            .tag(2)
+            
+            NavigationStack {
+                UserView()
+            }
+            .tabItem {
+                if selectedTab == 3 {
+                    Image("mypage_selected")
+                } else {
+                    Image("mypage_unselected")
+                }
+                Text("Setting")
+            }
+            .tag(3)
+        }
+        .accentColor(Color.main)
     }
 }
 

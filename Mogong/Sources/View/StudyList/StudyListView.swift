@@ -11,25 +11,41 @@ struct StudyListView: View {
     @EnvironmentObject var viewModel: StudyViewModel
     
     var body: some View {
-        VStack(spacing: 0) {
-            SelectStudyCategory()
-                .padding(.horizontal, 20)
-            StudyList()
-        }
-        .toolbar {
-            ToolbarItemGroup(placement: .navigationBarLeading) {
-                Text("Mogong")
-                    .font(.title2)
-                    .fontWeight(.heavy)
+        NavigationStack {
+            VStack(spacing: 0) {
+                SelectStudyCategory()
+                    .padding(.horizontal, 20)
+                    .padding(.top, 10)
+                StudyList()
             }
-            
-            ToolbarItemGroup(placement: .navigationBarTrailing) {
-                NavigationLink {
-                    CreateStudy()
-                } label: {
-                    Image(systemName: "plus.circle")
-                        .foregroundColor(.black)
+            .toolbar {
+                ToolbarItemGroup(placement: .navigationBarLeading) {
+                    Image("nav_mogongLogo")
                 }
+                
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    NavigationLink {
+                        ChatListView()
+                    } label: {
+                        Image("message")
+                    }
+                    
+                    NavigationLink {
+                        AlarmView()
+                    } label: {
+                        Image("add")
+                    }
+
+                    NavigationLink {
+                        AlarmView()
+                    } label: {
+                        Image("bell_unalarmed")
+                        //TODO: 알람왔을 떄 아이콘 변경
+                    }
+                }
+            }
+            .navigationDestination(isPresented: $viewModel.presentCreateStudy) {
+                CreateStudy()
             }
         }
     }
@@ -159,7 +175,7 @@ struct StudyList: View {
                                 viewModel.selectedStudy = study
                             }
                             .navigationDestination(isPresented: $viewModel.presentStudyDetail) {
-                                //StudyDetailView()
+                                StudyDetailView()
                             }
                     }
                 }
