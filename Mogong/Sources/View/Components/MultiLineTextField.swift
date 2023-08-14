@@ -15,7 +15,7 @@ struct MultiLineTextField: View {
         VStack {
             TextEditor(text: $text)
                 .font(.body)
-                .padding(.horizontal, 13)
+                .padding(.horizontal, 6)
                 .overlay(
                     RoundedRectangle(cornerRadius: 9)
                         .stroke(Color.gray, lineWidth: 1)

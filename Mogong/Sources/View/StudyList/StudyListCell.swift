@@ -33,7 +33,7 @@ struct StudyListCell: View {
                 .frame(width: 18, height: 28)
                 .foregroundColor(Color.main)
                 .onTapGesture {
-                    // TODO: 북마크
+                    // TODO: Post Bookmark
                     viewModel.isBookmarked.toggle()
                 }
             }

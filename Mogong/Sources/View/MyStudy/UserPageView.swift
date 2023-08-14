@@ -21,11 +21,11 @@ struct UserPageView: View {
                 .foregroundColor(.gray)
                 .padding(.top, 40)
             
-            Text(viewModel.application.user.username)
+            Text(Application.application.user.username)
                 .font(Font.system(size: 28, weight: .bold))
                 .foregroundColor(.black)
             
-            Text(viewModel.application.position.rawValue)
+            Text(Application.application.position.rawValue)
                 .font(Font.system(size: 16, weight: .regular))
                 .foregroundColor(.gray)
                 .padding(.bottom, 50)
@@ -38,7 +38,7 @@ struct UserPageView: View {
                     Spacer()
                         .frame(height: 15)
                     
-                    Text(viewModel.application.introduction)
+                    Text(Application.application.introduction)
                     
                     
                     Spacer()
@@ -47,7 +47,7 @@ struct UserPageView: View {
                     Text("프로젝트 경험 여부")
                         .font(.pretendard(weight: .bold, size: 20))
                     
-                    Text(viewModel.application.experience)
+                    Text(Application.application.experience)
                 }
                 
                 Spacer()

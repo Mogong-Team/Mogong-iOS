@@ -11,7 +11,6 @@ struct ProjectStudy: View {
     @EnvironmentObject var viewModel: StudyViewModel
 
     var body: some View {
-        NavigationStack {
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 16) {
                     HStack {
@@ -57,7 +56,6 @@ struct ProjectStudy: View {
                 }
             }
         }
-    }
 }
 
 struct ProjectStudyPositionInfo: View {
@@ -132,6 +130,8 @@ struct ProjectStudySelectProfitGoal: View {
 
 struct ProjectStudy_Previews: PreviewProvider {
     static var previews: some View {
-        ProjectStudy()
+        NavigationStack {
+            ProjectStudy()
+        }
     }
 }

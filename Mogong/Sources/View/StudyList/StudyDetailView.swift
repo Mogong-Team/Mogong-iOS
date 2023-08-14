@@ -9,35 +9,31 @@ import SwiftUI
 
 struct StudyDetailView: View {
     @EnvironmentObject var viewModel: StudyViewModel
-    @State private var isPresented: Bool = false
     
     var body: some View {
-        ScrollView(showsIndicators: false) {
-            VStack(spacing: 20 ){
-                Introduction()
-                InfinityRectangleText(title: "프로젝트 소개",
-                                      content: viewModel.selectedStudy.introduction)
-                InfinityRectangleText(title: "이런 분을 모셔요!",
-                                      content: viewModel.selectedStudy.memberPreference)
-                InfinityRectangleText(title: "스터디 최종 목표",
-                                      content: viewModel.selectedStudy.goal)
-                CurrentMember()
-                ActionButton("지원서 쓰러가기") {
-                    isPresented = true
-                }
-                .padding(.horizontal, 20)
-            }
-        }
-        .toolbar {
-            ToolbarItemGroup(placement: .navigationBarTrailing) {
-                Image(systemName: "xmark")
-                    .foregroundColor(.black)
-                    .onTapGesture {
-                        viewModel.presentStudyDetail = false
+        ScrollViewReader { proxy in 
+            ScrollView(showsIndicators: false) {
+                VStack(spacing: 20 ){
+                    Introduction()
+                    InfinityRectangleText(title: "프로젝트 소개",
+                                          content: viewModel.selectedStudy.introduction)
+                    InfinityRectangleText(title: "이런 분을 모셔요!",
+                                          content: viewModel.selectedStudy.memberPreference)
+                    InfinityRectangleText(title: "스터디 최종 목표",
+                                          content: viewModel.selectedStudy.goal)
+                    CurrentMember()
+                    ActionButton("지원서 쓰러가기") {
+                        viewModel.presentApplicationStudy = true
                     }
+                    .padding(.horizontal, 20)
+                }
+                .id(1)
+            }
+            .onAppear {
+                proxy.scrollTo(1, anchor: .top)
             }
         }
-        .navigationDestination(isPresented: $isPresented) {
+        .navigationDestination(isPresented: $viewModel.presentApplicationStudy) {
             ApplicationView()
         }
     }
@@ -48,6 +44,7 @@ struct Introduction: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
+            //TODO: 북마크 api
             RoundRectangleLabel(text: "1000",
                                 image: Image(systemName: "bookmark.fill"),
                                 background: Color.main)
@@ -102,7 +99,7 @@ struct RecruitmentState: View {
     var body: some View {
         VStack(spacing: 20) {
             ForEach(viewModel.selectedStudy.positionInfos, id: \.self) { position in
-                RecruitmentStateContent(position: position.position.rawValue,
+                RecruitmentStateContent(position: position.position,
                                         currnet: position.currentCount,
                                         required: position.requiredCount)
             }
@@ -111,28 +108,30 @@ struct RecruitmentState: View {
 }
 
 struct RecruitmentStateContent: View {
-    var position: String
+    @EnvironmentObject var viewModel: StudyViewModel
+    @EnvironmentObject var applicationViewModel: ApplicationViewModel
+    var position: Position
     var currnet: Int
     var required: Int
     
     var body: some View {
         HStack {
-            Text(position)
+            Text(position.rawValue)
                 .font(.pretendard(weight: .bold, size: 16))
             Spacer()
             Text("\(currnet) / \(required)")
                 .font(.pretendard(weight: .semiBold, size: 20))
-            NavigationLink {
-                ApplicationView()
-            } label: {
-                Text("지원하기")
-                    .font(.pretendard(weight: .semiBold, size: 16))
-                    .foregroundColor(.white)
-                    .padding(.vertical, 8)
-                    .padding(.horizontal, 10)
-                    .background(Color.main)
-                    .cornerRadius(8)
-            }
+            Text("지원하기")
+                .font(.pretendard(weight: .semiBold, size: 16))
+                .foregroundColor(.white)
+                .padding(.vertical, 8)
+                .padding(.horizontal, 10)
+                .background(Color.main)
+                .cornerRadius(8)
+                .onTapGesture {
+                    viewModel.presentApplicationStudy = true
+                    applicationViewModel.position = position
+                }
         }
     }
 }
@@ -201,6 +200,7 @@ struct StudyDeatailView_Previews: PreviewProvider {
         NavigationStack {
             StudyDetailView()
                 .environmentObject(StudyViewModel())
+                .environmentObject(ApplicationViewModel())
         }
     }
 }
