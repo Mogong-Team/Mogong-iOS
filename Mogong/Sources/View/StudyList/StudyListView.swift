@@ -15,20 +15,28 @@ struct StudyListView: View {
             VStack(spacing: 0) {
                 SelectStudyCategory()
                     .padding(.horizontal, 20)
+                    .padding(.top, 10)
                 StudyList()
             }
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
-                    Text("Mogong")
-                        .font(.title2)
-                        .fontWeight(.heavy)
+                    Image("nav_mogongLogo")
                 }
                 
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    Image(systemName: "plus")
-                        .onTapGesture {
-                            viewModel.presentCreateStudy = true
-                        }
+                    NavigationLink {
+                        ChatListView()
+                    } label: {
+                        Image(systemName: "paperplane")
+                            .tint(.black)
+                    }
+                    
+                    NavigationLink {
+                        AlarmView()
+                    } label: {
+                        Image(systemName: "bell")
+                            .tint(.black)
+                    }
                 }
             }
             .navigationDestination(isPresented: $viewModel.presentCreateStudy) {
