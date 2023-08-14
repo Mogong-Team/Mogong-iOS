@@ -27,15 +27,20 @@ struct StudyListView: View {
                     NavigationLink {
                         ChatListView()
                     } label: {
-                        Image(systemName: "paperplane")
-                            .tint(.black)
+                        Image("message")
                     }
                     
                     NavigationLink {
                         AlarmView()
                     } label: {
-                        Image(systemName: "bell")
-                            .tint(.black)
+                        Image("add")
+                    }
+
+                    NavigationLink {
+                        AlarmView()
+                    } label: {
+                        Image("bell_unalarmed")
+                        //TODO: 알람왔을 떄 아이콘 변경
                     }
                 }
             }
