@@ -35,6 +35,10 @@ class AuthViewModel: NSObject, ObservableObject  {
         let newLogin = Login(name: name, email: email)
         self.loginData = newLogin
     }
+    
+    func resetUsername() {
+        username = ""
+    }
 }
 
 // MARK: - 카카오 로그인 extension
