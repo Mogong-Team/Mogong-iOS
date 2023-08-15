@@ -13,31 +13,47 @@ struct AuthView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Image("mogongLogo")
-                    .padding(20)
+                HStack {
+                    Spacer()
+                    Text("둘러보기")
+                        .font(.body)
+                        .foregroundColor(.gray)
+                    Spacer()
+                        .frame(maxWidth: 50)
+                }
                 
-                Image("LoginMainImg")
-                    .frame(width: 130, height: 200)
+                Text("Mogong")
+                    .font(.title)
                 
-                VStack(spacing: 10) {
+                VStack {
                     Text("지금 모공과 함께\n스터디를 시작하세요!")
                         .font(.title2)
                         .fontWeight(.bold)
                         .multilineTextAlignment(.center)
-                        
                     
                     Text("책임감 있는 팀원들을 만나봐요!")
                         .font(.body)
                         .foregroundColor(.gray)
                 }
-                .padding(30)
+                .padding()
                 
                 Text("3초만에 로그인하기")
+                    .font(.body)
                     .fontWeight(.bold)
-                    .padding(.top, 10)
                 
-                SocialLoginView()
+                SocialLogin()
                     .padding()
+                
+                NavigationLink {
+                    
+                } label: {
+                    Text("문의하기")
+                        .font(.body)
+                        .foregroundColor(.gray)
+                }
+                
+                Text("이메일: \(viewModel.loginData.email)")
+                Text("이름: \(viewModel.loginData.name)")
             }
             .navigationBarHidden(true)
             .accentColor(.red)
@@ -48,15 +64,6 @@ struct AuthView: View {
 struct AuthView_Previews: PreviewProvider {
     static var previews: some View {
         AuthView()
+            .environmentObject(AuthViewModel())
     }
 }
-
-
-// 피그마에는 없어서 일단 주석처리
-//                NavigationLink {
-//
-//                } label: {
-//                    Text("문의하기")
-//                        .font(.body)
-//                        .foregroundColor(.gray)
-//                }
