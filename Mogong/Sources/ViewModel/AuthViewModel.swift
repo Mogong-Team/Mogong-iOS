@@ -17,6 +17,9 @@ import GoogleSignInSwift
 import AuthenticationServices
 
 class AuthViewModel: NSObject, ObservableObject  {
+    @Published var username: String = ""
+    @Published var isUsernameAvailable: Bool?
+    
     @Published var loginData = Login(name: "실패", email: "실패")
     @Published var isLoggedIn: Bool = false
     
