@@ -32,7 +32,7 @@ struct UsernameView: View {
                 .font(.pretendard(weight: .bold, size: 32))
                 .foregroundColor(Color(hexColor: "494949"))
                 .lineSpacing(5)
-                .padding(.top, 150)
+                .padding(.top, 120)
                 .padding(.bottom, 20)
             
             HStack(spacing: 10) {
@@ -75,7 +75,7 @@ struct UsernameView: View {
 //                Text(isUsernameAvailable ? "사용 가능한 아이디입니다." : "사용 불가능한 아이디입니다.")
 //                    .foregroundColor(isUsernameAvailable ? .green : .red)
 //            }
-          
+            
             Spacer()
             
             ActionButton("다음") {

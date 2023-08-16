@@ -2,18 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Pretendard-Black.otf</string>
-		<string>Pretendard-ExtraBold.otf</string>
-		<string>Pretendard-Bold.otf</string>
-		<string>Pretendard-SemiBold.otf</string>
-		<string>Pretendard-Medium.otf</string>
-		<string>Pretendard-Regular.otf</string>
-		<string>Pretendard-Light.otf</string>
-		<string>Pretendard-ExtraLight.otf</string>
-		<string>Pretendard-Thin.otf</string>
-	</array>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -21,7 +9,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>kakao$ad63ed85978c701f2e947c5e85b1215e</string>
+				<string>kakaoad63ed85978c701f2e947c5e85b1215e</string>
 			</array>
 		</dict>
 		<dict>
@@ -47,6 +35,18 @@
 		<string>kakaolink</string>
 		<string>naversearchapp</string>
 		<string>naversearchthirdlogin</string>
+	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Pretendard-Black.otf</string>
+		<string>Pretendard-ExtraBold.otf</string>
+		<string>Pretendard-Bold.otf</string>
+		<string>Pretendard-SemiBold.otf</string>
+		<string>Pretendard-Medium.otf</string>
+		<string>Pretendard-Regular.otf</string>
+		<string>Pretendard-Light.otf</string>
+		<string>Pretendard-ExtraLight.otf</string>
+		<string>Pretendard-Thin.otf</string>
 	</array>
 </dict>
 </plist>

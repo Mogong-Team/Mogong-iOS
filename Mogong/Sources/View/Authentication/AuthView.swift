@@ -11,17 +11,8 @@ struct AuthView: View {
     @EnvironmentObject var viewModel: AuthViewModel
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
-                HStack {
-                    Spacer()
-                    Text("둘러보기")
-                        .font(.body)
-                        .foregroundColor(.gray)
-                    Spacer()
-                        .frame(maxWidth: 50)
-                }
-                
                 Text("Mogong")
                     .font(.title)
                 
@@ -43,20 +34,11 @@ struct AuthView: View {
                 
                 SocialLogin()
                     .padding()
-                
-                NavigationLink {
-                    
-                } label: {
-                    Text("문의하기")
-                        .font(.body)
-                        .foregroundColor(.gray)
-                }
-                
-                Text("이메일: \(viewModel.loginData.email)")
-                Text("이름: \(viewModel.loginData.name)")
             }
             .navigationBarHidden(true)
-            .accentColor(.red)
+            .navigationDestination(isPresented: $viewModel.presentNextView) {
+                UsernameView()
+            }
         }
     }
 }
