@@ -52,17 +52,14 @@ extension AuthViewModel {
                 if error != nil {
                     // 새로운 토큰 발급
                     self.openKakaoService()
-                    print("KaKao: 1")
                 // 토큰이 유효한 경우
                 } else {
                     // 유저 정보 가져오기
                     self.getKakaoUserInfo()
-                    print("KaKao: 2")
                 }
             }
         // 발급된 토큰이 없는 경우
         } else {
-            print("KaKao: 3")
             self.openKakaoService()
         }
     }
@@ -70,16 +67,12 @@ extension AuthViewModel {
     func openKakaoService() {
         // isKakaoTalkLoginAvailable() : 카톡 설치 되어있으면 true
         if (UserApi.isKakaoTalkLoginAvailable()) {
-            print("KaKao: 4")
             // 카톡 설치되어있으면 -> 카톡으로 로그인
             UserApi.shared.loginWithKakaoTalk { oauthToken, error in
-                print("KaKao: 5")
                 if let error = error {
-                    print("KaKao: 6")
                     print(error)
                 }
                 else {
-                    print("KaKao: 7")
                     print("카카오톡 로그인 성공")
                     _ = oauthToken
                     // 유저 정보 가져오기
@@ -120,9 +113,7 @@ extension AuthViewModel {
 
 extension AuthViewModel {
     func loginWithGoogle() {
-        print("Google: 1")
         if GIDSignIn.sharedInstance.hasPreviousSignIn() {
-            print("Google: 1")
             GIDSignIn.sharedInstance.restorePreviousSignIn { [unowned self] user, error in
                 print("구글 로그인 성공")
                 guard let email = user?.profile?.email else { return }
@@ -130,10 +121,8 @@ extension AuthViewModel {
                 self.presentNextView = true
             }
         } else {
-            print("Google: 3")
-        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
-        guard let rootViewController = windowScene.windows.first?.rootViewController else { return }
-            print("Google: 4")
+            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+            guard let rootViewController = windowScene.windows.first?.rootViewController else { return }
             GIDSignIn.sharedInstance.signIn(withPresenting: rootViewController) { result, error in
                 if let error = error {
                     print(error.localizedDescription)
@@ -142,7 +131,8 @@ extension AuthViewModel {
                     print("구글 로그인 성공")
                     guard let email = result?.user.profile?.email else { return }
                     self.email = email
-
+                    self.presentNextView = true
+                    
                     // 백엔드에 토큰 보내기
                     guard let result = result else { return }
                     
@@ -166,7 +156,6 @@ extension AuthViewModel {
 extension AuthViewModel: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
     // Apple 로그인을 요청하는 메서드
     func loginWithApple() {
-        print("Apple: 1")
         let request = ASAuthorizationAppleIDProvider().createRequest()
         request.requestedScopes = [.fullName, .email]
         
@@ -183,20 +172,14 @@ extension AuthViewModel: ASAuthorizationControllerDelegate, ASAuthorizationContr
     
     // 인증이 성공적으로 완료된 후 호출되는 메서드
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-        print("Apple: 2")
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
-            print("Apple: 3")
             print("애플 로그인 성공")
-            
-            guard let email = appleIDCredential.email else { return } // nil
-            self.email = email
             self.presentNextView = true
         }
     }
     
     // 인증이 실패하거나 사용자가 취소한 경우 호출되는 메서드
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
-        print("Apple: 4")
         print(error.localizedDescription)
         print("애플 로그인 실패")
     }

@@ -24,8 +24,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         //MARK: - 구글
         
         let clientID = "445750195734-da9230k2r5min42eioscrp2uibiei6ch.apps.googleusercontent.com"
-        let serverClientID = "com.googleusercontent.apps.445750195734-da9230k2r5min42eioscrp2uibiei6ch"
-        GIDSignIn.sharedInstance.configuration = GIDConfiguration(clientID: clientID, serverClientID: serverClientID)
+        GIDSignIn.sharedInstance.configuration = GIDConfiguration(clientID: clientID)
         
         //MARK: - 네이버
 
