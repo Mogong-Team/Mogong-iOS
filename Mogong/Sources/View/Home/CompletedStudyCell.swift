@@ -12,29 +12,29 @@ struct CompletedStudyCell: View {
     
     var body: some View {
         NavigationLink {
-            StudyListView()
+//            StudyListView()
         } label: {
-            VStack(alignment: .leading, spacing: 0) {
+            VStack(alignment: .leading) {
                 HStack(alignment: .bottom) {
                     ZStack {
-                        Image(systemName: "pencil")
+                        Image("CharacterCard1")
                             .resizable()
                         
                         VStack() {
-                            Spacer()
                             Text(study.title)
                                 .foregroundColor(.black)
-                                .fontWeight(.bold)
+                                .font(.pretendard(weight: .bold, size: 14))
+                                .multilineTextAlignment(.leading)
                                 .lineLimit(3)
-                                .padding(10)
+                                .padding(.horizontal, 10)
+                                .padding(.top, 100)
                         }
                     }
                 }
             }
             .frame(width: 130, height: 185, alignment: .leading)
-            .background(Color(uiColor: .white))
             .cornerRadius(15)
-            .shadow(color: .gray, radius: 5, x: 2, y: 2)
+            .shadow(color: .gray, radius: 1, x: 1, y: 1)
         }
     }
 }
