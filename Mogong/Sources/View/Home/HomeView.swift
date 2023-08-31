@@ -14,11 +14,10 @@ struct HomeView: View {
             ScrollView {
                 CompletedStudyView()
                     .padding(.top, 20)
-                    .padding(.bottom, 30)
+                    .padding(.bottom, 20)
                 ClippyStudyView()
             }
         }
-        .padding(.horizontal, 15)
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarLeading) {
                 Image("nav_mogongLogo")

@@ -31,17 +31,17 @@ struct ClippyStudyCell: View {
             VStack(alignment: .leading, spacing: 10) {
                 HStack {
                     Text(study.state.rawValue)
-                        .font(.pretendard(weight: .bold, size: 16))
+                        .font(.pretendard(weight: .bold, size: 12))
                         .foregroundColor(.white)
                         .padding(.horizontal, 5)
                         .padding(.vertical, 3)
                         .background(study.state == .completed
-                                    ? Color.gray
-                                    : Color(red: 1, green: 0.72, blue: 0))
+                                    ? Color(hexColor: "C5C5C5")
+                                    : Color(hexColor: "FFB800"))
                         .cornerRadius(8)
                     
-                    // 북마크 색상은 고정
-                    HStack {
+                    // 북마크
+                    HStack(spacing: 2) {
                         Image(systemName: "bookmark.fill")
                             .foregroundColor(Color.main)
                         
@@ -52,26 +52,25 @@ struct ClippyStudyCell: View {
                     Spacer()
                     Image(systemName: "chevron.forward")
                         .foregroundColor(Color.gray)
-                        
                 }
                 
                 HStack {
                     Text(study.title)
                         .font(.pretendard(weight: .bold, size: 16))
-                        .foregroundColor(.black)
+                        .foregroundColor(Color(hexColor: "3E3D3D"))
                         .lineLimit(1)
                 }
             }
-            .padding(10)
-            .foregroundColor(.clear)
-            .background(Color(uiColor: .white))
+            .padding(.horizontal, 12)
+            .padding(.vertical, 14)
+            .background(.white)
             .cornerRadius(17)
             .overlay(
                 RoundedRectangle(cornerRadius: 17)
                     .inset(by: 0.5)
-                    .stroke(Color.gray, lineWidth: 1)
+                    .stroke(Color(hexColor: "F1F1F1"), lineWidth: 1)
             )
-            .shadow(color: Color(red: 0.66, green: 0.69, blue: 0.69).opacity(0.17), radius: 4, x: 0, y: 4)
+            .shadow(color: Color(white: 0, opacity: 0.1), radius: 5, x: 5, y: 5)
         }
     }
 }

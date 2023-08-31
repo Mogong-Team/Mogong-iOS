@@ -14,27 +14,18 @@ struct CompletedStudyCell: View {
         NavigationLink {
 //            StudyListView()
         } label: {
-            VStack(alignment: .leading) {
-                HStack(alignment: .bottom) {
-                    ZStack {
-                        Image("CharacterCard1")
-                            .resizable()
-                        
-                        VStack() {
-                            Text(study.title)
-                                .foregroundColor(.black)
-                                .font(.pretendard(weight: .bold, size: 14))
-                                .multilineTextAlignment(.leading)
-                                .lineLimit(3)
-                                .padding(.horizontal, 10)
-                                .padding(.top, 100)
-                        }
-                    }
-                }
-            }
-            .frame(width: 130, height: 185, alignment: .leading)
-            .cornerRadius(15)
-            .shadow(color: .gray, radius: 1, x: 1, y: 1)
+            Text(study.title)
+                .foregroundColor(Color(hexColor: "4B4B4B"))
+                .font(.pretendard(weight: .bold, size: 14))
+                .multilineTextAlignment(.leading)
+                .lineLimit(3)
+                .padding(.top, 100)
+                .padding(.horizontal, 8)
+            .frame(width: 130, height: 185)
+            .background(
+                Image("CharacterCard1")
+            )
+            .shadow(color: Color(white: 0, opacity: 0.1), radius: 5, x: 5, y: 5)
         }
     }
 }
