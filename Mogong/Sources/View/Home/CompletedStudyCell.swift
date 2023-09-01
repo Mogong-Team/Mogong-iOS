@@ -9,29 +9,49 @@ import SwiftUI
 
 struct CompletedStudyCell: View {
     var study: Study
+    var image: Image
     
     var body: some View {
         NavigationLink {
-//            StudyListView()
+            StudyListView()
         } label: {
-            Text(study.title)
-                .foregroundColor(Color(hexColor: "4B4B4B"))
-                .font(.pretendard(weight: .bold, size: 14))
-                .multilineTextAlignment(.leading)
-                .lineLimit(3)
-                .padding(.top, 100)
-                .padding(.horizontal, 8)
+            ZStack {
+                image
+                    .resizable()
+                
+                VStack(alignment: .leading, spacing: 0) {
+                    Spacer()
+                    
+                    Text(study.title)
+                        .foregroundColor(Color(hexColor: "4B4B4B"))
+                        .font(.pretendard(weight: .bold, size: 14))
+                        .lineLimit(3)
+                        .multilineTextAlignment(.leading)
+                        .padding(10)
+                    
+                }
+            }
             .frame(width: 130, height: 185)
-            .background(
-                Image("CharacterCard1")
-            )
-            .shadow(color: Color(white: 0, opacity: 0.1), radius: 5, x: 5, y: 5)
+            .cornerRadius(15)
+            .shadow(color: .gray, radius: 5, x: 2, y: 2)
+//            Text(study.title)
+//                .foregroundColor(Color(hexColor: "4B4B4B"))
+//                .font(.pretendard(weight: .bold, size: 14))
+//                .multilineTextAlignment(.leading)
+//                .lineLimit(3)
+//                .padding(.top, 100)
+//                .padding(.horizontal, 8)
+//            .frame(width: 130, height: 185)
+//            .background(
+//                Image("CharacterCard\(imgNumber)")
+//            )
+//            .shadow(color: Color(white: 0, opacity: 0.1), radius: 5, x: 5, y: 5)
         }
     }
 }
 
 struct CompletedStudyCell_Previews: PreviewProvider {
     static var previews: some View {
-        CompletedStudyCell(study: Study.study1)
+        CompletedStudyCell(study: Study.study1, image: Image("CharacterCard1"))
     }
 }
