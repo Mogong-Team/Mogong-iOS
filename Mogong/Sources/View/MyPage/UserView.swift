@@ -40,6 +40,9 @@ struct UserInfo: View {
     @State private var image: Image?
     @State private var inputImage: UIImage?
     
+    @State private var showingEditNickname = false
+    @State private var newNickname = ""
+
     var body: some View {
         VStack(alignment: .leading) {
             HStack(spacing: 10) {
@@ -60,11 +63,19 @@ struct UserInfo: View {
                 }
                 .frame(width: 100, height: 100)
                 
-                VStack(alignment: .leading) {
-                    TextField("닉네임 변경", text: $viewModel.currentUser.username)
+                HStack {
+//                    TextField("닉네임 변경", text: $viewModel.currentUser.username)
+                    Text(viewModel.currentUser.username)
                         .font(.pretendard(weight: .bold, size: 28))
                         .foregroundColor(Color(hexColor: "4E4E4E"))
                         .frame(width: 160, height: 32)
+                    Button {
+                        showingEditNickname.toggle()
+                    } label: {
+                        Image(systemName: "pencil")
+                            .resizable()
+                            .frame(width: 20, height: 20)
+                    }
                 }
             }
         }
@@ -90,6 +101,12 @@ struct UserInfo: View {
         }
         .sheet(isPresented: $showImagePicker, onDismiss: loadImage) {
             ImagePicker(selectedImage: $inputImage)
+        }
+        .confirmationDialog("닉네임 수정", isPresented: $showingEditNickname) {
+            Button("저장") {
+                viewModel.currentUser.username = viewModel.currentUser.username
+                showingEditNickname = false
+            }
         }
     }
     
