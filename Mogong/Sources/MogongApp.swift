@@ -14,6 +14,7 @@ import GoogleSignIn
 
 @main
 struct MogongApp: App {
+    
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
     @StateObject var authViewModel = AuthViewModel()
@@ -39,12 +40,12 @@ struct MogongApp: App {
                     }
                 })
                 .onOpenURL { url in
+                    GIDSignIn.sharedInstance.handle(url)
+                }
+                .onOpenURL { url in
                     NaverThirdPartyLoginConnection
                         .getSharedInstance()
                         .receiveAccessToken(url)
-                }
-                .onOpenURL { url in
-                    GIDSignIn.sharedInstance.handle(url)
                 }
         }
     }
