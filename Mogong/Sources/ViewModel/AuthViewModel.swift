@@ -20,7 +20,7 @@ class AuthViewModel: NSObject, ObservableObject  {
     @Published var email: String = ""
     @Published var username: String = ""
     @Published var isUsernameAvailable: Bool?
-    @Published var isLoggedIn: Bool = false
+    @Published var isLoggedIn: Bool = true
     @Published var presentNextView: Bool = false
     
     private var cancellables = Set<AnyCancellable>()

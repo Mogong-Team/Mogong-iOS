@@ -16,6 +16,7 @@
 		8F0314992A6E29BC001C430A /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0314982A6E29BC001C430A /* Position.swift */; };
 		8F03149B2A6E2F6F001C430A /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F03149A2A6E2F6F001C430A /* Member.swift */; };
 		8F03149F2A6E5B59001C430A /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F03149E2A6E5B59001C430A /* ActionButton.swift */; };
+		8F33C50B2AA9B46F009B4FCF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8F33C50A2AA9B46E009B4FCF /* GoogleService-Info.plist */; };
 		8F4125572A55029E005B5A1E /* NaviBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4125562A55029D005B5A1E /* NaviBackButton.swift */; };
 		8F72459C2A736C790032C3F4 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F72459A2A736C790032C3F4 /* Color.xcassets */; };
 		8F72459D2A736C790032C3F4 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F72459B2A736C790032C3F4 /* Color.swift */; };
@@ -39,7 +40,6 @@
 		8F8A67412A39767B00467936 /* Date+Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A67402A39767B00467936 /* Date+Conversion.swift */; };
 		8F8A67452A39773600467936 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A67442A39773600467936 /* ContentView.swift */; };
 		8F8A675F2A3AE30900467936 /* SocialLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A675E2A3AE30900467936 /* SocialLogin.swift */; };
-		8F8A67632A3B24DF00467936 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8F8A67622A3B24DF00467936 /* GoogleService-Info.plist */; };
 		8F8A67652A3B2EBB00467936 /* UsernameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A67642A3B2EBB00467936 /* UsernameView.swift */; };
 		8F8A676A2A42CD5100467936 /* StudyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A67692A42CD5100467936 /* StudyListView.swift */; };
 		8F8A676C2A42CD6D00467936 /* MyStudyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A676B2A42CD6D00467936 /* MyStudyView.swift */; };
@@ -110,6 +110,7 @@
 		8F0314982A6E29BC001C430A /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
 		8F03149A2A6E2F6F001C430A /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		8F03149E2A6E5B59001C430A /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
+		8F33C50A2AA9B46E009B4FCF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8F4125562A55029D005B5A1E /* NaviBackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaviBackButton.swift; sourceTree = "<group>"; };
 		8F72459A2A736C790032C3F4 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Color.xcassets; path = Mogong/Sources/View/Setting/Color.xcassets; sourceTree = SOURCE_ROOT; };
 		8F72459B2A736C790032C3F4 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Color.swift; path = Mogong/Sources/View/Setting/Color.swift; sourceTree = SOURCE_ROOT; };
@@ -136,7 +137,6 @@
 		8F8A674D2A39D97B00467936 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F8A675A2A3ABFA200467936 /* Mogong.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Mogong.entitlements; sourceTree = "<group>"; };
 		8F8A675E2A3AE30900467936 /* SocialLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLogin.swift; sourceTree = "<group>"; };
-		8F8A67622A3B24DF00467936 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8F8A67642A3B2EBB00467936 /* UsernameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameView.swift; sourceTree = "<group>"; };
 		8F8A67692A42CD5100467936 /* StudyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyListView.swift; sourceTree = "<group>"; };
 		8F8A676B2A42CD6D00467936 /* MyStudyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStudyView.swift; sourceTree = "<group>"; };
@@ -403,7 +403,7 @@
 			isa = PBXGroup;
 			children = (
 				8F8A674D2A39D97B00467936 /* Info.plist */,
-				8F8A67622A3B24DF00467936 /* GoogleService-Info.plist */,
+				8F33C50A2AA9B46E009B4FCF /* GoogleService-Info.plist */,
 				8F8A671F2A39756000467936 /* Preview Content */,
 			);
 			path = "Supporting Files";
@@ -602,6 +602,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F33C50B2AA9B46F009B4FCF /* GoogleService-Info.plist in Resources */,
 				8F8CA8532A4D1161002E8D15 /* Pretendard-SemiBold.otf in Resources */,
 				8F8CA84F2A4D1157002E8D15 /* Pretendard-ExtraLight.otf in Resources */,
 				8F72459C2A736C790032C3F4 /* Color.xcassets in Resources */,
@@ -613,7 +614,6 @@
 				8F8A671E2A39756000467936 /* Assets.xcassets in Resources */,
 				8F8CA84C2A4D1151002E8D15 /* Pretendard-Black.otf in Resources */,
 				8F8CA8522A4D115E002E8D15 /* Pretendard-Regular.otf in Resources */,
-				8F8A67632A3B24DF00467936 /* GoogleService-Info.plist in Resources */,
 				8F8CA8512A4D115C002E8D15 /* Pretendard-Medium.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

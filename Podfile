@@ -13,5 +13,6 @@ pod 'KakaoSDKUser'
 pod 'naveridlogin-sdk-ios'
 pod 'GoogleSignIn'
 pod 'GoogleSignInSwiftSupport'
+pod 'Firebase/Analytics'
 
 end
