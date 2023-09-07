@@ -9,28 +9,34 @@ import SwiftUI
 
 struct CompletedStudyView: View {
     @EnvironmentObject var viewModel: StudyViewModel
+//    @State private var imgNumber: Int = 1
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Text("방금 완주한 스터디")
-                .font(.system(size: 20))
-                .fontWeight(.bold)
-            
-            Text("방금 완주한 따끈따끈한 스터디 목록을 살펴보세요!")
-                .font(.subheadline)
-                .foregroundColor(.gray)
-            
+        VStack(alignment: .leading, spacing: 10) {
+            VStack(alignment: .leading, spacing: 5) {
+                Text("방금 완주한 스터디")
+                    .font(.pretendard(weight: .bold, size: 20))
+                
+                Text("방금 완주한 따끈따끈한 스터디 목록을 살펴보세요!")
+                    .font(.pretendard(weight: .medium, size: 14))
+                    .foregroundColor(.gray)
+            }
+            .padding(.bottom, 10)
+            .padding(.horizontal, 20)
+
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 15) {
-                    ForEach(viewModel.studys) { study in
-                        CompletedStudyCell(study: study)
-                            .frame(width: 140, height: 200)
+                    ForEach(Array(viewModel.studys.enumerated()), id: \.element.id) { index, study in
+//                        let study = viewModel.studys[index]
+                        let image = Image("CharacterCard\((index % 6) + 1)")
+                        
+                        CompletedStudyCell(study: study, image: image)
                     }
                 }
+                .padding(.vertical, 10)
+                .padding(.horizontal, 20)
             }
         }
-        .frame(width: 380)
-        .padding()
     }
 }
 

@@ -9,31 +9,29 @@ import SwiftUI
 
 struct ClippyStudyView: View {
     @EnvironmentObject var viewModel: StudyViewModel
-
+    
     var body: some View {
-        VStack(alignment: .leading, spacing: 24) {
-            VStack(alignment: .leading, spacing: 18) {
+        VStack(alignment: .leading, spacing: 15) {
+            VStack(alignment: .leading, spacing: 5) {
                 Text("스크랩이 많은 스터디")
-                    .font(Font.custom("Pretendard", size: 20))
-                    .fontWeight(.bold)
+                    .font(.pretendard(weight: .bold, size: 20))
 
                 Text("관심 집중 스터디에요!")
-                    .font(Font.custom("Sintory", size: 14))
+                    .font(.pretendard(weight: .medium, size: 14))
                     .foregroundColor(.gray)
             }
+            .padding(.horizontal, 20)
 
             ScrollView() {
-                VStack {
+                VStack(spacing: 16) {
                     ForEach(viewModel.studys) { study in
                         ClippyStudyCell(study: study)
-                            .padding(2)
                     }
                 }
-                .frame(width: 380)
+                .padding(.vertical, 10)
+                .padding(.horizontal, 20)
             }
         }
-        
-        .padding()
     }
 }
 

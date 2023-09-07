@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import KakaoSDKCommon
 
 struct ClippyStudyCell: View {
     
@@ -30,38 +31,46 @@ struct ClippyStudyCell: View {
             VStack(alignment: .leading, spacing: 10) {
                 HStack {
                     Text(study.state.rawValue)
+                        .font(.pretendard(weight: .bold, size: 12))
                         .foregroundColor(.white)
                         .padding(.horizontal, 5)
                         .padding(.vertical, 3)
                         .background(study.state == .completed
-                                    ? Color.gray
-                                    : Color.yellow)
-                        .cornerRadius(5)
+                                    ? Color(hexColor: "C5C5C5")
+                                    : Color(hexColor: "FFB800"))
+                        .cornerRadius(8)
                     
-                    // 북마크 색상은 고정
-                    HStack {
+                    // 북마크
+                    HStack(spacing: 2) {
                         Image(systemName: "bookmark.fill")
-                            .foregroundColor(.blue)
+                            .foregroundColor(Color.main)
+                        
                         Text("1000")
+                            .font(.pretendard(weight: .bold, size: 16))
+                            .foregroundColor(Color.main)
                     }
                     Spacer()
                     Image(systemName: "chevron.forward")
+                        .foregroundColor(Color.gray)
                 }
                 
                 HStack {
                     Text(study.title)
-                        .foregroundColor(.black)
-                        .fontWeight(.bold)
+                        .font(.pretendard(weight: .bold, size: 16))
+                        .foregroundColor(Color(hexColor: "3E3D3D"))
                         .lineLimit(1)
-                        .frame(alignment: .leading)
                 }
             }
-            .padding(10)
-            .foregroundColor(.clear)
-            .frame(width: 360, height: 80, alignment: .leading)
-            .background(Color(uiColor: .white))
-            .cornerRadius(15)
-            .shadow(color: .gray, radius: 2.5, x: 4, y: 4)
+            .padding(.horizontal, 12)
+            .padding(.vertical, 14)
+            .background(.white)
+            .cornerRadius(17)
+            .overlay(
+                RoundedRectangle(cornerRadius: 17)
+                    .inset(by: 0.5)
+                    .stroke(Color(hexColor: "F1F1F1"), lineWidth: 1)
+            )
+            .shadow(color: Color(white: 0, opacity: 0.1), radius: 5, x: 5, y: 5)
         }
     }
 }
