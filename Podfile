@@ -14,5 +14,7 @@ pod 'naveridlogin-sdk-ios'
 pod 'GoogleSignIn'
 pod 'GoogleSignInSwiftSupport'
 pod 'Firebase/Analytics'
+pod 'FirebaseAuth'
+pod 'FirebaseFirestore'
 
 end
