@@ -15,22 +15,18 @@ class StudyService {
     
     private var db = Firestore.firestore()
     
-    // 새로운 스터디 생성
+    // 1. 스터디 생성
     func createStudy(study: Study, completion: @escaping () -> Void) {
         do {
             // Study 인스턴스를 JSON 객체로 변환
             let jsonData = try JSONEncoder().encode(study)
             guard let json = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] else {
-                print("데이터 변환 실패") // 오류 메시지를 콘솔에 로깅
+                print("데이터 변환 실패")
                 completion()
                 return
             }
             
-            // Firestore에 스터디 데이터 저장
-            db.collection("studies").addDocument(data: json) { error in
-                if let error = error {
-                    print("Firestore 저장 오류: \(error)")
-                }
+            db.collection("studys").document(study.id).setData(json) { error in
                 completion()
             }
         } catch let error {
@@ -39,24 +35,130 @@ class StudyService {
         }
     }
     
-    // ID를 통해 스터디 가져오기
-    func getStudyById(studyId: String, completion: @escaping (Study?, Error?) -> Void) {
-        db.collection("studies").document(studyId).getDocument { snapshot, error in
-            guard let snapshot = snapshot, snapshot.exists, let data = snapshot.data() else {
-                completion(nil, error)
+    // 2. 스터디 가져오기
+    func getAllStudys(completion: @escaping (Result<[Study], Error>) -> Void) {
+        db.collection("studys").getDocuments { querySnapshot, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            let studys: [Study] = querySnapshot?.documents.compactMap { document in
+                do {
+                    let data = try JSONSerialization.data(withJSONObject: document.data(), options: [])
+                    let study = try JSONDecoder().decode(Study.self, from: data)
+                    return study
+                } catch {
+                    print("JSON 변환 오류: \(error)")
+                    return nil
+                }
+            } ?? []
+            
+            completion(.success(studys))
+        }
+    }
+    
+    // 3. ID를 통해 스터디 가져오기
+    func getStudyById(studyId: String, completion: @escaping (Result<Study, Error>) -> Void) {
+        db.collection("studys").document(studyId).getDocument { snapshot, error in
+            if let error = error {
+                completion(.failure(error))
                 return
             }
             
             do {
-                // JSON 데이터를 Study 인스턴스로 디코딩
+                guard let data = snapshot?.data() else { return }
                 let jsonData = try JSONSerialization.data(withJSONObject: data, options: [])
                 let study = try JSONDecoder().decode(Study.self, from: jsonData)
-                completion(study, nil)
+                completion(.success(study))
             } catch let error {
-                completion(nil, error)
+                completion(.failure(error))
             }
         }
     }
+    
+    //MARK: 북마크
+    
+    func addBookmarkedUser(studyId: String, userId: String, completion: @escaping (Error?) -> Void) {
+        db.collection("studys").document(studyId).updateData([
+            "bookMarkedUsers": FieldValue.arrayUnion([userId])
+        ]) { error in
+            completion(error)
+        }
+    }
+    
+    func deleteBookmarkedUser(studyId: String, userId: String, completion: @escaping (Error?) -> Void) {
+        db.collection("studys").document(studyId).updateData([
+            "bookMarkedUsers": FieldValue.arrayRemove([userId])
+        ]) { error in
+            completion(error)
+        }
+    }
+
+        
+        
+//    // 새로운 스터디 생성
+//    func createStudies(study: Study, completion: @escaping () -> Void) {
+//        do {
+//            // Study 인스턴스를 JSON 객체로 변환
+//            let jsonData = try JSONEncoder().encode(study)
+//            guard let json = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] else {
+//                print("데이터 변환 실패")
+//                completion()
+//                return
+//            }
+//
+//            // Firestore에 스터디 데이터 저장
+//            db.collection("studies").addDocument(data: json) { error in
+//                if let error = error {
+//                    print("Firestore 저장 오류: \(error)")
+//                }
+//                completion()
+//            }
+//        } catch let error {
+//            print("JSON 인코딩 오류: \(error)")
+//            completion()
+//        }
+//    }
+//
+//    // 모든 스터디 가져오기
+//    func getAllStudies(completion: @escaping ([Study]?, Error?) -> Void) {
+//        db.collection("studys").getDocuments { snapshot, error in
+//            guard let snapshot = snapshot else {
+//                completion(nil, error)
+//                return
+//            }
+//
+//            do {
+//                // 각 문서의 데이터를 Study 인스턴스로 디코딩하여 배열로 반환
+//                let studies = try snapshot.documents.compactMap {
+//                    try JSONDecoder().decode(Study.self, from: JSONSerialization.data(withJSONObject: $0.data(), options: []))
+//                }
+//                completion(studies, nil)
+//            } catch let error {
+//                completion(nil, error)
+//            }
+//        }
+//    }
+//
+//    // ID를 통해 스터디 가져오기
+//    func getStudyById(studyId: String, completion: @escaping (Study?, Error?) -> Void) {
+//        db.collection("studies").document(studyId).getDocument { snapshot, error in
+//            guard let snapshot = snapshot, snapshot.exists, let data = snapshot.data() else {
+//                completion(nil, error)
+//                return
+//            }
+//
+//            do {
+//                // JSON 데이터를 Study 인스턴스로 디코딩
+//                let jsonData = try JSONSerialization.data(withJSONObject: data, options: [])
+//                let study = try JSONDecoder().decode(Study.self, from: jsonData)
+//                completion(study, nil)
+//            } catch let error {
+//                completion(nil, error)
+//            }
+//        }
+//    }
     
     // 스터디 업데이트
     func updateStudy(studyId: String, data: [String: Any], completion: @escaping (Error?) -> Void) {
@@ -72,25 +174,9 @@ class StudyService {
         }
     }
     
-    // 모든 스터디 가져오기
-    func getAllStudies(completion: @escaping ([Study]?, Error?) -> Void) {
-        db.collection("studies").getDocuments { snapshot, error in
-            guard let snapshot = snapshot else {
-                completion(nil, error)
-                return
-            }
-            
-            do {
-                // 각 문서의 데이터를 Study 인스턴스로 디코딩하여 배열로 반환
-                let studies = try snapshot.documents.compactMap {
-                    try JSONDecoder().decode(Study.self, from: JSONSerialization.data(withJSONObject: $0.data(), options: []))
-                }
-                completion(studies, nil)
-            } catch let error {
-                completion(nil, error)
-            }
-        }
-    }
+    
+    
+    
     
     // 필요에 따라 검색, 필터링 등의 추가 메서드를 여기에 추가할 수 있습니다.
 }

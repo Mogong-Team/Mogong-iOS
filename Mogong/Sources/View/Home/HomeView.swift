@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
+    @EnvironmentObject var viewModel: StudyViewModel
     
     var body: some View {
         VStack {
@@ -37,6 +38,9 @@ struct HomeView: View {
                     //TODO: 알람왔을 떄 아이콘 변경
                 }
             }
+        }
+        .onAppear {
+            viewModel.getAllStudys()
         }
     }
 }

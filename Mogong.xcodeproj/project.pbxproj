@@ -353,8 +353,8 @@
 		8F8A672B2A3975E600467936 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				8F8A673C2A39766B00467936 /* AuthViewModel.swift */,
 				8F8A67362A39765700467936 /* StudyViewModel.swift */,
+				8F8A673C2A39766B00467936 /* AuthViewModel.swift */,
 				8FF418A62A4D7E650090FA34 /* ApplicationViewModel.swift */,
 				8F8A673A2A39766300467936 /* UserViewModel.swift */,
 				8F8A67382A39765D00467936 /* RankViewModel.swift */,

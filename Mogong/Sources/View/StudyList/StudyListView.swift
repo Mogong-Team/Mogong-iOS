@@ -45,7 +45,7 @@ struct StudyListView: View {
             CreateStudy()
         }
         .onAppear {
-            viewModel.getAllStudy()
+            viewModel.getAllStudys()
         }
     }
 }

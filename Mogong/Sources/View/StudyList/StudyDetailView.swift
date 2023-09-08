@@ -42,13 +42,27 @@ struct StudyDetailView: View {
 
 struct Introduction: View {
     @EnvironmentObject var viewModel: StudyViewModel
+    @EnvironmentObject var userViewModel: UserViewModel
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             //TODO: 북마크 api
-            RoundRectangleLabel(text: "\(viewModel.selectedStudy.bookMarkedUsers.count)",
-                                image: Image(systemName: "bookmark.fill"),
-                                background: Color.main)
+            HStack {
+                RoundRectangleLabel(
+                    text: "\(viewModel.selectedStudy.bookMarkedUsers.count)",
+                    image: Image(systemName: "bookmark.fill"),
+                    background: Color.main)
+                //.padding(.bottom, 10)
+
+                Image(systemName:
+                        viewModel.checkBookmarkState
+                      ? "heart.fill"
+                      : "heart")
+                    .foregroundColor(.red)
+                    .onTapGesture {
+                        viewModel.updateBookmark()
+                    }
+            }
             .padding(.bottom, 10)
             
             Text(viewModel.selectedStudy.title)

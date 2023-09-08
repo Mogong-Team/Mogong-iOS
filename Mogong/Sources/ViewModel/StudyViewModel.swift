@@ -27,6 +27,7 @@ class StudyViewModel: ObservableObject {
     
     // MARK: - 스터디 상세
     
+    @Published var checkBookmarkState: Bool = false
     @Published var presentApplicationStudy: Bool = false
     @Published var presentTest: Bool = false
     
@@ -149,17 +150,117 @@ class StudyViewModel: ObservableObject {
             print("완료")
         }
     }
-    
-    func getAllStudy() {
-        studyService.getAllStudies { studys, error in
-            if let error = error {
-                print("데이터 받아오기 실패")
-            } else {
-                guard let studys = studys else { return }
+
+    func getAllStudys() {
+//        studyService.getAllStudies { studys, error in
+//            if let error = error {
+//                print("스터디 받아오기 실패")
+//            } else {
+//                print("스터디 받아오기 성공")
+//                guard let studys = studys else { return }
+//                self.allStudys.removeAll()
+//                self.allStudys = studys
+//                self.filteredStudys.removeAll()
+//                self.filteredStudys = studys
+//            }
+//        }
+        
+        studyService.getAllStudys { result in
+            switch result {
+            case .success(let studys):
+                print("스터디 받아오기 성공")
                 self.allStudys.removeAll()
                 self.allStudys = studys
                 self.filteredStudys.removeAll()
                 self.filteredStudys = studys
+            case .failure(let error):
+                print("스터디 받아오기 실패 :", error.localizedDescription)
+            }
+        }
+    }
+    
+    //MARK: 북마크
+
+    func checkBookmark() -> Bool {
+        let state = selectedStudy.bookMarkedUsers.contains(UserViewModel.shared.currentUser.id)
+        print("현재 북마크 상태: ", state)
+        return state
+    }
+    
+    func updateBookmark() {
+        let userId = UserViewModel.shared.currentUser.id
+        let studyId = self.selectedStudy.id
+        
+        if checkBookmark() {
+            studyService.deleteBookmarkedUser(studyId: studyId, userId: userId) { error in
+                if let error = error {
+                    print("스터디 북마크 삭제 실패", error.localizedDescription)
+                } else {
+                    print("스터디 북마크 삭제 성공")
+                    UserService.deleteBookmarkedStudyIds(userId: userId, studyId: studyId) { error in
+                        if let error = error {
+                            print("유저 북마크 삭제 실패", error.localizedDescription)
+                        } else {
+                            print("유저 북마크 삭제 성공")
+                            self.studyService.getStudyById(studyId: studyId) { result in
+                                switch result {
+                                case .success(let study):
+                                    self.selectedStudy = study
+                                    print("북마크 추가 후 유저 정보 업데이트 성공")
+                                case .failure(let error):
+                                    print("북마크 추가 후 스터디 정보 업데이트 실패: ", error.localizedDescription)
+                                }
+                            }
+                            
+                            UserService.getUser(userId: userId) { result in
+                                switch result {
+                                case .success(let user):
+                                    UserViewModel.shared.currentUser = user
+                                    self.checkBookmarkState = false
+                                    print("북마크 추가 후 유저 정보 업데이트 성공")
+                                case .failure(let error):
+                                    print("북마크 추가 후 유저 정보 업데이트 실패: ", error.localizedDescription)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            studyService.addBookmarkedUser(studyId: studyId, userId: userId) { error in
+                if let error = error {
+                    print("스터디 북마크 추가 실패", error.localizedDescription)
+                } else {
+                    print("스터디 북마크 추가 성공")
+                    UserService.addBookmarkedStudyIds(userId: userId, studyId: studyId) { error in
+                        if let error = error {
+                            print("유저 북마크 추가 실패", error.localizedDescription)
+                        } else {
+                            print("유저 북마크 추가 성공")
+                            self.studyService.getStudyById(studyId: studyId) { result in
+                                switch result {
+                                case .success(let study):
+                                    self.selectedStudy = study
+                                    print("북마크 삭제 후 유저 정보 업데이트 성공")
+                                case .failure(let error):
+                                    print("북마크 삭제 후 스터디 정보 업데이트 실패: ", error.localizedDescription)
+                                }
+                            }
+                            
+                            UserService.getUser(userId: userId) { result in
+                                switch result {
+                                case .success(let user):
+                                    UserViewModel.shared.currentUser = user
+                                    self.checkBookmarkState = true
+                                    print(self.checkBookmarkState)
+                                    print("북마크 삭제 후 유저 정보 업데이트 성공")
+                                case .failure(let error):
+                                    print("북마크 삭제 후 유저 정보 업데이트 실패: ", error.localizedDescription)
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }

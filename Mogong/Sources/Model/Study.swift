@@ -54,7 +54,7 @@ struct Study: Identifiable, Codable {
     var createDate: Date = Date()
     var state: StudyState = .recruiting
     
-    var bookMarkedUsers: [User] = []
+    var bookMarkedUsers: [String] = []
 }
 
 extension Study {
@@ -86,8 +86,6 @@ extension Study {
         createDate: Date(),
         state: .recruiting,
         bookMarkedUsers: [
-            User.user2,
-            User.user3,
         ])
     
     static var study2 = Study(
@@ -115,8 +113,6 @@ extension Study {
         createDate: Date(),
         state: .completed,
         bookMarkedUsers: [
-            User.user2,
-            User.user3,
         ])
     
     static var study3 = Study(
@@ -144,8 +140,6 @@ extension Study {
         createDate: Date(),
         state: .recruiting,
         bookMarkedUsers: [
-            User.user2,
-            User.user3,
         ])
     
     static var study4 = Study(
@@ -173,8 +167,6 @@ extension Study {
         createDate: Date(),
         state: .completed,
         bookMarkedUsers: [
-            User.user2,
-            User.user3,
         ])
 }
 
