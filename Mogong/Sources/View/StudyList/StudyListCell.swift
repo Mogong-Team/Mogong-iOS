@@ -26,16 +26,12 @@ struct StudyListCell: View {
                 }
                 .padding(.top, 16)
                 
-                Image(systemName: viewModel.isBookmarked
+                Image(systemName: viewModel.checkBookmark(study: study)
                       ? "bookmark.fill"
                       : "bookmark")
                 .resizable()
                 .frame(width: 18, height: 28)
                 .foregroundColor(Color.main)
-                .onTapGesture {
-                    // TODO: Post Bookmark
-                    viewModel.isBookmarked.toggle()
-                }
             }
             
             Text(study.title)

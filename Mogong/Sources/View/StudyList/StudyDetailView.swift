@@ -55,7 +55,8 @@ struct Introduction: View {
                 //.padding(.bottom, 10)
 
                 Image(systemName:
-                        viewModel.checkBookmarkState
+                        //viewModel.checkBookmarkState
+                      viewModel.selectedStudy.bookMarkedUsers.contains(UserViewModel.shared.currentUser.id)
                       ? "heart.fill"
                       : "heart")
                     .foregroundColor(.red)

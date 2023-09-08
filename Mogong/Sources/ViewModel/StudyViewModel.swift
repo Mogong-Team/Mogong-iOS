@@ -27,7 +27,6 @@ class StudyViewModel: ObservableObject {
     
     // MARK: - 스터디 상세
     
-    @Published var checkBookmarkState: Bool = false
     @Published var presentApplicationStudy: Bool = false
     @Published var presentTest: Bool = false
     
@@ -181,17 +180,16 @@ class StudyViewModel: ObservableObject {
     
     //MARK: 북마크
 
-    func checkBookmark() -> Bool {
-        let state = selectedStudy.bookMarkedUsers.contains(UserViewModel.shared.currentUser.id)
-        print("현재 북마크 상태: ", state)
-        return state
+    func checkBookmark(study: Study) -> Bool {
+        return study.bookMarkedUsers.contains(UserViewModel.shared.currentUser.id)
     }
     
     func updateBookmark() {
         let userId = UserViewModel.shared.currentUser.id
+        let study = self.selectedStudy
         let studyId = self.selectedStudy.id
         
-        if checkBookmark() {
+        if checkBookmark(study: study) {
             studyService.deleteBookmarkedUser(studyId: studyId, userId: userId) { error in
                 if let error = error {
                     print("스터디 북마크 삭제 실패", error.localizedDescription)
@@ -216,7 +214,6 @@ class StudyViewModel: ObservableObject {
                                 switch result {
                                 case .success(let user):
                                     UserViewModel.shared.currentUser = user
-                                    self.checkBookmarkState = false
                                     print("북마크 추가 후 유저 정보 업데이트 성공")
                                 case .failure(let error):
                                     print("북마크 추가 후 유저 정보 업데이트 실패: ", error.localizedDescription)
@@ -251,8 +248,6 @@ class StudyViewModel: ObservableObject {
                                 switch result {
                                 case .success(let user):
                                     UserViewModel.shared.currentUser = user
-                                    self.checkBookmarkState = true
-                                    print(self.checkBookmarkState)
                                     print("북마크 삭제 후 유저 정보 업데이트 성공")
                                 case .failure(let error):
                                     print("북마크 삭제 후 유저 정보 업데이트 실패: ", error.localizedDescription)
