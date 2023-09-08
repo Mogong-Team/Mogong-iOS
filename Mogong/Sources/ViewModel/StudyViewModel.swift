@@ -12,6 +12,7 @@ class StudyViewModel: ObservableObject {
     
     @Published var allStudys = [Study]()
     @Published var filteredWithCategoryStudys = [Study]()
+    @Published var filteredWithBookmarkStudy = [Study]()
     @Published var filteredStudys = [Study]()
     //@Published var selectedStudy: Study?
     @Published var selectedStudy: Study = Study.study1
@@ -108,6 +109,12 @@ class StudyViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
+    //MARK: 스터디 필터링
+    
+    func filteringStuddyWithBookmark() {
+        self.filteredWithBookmarkStudy = self.allStudys.filter { $0.bookMarkedUsers.contains(UserViewModel.shared.currentUser.id) }
+    }
+    
     func filteringStudyWithState(state: StudyState) {
         self.filteredStudys = self.filteredWithCategoryStudys.filter { $0.state == state }
     }
@@ -194,17 +201,23 @@ class StudyViewModel: ObservableObject {
                 if let error = error {
                     print("스터디 북마크 삭제 실패", error.localizedDescription)
                 } else {
-                    print("스터디 북마크 삭제 성공")
                     UserService.deleteBookmarkedStudyIds(userId: userId, studyId: studyId) { error in
                         if let error = error {
                             print("유저 북마크 삭제 실패", error.localizedDescription)
                         } else {
-                            print("유저 북마크 삭제 성공")
+                            self.studyService.getAllStudys { result in
+                                switch result {
+                                case .success(let study):
+                                    self.allStudys = study
+                                case .failure(let error):
+                                    print("북마크 추가 후 전체 스터디 정보 업데이트 실패: ", error.localizedDescription)
+                                }
+                            }
+                            
                             self.studyService.getStudyById(studyId: studyId) { result in
                                 switch result {
                                 case .success(let study):
                                     self.selectedStudy = study
-                                    print("북마크 추가 후 유저 정보 업데이트 성공")
                                 case .failure(let error):
                                     print("북마크 추가 후 스터디 정보 업데이트 실패: ", error.localizedDescription)
                                 }
@@ -214,7 +227,6 @@ class StudyViewModel: ObservableObject {
                                 switch result {
                                 case .success(let user):
                                     UserViewModel.shared.currentUser = user
-                                    print("북마크 추가 후 유저 정보 업데이트 성공")
                                 case .failure(let error):
                                     print("북마크 추가 후 유저 정보 업데이트 실패: ", error.localizedDescription)
                                 }
@@ -228,17 +240,23 @@ class StudyViewModel: ObservableObject {
                 if let error = error {
                     print("스터디 북마크 추가 실패", error.localizedDescription)
                 } else {
-                    print("스터디 북마크 추가 성공")
                     UserService.addBookmarkedStudyIds(userId: userId, studyId: studyId) { error in
                         if let error = error {
                             print("유저 북마크 추가 실패", error.localizedDescription)
                         } else {
-                            print("유저 북마크 추가 성공")
+                            self.studyService.getAllStudys { result in
+                                switch result {
+                                case .success(let study):
+                                    self.allStudys = study
+                                case .failure(let error):
+                                    print("북마크 삭제 후 전체 스터디 정보 업데이트 실패: ", error.localizedDescription)
+                                }
+                            }
+                            
                             self.studyService.getStudyById(studyId: studyId) { result in
                                 switch result {
                                 case .success(let study):
                                     self.selectedStudy = study
-                                    print("북마크 삭제 후 유저 정보 업데이트 성공")
                                 case .failure(let error):
                                     print("북마크 삭제 후 스터디 정보 업데이트 실패: ", error.localizedDescription)
                                 }
@@ -248,7 +266,6 @@ class StudyViewModel: ObservableObject {
                                 switch result {
                                 case .success(let user):
                                     UserViewModel.shared.currentUser = user
-                                    print("북마크 삭제 후 유저 정보 업데이트 성공")
                                 case .failure(let error):
                                     print("북마크 삭제 후 유저 정보 업데이트 실패: ", error.localizedDescription)
                                 }
