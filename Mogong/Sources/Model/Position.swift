@@ -39,7 +39,6 @@ enum Position: String, CaseIterable, Hashable, Codable {
 struct PositionInfo: Hashable, Codable {
     var position: Position
     var requiredCount: Int = 0
-    var currentCount: Int = 0
     var language: [Language] = []
 }
 

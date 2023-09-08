@@ -28,6 +28,7 @@ struct StudyDetailView: View {
                     .padding(.horizontal, 20)
                 }
                 .id(1)
+                .padding(.bottom, 10)
             }
             .onAppear {
                 proxy.scrollTo(1, anchor: .top)
@@ -45,7 +46,7 @@ struct Introduction: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             //TODO: 북마크 api
-            RoundRectangleLabel(text: "1000",
+            RoundRectangleLabel(text: "\(viewModel.selectedStudy.bookMarkedUsers.count)",
                                 image: Image(systemName: "bookmark.fill"),
                                 background: Color.main)
             .padding(.bottom, 10)
@@ -81,12 +82,15 @@ struct StudyDetail: View {
                         HashtagView(text: language.rawValue)
                     }
                 }
-                DetailContent(title: "모집 현황",
-                              content: "\(viewModel.numberOfRecruits(study: viewModel.selectedStudy)) / \(viewModel.numberOfRecruits(study: viewModel.selectedStudy))")
+                DetailContent(
+                    title: "모집 현황",
+                    content: "\(viewModel.selectedStudy.currentMembers.count) / \(viewModel.numberOfRecruits(study: viewModel.selectedStudy))")
             } else if viewModel.selectedStudy.category == .projectStudy {
                 DetailContent(title: "수익화 목적",
                               content: viewModel.selectedStudy.revenuePurpose?.rawValue ?? "")
-                DetailContent(title: "모집 현황", content: "")
+                DetailContent(
+                    title: "모집 현황",
+                    content: "\(viewModel.selectedStudy.currentMembers.count) / \(viewModel.numberOfRecruits(study: viewModel.selectedStudy))")
                 RecruitmentState()
             }
         }
@@ -99,8 +103,11 @@ struct RecruitmentState: View {
     var body: some View {
         VStack(spacing: 20) {
             ForEach(viewModel.selectedStudy.positionInfos, id: \.self) { position in
+                let currentMembers = viewModel.selectedStudy.currentMembers
+                let currentCount = currentMembers.filter { $0.position == position.position }.count
+                
                 RecruitmentStateContent(position: position.position,
-                                        currnet: position.currentCount,
+                                        currnet: currentCount,
                                         required: position.requiredCount)
             }
         }

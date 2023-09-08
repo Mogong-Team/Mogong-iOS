@@ -10,7 +10,9 @@ import Combine
 
 class StudyViewModel: ObservableObject {
     
-    @Published var studys = [Study]()
+    @Published var allStudys = [Study]()
+    @Published var filteredWithCategoryStudys = [Study]()
+    @Published var filteredStudys = [Study]()
     //@Published var selectedStudy: Study?
     @Published var selectedStudy: Study = Study.study1
     
@@ -53,6 +55,8 @@ class StudyViewModel: ObservableObject {
     @Published var positionInfoPlanner: PositionInfo?
     @Published var revenuePurpose: RevenuePurpose?
     
+    let studyService = StudyService()
+    
     var positionInfos: [PositionInfo] {
         return [positionInfoBackend, positionInfoFrontend, positionInfoiOS, positionInfoAOS, positionInfoCross, positionInfoDesigner, positionInfoPlanner].compactMap { $0 }
     }
@@ -75,21 +79,50 @@ class StudyViewModel: ObservableObject {
     private var cancellables: Set<AnyCancellable> = []
     
     init() {
-        initStudys()
+        //initStudys()
         
-        $studys
+        $allStudys
             .map { $0.filter { $0.state != .ended } }
             .sink { [weak self] filterdStudys in
                 self?.filterdOngoingMyStudy = filterdStudys
             }
             .store(in: &cancellables)
 
-        $studys
+        $allStudys
             .map { $0.filter { $0.state == .ended }}
             .sink { [weak self] filterdStudys in
                 self?.filterdEndedMyStudy = filterdStudys
             }
             .store(in: &cancellables)
+        
+        $selectedCategory
+            .sink { [weak self] in
+                self?.filteringStudyWithCategory(category: $0)
+            }
+            .store(in: &cancellables)
+        
+        $selectedState
+            .sink { [weak self] in
+                self?.filteringStudyWithState(state: $0 ?? .recruiting)
+            }
+            .store(in: &cancellables)
+    }
+    
+    func filteringStudyWithState(state: StudyState) {
+        self.filteredStudys = self.filteredWithCategoryStudys.filter { $0.state == state }
+    }
+    
+    func filteringStudyWithCategory(category: StudyCategory) {
+        self.selectedState = nil
+        
+        if category == .all {
+            self.filteredWithCategoryStudys = self.allStudys
+            self.filteredStudys = self.filteredWithCategoryStudys
+        } else {
+            let filteredWithCategoryStudys = allStudys.filter { $0.category == category }
+            self.filteredWithCategoryStudys = filteredWithCategoryStudys
+            self.filteredStudys = self.filteredWithCategoryStudys
+        }
     }
 
     func isHostUser(study: Study, member: Member) -> Bool {
@@ -112,5 +145,22 @@ class StudyViewModel: ObservableObject {
     
     func createStudy() {
         // TODO: POST Study
+        studyService.createStudy(study: Study.study4) {
+            print("완료")
+        }
+    }
+    
+    func getAllStudy() {
+        studyService.getAllStudies { studys, error in
+            if let error = error {
+                print("데이터 받아오기 실패")
+            } else {
+                guard let studys = studys else { return }
+                self.allStudys.removeAll()
+                self.allStudys = studys
+                self.filteredStudys.removeAll()
+                self.filteredStudys = studys
+            }
+        }
     }
 }

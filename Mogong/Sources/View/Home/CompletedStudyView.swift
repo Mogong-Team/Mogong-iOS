@@ -26,7 +26,7 @@ struct CompletedStudyView: View {
 
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 15) {
-                    ForEach(Array(viewModel.studys.enumerated()), id: \.element.id) { index, study in
+                    ForEach(Array(viewModel.allStudys.enumerated()), id: \.element.id) { index, study in
 //                        let study = viewModel.studys[index]
                         let image = Image("CharacterCard\((index % 6) + 1)")
                         

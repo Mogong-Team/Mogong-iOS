@@ -33,7 +33,7 @@ struct BookmarkView: View {
             
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 20) {
-                    ForEach(viewModel.studys) { study in
+                    ForEach(viewModel.allStudys) { study in
                         StudyListCell(study: study)
                     }
                 }

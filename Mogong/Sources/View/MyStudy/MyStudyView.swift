@@ -61,7 +61,7 @@ struct SelectState: View {
         HStack(spacing: 10) {
             SelectStateButton(
                 title: "진행중인 스터디",
-                studyCount: studyViewModel.studys.filter { $0.state != .ended }.count,
+                studyCount: studyViewModel.allStudys.filter { $0.state != .ended }.count,
                 isSelected: studyViewModel.selectedMyStudyStateIsEnded ? false : true
             )
             .onTapGesture {
@@ -73,7 +73,7 @@ struct SelectState: View {
             
             SelectStateButton(
                 title: "종료 스터디",
-                studyCount: studyViewModel.studys.filter { $0.state == .ended }.count,
+                studyCount: studyViewModel.allStudys.filter { $0.state == .ended }.count,
                 isSelected: studyViewModel.selectedMyStudyStateIsEnded ? true : false
             )
             .onTapGesture {
@@ -223,17 +223,17 @@ struct MyStudyIntroduce: View {
 
     var body: some View {
         VStack(spacing: 20) {
-            NavigationLink {
-                // TODO: 출석 체크
-            } label: {
-                Text("스터디 출석체크")
-                .font(.pretendard(weight: .bold, size: 20))
-                .foregroundColor(.white)
-                .frame(maxWidth: .infinity)
-                .frame(height: 48)
-                .background(Color(hexColor: "FFA215"))
-                .cornerRadius(30)
-            }
+//            NavigationLink {
+//                // TODO: 출석 체크
+//            } label: {
+//                Text("스터디 출석체크")
+//                .font(.pretendard(weight: .bold, size: 20))
+//                .foregroundColor(.white)
+//                .frame(maxWidth: .infinity)
+//                .frame(height: 48)
+//                .background(Color(hexColor: "FFA215"))
+//                .cornerRadius(30)
+//            }
             IntroduceTitle()
             if userViewModel.currentUserIsHost(study: studyViewModel.selectedStudy) {
                 NavigationLink {

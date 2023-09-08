@@ -40,6 +40,7 @@ struct ProjectStudy: View {
                     
                     SelectButton(title: "완료", state: .selected) {
                         // TODO: Post Study
+                        viewModel.createStudy()
                     }
                 }
             }

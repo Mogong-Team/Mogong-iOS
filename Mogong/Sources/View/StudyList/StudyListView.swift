@@ -44,6 +44,9 @@ struct StudyListView: View {
         .navigationDestination(isPresented: $viewModel.presentCreateStudy) {
             CreateStudy()
         }
+        .onAppear {
+            viewModel.getAllStudy()
+        }
     }
 }
 
@@ -95,7 +98,7 @@ struct SelectStudyState: View {
             SelectStudyStateButton(state: .recruiting)
             SelectStudyStateButton(state: .completed)
             Spacer()
-            SelectStudyFilter()
+            //SelectStudyFilter()
         }
     }
 }
@@ -163,7 +166,7 @@ struct StudyList: View {
                     SelectStudyState()
                         .padding(.vertical, 16)
                     
-                    ForEach(viewModel.studys) { study in
+                    ForEach(viewModel.filteredStudys) { study in
                         StudyListCell(study: study)
                             .padding(.bottom, 18)
                             .onTapGesture {
