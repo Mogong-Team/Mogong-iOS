@@ -13,10 +13,13 @@ import FirebaseFirestore
 
 class StudyService {
     
+    static let shared = StudyService()
+    private init() { }
+    
     private var db = Firestore.firestore()
     
     // 1. 스터디 생성
-    func createStudy(study: Study, completion: @escaping () -> Void) {
+    static func createStudy(study: Study, completion: @escaping () -> Void) {
         do {
             // Study 인스턴스를 JSON 객체로 변환
             let jsonData = try JSONEncoder().encode(study)
@@ -26,7 +29,7 @@ class StudyService {
                 return
             }
             
-            db.collection("studys").document(study.id).setData(json) { error in
+            shared.db.collection("studys").document(study.id).setData(json) { error in
                 completion()
             }
         } catch let error {
@@ -36,8 +39,8 @@ class StudyService {
     }
     
     // 2. 스터디 가져오기
-    func getAllStudys(completion: @escaping (Result<[Study], Error>) -> Void) {
-        db.collection("studys").getDocuments { querySnapshot, error in
+    static func getAllStudys(completion: @escaping (Result<[Study], Error>) -> Void) {
+        shared.db.collection("studys").getDocuments { querySnapshot, error in
             if let error = error {
                 completion(.failure(error))
                 return
@@ -59,8 +62,8 @@ class StudyService {
     }
     
     // 3. ID를 통해 스터디 가져오기
-    func getStudyById(studyId: String, completion: @escaping (Result<Study, Error>) -> Void) {
-        db.collection("studys").document(studyId).getDocument { snapshot, error in
+    static func getStudyById(studyId: String, completion: @escaping (Result<Study, Error>) -> Void) {
+        shared.db.collection("studys").document(studyId).getDocument { snapshot, error in
             if let error = error {
                 completion(.failure(error))
                 return
@@ -79,16 +82,16 @@ class StudyService {
     
     //MARK: 북마크
     
-    func addBookmarkedUser(studyId: String, userId: String, completion: @escaping (Error?) -> Void) {
-        db.collection("studys").document(studyId).updateData([
+    static func addBookmarkedUser(studyId: String, userId: String, completion: @escaping (Error?) -> Void) {
+        shared.db.collection("studys").document(studyId).updateData([
             "bookMarkedUsers": FieldValue.arrayUnion([userId])
         ]) { error in
             completion(error)
         }
     }
     
-    func deleteBookmarkedUser(studyId: String, userId: String, completion: @escaping (Error?) -> Void) {
-        db.collection("studys").document(studyId).updateData([
+    static func deleteBookmarkedUser(studyId: String, userId: String, completion: @escaping (Error?) -> Void) {
+        shared.db.collection("studys").document(studyId).updateData([
             "bookMarkedUsers": FieldValue.arrayRemove([userId])
         ]) { error in
             completion(error)
@@ -161,15 +164,15 @@ class StudyService {
 //    }
     
     // 스터디 업데이트
-    func updateStudy(studyId: String, data: [String: Any], completion: @escaping (Error?) -> Void) {
-        db.collection("studies").document(studyId).updateData(data) { error in
+    static func updateStudy(studyId: String, data: [String: Any], completion: @escaping (Error?) -> Void) {
+        shared.db.collection("studies").document(studyId).updateData(data) { error in
             completion(error)
         }
     }
     
     // 스터디 삭제
-    func deleteStudy(studyId: String, completion: @escaping (Error?) -> Void) {
-        db.collection("studies").document(studyId).delete { error in
+    static func deleteStudy(studyId: String, completion: @escaping (Error?) -> Void) {
+        shared.db.collection("studies").document(studyId).delete { error in
             completion(error)
         }
     }

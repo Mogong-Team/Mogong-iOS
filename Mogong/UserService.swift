@@ -19,7 +19,7 @@ class UserService {
     private var db = Firestore.firestore()
     
     // 현재 유저 정보 저장
-    func saveUser(user: User, completion: @escaping (Error?) -> Void) {
+    static func saveUser(user: User, completion: @escaping (Error?) -> Void) {
         let dataDic: [String: Any] = [
             "id": user.id,
             "email": user.email,
@@ -30,7 +30,7 @@ class UserService {
             "bookmarkedStudyIds": user.bookmarkedStudyIds,
         ]
         
-        db.collection("users").document(user.id).setData(dataDic) { error in
+        shared.db.collection("users").document(user.id).setData(dataDic) { error in
             completion(error)
         }
     }

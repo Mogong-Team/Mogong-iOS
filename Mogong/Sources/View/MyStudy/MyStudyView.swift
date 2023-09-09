@@ -247,8 +247,8 @@ struct MyStudyIntroduce: View {
                     .padding()
                     .font(.pretendard(weight: .bold, size: 20))
                     .foregroundColor(.white)
-                    .background(Color.main)
-                    .cornerRadius(30)
+                    .background(Color(hexColor: "ECFBFF"))
+                    .cornerRadius(8)
                 }
             }
             IntroduceMember()

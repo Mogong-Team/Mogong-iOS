@@ -10,6 +10,13 @@ import SwiftUI
 struct GeneralStudy: View {
     @EnvironmentObject var viewModel: StudyViewModel
     @State private var selectedCategory: GeneralStudyCategory = .backend
+    
+    var isCompleted: Bool {
+        return viewModel.frequencyOfWeek != 0
+        && viewModel.durationOfMonth != 0
+        && viewModel.numberOfRecruits != 0
+        && viewModel.language != []
+    }
         
     var body: some View {
             VStack {
@@ -17,7 +24,8 @@ struct GeneralStudy: View {
                     VStack(alignment: .leading) {
                         Text("공통 학습 분야 선택")
                             .font(.pretendard(weight: .medium, size: 16))
-                            .padding(.bottom, 16)
+                            .foregroundColor(Color(hexColor: "727272"))
+                            .padding(.bottom, 10)
                         
                         LazyVGrid(columns: Array(repeating: GridItem(spacing: 5), count: 2), spacing: 5) {
                             ForEach(GeneralStudyCategory.allCases, id: \.self) { category in
@@ -30,11 +38,12 @@ struct GeneralStudy: View {
                         .frame(height: 102)
                         .background(Color(hexColor: "DAF8FF"))
                         .cornerRadius(9)
-                        .padding(.bottom, 20)
+                        .padding(.bottom, 30)
                         
                         Text("언어는 3개까지 선택이 가능합니다.")
-                            .font(.pretendard(weight: .medium, size: 16))
-                            .padding(.bottom, 16)
+                            .font(.pretendard(weight: .regular, size: 13))
+                            .foregroundColor(Color(hexColor: "5E5A5A"))
+                            .padding(.bottom, 10)
 
                         LazyVGrid(columns: Array(repeating: GridItem(), count: 3), spacing: 30) {
                             ForEach(selectedCategory.language, id: \.self) { language in
@@ -48,21 +57,26 @@ struct GeneralStudy: View {
                             GeneralStudySelectDurationMenu()
                             GeneralStudySelectPersonnelMenu()
                         }
+                        .padding(.bottom, 20)
+                        
+                        ActionButton("생성하기") {
+                            viewModel.presentCreateStudy = false
+                            viewModel.createStudy()
+                            viewModel.resetCreateStudy()
+                        }
+                        .disabled(!isCompleted)
                     }
+                    .padding(.top, 20)
                     .padding(.bottom, 10)
-                }
-                
-                ActionButton("생성하기") {
-                    viewModel.presentCreateStudy = true
-                    // TODO: Post Study
+                    .padding(.horizontal, 20)
                 }
             }
-            .padding(.horizontal, 20)
             .navigationTitle("스터디 생성 : 일반 스터디")
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Image(systemName: "xmark")
+                        .fontWeight(.bold)
                         .onTapGesture {
                             viewModel.presentCreateStudy = false
                         }
@@ -118,7 +132,6 @@ struct GeneralStudySelectLanguage: View {
                 .resizable()
                 .scaledToFit()
                 .frame(width: 60, height: 60)
-                .background(Color.main)
                 .clipShape(Circle())
                 .overlay(
                     viewModel.language.contains(where: { $0 == language })
@@ -184,7 +197,7 @@ struct GeneralStudySelectFrequencyMenu: View {
                 .frame(width: 95, height: 40)
                 .overlay {
                     RoundedRectangle(cornerRadius: 9)
-                        .stroke(Color.gray, lineWidth: 1)
+                        .stroke(Color(hexColor: "DBF6FC"), lineWidth: 2)
                 }
             }
         }
@@ -227,7 +240,7 @@ struct GeneralStudySelectDurationMenu: View {
                 .frame(width: 95, height: 40)
                 .overlay {
                     RoundedRectangle(cornerRadius: 9)
-                        .stroke(Color.gray, lineWidth: 1)
+                        .stroke(Color(hexColor: "DBF6FC"), lineWidth: 2)
                 }
             }
         }
@@ -270,7 +283,7 @@ struct GeneralStudySelectPersonnelMenu: View {
                 .frame(width: 95, height: 38)
                 .overlay {
                     RoundedRectangle(cornerRadius: 9)
-                        .stroke(Color.gray, lineWidth: 1)
+                        .stroke(Color(hexColor: "DBF6FC"), lineWidth: 2)
                 }
             }
         }
@@ -283,42 +296,3 @@ struct GeneralStudy_Previews: PreviewProvider {
             .environmentObject(StudyViewModel())
     }
 }
-
-    //LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))], spacing: 16) {
-    //                    ForEach(fields, id: \.self) { field in
-    //                        Button(action: {
-    //                            selectedField = field
-    //                        }) {
-    //                            Text(field)
-    //                                .frame(maxWidth: .infinity)
-    //                                .padding()
-    //                                .background(
-    //                                    RoundedRectangle(cornerRadius: 8)
-    //                                        .fill(selectedField == field ? Color.blue : Color.white)
-    //                                        .border(Color.gray, width: 1)
-    //                                        .cornerRadius(12)
-    //                                )
-    //                                .foregroundColor(selectedField == field ? Color.white : Color.gray)
-    //                        }
-    //                    }
-    //                }
-    
-    
-    //                    if durationOfMonth == 0 {
-    //                        Text("달")
-    //                            .foregroundColor(Color(uiColor: .lightGray))
-    //
-    //                        Image(systemName: "chevron.down")
-    //                            .foregroundColor(.gray)
-    //                    } else {
-    //                        Text("\(durationOfMonth)달")
-    //                            .foregroundColor(.black)
-    //                            .fontWeight(.bold)
-    //                    }
-    //                }
-    //                .font(Font.system(size: 16))
-    //                .padding(.horizontal, 13)
-    //                .frame(width: 95, height: 38)
-    //                .overlay {
-    //                    RoundedRectangle(cornerRadius: 9)
-    //                        .stroke(Color.gray, lineWidth: 1)

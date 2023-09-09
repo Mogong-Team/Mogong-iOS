@@ -54,15 +54,16 @@ struct Introduction: View {
                     background: Color.main)
                 //.padding(.bottom, 10)
 
+                Spacer()
+                
                 Image(systemName:
-                        //viewModel.checkBookmarkState
                       viewModel.selectedStudy.bookMarkedUsers.contains(UserViewModel.shared.currentUser.id)
                       ? "heart.fill"
                       : "heart")
-                    .foregroundColor(.red)
-                    .onTapGesture {
-                        viewModel.updateBookmark()
-                    }
+                .foregroundColor(.red)
+                .onTapGesture {
+                    viewModel.updateBookmark()
+                }
             }
             .padding(.bottom, 10)
             
@@ -99,7 +100,7 @@ struct StudyDetail: View {
                 }
                 DetailContent(
                     title: "모집 현황",
-                    content: "\(viewModel.selectedStudy.currentMembers.count) / \(viewModel.numberOfRecruits(study: viewModel.selectedStudy))")
+                    content: "\(viewModel.selectedStudy.currentMembers.count) / \(viewModel.selectedStudy.numberOfRecruits)")
             } else if viewModel.selectedStudy.category == .projectStudy {
                 DetailContent(title: "수익화 목적",
                               content: viewModel.selectedStudy.revenuePurpose?.rawValue ?? "")

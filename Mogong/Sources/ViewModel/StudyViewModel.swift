@@ -55,9 +55,7 @@ class StudyViewModel: ObservableObject {
     @Published var positionInfoDesigner: PositionInfo?
     @Published var positionInfoPlanner: PositionInfo?
     @Published var revenuePurpose: RevenuePurpose?
-    
-    let studyService = StudyService()
-    
+        
     var positionInfos: [PositionInfo] {
         return [positionInfoBackend, positionInfoFrontend, positionInfoiOS, positionInfoAOS, positionInfoCross, positionInfoDesigner, positionInfoPlanner].compactMap { $0 }
     }
@@ -131,47 +129,35 @@ class StudyViewModel: ObservableObject {
             self.filteredStudys = self.filteredWithCategoryStudys
         }
     }
-
-    func isHostUser(study: Study, member: Member) -> Bool {
-        return study.host.id == member.user.id
-    }
     
-    func numberOfRecruits(study: Study) -> Int {
-        return study.positionInfos
-            .map { $0.requiredCount }
-            .filter { $0 != 0 }
-            .reduce(0, +)
-    }
-    
-    func positions(study: Study) -> String {
-        return study.positionInfos
-            .filter { $0.requiredCount != 0 }
-            .map { $0.position.rawValue }
-            .joined(separator: " / ")
-    }
+    //MARK: 스터디
     
     func createStudy() {
+        let study = Study(
+            category: category ?? .generalStudy,
+            loaction: location ?? .online,
+            title: title,
+            introduction: introduction,
+            goal: goal,
+            memberPreference: memberPreference,
+            dueDate: dueDate,
+            frequencyOfWeek: frequencyOfWeek,
+            durationOfMonth: durationOfMonth,
+            languages: language,
+            numberOfRecruits: numberOfRecruits,
+            positionInfos: positionInfos,
+            host: UserViewModel.shared.currentUser,
+            currentMembers: [Member(user: UserViewModel.shared.currentUser, position: hostPosition ?? .ios)]
+        )
+        
         // TODO: POST Study
-        studyService.createStudy(study: Study.study4) {
-            print("완료")
+        StudyService.createStudy(study: study) {
+            print("스터디 생성 완료")
         }
     }
 
     func getAllStudys() {
-//        studyService.getAllStudies { studys, error in
-//            if let error = error {
-//                print("스터디 받아오기 실패")
-//            } else {
-//                print("스터디 받아오기 성공")
-//                guard let studys = studys else { return }
-//                self.allStudys.removeAll()
-//                self.allStudys = studys
-//                self.filteredStudys.removeAll()
-//                self.filteredStudys = studys
-//            }
-//        }
-        
-        studyService.getAllStudys { result in
+        StudyService.getAllStudys { result in
             switch result {
             case .success(let studys):
                 print("스터디 받아오기 성공")
@@ -197,7 +183,7 @@ class StudyViewModel: ObservableObject {
         let studyId = self.selectedStudy.id
         
         if checkBookmark(study: study) {
-            studyService.deleteBookmarkedUser(studyId: studyId, userId: userId) { error in
+            StudyService.deleteBookmarkedUser(studyId: studyId, userId: userId) { error in
                 if let error = error {
                     print("스터디 북마크 삭제 실패", error.localizedDescription)
                 } else {
@@ -205,7 +191,7 @@ class StudyViewModel: ObservableObject {
                         if let error = error {
                             print("유저 북마크 삭제 실패", error.localizedDescription)
                         } else {
-                            self.studyService.getAllStudys { result in
+                            StudyService.getAllStudys { result in
                                 switch result {
                                 case .success(let study):
                                     self.allStudys = study
@@ -214,7 +200,7 @@ class StudyViewModel: ObservableObject {
                                 }
                             }
                             
-                            self.studyService.getStudyById(studyId: studyId) { result in
+                            StudyService.getStudyById(studyId: studyId) { result in
                                 switch result {
                                 case .success(let study):
                                     self.selectedStudy = study
@@ -236,7 +222,7 @@ class StudyViewModel: ObservableObject {
                 }
             }
         } else {
-            studyService.addBookmarkedUser(studyId: studyId, userId: userId) { error in
+            StudyService.addBookmarkedUser(studyId: studyId, userId: userId) { error in
                 if let error = error {
                     print("스터디 북마크 추가 실패", error.localizedDescription)
                 } else {
@@ -244,7 +230,7 @@ class StudyViewModel: ObservableObject {
                         if let error = error {
                             print("유저 북마크 추가 실패", error.localizedDescription)
                         } else {
-                            self.studyService.getAllStudys { result in
+                            StudyService.getAllStudys { result in
                                 switch result {
                                 case .success(let study):
                                     self.allStudys = study
@@ -253,7 +239,7 @@ class StudyViewModel: ObservableObject {
                                 }
                             }
                             
-                            self.studyService.getStudyById(studyId: studyId) { result in
+                            StudyService.getStudyById(studyId: studyId) { result in
                                 switch result {
                                 case .success(let study):
                                     self.selectedStudy = study
@@ -275,5 +261,96 @@ class StudyViewModel: ObservableObject {
                 }
             }
         }
+    }
+    
+    //MARK: 기타
+    
+    func isHostUser(study: Study, member: Member) -> Bool {
+        return study.host.id == member.user.id
+    }
+    
+    func numberOfRecruits(study: Study) -> Int {
+        return study.positionInfos
+            .map { $0.requiredCount }
+            .filter { $0 != 0 }
+            .reduce(0, +)
+    }
+    
+    func positions(study: Study) -> String {
+        return study.positionInfos
+            .filter { $0.requiredCount != 0 }
+            .map { $0.position.rawValue }
+            .joined(separator: " / ")
+    }
+    
+    func setPositionInfo(position: Position, positionInfo: PositionInfo) {
+        switch position {
+        case .backend:
+            positionInfoBackend = positionInfo
+        case .frontend:
+            positionInfoFrontend = positionInfo
+        case .ios:
+            positionInfoiOS = positionInfo
+        case .aos:
+            positionInfoAOS = positionInfo
+        case .cross:
+            positionInfoCross = positionInfo
+        case .designer:
+            positionInfoDesigner = positionInfo
+        case .planner:
+            positionInfoPlanner = positionInfo
+        }
+    }
+    
+    func getPositionInfoText(_ positionInfo: PositionInfo?) -> String {
+        guard let info = positionInfo else { return "0명" }
+        
+        let requiredCount = info.requiredCount
+        let languages = info.language.map { $0.rawValue }.map { "/ \($0)" }.joined(separator: " ")
+        return "\(requiredCount)명 \(languages)"
+    }
+
+    func setPositionInfoText(position: Position) -> String {
+        switch position {
+        case .backend:
+            return getPositionInfoText(positionInfoBackend)
+        case .frontend:
+            return getPositionInfoText(positionInfoFrontend)
+        case .ios:
+            return getPositionInfoText(positionInfoiOS)
+        case .aos:
+            return getPositionInfoText(positionInfoAOS)
+        case .cross:
+            return getPositionInfoText(positionInfoCross)
+        case .designer:
+            return getPositionInfoText(positionInfoDesigner)
+        case .planner:
+            return getPositionInfoText(positionInfoPlanner)
+        }
+    }
+    
+    func resetCreateStudy() {
+        category = nil
+        location = nil
+        title = ""
+        introduction = ""
+        goal = ""
+        memberPreference = ""
+        dueDate = Date()
+        
+        frequencyOfWeek = 0
+        durationOfMonth = 0
+        language = []
+        numberOfRecruits = 0
+        
+        hostPosition = nil
+        positionInfoBackend = nil
+        positionInfoFrontend = nil
+        positionInfoiOS = nil
+        positionInfoAOS = nil
+        positionInfoCross = nil
+        positionInfoDesigner = nil
+        positionInfoPlanner = nil
+        revenuePurpose = nil
     }
 }

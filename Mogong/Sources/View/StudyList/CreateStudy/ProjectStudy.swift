@@ -9,66 +9,121 @@ import SwiftUI
 
 struct ProjectStudy: View {
     @EnvironmentObject var viewModel: StudyViewModel
-
+    @State private var presentSheet = false
+    
+    var neededMemberCount: Int {
+        return viewModel.positionInfos.reduce(0) { $0 + $1.requiredCount }
+    }
+    
+    var isCompleted: Bool {
+        return viewModel.hostPosition != nil
+        && neededMemberCount != 0
+        && viewModel.frequencyOfWeek != 0
+        && viewModel.durationOfMonth != 0
+    }
+    
     var body: some View {
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 16) {
                     HStack {
                         Text("나의 포지션")
+                            .font(.pretendard(weight: .medium, size: 16))
+                            .foregroundColor(Color(hexColor: "727272"))
                         Spacer()
-                        Text("프론트엔드")
+                        HStack {
+                            if let text = viewModel.hostPosition?.rawValue {
+                                Text(text)
+                                    .font(.pretendard(weight: .bold, size: 18))
+                                    .foregroundColor(Color(hexColor: "727272"))
+                                Image("arrow_right")
+                            } else {
+                                Text("포지션을 선택해 주세요!")
+                                    .font(.pretendard(weight: .bold, size: 18))
+                                    .foregroundColor(Color.main)
+                            }
+                        }
+                        .onTapGesture {
+                            presentSheet = true
+                        }
                     }
                     
                     HStack {
                         Text("모집 인원")
+                            .font(.pretendard(weight: .medium, size: 16))
+                            .foregroundColor(Color(hexColor: "727272"))
                         Spacer()
-                        Text("0명")
+                        
+                        HStack {
+                            Text("총 ")
+                                .font(.pretendard(weight: .bold, size: 18))
+                                .foregroundColor(Color(hexColor: "727272"))
+                            Text("\(neededMemberCount)")
+                                .font(.pretendard(weight: .bold, size: 18))
+                                .foregroundColor(Color.main)
+                            Text("명")
+                                .font(.pretendard(weight: .bold, size: 18))
+                                .foregroundColor(Color(hexColor: "727272"))
+                        }
                     }
                     
                     VStack(spacing: 16) {
-                        ProjectStudyPositionInfo(ProjectsStudyPosition: "프론트엔드")
-                        ProjectStudyPositionInfo(ProjectsStudyPosition: "백엔드")
-                        ProjectStudyPositionInfo(ProjectsStudyPosition: "AOS")
-                        ProjectStudyPositionInfo(ProjectsStudyPosition: "iOS")
-                        ProjectStudyPositionInfo(ProjectsStudyPosition: "하이브리드")
-                        ProjectStudyPositionInfo(ProjectsStudyPosition: "디자인")
-                        ProjectStudyPositionInfo(ProjectsStudyPosition: "기획")
-                        ProjectStudyPositionInfo(ProjectsStudyPosition: "기타")
+                        ProjectStudyPositionInfo(position: .backend)
+                        ProjectStudyPositionInfo(position: .frontend)
+                        ProjectStudyPositionInfo(position: .aos)
+                        ProjectStudyPositionInfo(position: .ios)
+                        ProjectStudyPositionInfo(position: .cross)
+                        ProjectStudyPositionInfo(position: .designer)
+                        ProjectStudyPositionInfo(position: .planner)
                     }
-                    ProjectStudySelectProfitGoal()
-                    Spacer()
                     
-                    SelectButton(title: "완료", state: .selected) {
-                        // TODO: Post Study
-                        viewModel.createStudy()
+                    VStack(spacing: 10) {
+                        GeneralStudySelectFrequencyMenu()
+                        GeneralStudySelectDurationMenu()
+                        ProjectStudySelectProfitGoal()
                     }
+                    
+                    ActionButton("완료") {
+                        viewModel.presentCreateStudy = false
+                        viewModel.createStudy()
+                        viewModel.resetCreateStudy()
+                    }
+                    .disabled(!isCompleted)
                 }
+                .padding(.top, 20)
+                .padding(.bottom, 10)
+                .padding(.horizontal, 20)
             }
             .navigationTitle("스터디 생성: 프로젝트형")
             .navigationBarTitleDisplayMode(.large)
-            .padding(.horizontal, 20)
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Image(systemName: "xmark")
-                        .foregroundColor(.black)
+                        .fontWeight(.bold)
                         .onTapGesture {
-                            viewModel.presentStudyDetail = false
+                            viewModel.presentCreateStudy = false
                         }
                 }
             }
-        }
+            .sheet(isPresented: $presentSheet) {
+                ProjectStudyHostPositionModal()
+                    .presentationDetents([.fraction(0.53)])
+            }
+    }
 }
 
 struct ProjectStudyPositionInfo: View {
-    var ProjectsStudyPosition: String = ""
+    @EnvironmentObject var viewModel: StudyViewModel
+    
+    var position: Position
+    @State var presentSheet = false
     
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text(ProjectsStudyPosition)
+                Text(position.rawValue)
                     .font(.pretendard(weight: .bold, size: 18))
                     .foregroundColor(Color(hexColor: "727272"))
-                Text("2명 / Swift / Vue")
+                Text(viewModel.setPositionInfoText(position: position))
                     .font(.pretendard(weight: .semiBold, size: 14))
                     .foregroundColor(Color(hexColor: "0090E1"))
             }
@@ -81,6 +136,13 @@ struct ProjectStudyPositionInfo: View {
             RoundedRectangle(cornerRadius: 24)
                 .stroke(Color(hexColor: "CCE6FA"), lineWidth: 2)
         }
+        .onTapGesture {
+            presentSheet = true
+        }
+        .sheet(isPresented: $presentSheet) {
+            ProjectStudyPositionInfoModal(position: position)
+                .presentationDetents([.fraction(0.8)])
+        }
     }
 }
 
@@ -88,14 +150,15 @@ struct ProjectStudySelectProfitGoal: View {
     @State private var isProfitable: Bool = false
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text("수익화 목적")
-            HStack(spacing: 6) {
+        VStack {
+            HStack{
+                Text("수익화 목적")
+                Spacer()
+                
                 Text("있음")
                     .font(.pretendard(weight: .bold, size: 18))
                     .foregroundColor(isProfitable ? .white : Color(hexColor: "D9D9D9"))
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 46)
+                    .frame(width: 80, height: 46)
                     .background(isProfitable ? Color.main : .white)
                     .cornerRadius(9)
                     .overlay {
@@ -111,8 +174,7 @@ struct ProjectStudySelectProfitGoal: View {
                 Text("없음")
                     .font(.pretendard(weight: .bold, size: 18))
                     .foregroundColor(!isProfitable ? .white : Color(hexColor: "D9D9D9"))
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 46)
+                    .frame(width: 80, height: 46)
                     .background(!isProfitable ? Color.main : .white)
                     .cornerRadius(9)
                     .overlay {

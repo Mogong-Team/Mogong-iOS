@@ -27,20 +27,20 @@ struct SelectButton: View {
                     
                     Text(title)
                         .font(Font.system(size: 18, weight: .medium))
-                        .foregroundColor(.gray)
+                        .foregroundColor(Color(hexColor: "B3B3B3"))
                 } else {
-                    Color.blue
+                    Color.main
                     
                     Text(title)
                         .font(Font.system(size: 18, weight: .medium))
                         .foregroundColor(.white)
                 }
             }
-            .frame(height: 42)
-            .cornerRadius(12)
+            .frame(height: 45)
+            .cornerRadius(9)
             .overlay {
                 RoundedRectangle(cornerRadius: 10)
-                    .stroke(Color.gray, lineWidth: 1)
+                    .stroke(Color(hexColor: "DBF6FC"), lineWidth: 1)
             }
         }
     }
@@ -49,5 +49,15 @@ struct SelectButton: View {
         self.title = title
         self.state = state
         self.action = action
+    }
+}
+
+struct SelectButton_Previews: PreviewProvider {
+    static var previews: some View {
+        VStack {
+            SelectButton(title: "버튼", state: .selected) { }
+            SelectButton(title: "버튼", state: .unselected) { }
+        }
+        .padding(.horizontal, 20)
     }
 }

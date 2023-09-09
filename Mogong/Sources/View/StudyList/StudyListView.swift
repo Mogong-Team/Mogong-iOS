@@ -23,12 +23,6 @@ struct StudyListView: View {
             }
             
             ToolbarItemGroup(placement: .navigationBarTrailing) {
-                NavigationLink {
-                    ChatListView()
-                } label: {
-                    Image("message")
-                }
-
                 Image("add")
                     .onTapGesture {
                         viewModel.presentCreateStudy = true

@@ -77,6 +77,8 @@
 		8FE5169F2A4965F40059D720 /* ApplicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE5169E2A4965F40059D720 /* ApplicationView.swift */; };
 		8FE516A12A4969DA0059D720 /* StudyDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE516A02A4969DA0059D720 /* StudyDetailView.swift */; };
 		8FE516A52A4989030059D720 /* HashtagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE516A42A4989030059D720 /* HashtagView.swift */; };
+		8FE8479B2AAC40160050D480 /* ProjectStudyPositionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE8479A2AAC40160050D480 /* ProjectStudyPositionInfo.swift */; };
+		8FE8479D2AAC59090050D480 /* ProjectStudyHostPositionModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE8479C2AAC59090050D480 /* ProjectStudyHostPositionModal.swift */; };
 		8FEBA8642A70AFA9009275BD /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEBA8632A70AFA9009275BD /* SettingView.swift */; };
 		8FEBA8662A70AFDF009275BD /* EditUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEBA8652A70AFDF009275BD /* EditUserInfo.swift */; };
 		8FF09EDF2A569B6900630F19 /* HStakTeamMemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF09EDE2A569B6900630F19 /* HStakTeamMemberView.swift */; };
@@ -174,6 +176,8 @@
 		8FE5169E2A4965F40059D720 /* ApplicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationView.swift; sourceTree = "<group>"; };
 		8FE516A02A4969DA0059D720 /* StudyDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyDetailView.swift; sourceTree = "<group>"; };
 		8FE516A42A4989030059D720 /* HashtagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashtagView.swift; sourceTree = "<group>"; };
+		8FE8479A2AAC40160050D480 /* ProjectStudyPositionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectStudyPositionInfo.swift; sourceTree = "<group>"; };
+		8FE8479C2AAC59090050D480 /* ProjectStudyHostPositionModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectStudyHostPositionModal.swift; sourceTree = "<group>"; };
 		8FEBA8632A70AFA9009275BD /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		8FEBA8652A70AFDF009275BD /* EditUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserInfo.swift; sourceTree = "<group>"; };
 		8FF09EDE2A569B6900630F19 /* HStakTeamMemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HStakTeamMemberView.swift; sourceTree = "<group>"; };
@@ -529,6 +533,8 @@
 				8FE5168F2A4868120059D720 /* CreateStudy.swift */,
 				8FF26A382A6646D400149972 /* GeneralStudy.swift */,
 				8FF26A3B2A6646E100149972 /* ProjectStudy.swift */,
+				8FE8479C2AAC59090050D480 /* ProjectStudyHostPositionModal.swift */,
+				8FE8479A2AAC40160050D480 /* ProjectStudyPositionInfo.swift */,
 			);
 			path = CreateStudy;
 			sourceTree = "<group>";
@@ -703,6 +709,7 @@
 				8FF09EE12A569B7200630F19 /* HStackNewTeamMemberView.swift in Sources */,
 				8F78DB9A2A4C04490004F195 /* AlarmView.swift in Sources */,
 				8FF418A32A4D7B0B0090FA34 /* AppDelegate.swift in Sources */,
+				8FE8479D2AAC59090050D480 /* ProjectStudyHostPositionModal.swift in Sources */,
 				8FF26A3E2A6669D700149972 /* Color+hexColor.swift in Sources */,
 				8FE516902A4868120059D720 /* CreateStudy.swift in Sources */,
 				8FF279702A5BF507003B325F /* ApplicationService.swift in Sources */,
@@ -721,6 +728,7 @@
 				8F8A676E2A42D16800467936 /* StudyListCell.swift in Sources */,
 				8F0314992A6E29BC001C430A /* Position.swift in Sources */,
 				8F8A673B2A39766300467936 /* UserViewModel.swift in Sources */,
+				8FE8479B2AAC40160050D480 /* ProjectStudyPositionInfo.swift in Sources */,
 				8F8A672F2A39763400467936 /* Rank.swift in Sources */,
 				8FF418A72A4D7E650090FA34 /* ApplicationViewModel.swift in Sources */,
 				8F8A67372A39765700467936 /* StudyViewModel.swift in Sources */,
