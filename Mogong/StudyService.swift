@@ -18,7 +18,8 @@ class StudyService {
     
     private var db = Firestore.firestore()
     
-    // 1. 스터디 생성
+    //MARK: 스터디 생성
+    
     static func createStudy(study: Study, completion: @escaping () -> Void) {
         do {
             // Study 인스턴스를 JSON 객체로 변환
@@ -38,7 +39,8 @@ class StudyService {
         }
     }
     
-    // 2. 스터디 가져오기
+    //MARK: 스터디 가져오기
+    
     static func getAllStudys(completion: @escaping (Result<[Study], Error>) -> Void) {
         shared.db.collection("studys").getDocuments { querySnapshot, error in
             if let error = error {
@@ -61,7 +63,6 @@ class StudyService {
         }
     }
     
-    // 3. ID를 통해 스터디 가져오기
     static func getStudyById(studyId: String, completion: @escaping (Result<Study, Error>) -> Void) {
         shared.db.collection("studys").document(studyId).getDocument { snapshot, error in
             if let error = error {
@@ -97,6 +98,25 @@ class StudyService {
             completion(error)
         }
     }
+    
+    //MARK: 지원서
+    
+    static func addApplication(studyId: String, applicationId: String, completion: @escaping (Error?) -> Void) {
+        shared.db.collection("studys").document(studyId).updateData([
+            "submittedApplications": FieldValue.arrayUnion([applicationId])
+        ]) { error in
+            completion(error)
+        }
+    }
+    
+    static func deleteApplication(studyId: String, applicationId: String, completion: @escaping (Error?) -> Void) {
+        shared.db.collection("studys").document(studyId).updateData([
+            "submittedApplications": FieldValue.arrayRemove([applicationId])
+        ]) { error in
+            completion(error)
+        }
+    }
+    
 
         
         

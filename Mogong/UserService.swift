@@ -91,6 +91,24 @@ class UserService {
             completion(error)
         }
     }
+    
+    //MARK: 지원서
+    
+    static func addBookmarkedStudyIds(userId: String, applicationId: String, completion: @escaping (Error?) -> Void) {
+        shared.db.collection("users").document(userId).updateData([
+            "submittedApplicationIds": FieldValue.arrayUnion([applicationId])
+        ]) { error in
+            completion(error)
+        }
+    }
+    
+    static func deleteBookmarkedStudyIds(userId: String, applicationId: String, completion: @escaping (Error?) -> Void) {
+        shared.db.collection("users").document(userId).updateData([
+            "submittedApplicationIds": FieldValue.arrayRemove([applicationId])
+        ]) { error in
+            completion(error)
+        }
+    }
 }
 
 //MARK: Alamofire

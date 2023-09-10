@@ -78,7 +78,7 @@ struct ApplicationDetailView: View {
 
 struct ApplicationDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ApplicationDetailView(application: Application.application)
+        ApplicationDetailView(application: Application.application1)
         .environmentObject(ApplicationViewModel())
     }
 }

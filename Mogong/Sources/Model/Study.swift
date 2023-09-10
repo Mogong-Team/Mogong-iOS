@@ -55,6 +55,7 @@ struct Study: Identifiable, Codable {
     var state: StudyState = .recruiting
     
     var bookMarkedUsers: [String] = []
+    var submittedApplications: [Application] = []
 }
 
 extension Study {
@@ -85,8 +86,9 @@ extension Study {
         ],
         createDate: Date(),
         state: .recruiting,
-        bookMarkedUsers: [
-        ])
+        bookMarkedUsers: [],
+        submittedApplications: []
+    )
     
     static var study2 = Study(
         category: .projectStudy,
@@ -112,8 +114,9 @@ extension Study {
         ],
         createDate: Date(),
         state: .completed,
-        bookMarkedUsers: [
-        ])
+        bookMarkedUsers: [],
+        submittedApplications: []
+    )
     
     static var study3 = Study(
         category: .generalStudy,
@@ -139,8 +142,9 @@ extension Study {
         ],
         createDate: Date(),
         state: .recruiting,
-        bookMarkedUsers: [
-        ])
+        bookMarkedUsers: [],
+        submittedApplications: []
+    )
     
     static var study4 = Study(
         category: .projectStudy,
@@ -166,8 +170,9 @@ extension Study {
         ],
         createDate: Date(),
         state: .completed,
-        bookMarkedUsers: [
-        ])
+        bookMarkedUsers: [],
+        submittedApplications: []
+    )
 }
 
 //extension StudyViewModel {
