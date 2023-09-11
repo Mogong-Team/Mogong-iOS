@@ -1,13 +1,13 @@
 //
-//  ActionButton.swift
+//  CancelButton.swift
 //  Mogong
 //
-//  Created by 심현석 on 2023/07/24.
+//  Created by 심현석 on 2023/09/11.
 //
 
 import SwiftUI
 
-struct ActionButton: View {
+struct CancelButton: View {
     @Environment(\.isEnabled) var isEnabled: Bool
     
     private let title: LocalizedStringKey
@@ -15,7 +15,7 @@ struct ActionButton: View {
     
     var body: some View {
         Button(title, action: action)
-            .buttonStyle(ActionButtonStyle(isEnabled: isEnabled))
+            .buttonStyle(CancelButtonButtonStyle(isEnabled: isEnabled))
     }
 
     init(_ title: LocalizedStringKey, action: @escaping () -> Void) {
@@ -24,7 +24,7 @@ struct ActionButton: View {
     }
 }
 
-struct ActionButtonStyle: ButtonStyle {
+struct CancelButtonButtonStyle: ButtonStyle {
     let isEnabled: Bool
     
     func makeBody(configuration: Configuration) -> some View {
@@ -34,20 +34,20 @@ struct ActionButtonStyle: ButtonStyle {
             .frame(maxWidth: .infinity)
             .foregroundColor(.white)
             .background(isEnabled
-                        ? Color.main
+                        ? Color(hexColor: "FE6B61")
                         : Color(hexColor: "C5C5C5"))
             .cornerRadius(30)
     }
 }
 
-struct ActionButton_Previews: PreviewProvider {
+struct CancelButton_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            ActionButton("다음") {
+            CancelButton("취소") {
             }
             .disabled(false)
             
-            ActionButton("다음") {
+            CancelButton("취소") {
             }
             .disabled(true)
         }

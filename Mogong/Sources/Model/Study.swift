@@ -55,7 +55,7 @@ struct Study: Identifiable, Codable {
     var state: StudyState = .recruiting
     
     var bookMarkedUsers: [String] = []
-    var submittedApplications: [Application] = []
+    var submittedApplications: [String] = []
 }
 
 extension Study {

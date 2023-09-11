@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ApplicationView: View {
     @EnvironmentObject var viewModel: ApplicationViewModel
+    @EnvironmentObject var studyViewModel: StudyViewModel
     @Environment(\.dismiss) var dismiss
     
     @State private var showSelectPosition: Bool = false
@@ -76,8 +77,8 @@ struct ApplicationView: View {
             Spacer()
             
             ActionButton("지원하기") {
-                dismiss()
-                //TODO: 스터디 지원
+                viewModel.submitApplication(study: studyViewModel.selectedStudy)
+                studyViewModel.presentStudyDetail = false
             }
             .disabled(!isComplete)
         }
@@ -89,7 +90,7 @@ struct ApplicationView: View {
                 Image(systemName: "xmark")
                     .onTapGesture {
                         dismiss()
-                        viewModel.resetAll()
+                        viewModel.resetSubmitApplication()
                     }
             }
         }

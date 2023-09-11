@@ -42,6 +42,7 @@ struct ContentView: View {
         }
         .onAppear {
             authViewModel.checkIfLoggedIn()
+            authViewModel.getUser()
         }
     }
 }

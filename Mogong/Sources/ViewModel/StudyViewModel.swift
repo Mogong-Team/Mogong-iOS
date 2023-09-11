@@ -10,6 +10,8 @@ import Combine
 
 class StudyViewModel: ObservableObject {
     
+    static let shared = StudyViewModel()
+
     @Published var allStudys = [Study]()
     @Published var filteredWithCategoryStudys = [Study]()
     @Published var filteredWithBookmarkStudy = [Study]()
@@ -262,6 +264,10 @@ class StudyViewModel: ObservableObject {
             }
         }
     }
+    
+    //MARK: 지원서
+    
+    
     
     //MARK: 기타
     

@@ -18,7 +18,7 @@ class ApplicationService {
     
     private var db = Firestore.firestore()
     
-    //MARK: 지원서 생성
+    //MARK: 지원서 제출
     
     static func submitApplication(application: Application, completion: @escaping (Error?) -> Void) {
         do {
@@ -38,9 +38,17 @@ class ApplicationService {
         }
     }
     
+    //MARK: 지원서 삭제
+    
+    static func deleteApplication(applicationId: String, completion: @escaping (Error?) -> Void) {
+        shared.db.collection("applications").document(applicationId).delete() { error in
+            completion(error)
+        }
+    }
+    
     //MARK: 지원서 가져오기
     
-    static func getAllStudyApplications(studyId: String, completion: (@escaping (Result<[Application], Error>) -> Void)) {
+    static func getStudyAllApplications(studyId: String, completion: (@escaping (Result<[Application], Error>) -> Void)) {
         shared.db.collection("applications").getDocuments { querySnapshot, error in
             if let error = error {
                 completion(.failure(error))
@@ -62,7 +70,7 @@ class ApplicationService {
         }
     }
     
-    static func getAllMyApplications(userId: String, completion: (@escaping (Error?) -> Void)) {
+    static func getMyAllApplications(userId: String, completion: (@escaping (Error?) -> Void)) {
         
     }
 }

@@ -9,6 +9,9 @@ import SwiftUI
 
 struct StudyDetailView: View {
     @EnvironmentObject var viewModel: StudyViewModel
+    @EnvironmentObject var applicationViewModel: ApplicationViewModel
+    
+    @State private var showAlert = false
     
     var body: some View {
         ScrollViewReader { proxy in 
@@ -22,10 +25,18 @@ struct StudyDetailView: View {
                     InfinityRectangleText(title: "스터디 최종 목표",
                                           content: viewModel.selectedStudy.goal)
                     CurrentMember()
-                    ActionButton("지원서 쓰러가기") {
-                        viewModel.presentApplicationStudy = true
+                    
+                    if applicationViewModel.alreadySubmittedStudy {
+                        CancelButton("지원 취소하기") {
+                            showAlert = true
+                        }
+                        .padding(.horizontal, 20)
+                    } else {
+                        ActionButton("지원서 쓰러가기") {
+                            viewModel.presentApplicationStudy = true
+                        }
+                        .padding(.horizontal, 20)
                     }
-                    .padding(.horizontal, 20)
                 }
                 .id(1)
                 .padding(.bottom, 10)
@@ -36,6 +47,22 @@ struct StudyDetailView: View {
         }
         .navigationDestination(isPresented: $viewModel.presentApplicationStudy) {
             ApplicationView()
+        }
+        .onAppear {
+            applicationViewModel.checkAlreadySubmittedStudy(study: viewModel.selectedStudy)
+        }
+        .alert("지원 취소하기", isPresented: $showAlert) {
+            Button("확인") {
+                applicationViewModel.deleteApplication(study: viewModel.selectedStudy)
+                viewModel.presentStudyDetail = false
+            }
+            
+            Button(role: .cancel) {
+            } label: {
+                Text("취소")
+            }
+        } message: {
+            Text("정말로 지원을 취소하시겠습니까?")
         }
     }
 }

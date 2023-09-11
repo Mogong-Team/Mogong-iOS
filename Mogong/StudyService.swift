@@ -101,7 +101,7 @@ class StudyService {
     
     //MARK: 지원서
     
-    static func addApplication(studyId: String, applicationId: String, completion: @escaping (Error?) -> Void) {
+    static func addApplicationId(studyId: String, applicationId: String, completion: @escaping (Error?) -> Void) {
         shared.db.collection("studys").document(studyId).updateData([
             "submittedApplications": FieldValue.arrayUnion([applicationId])
         ]) { error in
@@ -109,7 +109,7 @@ class StudyService {
         }
     }
     
-    static func deleteApplication(studyId: String, applicationId: String, completion: @escaping (Error?) -> Void) {
+    static func deleteApplicationId(studyId: String, applicationId: String, completion: @escaping (Error?) -> Void) {
         shared.db.collection("studys").document(studyId).updateData([
             "submittedApplications": FieldValue.arrayRemove([applicationId])
         ]) { error in

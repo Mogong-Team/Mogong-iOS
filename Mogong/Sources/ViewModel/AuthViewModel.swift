@@ -38,6 +38,17 @@ class AuthViewModel: NSObject, ObservableObject  {
     func resetUsername() {
         username = ""
     }
+    
+    func getUser() {
+        UserService.getUser(userId: UserViewModel.shared.currentUser.id) { result in
+            switch result {
+            case .success(let user):
+                UserViewModel.shared.currentUser = user
+            case .failure(let error):
+                print("북마크 삭제 후 유저 정보 업데이트 실패: ", error.localizedDescription)
+            }
+        }
+    }
 }
 
 // MARK: - 카카오 로그인 extension
