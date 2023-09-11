@@ -25,7 +25,8 @@ struct StudyListView: View {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
                 Image("add")
                     .onTapGesture {
-                        viewModel.presentCreateStudy = true
+                        viewModel.stateForCreateStudy = .new
+                        viewModel.showCreateStudyOnList = true
                     }
                 
                 NavigationLink {
@@ -35,10 +36,13 @@ struct StudyListView: View {
                 }
             }
         }
-        .navigationDestination(isPresented: $viewModel.presentCreateStudy) {
-            CreateStudy()
+        .fullScreenCover(isPresented: $viewModel.showCreateStudyOnList) {
+            NavigationStack {
+                CreateStudy()
+            }
         }
         .onAppear {
+            viewModel.selectedCategory = .all
             viewModel.getAllStudys()
         }
     }
@@ -66,7 +70,6 @@ struct SelectStudyCategoryButton: View {
                                  ? Color.main
                                  : Color(hexColor: "8E8E8E"))
                 .onTapGesture {
-                    // TODO: GET Stduy
                     viewModel.selectedCategory = category
                 }
             

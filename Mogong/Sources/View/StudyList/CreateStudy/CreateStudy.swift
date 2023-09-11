@@ -128,14 +128,17 @@ struct CreateStudy: View {
             .padding(.vertical, 10)
             .padding(.horizontal, 20)
         }
-        .navigationTitle("스터디 생성")
+        .navigationTitle(viewModel.stateForCreateStudy == .new
+                         ? "스터디 생성"
+                         : "스터디 수정")
         .navigationBarTitleDisplayMode(.large)
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
                 Image(systemName: "xmark")
                     .fontWeight(.bold)
                     .onTapGesture {
-                        viewModel.presentCreateStudy = false
+                        viewModel.showCreateStudyOnList = false
+                        viewModel.showCreateStudyOnDetail = false
                     }
             }
         }
@@ -151,6 +154,11 @@ struct CreateStudy: View {
         .navigationDestination(isPresented: $showProjectStudy, destination: {
             ProjectStudy()
         })
+        .onAppear {
+            if viewModel.stateForCreateStudy == .update {
+                viewModel.updateCreateStudy()
+            }
+        }
     }
 }
 

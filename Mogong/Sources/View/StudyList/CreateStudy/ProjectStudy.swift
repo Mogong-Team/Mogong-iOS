@@ -83,9 +83,15 @@ struct ProjectStudy: View {
                     }
                     
                     ActionButton("완료") {
-                        viewModel.presentCreateStudy = false
-                        viewModel.createStudy()
-                        viewModel.resetCreateStudy()
+                        if viewModel.stateForCreateStudy == .new {
+                            viewModel.createStudy()
+                        } else {
+                            viewModel.updateStudy()
+                        }
+                        
+                        viewModel.presentStudyDetail = false
+                        viewModel.showCreateStudyOnList = false
+                        viewModel.showCreateStudyOnDetail = false
                     }
                     .disabled(!isCompleted)
                 }
@@ -93,14 +99,15 @@ struct ProjectStudy: View {
                 .padding(.bottom, 10)
                 .padding(.horizontal, 20)
             }
-            .navigationTitle("스터디 생성: 프로젝트형")
-            .navigationBarTitleDisplayMode(.large)
+            .navigationTitle("프로젝트형")
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Image(systemName: "xmark")
                         .fontWeight(.bold)
                         .onTapGesture {
-                            viewModel.presentCreateStudy = false
+                            viewModel.showCreateStudyOnList = false
+                            viewModel.showCreateStudyOnDetail = false
                         }
                 }
             }

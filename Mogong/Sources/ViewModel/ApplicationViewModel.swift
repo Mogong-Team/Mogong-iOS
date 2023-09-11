@@ -16,17 +16,8 @@ class ApplicationViewModel: ObservableObject {
     @Published var position: Position?
     @Published var introduction: String = ""
     @Published var experience: String = ""
-    
-    @Published var alreadySubmittedStudy: Bool = false
-    
+        
     var cancellables = Set<AnyCancellable>()
-
-    func checkAlreadySubmittedStudy(study: Study) {
-        let studyApplicationIds = study.submittedApplications
-        let userApplicationIds = UserViewModel.shared.currentUser.submittedApplicationIds
-        self.alreadySubmittedStudy = studyApplicationIds.contains{ userApplicationIds.contains($0) }
-        print("alreadySubmittedStudy 업데이트 후: ", alreadySubmittedStudy)
-    }
     
     func submitApplication(study: Study) {
         let application = Application(

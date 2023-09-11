@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ApplicationListView: View {
     @EnvironmentObject var viewModel: ApplicationViewModel
+    @EnvironmentObject var studyViewModel: StudyViewModel
     
     var user: User
     
@@ -35,6 +36,9 @@ struct ApplicationListView: View {
             .padding(.vertical, 10)
         }
         .padding(.horizontal, 20)
+        .onAppear {
+            viewModel.getStudyApplication(studyId: studyViewModel.selectedStudy.id)
+        }
     }
 }
 

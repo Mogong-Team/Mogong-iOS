@@ -110,7 +110,7 @@ struct MyStudyDetailView: View {
             if viewType == .host {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     NavigationLink {
-                        CreateStudy()
+                        //CreateStudy()
                     } label: {
                         Image(systemName: "gearshape.fill")
                             .foregroundColor(.black)

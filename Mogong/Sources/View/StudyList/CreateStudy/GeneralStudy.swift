@@ -59,10 +59,16 @@ struct GeneralStudy: View {
                         }
                         .padding(.bottom, 20)
                         
-                        ActionButton("생성하기") {
-                            viewModel.presentCreateStudy = false
-                            viewModel.createStudy()
-                            viewModel.resetCreateStudy()
+                        ActionButton("완료") {
+                            if viewModel.stateForCreateStudy == .new {
+                                viewModel.createStudy()
+                            } else {
+                                viewModel.updateStudy()
+                            }
+                            
+                            viewModel.presentStudyDetail = false
+                            viewModel.showCreateStudyOnList = false
+                            viewModel.showCreateStudyOnDetail = false
                         }
                         .disabled(!isCompleted)
                     }
@@ -71,14 +77,14 @@ struct GeneralStudy: View {
                     .padding(.horizontal, 20)
                 }
             }
-            .navigationTitle("스터디 생성 : 일반 스터디")
-            .navigationBarTitleDisplayMode(.large)
+            .navigationTitle("일반 스터디")
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Image(systemName: "xmark")
                         .fontWeight(.bold)
-                        .onTapGesture {
-                            viewModel.presentCreateStudy = false
+                        .onTapGesture {                            viewModel.showCreateStudyOnList = false
+                            viewModel.showCreateStudyOnDetail = false
                         }
                 }
             }

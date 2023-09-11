@@ -39,6 +39,32 @@ class StudyService {
         }
     }
     
+    //MARK: 스터디 수정
+    
+    static func updateStudy(study: Study, completion: @escaping (Error?) -> Void) {
+        do {
+            // Study 인스턴스를 JSON 객체로 변환
+            let jsonData = try JSONEncoder().encode(study)
+            guard let json = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] else {
+                print("데이터 변환 실패")
+                completion(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "데이터 변환 실패"]))
+                return
+            }
+            
+            shared.db.collection("studys").document(study.id).updateData(json) { error in
+                if let error = error {
+                    print("업데이트 실패: \(error)")
+                    completion(error)
+                    return
+                }
+                completion(nil)
+            }
+        } catch let error {
+            print("JSON 인코딩 오류: \(error)")
+            completion(error)
+        }
+    }
+    
     //MARK: 스터디 가져오기
     
     static func getAllStudys(completion: @escaping (Result<[Study], Error>) -> Void) {

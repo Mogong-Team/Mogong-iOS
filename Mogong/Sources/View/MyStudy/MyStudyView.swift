@@ -51,6 +51,9 @@ struct MyStudyView: View {
                 }
             }
         }
+        .onAppear {
+            
+        }
     }
 }
 

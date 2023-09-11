@@ -26,14 +26,20 @@ class StudyViewModel: ObservableObject {
     @Published var isPopularFilter: Bool = true
     @Published var isBookmarked: Bool = false
     @Published var presentStudyDetail: Bool = false
-    @Published var presentCreateStudy: Bool = false
+    @Published var showCreateStudyOnList: Bool = false
     
     // MARK: - 스터디 상세
     
     @Published var presentApplicationStudy: Bool = false
     @Published var presentTest: Bool = false
-    
+    @Published var checkSubimt: Bool = false
+    @Published var checkMember: Bool = false
+    @Published var checkHost: Bool = false
+    @Published var showCreateStudyOnDetail: Bool = false
+
     // MARK: - 스터디 생성
+    
+    @Published var stateForCreateStudy: stateForCreateStudy = .new
     
     @Published var category: StudyCategory?
     @Published var location: StudyLocation?
@@ -155,6 +161,31 @@ class StudyViewModel: ObservableObject {
         // TODO: POST Study
         StudyService.createStudy(study: study) {
             print("스터디 생성 완료")
+            self.resetCreateStudy()
+        }
+    }
+    
+    func updateStudy() {
+        var study = self.selectedStudy
+        study.category = category ?? .generalStudy
+        study.loaction = location ?? .both
+        study.title = title
+        study.introduction = introduction
+        study.goal = goal
+        study.memberPreference = memberPreference
+        study.dueDate = dueDate
+        study.frequencyOfWeek = frequencyOfWeek
+        study.durationOfMonth = durationOfMonth
+        study.languages = language
+        study.numberOfRecruits = numberOfRecruits
+        study.positionInfos = positionInfos
+        
+        // TODO: POST Study
+        StudyService.updateStudy(study: study) { error in
+            if let error = error {
+                print("스터디 수정 실패: ", error.localizedDescription)
+            }
+            self.resetCreateStudy()
         }
     }
 
@@ -162,7 +193,6 @@ class StudyViewModel: ObservableObject {
         StudyService.getAllStudys { result in
             switch result {
             case .success(let studys):
-                print("스터디 받아오기 성공")
                 self.allStudys.removeAll()
                 self.allStudys = studys
                 self.filteredStudys.removeAll()
@@ -171,6 +201,10 @@ class StudyViewModel: ObservableObject {
                 print("스터디 받아오기 실패 :", error.localizedDescription)
             }
         }
+    }
+    
+    func getUserStudys() {
+        
     }
     
     //MARK: 북마크
@@ -187,11 +221,11 @@ class StudyViewModel: ObservableObject {
         if checkBookmark(study: study) {
             StudyService.deleteBookmarkedUser(studyId: studyId, userId: userId) { error in
                 if let error = error {
-                    print("스터디 북마크 삭제 실패", error.localizedDescription)
+                    print("스터디 북마크 삭제 실패: ", error.localizedDescription)
                 } else {
                     UserService.deleteBookmarkedStudyIds(userId: userId, studyId: studyId) { error in
                         if let error = error {
-                            print("유저 북마크 삭제 실패", error.localizedDescription)
+                            print("유저 북마크 삭제 실패: ", error.localizedDescription)
                         } else {
                             StudyService.getAllStudys { result in
                                 switch result {
@@ -226,11 +260,11 @@ class StudyViewModel: ObservableObject {
         } else {
             StudyService.addBookmarkedUser(studyId: studyId, userId: userId) { error in
                 if let error = error {
-                    print("스터디 북마크 추가 실패", error.localizedDescription)
+                    print("스터디 북마크 추가 실패: ", error.localizedDescription)
                 } else {
                     UserService.addBookmarkedStudyIds(userId: userId, studyId: studyId) { error in
                         if let error = error {
-                            print("유저 북마크 추가 실패", error.localizedDescription)
+                            print("유저 북마크 추가 실패: ", error.localizedDescription)
                         } else {
                             StudyService.getAllStudys { result in
                                 switch result {
@@ -267,9 +301,29 @@ class StudyViewModel: ObservableObject {
     
     //MARK: 지원서
     
-    
+    func checkAlreadySubmittedStudy() {
+        let studyApplicationIds = selectedStudy.submittedApplications
+        let userApplicationIds = UserViewModel.shared.currentUser.submittedApplicationIds
+        self.checkSubimt = studyApplicationIds.contains{ userApplicationIds.contains($0) }
+    }
     
     //MARK: 기타
+    
+    func checkStudyDetailState() {
+        if let _ = selectedStudy.currentMembers.first(where: { $0.user.id == UserViewModel.shared.currentUser.id }) {
+            checkMember = true
+            
+            if UserViewModel.shared.currentUser.id == selectedStudy.host.id {
+                self.checkHost = true
+            } else {
+                self.checkHost = false
+                
+                checkAlreadySubmittedStudy()
+            }
+        } else {
+            self.checkMember = false
+        }
+    }
     
     func isHostUser(study: Study, member: Member) -> Bool {
         return study.host.id == member.user.id
@@ -358,5 +412,39 @@ class StudyViewModel: ObservableObject {
         positionInfoDesigner = nil
         positionInfoPlanner = nil
         revenuePurpose = nil
+    }
+    
+    func updateCreateStudy() {
+        category = selectedStudy.category
+        location = selectedStudy.loaction
+        title = selectedStudy.title
+        introduction = selectedStudy.introduction
+        goal = selectedStudy.goal
+        memberPreference = selectedStudy.memberPreference
+        dueDate = Date()
+        
+        frequencyOfWeek = selectedStudy.frequencyOfWeek
+        durationOfMonth = selectedStudy.durationOfMonth
+        language = selectedStudy.languages
+        numberOfRecruits = selectedStudy.numberOfRecruits
+        
+        let host = selectedStudy.currentMembers.first(where: { $0.user.id == UserViewModel.shared.currentUser.id })
+        
+        hostPosition = host?.position ?? .ios
+        positionInfoBackend = selectedStudy.positionInfos.first(where: { $0.position == .backend })
+        positionInfoFrontend = selectedStudy.positionInfos.first(where: { $0.position == .frontend })
+        positionInfoiOS = selectedStudy.positionInfos.first(where: { $0.position == .ios })
+        positionInfoAOS = selectedStudy.positionInfos.first(where: { $0.position == .aos })
+        positionInfoCross = selectedStudy.positionInfos.first(where: { $0.position == .cross })
+        positionInfoDesigner = selectedStudy.positionInfos.first(where: { $0.position == .designer })
+        positionInfoPlanner = selectedStudy.positionInfos.first(where: { $0.position == .planner })
+        revenuePurpose = selectedStudy.revenuePurpose
+    }
+}
+
+extension StudyViewModel {
+    enum stateForCreateStudy {
+        case new
+        case update
     }
 }

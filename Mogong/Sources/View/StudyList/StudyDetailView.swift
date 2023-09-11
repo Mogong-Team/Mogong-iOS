@@ -26,16 +26,31 @@ struct StudyDetailView: View {
                                           content: viewModel.selectedStudy.goal)
                     CurrentMember()
                     
-                    if applicationViewModel.alreadySubmittedStudy {
-                        CancelButton("지원 취소하기") {
-                            showAlert = true
+                    if viewModel.checkMember {
+                        if viewModel.checkHost {
+                            ActionButton("스터디 수정하기") {
+                                viewModel.stateForCreateStudy = .update
+                                viewModel.showCreateStudyOnDetail = true
+                            }
+                            .padding(.horizontal, 20)
+                        } else {
+                            ActionButton("가입 완료") {
+                            }
+                            .disabled(true)
+                            .padding(.horizontal, 20)
                         }
-                        .padding(.horizontal, 20)
                     } else {
-                        ActionButton("지원서 쓰러가기") {
-                            viewModel.presentApplicationStudy = true
+                        if viewModel.checkSubimt {
+                            CancelButton("지원 취소하기") {
+                                showAlert = true
+                            }
+                            .padding(.horizontal, 20)
+                        } else {
+                            ActionButton("지원서 쓰러가기") {
+                                viewModel.presentApplicationStudy = true
+                            }
+                            .padding(.horizontal, 20)
                         }
-                        .padding(.horizontal, 20)
                     }
                 }
                 .id(1)
@@ -48,8 +63,13 @@ struct StudyDetailView: View {
         .navigationDestination(isPresented: $viewModel.presentApplicationStudy) {
             ApplicationView()
         }
+        .fullScreenCover(isPresented: $viewModel.showCreateStudyOnDetail) {
+            NavigationStack {
+                CreateStudy()
+            }
+        }
         .onAppear {
-            applicationViewModel.checkAlreadySubmittedStudy(study: viewModel.selectedStudy)
+            viewModel.checkStudyDetailState()
         }
         .alert("지원 취소하기", isPresented: $showAlert) {
             Button("확인") {
@@ -134,7 +154,8 @@ struct StudyDetail: View {
                 DetailContent(
                     title: "모집 현황",
                     content: "\(viewModel.selectedStudy.currentMembers.count) / \(viewModel.numberOfRecruits(study: viewModel.selectedStudy))")
-                RecruitmentState()
+                
+                    RecruitmentState()
             }
         }
     }
@@ -171,17 +192,20 @@ struct RecruitmentStateContent: View {
             Spacer()
             Text("\(currnet) / \(required)")
                 .font(.pretendard(weight: .semiBold, size: 20))
-            Text("지원하기")
-                .font(.pretendard(weight: .semiBold, size: 16))
-                .foregroundColor(.white)
-                .padding(.vertical, 8)
-                .padding(.horizontal, 10)
-                .background(Color.main)
-                .cornerRadius(8)
-                .onTapGesture {
-                    viewModel.presentApplicationStudy = true
-                    applicationViewModel.position = position
-                }
+            
+            if !viewModel.checkMember {
+                Text("지원하기")
+                    .font(.pretendard(weight: .semiBold, size: 16))
+                    .foregroundColor(.white)
+                    .padding(.vertical, 8)
+                    .padding(.horizontal, 10)
+                    .background(Color.main)
+                    .cornerRadius(8)
+                    .onTapGesture {
+                        viewModel.presentApplicationStudy = true
+                        applicationViewModel.position = position
+                    }
+            }
         }
     }
 }
