@@ -23,6 +23,16 @@ struct User: Identifiable, Hashable, Codable {
         self.username = username
     }
     
+    init(id: String, email: String, username: String, userimageString: String, submittedApplicationIds: [String], joinedStudyIds: [String], bookmarkedStudyIds: [String]) {
+        self.id = id
+        self.email = email
+        self.username = username
+        self.userimageString = userimageString
+        self.submittedApplicationIds = submittedApplicationIds
+        self.joinedStudyIds = joinedStudyIds
+        self.bookmarkedStudyIds = bookmarkedStudyIds
+    }
+    
     static var user1: User {
         return User(id: "1", email: "1@gmail.com", username: "현석현석")
     }

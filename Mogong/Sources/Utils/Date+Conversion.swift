@@ -8,6 +8,12 @@
 import SwiftUI
 
 extension Date {
+    func toDotString() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy.MM.dd"
+        return formatter.string(from: self)
+    }
+    
     func toYearString() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy년 M월 d일"

@@ -24,7 +24,7 @@ struct ClippyStudyView: View {
 
             ScrollView() {
                 VStack(spacing: 16) {
-                    ForEach(viewModel.studys) { study in
+                    ForEach(viewModel.allStudys) { study in
                         ClippyStudyCell(study: study)
                     }
                 }

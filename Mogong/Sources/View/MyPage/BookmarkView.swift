@@ -32,16 +32,28 @@ struct BookmarkView: View {
             .background(Color(hexColor: "E8F5FF"))
             
             ScrollView(showsIndicators: false) {
-                VStack(spacing: 20) {
-                    ForEach(viewModel.studys) { study in
-                        StudyListCell(study: study)
+                if viewModel.filteredWithBookmarkStudy.count == 0 {
+                    VStack {
+                        Spacer()
+                            .frame(height: 250)
+                        Text( "스크랩한 스터디가 없습니다.")
+                            .font(.pretendard(weight: .semiBold, size: 18))
                     }
+                } else {
+                    VStack(spacing: 20) {
+                        ForEach(viewModel.filteredWithBookmarkStudy) { study in
+                            StudyListCell(study: study)
+                        }
+                    }
+                    .padding(.vertical, 10)
+                    .padding(.horizontal, 20)
                 }
-                .padding(.vertical, 10)
-                .padding(.horizontal, 20)
             }
         }
         .navigationBarBackButtonHidden()
+        .onAppear {
+            viewModel.filteringStuddyWithBookmark()
+        }
     }
 }
 

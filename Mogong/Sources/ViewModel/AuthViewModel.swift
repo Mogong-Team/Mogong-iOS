@@ -20,7 +20,7 @@ class AuthViewModel: NSObject, ObservableObject  {
     @Published var email: String = ""
     @Published var username: String = ""
     @Published var isUsernameAvailable: Bool?
-    @Published var isLoggedIn: Bool = false
+    @Published var isLoggedIn: Bool = true
     @Published var presentNextView: Bool = false
     
     private var cancellables = Set<AnyCancellable>()
@@ -37,6 +37,17 @@ class AuthViewModel: NSObject, ObservableObject  {
     
     func resetUsername() {
         username = ""
+    }
+    
+    func getUser() {
+        UserService.getUser(userId: UserViewModel.shared.currentUser.id) { result in
+            switch result {
+            case .success(let user):
+                UserViewModel.shared.currentUser = user
+            case .failure(let error):
+                print("북마크 삭제 후 유저 정보 업데이트 실패: ", error.localizedDescription)
+            }
+        }
     }
 }
 

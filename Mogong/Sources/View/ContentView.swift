@@ -53,6 +53,8 @@ struct ContentView: View {
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
                 showingMainView.toggle()
+                authViewModel.checkIfLoggedIn()
+                authViewModel.getUser()
             })
         }
     }

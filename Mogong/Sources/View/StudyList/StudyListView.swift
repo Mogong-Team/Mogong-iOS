@@ -23,15 +23,10 @@ struct StudyListView: View {
             }
             
             ToolbarItemGroup(placement: .navigationBarTrailing) {
-                NavigationLink {
-                    ChatListView()
-                } label: {
-                    Image("message")
-                }
-
                 Image("add")
                     .onTapGesture {
-                        viewModel.presentCreateStudy = true
+                        viewModel.stateForCreateStudy = .new
+                        viewModel.showCreateStudyOnList = true
                     }
                 
                 NavigationLink {
@@ -41,8 +36,25 @@ struct StudyListView: View {
                 }
             }
         }
-        .navigationDestination(isPresented: $viewModel.presentCreateStudy) {
-            CreateStudy()
+        .fullScreenCover(isPresented: $viewModel.showCreateStudyOnList, onDismiss: {
+            viewModel.selectedCategory = .all
+            viewModel.getAllStudys()
+        }) {
+            NavigationStack {
+                CreateStudy()
+            }
+        }
+        .fullScreenCover(isPresented: $viewModel.showStudyDetail, onDismiss: {
+            viewModel.selectedCategory = .all
+            viewModel.getAllStudys()
+        }) {
+            NavigationStack {
+                StudyDetailView()
+            }
+        }
+        .onAppear {
+            viewModel.selectedCategory = .all
+            viewModel.getAllStudys()
         }
     }
 }
@@ -69,7 +81,6 @@ struct SelectStudyCategoryButton: View {
                                  ? Color.main
                                  : Color(hexColor: "8E8E8E"))
                 .onTapGesture {
-                    // TODO: GET Stduy
                     viewModel.selectedCategory = category
                 }
             
@@ -95,7 +106,7 @@ struct SelectStudyState: View {
             SelectStudyStateButton(state: .recruiting)
             SelectStudyStateButton(state: .completed)
             Spacer()
-            SelectStudyFilter()
+            //SelectStudyFilter()
         }
     }
 }
@@ -163,11 +174,11 @@ struct StudyList: View {
                     SelectStudyState()
                         .padding(.vertical, 16)
                     
-                    ForEach(viewModel.studys) { study in
+                    ForEach(viewModel.filteredStudys) { study in
                         StudyListCell(study: study)
                             .padding(.bottom, 18)
                             .onTapGesture {
-                                viewModel.presentStudyDetail = true
+                                viewModel.showStudyDetail = true
                                 viewModel.selectedStudy = study
                             }
                     }
@@ -178,9 +189,6 @@ struct StudyList: View {
             .onChange(of: viewModel.selectedCategory) { _ in
                 proxy.scrollTo(1, anchor: .top)
             }
-        }
-        .navigationDestination(isPresented: $viewModel.presentStudyDetail) {
-            StudyDetailView()
         }
     }
 }

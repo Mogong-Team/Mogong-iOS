@@ -10,6 +10,7 @@ import KakaoSDKCommon
 import KakaoSDKAuth
 import NaverThirdPartyLogin
 import GoogleSignIn
+import Firebase
 
 // init()으로 대체 가능 -> 앱 실행시에 최초 1회 실행이 필요한 로직
 class AppDelegate: NSObject, UIApplicationDelegate {
@@ -39,6 +40,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         instance?.consumerKey = kConsumerKey
         instance?.consumerSecret = kConsumerSecret
         instance?.appName = kServiceAppName
+        
+        // Firebase 초기화
+        FirebaseApp.configure()
                 
         return true
     }

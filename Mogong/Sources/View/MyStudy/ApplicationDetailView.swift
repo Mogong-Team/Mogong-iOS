@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ApplicationDetailView: View {
     @EnvironmentObject var viewModel: ApplicationViewModel
+    @EnvironmentObject var studyViewModel: StudyViewModel
     @Environment(\.dismiss) var dismiss
     
     var application: Application
@@ -27,15 +28,17 @@ struct ApplicationDetailView: View {
                         
                         Text(application.user.username)
                             .font(.pretendard(weight: .bold, size: 28))
+                            .foregroundColor(Color(hexColor: "494949"))
                         
-                        Text("\(application.position.rawValue) 지원")
-                            .padding(.vertical, 3)
-                            .padding(.horizontal, 20)
-                            .font(.pretendard(weight: .regular, size: 16))
+                        Text("\(application.position.rawValue) 지원!")
+                            .padding(.vertical, 5)
+                            .padding(.horizontal, 15)
+                            .font(.pretendard(weight: .semiBold, size: 16))
                             .foregroundColor(.white)
-                            .background(.blue)
+                            .background(Color.main)
                             .cornerRadius(10)
                     }
+                    .padding(.top, 10)
                     .padding(.bottom, 30)
                     
                     HStack {
@@ -63,12 +66,28 @@ struct ApplicationDetailView: View {
             }
             
             HStack {
-                SelectButton(title: "가입 거절", state: .unselected) {
-                    dismiss()
+                Button {
+                    viewModel.rejectJoin(study: studyViewModel.selectedStudy) {
+                        studyViewModel.getStudyWithId {
+                            dismiss()
+                        }
+                    }
+                } label: {
+                    Text("가입 거절")
+                        .font(.pretendard(weight: .semiBold, size: 16))
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 44)
+                        .background(Color(hexColor: "C5C5C5"))
+                        .cornerRadius(21)
                 }
                 
-                SelectButton(title: "가입 허가", state: .selected) {
-                    dismiss()
+                ActionButton("가입 허가") {
+                    viewModel.approveJoin(study: studyViewModel.selectedStudy) {
+                        studyViewModel.getStudyWithId {
+                            dismiss()
+                        }
+                    }
                 }
             }
         }
@@ -78,7 +97,7 @@ struct ApplicationDetailView: View {
 
 struct ApplicationDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ApplicationDetailView(application: Application.application)
+        ApplicationDetailView(application: Application.application1)
         .environmentObject(ApplicationViewModel())
     }
 }

@@ -19,9 +19,9 @@ enum Position: String, CaseIterable, Hashable, Codable {
     var language: [Language] {
         switch self {
         case .backend:
-            return [.python, .ruby, .go, .rust, .php, .nodejs, .spring, .django]
+            return [.python, .java, .nestjs, .mogodb, .php, .nodejs, .spring, .mysql, .django]
         case .frontend:
-            return [.javaScript, .typescript, .react, .angular, .vue, .html, .css]
+            return [.javaScript, .typescript, .react, .nextjs, .vue, .svelte, .vue]
         case .ios:
             return [.swift]
         case .aos:
@@ -29,7 +29,7 @@ enum Position: String, CaseIterable, Hashable, Codable {
         case .cross:
             return [.flutter, .reactNative]
         case .designer:
-            return [.figma, .photoshop]
+            return [.figma]
         case .planner:
             return []
         }
@@ -39,7 +39,6 @@ enum Position: String, CaseIterable, Hashable, Codable {
 struct PositionInfo: Hashable, Codable {
     var position: Position
     var requiredCount: Int = 0
-    var currentCount: Int = 0
     var language: [Language] = []
 }
 
@@ -52,13 +51,13 @@ enum GeneralStudyCategory: String, CaseIterable, Hashable, Codable {
     var language: [Language] {
         switch self {
         case .backend:
-            return [.python, .ruby, .go, .rust, .php, .nodejs, .spring, .django]
+            return [.python, .java, .nestjs, .mogodb, .php, .nodejs, .spring, .mysql, .django]
         case .frontend:
-            return [.javaScript, .typescript, .react, .angular, .vue, .html, .css]
+            return [.javaScript, .typescript, .react, .nextjs, .vue, .svelte]
         case .mobile:
             return [.swift, .kotlin, .flutter, .reactNative]
         case .etc:
-            return [.figma, .photoshop]
+            return [.figma]
         }
     }
 }

@@ -12,16 +12,25 @@ struct SingleLineTextField: View {
     var placeHolder: String
     
     var body: some View {
-        VStack {
-            TextField(placeHolder, text: $text)
-                .font(.body)
-                .padding(.horizontal, 13)
-                .frame(height: 38)
-                .overlay {
-                    RoundedRectangle(cornerRadius: 9)
-                        .stroke(Color.gray, lineWidth: 1)
+        TextField("", text: $text)
+            .font(.body)
+            .padding(.horizontal, 13)
+            .frame(height: 45)
+            .overlay {
+                RoundedRectangle(cornerRadius: 9)
+                    .stroke(Color(hexColor: "DBF6FC"), lineWidth: 1)
+            }
+            .onAppear() {
+                if text.isEmpty {
+                    text = placeHolder
                 }
-        }
+            }
+            .foregroundColor(text == placeHolder ? Color(hexColor: "B3B3B3") : .primary)
+            .onTapGesture {
+                if text == placeHolder {
+                    text = ""
+                }
+            }
     }
 }
 

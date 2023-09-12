@@ -10,6 +10,8 @@ import Combine
 
 class UserViewModel: ObservableObject {
     @Published var currentUser: User = User.user1
+    
+    static let shared = UserViewModel()
 
     func currentUserIsHost(study: Study) -> Bool {
         return study.host.id == currentUser.id

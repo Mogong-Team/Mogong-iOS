@@ -1,15 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
-    "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-    <plist version="1.0">
-    <dict>
-      <key>CLIENT_ID</key>
-      <string>445750195734-da9230k2r5min42eioscrp2uibiei6ch.apps.googleusercontent.com</string>
-      <key>REVERSED_CLIENT_ID</key>
-      <string>com.googleusercontent.apps.445750195734-da9230k2r5min42eioscrp2uibiei6ch</string>
-      <key>PLIST_VERSION</key>
-      <string>1</string>
-      <key>BUNDLE_ID</key>
-      <string>com.mogong.Mogong</string>
-    </dict>
-    </plist>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>445750195734-da9230k2r5min42eioscrp2uibiei6ch.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.445750195734-da9230k2r5min42eioscrp2uibiei6ch</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDfxp7j4i7oR1izTLYuY96Eaz0v1ehm0pI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>445750195734</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.mogong.Mogong</string>
+	<key>PROJECT_ID</key>
+	<string>mogong-1686797962692</string>
+	<key>STORAGE_BUCKET</key>
+	<string>mogong-1686797962692.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:445750195734:ios:9ddb4fc3aaa8c26b716737</string>
+</dict>
+</plist>

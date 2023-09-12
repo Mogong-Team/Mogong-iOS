@@ -18,14 +18,14 @@ struct MultiLineTextField: View {
                 .padding(.horizontal, 6)
                 .overlay(
                     RoundedRectangle(cornerRadius: 9)
-                        .stroke(Color.gray, lineWidth: 1)
+                        .stroke(Color(hexColor: "DBF6FC"), lineWidth: 1)
                 )
             .onAppear() {
                 if text.isEmpty {
                     text = placeHolder
                 }
             }
-            .foregroundColor(text == placeHolder ? .gray : .primary)
+            .foregroundColor(text == placeHolder ? Color(hexColor: "B3B3B3") : .primary)
             .onTapGesture {
                 if text == placeHolder {
                     text = ""

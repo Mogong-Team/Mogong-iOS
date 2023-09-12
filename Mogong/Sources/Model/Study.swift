@@ -54,14 +54,15 @@ struct Study: Identifiable, Codable {
     var createDate: Date = Date()
     var state: StudyState = .recruiting
     
-    var bookMarkedUsers: [User] = []
+    var bookMarkedUsers: [String] = []
+    var submittedApplications: [String] = []
 }
 
 extension Study {
     static var study1 = Study(
         category: .projectStudy,
         loaction: .online,
-        title: "[창업/스타트업] 정부 지원 사업에 합격한 아이템으로 함께 MVP 제작할 개발자 구합니다.(2일 뒤 마감_편하게 연락주세요)",
+        title: "study1",
         introduction: "화이팅",
         goal: "이번달까지 출시가 목표입니다.",
         memberPreference: "아무나 상관없습니다.",
@@ -85,76 +86,159 @@ extension Study {
         ],
         createDate: Date(),
         state: .recruiting,
-        bookMarkedUsers: [
-            User.user2,
-            User.user3,
-        ])
+        bookMarkedUsers: [],
+        submittedApplications: []
+    )
+    
+    static var study2 = Study(
+        category: .projectStudy,
+        loaction: .online,
+        title: "study2",
+        introduction: "화이팅",
+        goal: "이번달까지 출시가 목표입니다.",
+        memberPreference: "아무나 상관없습니다.",
+        dueDate: Date(),
+        frequencyOfWeek: 2,
+        durationOfMonth: 3,
+        languages: [.swift, .kotlin],
+        numberOfRecruits: 5,
+        positionInfos: [
+            PositionInfo(position: .backend, requiredCount: 2, language: [.django]),
+            PositionInfo(position: .ios, requiredCount: 2, language: [.swift]),
+            PositionInfo(position: .designer, requiredCount: 2, language: [.figma]),
+        ],
+        revenuePurpose: .withRevenue,
+        host: User.user2,
+        currentMembers: [
+            Member(user: User.user2, position: .ios),
+        ],
+        createDate: Date(),
+        state: .completed,
+        bookMarkedUsers: [],
+        submittedApplications: []
+    )
+    
+    static var study3 = Study(
+        category: .generalStudy,
+        loaction: .online,
+        title: "study3",
+        introduction: "화이팅",
+        goal: "이번달까지 출시가 목표입니다.",
+        memberPreference: "아무나 상관없습니다.",
+        dueDate: Date(),
+        frequencyOfWeek: 2,
+        durationOfMonth: 3,
+        languages: [.swift, .kotlin],
+        numberOfRecruits: 5,
+        positionInfos: [
+            PositionInfo(position: .backend, requiredCount: 2, language: [.django]),
+            PositionInfo(position: .ios, requiredCount: 2, language: [.swift]),
+            PositionInfo(position: .designer, requiredCount: 2, language: [.figma]),
+        ],
+        revenuePurpose: .withRevenue,
+        host: User.user3,
+        currentMembers: [
+            Member(user: User.user3, position: .backend),
+        ],
+        createDate: Date(),
+        state: .recruiting,
+        bookMarkedUsers: [],
+        submittedApplications: []
+    )
+    
+    static var study4 = Study(
+        category: .projectStudy,
+        loaction: .online,
+        title: "study4",
+        introduction: "화이팅",
+        goal: "이번달까지 출시가 목표입니다.",
+        memberPreference: "아무나 상관없습니다.",
+        dueDate: Date(),
+        frequencyOfWeek: 2,
+        durationOfMonth: 3,
+        languages: [.swift, .kotlin],
+        numberOfRecruits: 5,
+        positionInfos: [
+            PositionInfo(position: .backend, requiredCount: 2, language: [.django]),
+            PositionInfo(position: .ios, requiredCount: 2, language: [.swift]),
+            PositionInfo(position: .designer, requiredCount: 2, language: [.figma]),
+        ],
+        revenuePurpose: .withRevenue,
+        host: User.user4,
+        currentMembers: [
+            Member(user: User.user4, position: .designer),
+        ],
+        createDate: Date(),
+        state: .completed,
+        bookMarkedUsers: [],
+        submittedApplications: []
+    )
 }
 
-extension StudyViewModel {
-    func initStudys() {
-        studys = [
-            Study.study1,
-            
-            Study(
-                category: .projectStudy,
-                loaction: .online,
-                title: "포트폴리오용 프로젝트 모집합니다.(2달)",
-                introduction: "화이팅",
-                goal: "이번달까지 출시가 목표입니다.",
-                memberPreference: "아무나 상관없습니다.",
-                dueDate: Date(),
-                frequencyOfWeek: 2,
-                durationOfMonth: 3,
-                languages: [.swift, .kotlin],
-                numberOfRecruits: 5,
-                positionInfos: [
-                    PositionInfo(position: .backend, requiredCount: 5, language: [.django]),
-                    PositionInfo(position: .ios, requiredCount: 5, language: [.swift]),
-                    PositionInfo(position: .designer, requiredCount: 2, language: [.figma]),
-                    PositionInfo(position: .planner, requiredCount: 2)
-                ],
-                revenuePurpose: .withRevenue,
-                host: User.user2,
-                currentMembers: [
-                    Member(user: User.user1, position: .planner),
-                    Member(user: User.user2, position: .ios),
-                ],
-                createDate: Date(),
-                state: .recruiting,
-                bookMarkedUsers: [
-                    User.user2,
-                    User.user3,
-                ]),
-            
-            Study(
-                category: .generalStudy,
-                loaction: .online,
-                title: "면접 스터디 고고",
-                introduction: "화이팅",
-                goal: "이번달까지",
-                memberPreference: "아무나 상관없습니다.",
-                dueDate: Date(),
-                frequencyOfWeek: 2,
-                durationOfMonth: 3,
-                languages: [],
-                numberOfRecruits: 5,
-                positionInfos: [
-                ],
-                host: User.user3,
-                currentMembers: [
-                    Member(user: User.user3, position: .planner),
-                    Member(user: User.user4, position: .ios),
-                ],
-                createDate: Date(),
-                state: .recruiting,
-                bookMarkedUsers: [
-                    User.user2,
-                    User.user3,
-                ]),
-        ]
-    }
-}
+//extension StudyViewModel {
+//    func initStudys() {
+//        studys = [
+//            Study.study1,
+//
+//            Study(
+//                category: .projectStudy,
+//                loaction: .online,
+//                title: "포트폴리오용 프로젝트 모집합니다.(2달)",
+//                introduction: "화이팅",
+//                goal: "이번달까지 출시가 목표입니다.",
+//                memberPreference: "아무나 상관없습니다.",
+//                dueDate: Date(),
+//                frequencyOfWeek: 2,
+//                durationOfMonth: 3,
+//                languages: [.swift, .kotlin],
+//                numberOfRecruits: 5,
+//                positionInfos: [
+//                    PositionInfo(position: .backend, requiredCount: 5, language: [.django]),
+//                    PositionInfo(position: .ios, requiredCount: 5, language: [.swift]),
+//                    PositionInfo(position: .designer, requiredCount: 2, language: [.figma]),
+//                    PositionInfo(position: .planner, requiredCount: 2)
+//                ],
+//                revenuePurpose: .withRevenue,
+//                host: User.user2,
+//                currentMembers: [
+//                    Member(user: User.user1, position: .planner),
+//                    Member(user: User.user2, position: .ios),
+//                ],
+//                createDate: Date(),
+//                state: .recruiting,
+//                bookMarkedUsers: [
+//                    User.user2,
+//                    User.user3,
+//                ]),
+//
+//            Study(
+//                category: .generalStudy,
+//                loaction: .online,
+//                title: "면접 스터디 고고",
+//                introduction: "화이팅",
+//                goal: "이번달까지",
+//                memberPreference: "아무나 상관없습니다.",
+//                dueDate: Date(),
+//                frequencyOfWeek: 2,
+//                durationOfMonth: 3,
+//                languages: [],
+//                numberOfRecruits: 5,
+//                positionInfos: [
+//                ],
+//                host: User.user3,
+//                currentMembers: [
+//                    Member(user: User.user3, position: .planner),
+//                    Member(user: User.user4, position: .ios),
+//                ],
+//                createDate: Date(),
+//                state: .recruiting,
+//                bookMarkedUsers: [
+//                    User.user2,
+//                    User.user3,
+//                ]),
+//        ]
+//    }
+//}
 
 //mutating func addMember(_ member: Member) {
 //    if let index = requiredPositions.firstIndex(where: { $0.field == member.field }) {

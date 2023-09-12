@@ -9,11 +9,14 @@ import SwiftUI
 
 struct StudyDetailView: View {
     @EnvironmentObject var viewModel: StudyViewModel
+    @EnvironmentObject var applicationViewModel: ApplicationViewModel
+    
+    @State private var showAlert = false
     
     var body: some View {
-        ScrollViewReader { proxy in 
+        ScrollViewReader { proxy in
             ScrollView(showsIndicators: false) {
-                VStack(spacing: 20 ){
+                VStack(spacing: 20) {
                     Introduction()
                     InfinityRectangleText(title: "프로젝트 소개",
                                           content: viewModel.selectedStudy.introduction)
@@ -22,32 +25,104 @@ struct StudyDetailView: View {
                     InfinityRectangleText(title: "스터디 최종 목표",
                                           content: viewModel.selectedStudy.goal)
                     CurrentMember()
-                    ActionButton("지원서 쓰러가기") {
-                        viewModel.presentApplicationStudy = true
+                    
+                    if viewModel.checkMember {
+                        if viewModel.checkHost {
+                            ActionButton("스터디 수정하기") {
+                                viewModel.stateForCreateStudy = .update
+                                viewModel.showCreateStudyOnDetail = true
+                            }
+                            .padding(.horizontal, 20)
+                        } else {
+                            ActionButton("가입 완료") {
+                            }
+                            .disabled(true)
+                            .padding(.horizontal, 20)
+                        }
+                    } else {
+                        if viewModel.checkSubimt {
+                            CancelButton("지원 취소하기") {
+                                showAlert = true
+                            }
+                            .padding(.horizontal, 20)
+                        } else {
+                            ActionButton("지원서 쓰러가기") {
+                                viewModel.presentApplicationStudy = true
+                            }
+                            .padding(.horizontal, 20)
+                        }
                     }
-                    .padding(.horizontal, 20)
                 }
                 .id(1)
+                .padding(.bottom, 10)
             }
             .onAppear {
                 proxy.scrollTo(1, anchor: .top)
             }
         }
+        .toolbar {
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                Image(systemName: "xmark")
+                    .onTapGesture {
+                        viewModel.showStudyDetail = false
+                    }
+            }
+        }
         .navigationDestination(isPresented: $viewModel.presentApplicationStudy) {
             ApplicationView()
+        }
+        .fullScreenCover(isPresented: $viewModel.showCreateStudyOnDetail) {
+            NavigationStack {
+                CreateStudy()
+            }
+        }
+        .onAppear {
+            viewModel.checkStudyDetailState()
+        }
+        .alert("지원 취소하기", isPresented: $showAlert) {
+            Button("확인") {
+                applicationViewModel.deleteApplication(study: viewModel.selectedStudy) {
+                    viewModel.getStudyWithId() {
+                        viewModel.checkStudyDetailState()
+                    }
+                }
+            }
+            
+            Button(role: .cancel) {
+            } label: {
+                Text("취소")
+            }
+        } message: {
+            Text("정말로 지원을 취소하시겠습니까?")
         }
     }
 }
 
 struct Introduction: View {
     @EnvironmentObject var viewModel: StudyViewModel
+    @EnvironmentObject var userViewModel: UserViewModel
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             //TODO: 북마크 api
-            RoundRectangleLabel(text: "1000",
-                                image: Image(systemName: "bookmark.fill"),
-                                background: Color.main)
+            HStack {
+                RoundRectangleLabel(
+                    text: "\(viewModel.selectedStudy.bookMarkedUsers.count)",
+                    image: Image(systemName: "bookmark.fill"),
+                    background: Color.main)
+                //.padding(.bottom, 10)
+                
+                Image(systemName:
+                      viewModel.selectedStudy.bookMarkedUsers.contains(UserViewModel.shared.currentUser.id)
+                      ? "heart.fill"
+                      : "heart")
+                .foregroundColor(.red)
+                .onTapGesture {
+                    viewModel.updateBookmark()
+                }
+                
+                Spacer()
+            }
             .padding(.bottom, 10)
             
             Text(viewModel.selectedStudy.title)
@@ -81,13 +156,17 @@ struct StudyDetail: View {
                         HashtagView(text: language.rawValue)
                     }
                 }
-                DetailContent(title: "모집 현황",
-                              content: "\(viewModel.numberOfRecruits(study: viewModel.selectedStudy)) / \(viewModel.numberOfRecruits(study: viewModel.selectedStudy))")
+                DetailContent(
+                    title: "모집 현황",
+                    content: "\(viewModel.selectedStudy.currentMembers.count) / \(viewModel.selectedStudy.numberOfRecruits)")
             } else if viewModel.selectedStudy.category == .projectStudy {
                 DetailContent(title: "수익화 목적",
                               content: viewModel.selectedStudy.revenuePurpose?.rawValue ?? "")
-                DetailContent(title: "모집 현황", content: "")
-                RecruitmentState()
+                DetailContent(
+                    title: "모집 현황",
+                    content: "\(viewModel.selectedStudy.currentMembers.count) / \(viewModel.numberOfRecruits(study: viewModel.selectedStudy))")
+                
+                    RecruitmentState()
             }
         }
     }
@@ -99,8 +178,11 @@ struct RecruitmentState: View {
     var body: some View {
         VStack(spacing: 20) {
             ForEach(viewModel.selectedStudy.positionInfos, id: \.self) { position in
+                let currentMembers = viewModel.selectedStudy.currentMembers
+                let currentCount = currentMembers.filter { $0.position == position.position }.count
+                
                 RecruitmentStateContent(position: position.position,
-                                        currnet: position.currentCount,
+                                        currnet: currentCount,
                                         required: position.requiredCount)
             }
         }
@@ -121,17 +203,30 @@ struct RecruitmentStateContent: View {
             Spacer()
             Text("\(currnet) / \(required)")
                 .font(.pretendard(weight: .semiBold, size: 20))
-            Text("지원하기")
-                .font(.pretendard(weight: .semiBold, size: 16))
-                .foregroundColor(.white)
-                .padding(.vertical, 8)
-                .padding(.horizontal, 10)
-                .background(Color.main)
-                .cornerRadius(8)
-                .onTapGesture {
-                    viewModel.presentApplicationStudy = true
-                    applicationViewModel.position = position
+            
+            if !viewModel.checkMember {
+                if !viewModel.checkSubimt {
+                    Text("지원 하기")
+                        .font(.pretendard(weight: .semiBold, size: 16))
+                        .foregroundColor(.white)
+                        .padding(.vertical, 8)
+                        .padding(.horizontal, 10)
+                        .background(Color.main)
+                        .cornerRadius(8)
+                        .onTapGesture {
+                            viewModel.presentApplicationStudy = true
+                            applicationViewModel.position = position
+                        }
+                } else {
+                    Text("지원 완료")
+                        .font(.pretendard(weight: .semiBold, size: 16))
+                        .foregroundColor(.white)
+                        .padding(.vertical, 8)
+                        .padding(.horizontal, 10)
+                        .background(Color(hexColor: "C5C5C5"))
+                        .cornerRadius(8)
                 }
+            }
         }
     }
 }

@@ -9,7 +9,6 @@ import SwiftUI
 
 struct CompletedStudyView: View {
     @EnvironmentObject var viewModel: StudyViewModel
-//    @State private var imgNumber: Int = 1
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -26,7 +25,7 @@ struct CompletedStudyView: View {
 
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 15) {
-                    ForEach(Array(viewModel.studys.enumerated()), id: \.element.id) { index, study in
+                    ForEach(Array(viewModel.allStudys.enumerated()), id: \.element.id) { index, study in
 //                        let study = viewModel.studys[index]
                         let image = Image("CharacterCard\((index % 6) + 1)")
                         

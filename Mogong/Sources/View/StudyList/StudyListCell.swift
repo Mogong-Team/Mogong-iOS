@@ -15,10 +15,14 @@ struct StudyListCell: View {
         VStack(alignment: .leading, spacing: 12) {
             HStack(alignment: .top) {
                 HStack(spacing: 5) {
-                    RoundRectangleText(text: study.category.rawValue,
-                                       background: Color(hexColor: "FF6B00"))
-                    RoundRectangleText(text: study.state.rawValue,
-                                       background: Color(hexColor: "FFB800"))
+                    RoundRectangleText(
+                        text: study.category.rawValue,
+                        background: Color(hexColor: "FF6B00"))
+                    RoundRectangleText(
+                        text: study.state.rawValue,
+                        background: study.state == .completed
+                        ? Color(hexColor: "C5C5C5")
+                        : Color(hexColor: "FFB800"))
                     Text("~ \(study.dueDate.toMonthString())")
                         .font(.pretendard(weight: .semiBold, size: 14))
                         .foregroundColor(Color(hexColor: "7C7979"))
@@ -26,16 +30,12 @@ struct StudyListCell: View {
                 }
                 .padding(.top, 16)
                 
-                Image(systemName: viewModel.isBookmarked
+                Image(systemName: viewModel.checkBookmark(study: study)
                       ? "bookmark.fill"
                       : "bookmark")
                 .resizable()
                 .frame(width: 18, height: 28)
                 .foregroundColor(Color.main)
-                .onTapGesture {
-                    // TODO: Post Bookmark
-                    viewModel.isBookmarked.toggle()
-                }
             }
             
             Text(study.title)
