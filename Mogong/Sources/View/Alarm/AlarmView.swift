@@ -13,17 +13,20 @@ struct AlarmView: View {
     
     var body: some View {
         VStack {
-            ScrollView {
-                VStack {
-                    ForEach(alarms, id: \.self) { alarm in
-                        AlarmCell()
-                    }
-                }
-            }
+//            ScrollView {
+//                VStack {
+//                    ForEach(alarms, id: \.self) { alarm in
+//                        AlarmCell()
+//                    }
+//                }
+//            }
+
+            Text("알람이 없습니다.")
+            .font(.pretendard(weight: .semiBold, size: 18))
         }
         .padding(.horizontal, 20)
         .navigationTitle("알림")
-        .navigationBarTitleDisplayMode(.large)
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

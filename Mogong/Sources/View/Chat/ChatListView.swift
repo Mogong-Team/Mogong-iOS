@@ -15,7 +15,10 @@ struct ChatListView: View {
     
     var body: some View {
         VStack {
-            messagesView
+            //messagesView
+            
+            Text("채팅이 없습니다.")
+                .font(.pretendard(weight: .semiBold, size: 18))
         }
         .navigationTitle("메세지")
         .navigationBarTitleDisplayMode(.inline)
@@ -49,7 +52,7 @@ struct ChatListView: View {
                 .padding(.vertical, 8)
                 .swipeActions {
                     Button(action: {
-                        //                            deleteChatRecord(chatRecord)
+                        //TODO: 채팅방 나가기
                     }, label: {
                         Text("나가기")
                     })
@@ -59,26 +62,6 @@ struct ChatListView: View {
         }
         .listStyle(.plain)
     }
-
-        
-//        현석님이 짜주신 코드
-//        VStack {
-//            ScrollView {
-//                VStack {
-//                    ForEach(viewModel.chats) { chat in
-//                        NavigationLink {
-//                            ChatView(chat: chat)
-//                        } label: {
-//                            ChatListCell(chat: chat)
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        .padding(.horizontal, 20)
-//        .navigationTitle("채팅")
-//        .navigationBarTitleDisplayMode(.large)
-
 }
 
 struct ChatListView_Previews: PreviewProvider {

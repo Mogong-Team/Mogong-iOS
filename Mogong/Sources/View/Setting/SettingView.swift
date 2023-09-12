@@ -17,23 +17,23 @@ struct SettingView: View {
     
     var body: some View {
             VStack(spacing: 20) {
-                Spacer().frame(height: 30)
-                NavigationLink {
+                Spacer().frame(height: 15)
+                
+//                NavigationLink {
 //                    EditUserInfo()
-                } label: {
-//                    rightArrowLabel(title: "닉네임")
-                    HStack {
-                        Text("닉네임")
-                            .font(.pretendard(weight: .bold, size: 18))
-                            .foregroundColor(.black)
-                        Spacer()
-                        Text("\(username)")
-                            .foregroundColor(.black)
-                        Image(systemName: "chevron.right")
-                            .foregroundColor(.black)
-                    }
-                }
-                Divider()
+//                } label: {
+//                    HStack {
+//                        Text("닉네임")
+//                            .font(.pretendard(weight: .bold, size: 18))
+//                            .foregroundColor(.black)
+//                        Spacer()
+//                        Text("\(username)")
+//                            .foregroundColor(.black)
+//                        Image(systemName: "chevron.right")
+//                            .foregroundColor(.black)
+//                    }
+//                }
+//                Divider()
                 
                 VStack(spacing: 20) {
                     NavigationLink {
@@ -59,13 +59,13 @@ struct SettingView: View {
                     }
                     Divider()
                 }
-                Spacer()
         
                 HStack {
-                    Text("탈퇴하기")
+                    Spacer()
+                    Text("로그아웃")
                         .foregroundColor(.red)
                         .onTapGesture {
-                            // TODO: delete User
+                            // TODO: 로그아웃
                         }
                 }
                 Spacer()
@@ -73,14 +73,6 @@ struct SettingView: View {
             .padding(.horizontal, 20)
             .navigationBarTitle("설정", displayMode: .large)
             .navigationBarTitleDisplayMode(.inline)
-            .navigationBarBackButtonHidden()
-            .navigationBarItems(trailing:
-                                    Image(systemName: "xmark")
-                .foregroundColor(.black)
-                .onTapGesture {
-                    dismiss()
-                }
-            )
     }
 }
 
