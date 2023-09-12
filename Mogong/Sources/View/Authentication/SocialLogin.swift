@@ -18,9 +18,13 @@ struct SocialLogin: View {
             Button {
                 viewModel.loginWithKakaoTalk()
             } label: {
-                Image("kakaoLogo")
-                    .frame(width: 73, height: 73)
-                
+                VStack {
+                    Image("kakaoLogo")
+                        .frame(width: 73, height: 73)
+                    Text("카카오로\n시작하기")
+                        .font(.pretendard(weight: .medium, size: 14))
+                        .foregroundColor(Color(hexColor: "494949"))
+                }
             }
             
             // MARK: - 구글 로그인
@@ -28,8 +32,13 @@ struct SocialLogin: View {
             Button {
                 viewModel.loginWithGoogle()
             } label: {
-                Image("googleLogo")
-                    .frame(width: 73, height: 73)
+                VStack {
+                    Image("googleLogo")
+                        .frame(width: 73, height: 73)
+                    Text("구글로\n시작하기")
+                        .font(.pretendard(weight: .medium, size: 14))
+                        .foregroundColor(Color(hexColor: "494949"))
+                }
             }
             
             // MARK: - 애플 로그인
@@ -37,8 +46,13 @@ struct SocialLogin: View {
             Button {
                 viewModel.loginWithApple()
             } label: {
-                Image("appleLogo")
-                    .frame(width: 73, height: 73)
+                VStack {
+                    Image("appleLogo")
+                        .frame(width: 73, height: 73)
+                    Text("애플로\n시작하기")
+                        .font(.pretendard(weight: .medium, size: 14))
+                        .foregroundColor(Color(hexColor: "494949"))
+                }
             }
             
             // MARK: - 네이버 로그인

@@ -13,24 +13,25 @@ struct AuthView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                Text("Mogong")
-                    .font(.title)
+                Image("mogongLogo")
+                    .padding(20)
+                Image("titleimage")
                 
-                VStack {
+                VStack(spacing: 15) {
                     Text("지금 모공과 함께\n스터디를 시작하세요!")
-                        .font(.title2)
-                        .fontWeight(.bold)
+                        .font(.pretendard(weight: .bold, size: 20))
+                        .foregroundColor(Color(hexColor: "494949"))
                         .multilineTextAlignment(.center)
                     
                     Text("책임감 있는 팀원들을 만나봐요!")
-                        .font(.body)
-                        .foregroundColor(.gray)
+                        .font(.pretendard(weight: .medium, size: 15))
+                        .foregroundColor(Color(hexColor: "999696"))
                 }
-                .padding()
-                
+                .padding(20)
                 Text("3초만에 로그인하기")
-                    .font(.body)
-                    .fontWeight(.bold)
+                    .font(.pretendard(weight: .bold, size: 15))
+                    .foregroundColor(Color(hexColor: "494949"))
+                    .padding(20)
                 
                 SocialLogin()
                     .padding()
