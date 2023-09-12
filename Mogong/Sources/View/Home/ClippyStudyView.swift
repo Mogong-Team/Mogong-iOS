@@ -26,10 +26,21 @@ struct ClippyStudyView: View {
                 VStack(spacing: 16) {
                     ForEach(viewModel.allStudys) { study in
                         ClippyStudyCell(study: study)
+                            .onTapGesture {
+                                viewModel.selectedStudy = study
+                                viewModel.showStudyDetailOnHomeBookmark = true
+                            }
                     }
                 }
                 .padding(.vertical, 10)
                 .padding(.horizontal, 20)
+            }
+        }
+        .fullScreenCover(isPresented: $viewModel.showStudyDetailOnHomeBookmark, onDismiss: {
+            viewModel.getAllStudys()
+        }) {
+            NavigationStack {
+                StudyDetailView()
             }
         }
     }

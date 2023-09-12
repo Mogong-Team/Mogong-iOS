@@ -220,10 +220,10 @@
 			isa = PBXGroup;
 			children = (
 				5C11C9632A53F5A500618943 /* HomeView.swift */,
-				5CFBC2FF2A5969C80021B6EC /* ClippyStudyView.swift */,
-				5CFBC2FD2A5969B40021B6EC /* ClippyStudyCell.swift */,
 				5CFBC3012A5969D40021B6EC /* CompletedStudyView.swift */,
 				5CFBC2FB2A5969A60021B6EC /* CompletedStudyCell.swift */,
+				5CFBC2FF2A5969C80021B6EC /* ClippyStudyView.swift */,
+				5CFBC2FD2A5969B40021B6EC /* ClippyStudyCell.swift */,
 				5CFBC3032A596F8F0021B6EC /* NavigationBarView.swift */,
 				8F78DBA02A4C0B340004F195 /* StudyIntroduceView.swift */,
 				8F8CA8582A4D5D65002E8D15 /* MyStudyDetailView.swift */,

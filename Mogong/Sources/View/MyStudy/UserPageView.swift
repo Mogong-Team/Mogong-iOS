@@ -55,18 +55,16 @@ struct UserPageView: View {
             
             Spacer()
             
-            VStack {
-                SelectButton(title: "채팅하기", state: .selected) {
-                    isPresented = true
-                }
-            }
+//            SelectButton(title: "채팅하기", state: .selected) {
+//                isPresented = true
+//            }
         }
         .padding(.horizontal, 20)
         .padding(.bottom, 10)
-        .navigationDestination(isPresented: $isPresented) {
-            ChatView(chat: Chat(participant1: User.user1,
-                                participant2: User.user2))
-        }
+//        .navigationDestination(isPresented: $isPresented) {
+//            ChatView(chat: Chat(participant1: User.user1,
+//                                participant2: User.user2))
+//        }
     }
 }
 

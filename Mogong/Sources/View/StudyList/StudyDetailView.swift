@@ -65,6 +65,8 @@ struct StudyDetailView: View {
                 Image(systemName: "xmark")
                     .onTapGesture {
                         viewModel.showStudyDetail = false
+                        viewModel.showStudyDetailOnHomeNew = false
+                        viewModel.showStudyDetailOnHomeBookmark = false
                     }
             }
         }

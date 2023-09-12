@@ -19,6 +19,11 @@ class StudyViewModel: ObservableObject {
     //@Published var selectedStudy: Study?
     @Published var selectedStudy: Study = Study.study2
     
+    // MARK: - 홈
+    
+    @Published var showStudyDetailOnHomeNew: Bool = false
+    @Published var showStudyDetailOnHomeBookmark: Bool = false
+    
     // MARK: - 스터디리스트
     
     @Published var selectedCategory: StudyCategory = .all
@@ -366,20 +371,20 @@ class StudyViewModel: ObservableObject {
     //MARK: 기타
     
     func checkStudyDetailState() {
-        if let _ = selectedStudy.currentMembers.first(where: { $0.user.id == UserViewModel.shared.currentUser.id }) {
+        if selectedStudy.currentMembers.contains(where: { $0.user.id == UserViewModel.shared.currentUser.id }) {
             checkMember = true
-        } else {
-            self.checkMember = false
             
             if UserViewModel.shared.currentUser.id == selectedStudy.host.id {
                 self.checkHost = true
             } else {
                 self.checkHost = false
-                
-                let studyApplicationIds = selectedStudy.submittedApplications
-                let userApplicationIds = UserViewModel.shared.currentUser.submittedApplicationIds
-                self.checkSubimt = studyApplicationIds.contains{ userApplicationIds.contains($0) }
             }
+        } else {
+            self.checkMember = false
+            
+            let studyApplicationIds = selectedStudy.submittedApplications
+            let userApplicationIds = UserViewModel.shared.currentUser.submittedApplicationIds
+            self.checkSubimt = studyApplicationIds.contains{ userApplicationIds.contains($0) }
         }
     }
     
