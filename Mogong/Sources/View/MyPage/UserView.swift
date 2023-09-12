@@ -14,8 +14,9 @@ struct UserView: View {
     var body: some View {
             VStack(alignment: .leading) {
                 UserInfo()
-                    .padding(.bottom, 20)
+                    .padding(.bottom, 10)
                 UserBadge()
+                    .padding(.bottom, 10)
             }
             .padding(.horizontal, 20)
             .toolbar {

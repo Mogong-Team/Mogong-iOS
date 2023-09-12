@@ -8,73 +8,86 @@
 import SwiftUI
 
 struct RemoveReasonView: View {
-    @EnvironmentObject private var studyViewModel: StudyViewModel
-    @EnvironmentObject private var userViewModel: UserViewModel
+    @EnvironmentObject private var viewModel: StudyViewModel
     @Environment(\.dismiss) private var dismiss
-    @State private var selectedReason: String? = nil
+    
     @State private var reasonText: String = ""
+    @State private var showDropAlert: Bool = false
     
     var body: some View {
         VStack(spacing: 0) {
-            ScrollView(showsIndicators: false) {
-                HStack {
-                    VStack(alignment: .leading) {
-                        Text("내보내기")
-                            .font(.pretendard(weight: .semiBold, size: 24))
-                        Text("최대 한명 선택 가능합니다.")
-                            .font(.pretendard(weight: .medium, size: 18))
-                            .foregroundColor(.gray)
-                    }
-                    Spacer()
+            HStack {
+                VStack(alignment: .leading) {
+                    Text("내보내기")
+                        .font(.pretendard(weight: .semiBold, size: 24))
+                        .foregroundColor(Color(hexColor: "1D1C1C"))
+                        .padding(.bottom, 2)
+                    Text("최대 한명 선택 가능합니다.")
+                        .font(.pretendard(weight: .medium, size: 18))
+                        .foregroundColor(Color(hexColor: "868686"))
                 }
-                
-                VStack {
-                    RemoveReasonCheck(selectedReason: $selectedReason)
-                        .padding(.bottom, 10)
-                    MultiLineTextField(text: $reasonText, placeHolder: "기타 사유를 입력해주세요.")
-                        .frame(height: 140)
-                    Spacer()
-                }
+                Spacer()
+            }
+            .padding(.bottom, 15)
+            
+            VStack {
+                RemoveReasonCheck()
+                    .padding(.bottom, 15)
+                MultiLineTextField(text: $reasonText, placeHolder: "기타 사유를 입력해주세요.")
+                    .frame(height: 140)
+                Spacer()
             }
             
-            SelectButton(title: "강퇴하기", state: selectedReason == nil ? .unselected : .selected) {
-                studyViewModel.showRemoveMember = false
+            ActionButton("강퇴하기") {
+                showDropAlert = true
             }
-            .disabled(selectedReason == nil)
-            .padding(.vertical, 10)
+            .disabled(viewModel.removeReason.isEmpty)
         }
         .padding(.horizontal, 20)
+        .padding(.bottom, 10)
         .navigationBarBackButtonHidden()
         .navigationBarItems(leading: NaviBackButton())
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
                 Image(systemName: "xmark")
                     .onTapGesture {
-                        studyViewModel.showRemoveMember = false
+                        viewModel.showRemoveMember = false
                     }
             }
         }
         .onTapGesture {
             hideKeyboard()
         }
+        .alert("강퇴하기", isPresented: $showDropAlert) {
+            Button("확인") {
+                viewModel.showRemoveMember = false
+                viewModel.removeMember()
+            }
+            
+            Button("취소", role: .cancel) { }
+        } message: {
+            Text("정말로 강퇴하시겠습니까?")
+        }
     }
 }
 
 struct RemoveReasonCheck: View {
-    @Binding var selectedReason: String?
+    @EnvironmentObject private var viewModel: StudyViewModel
     var reasons = ["활동 중 잠수", "잦은 지각", "분란을 일으킴", "상업적 광고", "기타 사유",]
     
     var body: some View {
         VStack {
-            LazyVGrid(columns: [GridItem(), GridItem()]) {
+            LazyVGrid(columns: [GridItem(), GridItem()], spacing: 20) {
                 ForEach(reasons, id: \.self) {reason in
                     HStack {
-                        RemoveReasonCheckButton(reason: reason, isChecked: selectedReason == reason)
+                        RemoveReasonCheckButton(
+                            reason: reason,
+                            isChecked: viewModel.removeReason == reason)
                             .onTapGesture {
-                                if selectedReason == reason {
-                                    selectedReason = nil
+                                if viewModel.removeReason == reason {
+                                    viewModel.removeReason = ""
                                 } else {
-                                    selectedReason = reason
+                                    viewModel.removeReason = reason
                                 }
                             }
                         Spacer()

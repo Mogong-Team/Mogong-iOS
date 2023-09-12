@@ -62,6 +62,7 @@ struct UserPageView: View {
             }
         }
         .padding(.horizontal, 20)
+        .padding(.bottom, 10)
         .navigationDestination(isPresented: $isPresented) {
             ChatView(chat: Chat(participant1: User.user1,
                                 participant2: User.user2))

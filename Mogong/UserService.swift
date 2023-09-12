@@ -18,22 +18,44 @@ class UserService {
     
     private var db = Firestore.firestore()
     
-    // 현재 유저 정보 저장
-    static func saveUser(user: User, completion: @escaping (Error?) -> Void) {
-        let dataDic: [String: Any] = [
-            "id": user.id,
-            "email": user.email,
-            "username": user.username,
-            "userimageString": user.userimageString,
-            "submittedApplicationIds": user.submittedApplicationIds,
-            "joinedStudyIds": user.joinedStudyIds,
-            "bookmarkedStudyIds": user.bookmarkedStudyIds,
-        ]
-        
-        shared.db.collection("users").document(user.id).setData(dataDic) { error in
+    // 유저 정보 업데이트
+    static func updateUser(user: User, completion: @escaping (Error?) -> Void) {
+        do {
+            let jsonData = try JSONEncoder().encode(user)
+            guard let json = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] else {
+                print("데이터 변환 실패")
+                completion(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "데이터 변환 실패"]))
+                return
+            }
+            
+            shared.db.collection("users").document(user.id).setData(json, merge: true) { error in
+                completion(error)
+            }
+        } catch let error {
+            print("JSON 인코딩 오류: \(error)")
             completion(error)
         }
     }
+
+    // 현재 유저 정보 저장
+    static func saveUser(user: User, completion: @escaping (Error?) -> Void) {
+        do {
+            let jsonData = try JSONEncoder().encode(user)
+            guard let json = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] else {
+                print("데이터 변환 실패")
+                completion(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "데이터 변환 실패"]))
+                return
+            }
+            
+            shared.db.collection("users").document(user.id).setData(json) { error in
+                completion(error)
+            }
+        } catch let error {
+            print("JSON 인코딩 오류: \(error)")
+            completion(error)
+        }
+    }
+
     
     // 현재 유저 정보 가져오기
     static func getUser(userId: String, completion: @escaping (Result<User, Error>) -> Void) {
@@ -120,75 +142,3 @@ class UserService {
         }
     }
 }
-
-//MARK: Alamofire
-    
-//class UserServices  {
-//
-//    static let shared = UserServices()
-//
-//    static func fetchUser(withId id: String, completion: @escaping (Result<User, Error>) -> Void) {
-//        AF.request("https://your-api-url.com/users/\(id)")
-//            .validate()
-//            .responseDecodable(of: User.self) { response in
-//                switch response.result {
-//                case .success(let user):
-//                    completion(.success(user))
-//                case .failure(let error):
-//                    completion(.failure(error))
-//                }
-//            }
-//    }
-//
-//    static func addUser(_ user: User, completion: @escaping (Result<User, Error>) -> Void) {
-//        AF.request("https://your-api-url.com/users", method: .post, parameters: user, encoder: JSONParameterEncoder.default)
-//            .validate()
-//            .responseDecodable(of: User.self) { response in
-//                switch response.result {
-//                case .success(let user):
-//                    completion(.success(user))
-//                case .failure(let error):
-//                    completion(.failure(error))
-//                }
-//            }
-//    }
-//
-//    static func updateUser(_ user: User, completion: @escaping (Result<User, Error>) -> Void) {
-//        AF.request("https://your-api-url.com/users/\(user.id)", method: .put, parameters: user, encoder: JSONParameterEncoder.default)
-//            .validate()
-//            .responseDecodable(of: User.self) { response in
-//                switch response.result {
-//                case .success(let user):
-//                    completion(.success(user))
-//                case .failure(let error):
-//                    completion(.failure(error))
-//                }
-//            }
-//    }
-//
-//    static func deleteUser(withId id: String, completion: @escaping (Result<Void, Error>) -> Void) {
-//        AF.request("https://your-api-url.com/users/\(id)", method: .delete)
-//            .validate()
-//            .response { response in
-//                switch response.result {
-//                case .success:
-//                    completion(.success(()))
-//                case .failure(let error):
-//                    completion(.failure(error))
-//                }
-//            }
-//    }
-//
-//    static func updateJoinedStudys(user: User, studyId: String, completion: @escaping (Result<User, Error>) -> Void) {
-//        AF.request("https://your-api-url.com/users/\(user.id)", method: .put, parameters: user, encoder: JSONParameterEncoder.default)
-//            .validate()
-//            .responseDecodable(of: User.self) { response in
-//                switch response.result {
-//                case .success(let user):
-//                    completion(.success(user))
-//                case .failure(let error):
-//                    completion(.failure(error))
-//                }
-//            }
-//    }
-//}

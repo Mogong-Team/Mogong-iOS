@@ -310,17 +310,17 @@ struct IntroduceMember: View {
                         )
                     }
                 }
-                
-//                ForEach(Array(study.requiredCountPerFieldDic()), id: \.key) { field, count in
-//                    ForEach(0..<count) { _ in
-//                        HStackNewTeamMemberView(field: field)
-//                    }
-//                }
             }
         }
-        .sheet(isPresented: $studyViewModel.showRemoveMember) {
-            RemoveMemberView()
-                .presentationDetents([.fraction(0.7)])
+        .sheet(isPresented: $studyViewModel.showRemoveMember, onDismiss: {
+            studyViewModel.selectedMyStudyStateIsEnded = false
+            studyViewModel.selectedMyStudyIndex = 0
+            studyViewModel.getUserStudys()
+        }) {
+            NavigationStack {
+                RemoveMemberView()
+            }
+            .presentationDetents([.fraction(0.7)])
         }
     }
 }

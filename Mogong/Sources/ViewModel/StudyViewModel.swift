@@ -70,15 +70,17 @@ class StudyViewModel: ObservableObject {
     
     // MARK: - 마이스터디
     
-    /// 모든 스터디에서 마이스터디 가져오는 방법
-    /// 1) viewModel에서 필터링 - 데이터량이 적으면 서버와 연동보다  받아온 모든 스터디에서 필터링하는게 빠름
-    /// 2) 서버에서 받아오기 - 이용자 수가 많을 수록 필요성 높아짐
     @Published var myAllStudys = [Study]()
     @Published var filterdOngoingMyStudy = [Study]()
     @Published var filterdEndedMyStudy = [Study]()
     @Published var selectedMyStudyStateIsEnded: Bool = false
     @Published var selectedMyStudyIndex: Int = 0
     @Published var showRemoveMember: Bool = false
+    
+    //MARK: - 내보내기
+    
+    @Published var selectedMember: Member?
+    @Published var removeReason: String = ""
     
     //MARK: - 기타
     
@@ -268,15 +270,6 @@ class StudyViewModel: ObservableObject {
                 if let error = error {
                     print("스터디 북마크 삭제 실패: ", error.localizedDescription)
                 } else {
-//                    StudyService.getAllStudys { result in
-//                        switch result {
-//                        case .success(let study):
-//                            self.allStudys = study
-//                        case .failure(let error):
-//                            print("북마크 추가 후 전체 스터디 정보 업데이트 실패: ", error.localizedDescription)
-//                        }
-//                    }
-                    
                     StudyService.getStudyById(studyId: studyId) { result in
                         switch result {
                         case .success(let study):
@@ -307,15 +300,6 @@ class StudyViewModel: ObservableObject {
                 if let error = error {
                     print("스터디 북마크 추가 실패: ", error.localizedDescription)
                 } else {
-//                    StudyService.getAllStudys { result in
-//                        switch result {
-//                        case .success(let study):
-//                            self.allStudys = study
-//                        case .failure(let error):
-//                            print("북마크 삭제 후 전체 스터디 정보 업데이트 실패: ", error.localizedDescription)
-//                        }
-//                    }
-                    
                     StudyService.getStudyById(studyId: studyId) { result in
                         switch result {
                         case .success(let study):
@@ -344,14 +328,41 @@ class StudyViewModel: ObservableObject {
         }
     }
     
-    //MARK: 지원서
+    //MARK: 내보내기
     
-    func checkAlreadySubmittedStudy() {
-        let studyApplicationIds = selectedStudy.submittedApplications
-        let userApplicationIds = UserViewModel.shared.currentUser.submittedApplicationIds
-        self.checkSubimt = studyApplicationIds.contains{ userApplicationIds.contains($0) }
+    func removeMember() {
+        guard let removedMember = selectedMember else { return
+            print("선택된 유저 정보 없음")
+        }
+        
+        var updatedStudy = selectedStudy
+        updatedStudy.currentMembers.removeAll(where: { $0.user.id == removedMember.user.id })
+        var updatedUser = removedMember.user
+        updatedUser.joinedStudyIds.removeAll(where: { $0 == updatedStudy.id })
+        
+        StudyService.updateStudy(study: updatedStudy) { error in
+            if let error = error {
+                print("스터디에서 유저 내보내기 실패: ", error.localizedDescription)
+            }
+        }
+        
+        UserService.updateUser(user: updatedUser) { error in
+            if let error = error {
+                print("내보내진 유저 정보 업데이트 실패: ", error.localizedDescription)
+            }
+        }
+        
+        guard let removedApplicationId = updatedUser.submittedApplicationIds.first(where: { updatedStudy.submittedApplications.contains($0) }) else { return
+            print("내보내진 유저의 신청서 정보 없음")
+        }
+        
+        ApplicationService.deleteApplication(applicationId: removedApplicationId) { error in
+            if let error = error {
+                print("내보내진 유저의 신청서 삭제 실패: ", error.localizedDescription)
+            }
+        }
     }
-    
+
     //MARK: 기타
     
     func checkStudyDetailState() {
@@ -365,7 +376,9 @@ class StudyViewModel: ObservableObject {
             } else {
                 self.checkHost = false
                 
-                checkAlreadySubmittedStudy()
+                let studyApplicationIds = selectedStudy.submittedApplications
+                let userApplicationIds = UserViewModel.shared.currentUser.submittedApplicationIds
+                self.checkSubimt = studyApplicationIds.contains{ userApplicationIds.contains($0) }
             }
         }
     }
