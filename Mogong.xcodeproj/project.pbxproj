@@ -27,7 +27,7 @@
 		8F78DBA12A4C0B340004F195 /* StudyIntroduceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F78DBA02A4C0B340004F195 /* StudyIntroduceView.swift */; };
 		8F7D0C0F2A52A7670073457A /* BookmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7D0C0E2A52A7670073457A /* BookmarkView.swift */; };
 		8F7DCFDD2AAEA7FA000652BA /* CancelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7DCFDC2AAEA7FA000652BA /* CancelButton.swift */; };
-		8F7DCFDF2AAFE19B000652BA /* ApplicationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7DCFDE2AAFE19B000652BA /* ApplicationCell.swift */; };
+		8F7DCFE12AB02A3F000652BA /* ApplicationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7DCFE02AB02A3F000652BA /* ApplicationCell.swift */; };
 		8F8A671A2A39755E00467936 /* MogongApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8A67192A39755E00467936 /* MogongApp.swift */; };
 		8F8A671E2A39756000467936 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F8A671D2A39756000467936 /* Assets.xcassets */; };
 		8F8A67212A39756000467936 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F8A67202A39756000467936 /* Preview Assets.xcassets */; };
@@ -125,7 +125,7 @@
 		8F78DBA02A4C0B340004F195 /* StudyIntroduceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyIntroduceView.swift; sourceTree = "<group>"; };
 		8F7D0C0E2A52A7670073457A /* BookmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkView.swift; sourceTree = "<group>"; };
 		8F7DCFDC2AAEA7FA000652BA /* CancelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelButton.swift; sourceTree = "<group>"; };
-		8F7DCFDE2AAFE19B000652BA /* ApplicationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationCell.swift; sourceTree = "<group>"; };
+		8F7DCFE02AB02A3F000652BA /* ApplicationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationCell.swift; sourceTree = "<group>"; };
 		8F8A67162A39755E00467936 /* Mogong.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mogong.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F8A67192A39755E00467936 /* MogongApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MogongApp.swift; sourceTree = "<group>"; };
 		8F8A671D2A39756000467936 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -458,7 +458,7 @@
 				8F8CA8582A4D5D65002E8D15 /* MyStudyDetailView.swift */,
 				8FF418A42A4D7C6E0090FA34 /* UserPageView.swift */,
 				8FA027FF2A5BC865001B17F6 /* ApplicationListView.swift */,
-				8F7DCFDE2AAFE19B000652BA /* ApplicationCell.swift */,
+				8F7DCFE02AB02A3F000652BA /* ApplicationCell.swift */,
 				8FA028012A5BD3EC001B17F6 /* ApplicationDetailView.swift */,
 			);
 			path = MyStudy;
@@ -737,7 +737,7 @@
 				8F8A673B2A39766300467936 /* UserViewModel.swift in Sources */,
 				8FE8479B2AAC40160050D480 /* ProjectStudyPositionInfo.swift in Sources */,
 				8F8A672F2A39763400467936 /* Rank.swift in Sources */,
-				8F7DCFDF2AAFE19B000652BA /* ApplicationCell.swift in Sources */,
+				8F7DCFE12AB02A3F000652BA /* ApplicationCell.swift in Sources */,
 				8FF418A72A4D7E650090FA34 /* ApplicationViewModel.swift in Sources */,
 				8F8A67372A39765700467936 /* StudyViewModel.swift in Sources */,
 				8FEBA8662A70AFDF009275BD /* EditUserInfo.swift in Sources */,
