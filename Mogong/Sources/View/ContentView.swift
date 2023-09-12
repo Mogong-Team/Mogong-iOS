@@ -11,6 +11,7 @@ import KakaoSDKAuth
 
 struct ContentView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
+    @State var showingMainView = false
     
     init() {
         let navBarAppearence = UINavigationBarAppearance()
@@ -33,16 +34,28 @@ struct ContentView: View {
     }
     
     var body: some View {
-        Group {
-            if authViewModel.isLoggedIn {
-                TabBar()
-            } else {
-                AuthView()
+        ZStack {
+            Group {
+                if authViewModel.isLoggedIn {
+                    TabBar()
+                } else {
+                    AuthView()
+                }
+                
+                if !showingMainView {
+                    SplashScreenView.transition(.opacity)
+                }
+            }
+            .onAppear {
+                authViewModel.checkIfLoggedIn()
             }
         }
         .onAppear {
-            authViewModel.checkIfLoggedIn()
-            authViewModel.getUser()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
+                showingMainView.toggle()
+                authViewModel.checkIfLoggedIn()
+                authViewModel.getUser()
+            })
         }
     }
 }
@@ -105,6 +118,16 @@ struct TabBar: View {
             .tag(3)
         }
         .accentColor(Color.main)
+    }
+}
+
+//Mark: - 스플래시 스크린
+extension ContentView {
+    var SplashScreenView: some View {
+        Image("Splash")
+            .resizable()
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .edgesIgnoringSafeArea(.all)
     }
 }
 
