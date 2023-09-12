@@ -15,10 +15,16 @@ struct ApplicationView: View {
     @State private var showSelectPosition: Bool = false
     
     var isComplete: Bool {
-        return !viewModel.title.isEmpty &&
-        viewModel.position != nil &&
-        !viewModel.introduction.isEmpty &&
-        !viewModel.experience.isEmpty
+        if studyViewModel.selectedStudy.category == .projectStudy {
+            return !viewModel.title.isEmpty &&
+            viewModel.position != nil &&
+            !viewModel.introduction.isEmpty &&
+            !viewModel.experience.isEmpty
+        } else {
+            return !viewModel.title.isEmpty &&
+            !viewModel.introduction.isEmpty &&
+            !viewModel.experience.isEmpty
+        }
     }
    
     var body: some View {
@@ -33,24 +39,26 @@ struct ApplicationView: View {
                     placeHolder: "나를 소개할 제목을 적어주세요!")
             }
             
-            HStack {
-                Text("지원 포지션")
-                    .font(Font.system(size: 16))
-                    .frame(height: 25)
-                Spacer()
-                if viewModel.position == nil {
-                    Image("arrow_right")
-                } else {
-                    Text(viewModel.position?.rawValue ?? "")
-                        .font(.pretendard(weight: .bold, size: 16))
-                        .foregroundColor(Color.main)
+            if studyViewModel.selectedStudy.category == .projectStudy {
+                HStack {
+                    Text("지원 포지션")
+                        .font(Font.system(size: 16))
                         .frame(height: 25)
+                    Spacer()
+                    if viewModel.position == nil {
+                        Image("arrow_right")
+                    } else {
+                        Text(viewModel.position?.rawValue ?? "")
+                            .font(.pretendard(weight: .bold, size: 16))
+                            .foregroundColor(Color.main)
+                            .frame(height: 25)
+                    }
                 }
+                .onTapGesture {
+                    showSelectPosition = true
+                }
+                .padding(.vertical, 10)
             }
-            .onTapGesture {
-                showSelectPosition = true
-            }
-            .padding(.vertical, 10)
             
             VStack(alignment: .leading) {
                 Text("간단한 자기소개")
@@ -77,28 +85,24 @@ struct ApplicationView: View {
             Spacer()
             
             ActionButton("지원하기") {
-                viewModel.submitApplication(study: studyViewModel.selectedStudy)
-                studyViewModel.presentStudyDetail = false
+                viewModel.submitApplication(study: studyViewModel.selectedStudy) {
+                    studyViewModel.getStudyWithId() {
+                        dismiss()
+                    }
+                }
+                
             }
             .disabled(!isComplete)
         }
         .padding(.horizontal, 20)
         .navigationTitle("스터디 지원서")
-        .navigationBarBackButtonHidden()
-        .toolbar {
-            ToolbarItemGroup(placement: .navigationBarTrailing) {
-                Image(systemName: "xmark")
-                    .onTapGesture {
-                        dismiss()
-                        viewModel.resetSubmitApplication()
-                    }
-            }
-        }
         .sheet(isPresented: $showSelectPosition) {
             SelectPositionView()
                 .presentationDetents([.fraction(0.53)])
         }
-        
+        .onDisappear {
+            viewModel.resetSubmitApplication()
+        }
     }
 }
 

@@ -36,9 +36,20 @@ struct StudyListView: View {
                 }
             }
         }
-        .fullScreenCover(isPresented: $viewModel.showCreateStudyOnList) {
+        .fullScreenCover(isPresented: $viewModel.showCreateStudyOnList, onDismiss: {
+            viewModel.selectedCategory = .all
+            viewModel.getAllStudys()
+        }) {
             NavigationStack {
                 CreateStudy()
+            }
+        }
+        .fullScreenCover(isPresented: $viewModel.showStudyDetail, onDismiss: {
+            viewModel.selectedCategory = .all
+            viewModel.getAllStudys()
+        }) {
+            NavigationStack {
+                StudyDetailView()
             }
         }
         .onAppear {
@@ -167,7 +178,7 @@ struct StudyList: View {
                         StudyListCell(study: study)
                             .padding(.bottom, 18)
                             .onTapGesture {
-                                viewModel.presentStudyDetail = true
+                                viewModel.showStudyDetail = true
                                 viewModel.selectedStudy = study
                             }
                     }
@@ -178,9 +189,6 @@ struct StudyList: View {
             .onChange(of: viewModel.selectedCategory) { _ in
                 proxy.scrollTo(1, anchor: .top)
             }
-        }
-        .navigationDestination(isPresented: $viewModel.presentStudyDetail) {
-            StudyDetailView()
         }
     }
 }

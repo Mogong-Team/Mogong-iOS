@@ -66,7 +66,7 @@ struct GeneralStudy: View {
                                 viewModel.updateStudy()
                             }
                             
-                            viewModel.presentStudyDetail = false
+                            viewModel.showStudyDetail = false
                             viewModel.showCreateStudyOnList = false
                             viewModel.showCreateStudyOnDetail = false
                         }

@@ -62,7 +62,7 @@ extension Study {
     static var study1 = Study(
         category: .projectStudy,
         loaction: .online,
-        title: "[창업/스타트업] 정부 지원 사업에 합격한 아이템으로 함께 MVP 제작할 개발자 구합니다.(2일 뒤 마감_편하게 연락주세요)",
+        title: "study1",
         introduction: "화이팅",
         goal: "이번달까지 출시가 목표입니다.",
         memberPreference: "아무나 상관없습니다.",
@@ -93,7 +93,7 @@ extension Study {
     static var study2 = Study(
         category: .projectStudy,
         loaction: .online,
-        title: "[창업/스타트업] 정부 지원 사업에 합격한 아이템으로 함께 MVP 제작할 개발자 구합니다.(2일 뒤 마감_편하게 연락주세요)",
+        title: "study2",
         introduction: "화이팅",
         goal: "이번달까지 출시가 목표입니다.",
         memberPreference: "아무나 상관없습니다.",
@@ -121,7 +121,7 @@ extension Study {
     static var study3 = Study(
         category: .generalStudy,
         loaction: .online,
-        title: "[창업/스타트업] 정부 지원 사업에 합격한 아이템으로 함께 MVP 제작할 개발자 구합니다.(2일 뒤 마감_편하게 연락주세요)",
+        title: "study3",
         introduction: "화이팅",
         goal: "이번달까지 출시가 목표입니다.",
         memberPreference: "아무나 상관없습니다.",
@@ -149,7 +149,7 @@ extension Study {
     static var study4 = Study(
         category: .projectStudy,
         loaction: .online,
-        title: "[창업/스타트업] 정부 지원 사업에 합격한 아이템으로 함께 MVP 제작할 개발자 구합니다.(2일 뒤 마감_편하게 연락주세요)",
+        title: "study4",
         introduction: "화이팅",
         goal: "이번달까지 출시가 목표입니다.",
         memberPreference: "아무나 상관없습니다.",

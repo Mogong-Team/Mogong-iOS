@@ -25,11 +25,6 @@ struct MyStudyView: View {
                 .padding(.top, 10)
                 .padding(.bottom, 20)
             }
-            .onAppear {
-                studyViewModel.selectedMyStudyStateIsEnded = false
-                studyViewModel.selectedMyStudyIndex = 0
-                // TODO: Get Study
-            }
         }
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarLeading) {
@@ -52,7 +47,9 @@ struct MyStudyView: View {
             }
         }
         .onAppear {
-            
+            studyViewModel.selectedMyStudyStateIsEnded = false
+            studyViewModel.selectedMyStudyIndex = 0
+            studyViewModel.getUserStudys()
         }
     }
 }
@@ -64,7 +61,7 @@ struct SelectState: View {
         HStack(spacing: 10) {
             SelectStateButton(
                 title: "진행중인 스터디",
-                studyCount: studyViewModel.allStudys.filter { $0.state != .ended }.count,
+                studyCount: studyViewModel.myAllStudys.filter { $0.state != .ended }.count,
                 isSelected: studyViewModel.selectedMyStudyStateIsEnded ? false : true
             )
             .onTapGesture {
@@ -76,7 +73,7 @@ struct SelectState: View {
             
             SelectStateButton(
                 title: "종료 스터디",
-                studyCount: studyViewModel.allStudys.filter { $0.state == .ended }.count,
+                studyCount: studyViewModel.myAllStudys.filter { $0.state == .ended }.count,
                 isSelected: studyViewModel.selectedMyStudyStateIsEnded ? true : false
             )
             .onTapGesture {
@@ -250,7 +247,7 @@ struct MyStudyIntroduce: View {
                     .padding()
                     .font(.pretendard(weight: .bold, size: 20))
                     .foregroundColor(.white)
-                    .background(Color(hexColor: "ECFBFF"))
+                    .background(Color.main)
                     .cornerRadius(8)
                 }
             }

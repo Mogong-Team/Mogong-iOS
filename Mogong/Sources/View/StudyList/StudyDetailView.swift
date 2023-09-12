@@ -14,9 +14,9 @@ struct StudyDetailView: View {
     @State private var showAlert = false
     
     var body: some View {
-        ScrollViewReader { proxy in 
+        ScrollViewReader { proxy in
             ScrollView(showsIndicators: false) {
-                VStack(spacing: 20 ){
+                VStack(spacing: 20) {
                     Introduction()
                     InfinityRectangleText(title: "프로젝트 소개",
                                           content: viewModel.selectedStudy.introduction)
@@ -60,6 +60,14 @@ struct StudyDetailView: View {
                 proxy.scrollTo(1, anchor: .top)
             }
         }
+        .toolbar {
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                Image(systemName: "xmark")
+                    .onTapGesture {
+                        viewModel.showStudyDetail = false
+                    }
+            }
+        }
         .navigationDestination(isPresented: $viewModel.presentApplicationStudy) {
             ApplicationView()
         }
@@ -73,8 +81,11 @@ struct StudyDetailView: View {
         }
         .alert("지원 취소하기", isPresented: $showAlert) {
             Button("확인") {
-                applicationViewModel.deleteApplication(study: viewModel.selectedStudy)
-                viewModel.presentStudyDetail = false
+                applicationViewModel.deleteApplication(study: viewModel.selectedStudy) {
+                    viewModel.getStudyWithId() {
+                        viewModel.checkStudyDetailState()
+                    }
+                }
             }
             
             Button(role: .cancel) {
@@ -100,8 +111,6 @@ struct Introduction: View {
                     image: Image(systemName: "bookmark.fill"),
                     background: Color.main)
                 //.padding(.bottom, 10)
-
-                Spacer()
                 
                 Image(systemName:
                       viewModel.selectedStudy.bookMarkedUsers.contains(UserViewModel.shared.currentUser.id)
@@ -111,6 +120,8 @@ struct Introduction: View {
                 .onTapGesture {
                     viewModel.updateBookmark()
                 }
+                
+                Spacer()
             }
             .padding(.bottom, 10)
             
@@ -194,17 +205,27 @@ struct RecruitmentStateContent: View {
                 .font(.pretendard(weight: .semiBold, size: 20))
             
             if !viewModel.checkMember {
-                Text("지원하기")
-                    .font(.pretendard(weight: .semiBold, size: 16))
-                    .foregroundColor(.white)
-                    .padding(.vertical, 8)
-                    .padding(.horizontal, 10)
-                    .background(Color.main)
-                    .cornerRadius(8)
-                    .onTapGesture {
-                        viewModel.presentApplicationStudy = true
-                        applicationViewModel.position = position
-                    }
+                if !viewModel.checkSubimt {
+                    Text("지원 하기")
+                        .font(.pretendard(weight: .semiBold, size: 16))
+                        .foregroundColor(.white)
+                        .padding(.vertical, 8)
+                        .padding(.horizontal, 10)
+                        .background(Color.main)
+                        .cornerRadius(8)
+                        .onTapGesture {
+                            viewModel.presentApplicationStudy = true
+                            applicationViewModel.position = position
+                        }
+                } else {
+                    Text("지원 완료")
+                        .font(.pretendard(weight: .semiBold, size: 16))
+                        .foregroundColor(.white)
+                        .padding(.vertical, 8)
+                        .padding(.horizontal, 10)
+                        .background(Color(hexColor: "C5C5C5"))
+                        .cornerRadius(8)
+                }
             }
         }
     }

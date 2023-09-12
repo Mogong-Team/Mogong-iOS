@@ -29,7 +29,7 @@ struct CancelButtonButtonStyle: ButtonStyle {
     
     func makeBody(configuration: Configuration) -> some View {
         return configuration.label
-            .font(.pretendard(weight: .regular, size: 18))
+            .font(.pretendard(weight: .semiBold, size: 16))
             .padding(.vertical, 11)
             .frame(maxWidth: .infinity)
             .foregroundColor(.white)

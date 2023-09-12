@@ -74,6 +74,16 @@ class UserService {
         }
     }
     
+    //MARK: 스터디
+    
+    static func addJoinedStudyIds(userId: String, studyId: String, completion: @escaping (Error?) -> Void) {
+        shared.db.collection("users").document(userId).updateData([
+            "joinedStudyIds": FieldValue.arrayUnion([studyId])
+        ]) { error in
+            completion(error)
+        }
+    }
+    
     //MARK: 북마크
 
     static func addBookmarkedStudyIds(userId: String, studyId: String, completion: @escaping (Error?) -> Void) {

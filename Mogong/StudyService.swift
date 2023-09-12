@@ -89,6 +89,42 @@ class StudyService {
         }
     }
     
+    static func getUserStudys(completion: @escaping (Result<[Study], Error>) -> Void) {
+        
+        let joinedStudyIds = UserViewModel.shared.currentUser.joinedStudyIds
+
+        //  각 스터디 ID에 대해 스터디 정보를 가져오고, Study 객체 배열을 생성합니다.
+        let group = DispatchGroup()
+        var studys: [Study] = []
+
+        for studyId in joinedStudyIds {
+            group.enter()
+            shared.db.collection("studys").document(studyId).getDocument { snapshot, error in
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
+                
+                do {
+                    guard let data = snapshot?.data() else { return print("error - 999") }
+                    let jsonData = try JSONSerialization.data(withJSONObject: data, options: [])
+                    let study = try JSONDecoder().decode(Study.self, from: jsonData)
+                    studys.append(study)
+                } catch let error {
+                    completion(.failure(error))
+                }
+                
+                group.leave()
+            }
+        }
+        
+        // 모든 네트워크 요청이 완료되면, completion 호출
+        group.notify(queue: .main) {
+            completion(.success(studys))
+        }
+    }
+
+    
     static func getStudyById(studyId: String, completion: @escaping (Result<Study, Error>) -> Void) {
         shared.db.collection("studys").document(studyId).getDocument { snapshot, error in
             if let error = error {
@@ -141,6 +177,16 @@ class StudyService {
         ]) { error in
             completion(error)
         }
+        
+        
+    }
+    
+    static func approveJoin(application: Application, study: Study, completion: (@escaping (Error?) -> Void)) {
+
+    }
+    
+    static func rejectJoin(application: Application, completion: (@escaping (Error?) -> Void)) {
+        
     }
     
 

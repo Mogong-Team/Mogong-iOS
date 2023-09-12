@@ -17,7 +17,7 @@ class StudyViewModel: ObservableObject {
     @Published var filteredWithBookmarkStudy = [Study]()
     @Published var filteredStudys = [Study]()
     //@Published var selectedStudy: Study?
-    @Published var selectedStudy: Study = Study.study1
+    @Published var selectedStudy: Study = Study.study2
     
     // MARK: - 스터디리스트
     
@@ -25,7 +25,7 @@ class StudyViewModel: ObservableObject {
     @Published var selectedState: StudyState?
     @Published var isPopularFilter: Bool = true
     @Published var isBookmarked: Bool = false
-    @Published var presentStudyDetail: Bool = false
+    @Published var showStudyDetail: Bool = false
     @Published var showCreateStudyOnList: Bool = false
     
     // MARK: - 스터디 상세
@@ -73,6 +73,7 @@ class StudyViewModel: ObservableObject {
     /// 모든 스터디에서 마이스터디 가져오는 방법
     /// 1) viewModel에서 필터링 - 데이터량이 적으면 서버와 연동보다  받아온 모든 스터디에서 필터링하는게 빠름
     /// 2) 서버에서 받아오기 - 이용자 수가 많을 수록 필요성 높아짐
+    @Published var myAllStudys = [Study]()
     @Published var filterdOngoingMyStudy = [Study]()
     @Published var filterdEndedMyStudy = [Study]()
     @Published var selectedMyStudyStateIsEnded: Bool = false
@@ -88,17 +89,25 @@ class StudyViewModel: ObservableObject {
     init() {
         //initStudys()
         
-        $allStudys
+        $myAllStudys
             .map { $0.filter { $0.state != .ended } }
             .sink { [weak self] filterdStudys in
                 self?.filterdOngoingMyStudy = filterdStudys
             }
             .store(in: &cancellables)
 
-        $allStudys
+        $myAllStudys
             .map { $0.filter { $0.state == .ended }}
             .sink { [weak self] filterdStudys in
                 self?.filterdEndedMyStudy = filterdStudys
+            }
+            .store(in: &cancellables)
+        
+        $myAllStudys
+            .map { $0.first }
+            .compactMap { $0 }
+            .sink { [weak self] selectedStudy in
+                self?.selectedStudy = selectedStudy
             }
             .store(in: &cancellables)
         
@@ -158,10 +167,27 @@ class StudyViewModel: ObservableObject {
             currentMembers: [Member(user: UserViewModel.shared.currentUser, position: hostPosition ?? .ios)]
         )
         
+        let userId = UserViewModel.shared.currentUser.id
+        
         // TODO: POST Study
         StudyService.createStudy(study: study) {
             print("스터디 생성 완료")
             self.resetCreateStudy()
+            
+            UserService.addJoinedStudyIds(userId: userId, studyId: study.id) { error in
+                if let error = error {
+                    print("스터디 생성 후 유저 업데이트 실패: ", error.localizedDescription)
+                } else {
+                    UserService.getUser(userId: userId) { result in
+                        switch result {
+                        case .success(let user):
+                            UserViewModel.shared.currentUser = user
+                        case .failure(let error):
+                            print("유저 정보 가져오기 실패: ", error.localizedDescription)
+                        }
+                    }
+                }
+            }
         }
     }
     
@@ -203,8 +229,27 @@ class StudyViewModel: ObservableObject {
         }
     }
     
+    func getStudyWithId(completion: @escaping () -> Void) {
+        StudyService.getStudyById(studyId: selectedStudy.id) { result in
+            switch result {
+            case .success(let study):
+                self.selectedStudy = study
+                completion()
+            case .failure(let error):
+                print("선택된 스터디 정보 업데이트 실패: ", error.localizedDescription)
+            }
+        }
+    }
+    
     func getUserStudys() {
-        
+        StudyService.getUserStudys { result in
+            switch result {
+            case .success(let studys):
+                self.myAllStudys = studys
+            case .failure(let error):
+                print("마아스터디 받아오기 실패: ", error.localizedDescription)
+            }
+        }
     }
     
     //MARK: 북마크
@@ -223,36 +268,36 @@ class StudyViewModel: ObservableObject {
                 if let error = error {
                     print("스터디 북마크 삭제 실패: ", error.localizedDescription)
                 } else {
-                    UserService.deleteBookmarkedStudyIds(userId: userId, studyId: studyId) { error in
-                        if let error = error {
-                            print("유저 북마크 삭제 실패: ", error.localizedDescription)
-                        } else {
-                            StudyService.getAllStudys { result in
-                                switch result {
-                                case .success(let study):
-                                    self.allStudys = study
-                                case .failure(let error):
-                                    print("북마크 추가 후 전체 스터디 정보 업데이트 실패: ", error.localizedDescription)
-                                }
-                            }
-                            
-                            StudyService.getStudyById(studyId: studyId) { result in
-                                switch result {
-                                case .success(let study):
-                                    self.selectedStudy = study
-                                case .failure(let error):
-                                    print("북마크 추가 후 스터디 정보 업데이트 실패: ", error.localizedDescription)
-                                }
-                            }
-                            
-                            UserService.getUser(userId: userId) { result in
-                                switch result {
-                                case .success(let user):
-                                    UserViewModel.shared.currentUser = user
-                                case .failure(let error):
-                                    print("북마크 추가 후 유저 정보 업데이트 실패: ", error.localizedDescription)
-                                }
-                            }
+//                    StudyService.getAllStudys { result in
+//                        switch result {
+//                        case .success(let study):
+//                            self.allStudys = study
+//                        case .failure(let error):
+//                            print("북마크 추가 후 전체 스터디 정보 업데이트 실패: ", error.localizedDescription)
+//                        }
+//                    }
+                    
+                    StudyService.getStudyById(studyId: studyId) { result in
+                        switch result {
+                        case .success(let study):
+                            self.selectedStudy = study
+                        case .failure(let error):
+                            print("북마크 추가 후 스터디 정보 업데이트 실패: ", error.localizedDescription)
+                        }
+                    }
+                }
+            }
+            
+            UserService.deleteBookmarkedStudyIds(userId: userId, studyId: studyId) { error in
+                if let error = error {
+                    print("유저 북마크 삭제 실패: ", error.localizedDescription)
+                } else {
+                    UserService.getUser(userId: userId) { result in
+                        switch result {
+                        case .success(let user):
+                            UserViewModel.shared.currentUser = user
+                        case .failure(let error):
+                            print("북마크 추가 후 유저 정보 업데이트 실패: ", error.localizedDescription)
                         }
                     }
                 }
@@ -262,36 +307,36 @@ class StudyViewModel: ObservableObject {
                 if let error = error {
                     print("스터디 북마크 추가 실패: ", error.localizedDescription)
                 } else {
-                    UserService.addBookmarkedStudyIds(userId: userId, studyId: studyId) { error in
-                        if let error = error {
-                            print("유저 북마크 추가 실패: ", error.localizedDescription)
-                        } else {
-                            StudyService.getAllStudys { result in
-                                switch result {
-                                case .success(let study):
-                                    self.allStudys = study
-                                case .failure(let error):
-                                    print("북마크 삭제 후 전체 스터디 정보 업데이트 실패: ", error.localizedDescription)
-                                }
-                            }
-                            
-                            StudyService.getStudyById(studyId: studyId) { result in
-                                switch result {
-                                case .success(let study):
-                                    self.selectedStudy = study
-                                case .failure(let error):
-                                    print("북마크 삭제 후 스터디 정보 업데이트 실패: ", error.localizedDescription)
-                                }
-                            }
-                            
-                            UserService.getUser(userId: userId) { result in
-                                switch result {
-                                case .success(let user):
-                                    UserViewModel.shared.currentUser = user
-                                case .failure(let error):
-                                    print("북마크 삭제 후 유저 정보 업데이트 실패: ", error.localizedDescription)
-                                }
-                            }
+//                    StudyService.getAllStudys { result in
+//                        switch result {
+//                        case .success(let study):
+//                            self.allStudys = study
+//                        case .failure(let error):
+//                            print("북마크 삭제 후 전체 스터디 정보 업데이트 실패: ", error.localizedDescription)
+//                        }
+//                    }
+                    
+                    StudyService.getStudyById(studyId: studyId) { result in
+                        switch result {
+                        case .success(let study):
+                            self.selectedStudy = study
+                        case .failure(let error):
+                            print("북마크 삭제 후 스터디 정보 업데이트 실패: ", error.localizedDescription)
+                        }
+                    }
+                }
+            }
+            
+            UserService.addBookmarkedStudyIds(userId: userId, studyId: studyId) { error in
+                if let error = error {
+                    print("유저 북마크 추가 실패: ", error.localizedDescription)
+                } else {
+                    UserService.getUser(userId: userId) { result in
+                        switch result {
+                        case .success(let user):
+                            UserViewModel.shared.currentUser = user
+                        case .failure(let error):
+                            print("북마크 삭제 후 유저 정보 업데이트 실패: ", error.localizedDescription)
                         }
                     }
                 }
@@ -312,6 +357,8 @@ class StudyViewModel: ObservableObject {
     func checkStudyDetailState() {
         if let _ = selectedStudy.currentMembers.first(where: { $0.user.id == UserViewModel.shared.currentUser.id }) {
             checkMember = true
+        } else {
+            self.checkMember = false
             
             if UserViewModel.shared.currentUser.id == selectedStudy.host.id {
                 self.checkHost = true
@@ -320,8 +367,6 @@ class StudyViewModel: ObservableObject {
                 
                 checkAlreadySubmittedStudy()
             }
-        } else {
-            self.checkMember = false
         }
     }
     

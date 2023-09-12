@@ -38,6 +38,42 @@ class ApplicationService {
         }
     }
     
+    //MARK: 지원서 가져오기
+    
+    static func getStudyAllApplications(study: Study, completion: (@escaping (Result<[Application], Error>) -> Void)) {
+        
+        let submittedApplications = study.submittedApplications
+        
+        let group = DispatchGroup()
+        var applications: [Application] = []
+
+        for applicationId in submittedApplications {
+            group.enter()
+            shared.db.collection("applications").document(applicationId).getDocument { snapshot, error in
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
+                
+                do {
+                    guard let data = snapshot?.data() else { return }
+                    let jsonData = try JSONSerialization.data(withJSONObject: data, options: [])
+                    let application = try JSONDecoder().decode(Application.self, from: jsonData)
+                    applications.append(application)
+                } catch let error {
+                    completion(.failure(error))
+                }
+                
+                group.leave()
+            }
+        }
+
+        // 모든 네트워크 요청이 완료되면, completion 호출
+        group.notify(queue: .main) {
+            completion(.success(applications))
+        }
+    }
+    
     //MARK: 지원서 삭제
     
     static func deleteApplication(applicationId: String, completion: @escaping (Error?) -> Void) {
@@ -45,33 +81,30 @@ class ApplicationService {
             completion(error)
         }
     }
+        
+    //MARK: 지원서 업데이트
     
-    //MARK: 지원서 가져오기
-    
-    static func getStudyAllApplications(studyId: String, completion: (@escaping (Result<[Application], Error>) -> Void)) {
-        shared.db.collection("applications").getDocuments { querySnapshot, error in
-            if let error = error {
-                completion(.failure(error))
+    static func updateApplication(application: Application, completion: (@escaping (Error?) -> Void)) {
+        do {
+            let jsonData = try JSONEncoder().encode(application)
+            guard let json = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] else {
+                print("데이터 변환 실패")
+                completion(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "데이터 변환 실패"]))
                 return
             }
-            
-            let applications: [Application] = querySnapshot?.documents.compactMap { document in
-                do {
-                    let data = try JSONSerialization.data(withJSONObject: document.data(), options: [])
-                    let application = try JSONDecoder().decode(Application.self, from: data)
-                    return application
-                } catch {
-                    print("JSON 변환 오류: \(error)")
-                    return nil
+
+            shared.db.collection("applications").document(application.id).updateData(json) { error in
+                if let error = error {
+                    print("업데이트 실패: \(error)")
+                    completion(error)
+                    return
                 }
-            } ?? []
-            
-            completion(.success(applications))
+                completion(nil)
+            }
+        } catch let error {
+            print("JSON 인코딩 오류: \(error)")
+            completion(error)
         }
-    }
-    
-    static func getMyAllApplications(userId: String, completion: (@escaping (Error?) -> Void)) {
-        
     }
 }
 

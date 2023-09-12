@@ -9,7 +9,6 @@ import SwiftUI
 
 struct CompletedStudyView: View {
     @EnvironmentObject var viewModel: StudyViewModel
-//    @State private var imgNumber: Int = 1
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {

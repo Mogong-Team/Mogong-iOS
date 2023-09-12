@@ -22,6 +22,7 @@ struct Application: Identifiable, Codable {
     let introduction: String
     let experience: String
     var status: ApplicationStatus
+    let submitDate: Date
     
     init(user: User, studyId: String, title: String, position: Position, introduction: String, experience: String) {
         self.id = UUID().uuidString
@@ -32,6 +33,7 @@ struct Application: Identifiable, Codable {
         self.introduction = introduction
         self.experience = experience
         self.status = .pending
+        self.submitDate = Date()
     }
 }
 
