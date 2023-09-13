@@ -16,7 +16,7 @@ struct SocialLogin: View {
             // MARK: - 카카오 로그인
             
             Button {
-                viewModel.loginWithKakaoTalk()
+                viewModel.signInWithKakaoTalk()
             } label: {
                 VStack {
                     Image("kakaoLogo")
@@ -30,7 +30,7 @@ struct SocialLogin: View {
             // MARK: - 구글 로그인
             
             Button {
-                viewModel.loginWithGoogle()
+                viewModel.signInWithGoogle()
             } label: {
                 VStack {
                     Image("googleLogo")

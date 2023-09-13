@@ -106,7 +106,7 @@ class StudyService {
                 }
                 
                 do {
-                    guard let data = snapshot?.data() else { return print("error - 999") }
+                    guard let data = snapshot?.data() else { return }
                     let jsonData = try JSONSerialization.data(withJSONObject: data, options: [])
                     let study = try JSONDecoder().decode(Study.self, from: jsonData)
                     studys.append(study)

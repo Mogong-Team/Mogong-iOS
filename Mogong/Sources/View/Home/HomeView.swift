@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct HomeView: View {
-    @EnvironmentObject var viewModel: StudyViewModel
-    
+    @EnvironmentObject var stduyViewModel: StudyViewModel
+    @EnvironmentObject var authViewModel: AuthViewModel
+    @EnvironmentObject var userViewModel: UserViewModel
+
     var body: some View {
         VStack {
             ScrollView {
@@ -40,7 +42,10 @@ struct HomeView: View {
             }
         }
         .onAppear {
-            viewModel.getAllStudys()
+            stduyViewModel.getAllStudys()
+            
+            guard let user = authViewModel.currentUser else { return }
+            userViewModel.currentUser = user
         }
     }
 }

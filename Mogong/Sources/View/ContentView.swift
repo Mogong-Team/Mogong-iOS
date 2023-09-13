@@ -8,9 +8,11 @@
 import SwiftUI
 import KakaoSDKCommon
 import KakaoSDKAuth
+import FirebaseAuth
 
 struct ContentView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
+    @EnvironmentObject var userViewModel: UserViewModel
     @State var showingMainView = false
     
     init() {
@@ -36,8 +38,14 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             Group {
-                if authViewModel.isLoggedIn {
-                    TabBar()
+                if authViewModel.signState == .signIn {
+                    if authViewModel.currentUser != nil {
+                        if authViewModel.currentUser?.username == "" {
+                            UsernameView()
+                        } else {
+                            TabBar()
+                        }
+                    }
                 } else {
                     AuthView()
                 }
@@ -46,13 +54,14 @@ struct ContentView: View {
                     SplashScreenView.transition(.opacity)
                 }
             }
-            .onAppear {
-                authViewModel.checkIfLoggedIn()
-            }
         }
         .onAppear {
-            authViewModel.checkIfLoggedIn()
-            authViewModel.getUser()
+            if Auth.auth().currentUser != nil {
+                guard let uid = Auth.auth().currentUser?.uid else { return }
+                authViewModel.signState = .signIn
+                authViewModel.getUser(uid: uid)
+            }
+            
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
                 showingMainView.toggle()
             })
@@ -117,11 +126,12 @@ struct TabBar: View {
             }
             .tag(3)
         }
-        .accentColor(Color.main)
+        //.accentColor(Color.main)
     }
 }
 
-//Mark: - 스플래시 스크린
+//MARK: 스플래시 스크린
+
 extension ContentView {
     var SplashScreenView: some View {
         Image("Splash")

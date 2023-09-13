@@ -22,7 +22,6 @@ struct CompleteSignInView: View {
             
             ActionButton("시작하기") {
                 viewModel.resetUsername()
-                viewModel.isLoggedIn = true
             }
         }
         .padding(.horizontal, 20)
