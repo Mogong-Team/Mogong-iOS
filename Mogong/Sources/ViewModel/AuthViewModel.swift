@@ -74,13 +74,64 @@ class AuthViewModel: NSObject, ObservableObject  {
             }
         }
     }
+    
+    // FirebaseAuth로 로그인 완료 후 FirebaseStore에 유저 정보 저장 및 불러오기
+    func getOrCreateUser(authResult: AuthDataResult?) {
+        guard let authResult = authResult else { return }
+        guard let email = authResult.user.email else { return }
+        let uid = authResult.user.uid
+                
+        Firestore.firestore().collection("users").document(uid).getDocument { (document, error) in
+            if let error = error {
+                print("users - document 접근 실패: ", error.localizedDescription)
+                return
+            }
+            
+            if let document = document, document.exists {
+                // 문서가 존재하면 유저 정보 파싱
+                do {
+                    let data = try JSONSerialization.data(withJSONObject: document.data(), options: [])
+                    let user = try JSONDecoder().decode(User.self, from: data)
+                    self.currentUser = user
+                    self.signState = .signIn
+                } catch let error {
+                    print("JSON 인코딩 오류: \(error)")
+                }
+            } else {
+                // 문서가 존재하지 않으면 새 유저 정보를 저장
+                let user = User(id: uid, email: email)
+                
+                UserService.saveUser(user: user) { error in
+                    if let error = error {
+                        print("새로운 유저 저장 실패: ", error.localizedDescription)
+                    }
+                }
+                self.currentUser = user
+                self.signState = .signIn
+            }
+        }
+    }
+    
+    func signOut() {
+        
+        UserApi.shared.logout { _ in }
+        GIDSignIn.sharedInstance.signOut()
+        
+        
+        do {
+            try Auth.auth().signOut()
+            self.signState = .signOut
+        } catch {
+            print("FirebaseAuth 로그아웃 실패: ", error.localizedDescription)
+        }
+    }
 }
 
 // MARK: - 카카오 로그인 extension
 
 extension AuthViewModel {
     
-    func loginWithKakaoTalk() {
+    func signInWithKakaoTalk() {
         // 발급된 토큰이 있는 경우
         if AuthApi.hasToken() {
             UserApi.shared.accessTokenInfo { _, error in
@@ -109,7 +160,6 @@ extension AuthViewModel {
                     print(error)
                 }
                 else {
-                    print("카카오톡 로그인 성공")
                     _ = oauthToken
                     // 유저 정보 가져오기
                     self.getKakaoUserInfo()
@@ -134,14 +184,53 @@ extension AuthViewModel {
     func getKakaoUserInfo(){
         UserApi.shared.me { user, error in
             if let error = error {
-                print(error.localizedDescription)
+                print("카카오톡 사용자 정보 가져오기 실패")
             } else {
-                print("카카오톡 유저 정보 가져오기 성공")
                 guard let email = user?.kakaoAccount?.email else { return }
+                guard let password = user?.id else { return }
                 
-                //self.email = email
-                //self.presentInputUsernameView = true
+                self.emailAuthSignUp(email: email, password: "\(password)") {
+                    self.emailAuthSignIn(email: email, password: "\(password)")
+                }
             }
+        }
+    }
+    
+    func emailAuthSignUp(email: String, password: String, completion: (() -> Void)?) {
+           Auth.auth().createUser(withEmail: email, password: password) { result, error in
+               if let error = error {
+                   print("이메일로 유저 생성 실패: \(error.localizedDescription)")
+               }
+               
+               completion?()
+           }
+       }
+    
+    func emailAuthSignIn(email: String, password: String) {
+        Auth.auth().signIn(withEmail: email, password: password) { result, error in
+            if let error = error {
+                print("이메일로 로그인 실패: \(error.localizedDescription)")
+                return
+            }
+            
+            self.getOrCreateUser(authResult: result)
+        }
+    }
+    
+    func signOutWithKakaoTalk() {
+        // 1
+        UserApi.shared.logout { error in
+            if let error = error {
+                print("카카오톡 로그아웃 실패: ", error.localizedDescription)
+            }
+        }
+        
+        do {
+            // 2
+            try Auth.auth().signOut()
+            self.signState = .signOut
+        } catch {
+            print("FirebaseAuth 로그아웃 실패: ", error.localizedDescription)
         }
     }
 }
@@ -151,7 +240,7 @@ extension AuthViewModel {
 extension AuthViewModel {
     
     // google 로그인 절차
-    func signInGoogle() {
+    func signInWithGoogle() {
         // 1
         if GIDSignIn.sharedInstance.hasPreviousSignIn() {
             GIDSignIn.sharedInstance.restorePreviousSignIn { [unowned self] user, error in
@@ -181,9 +270,10 @@ extension AuthViewModel {
     func authenticateUser(for user: GIDGoogleUser?, with error: Error?) {
         // 1
         if let error = error {
-            print(error.localizedDescription)
+            print("구글 로그인 실패: ", error.localizedDescription)
             return
         }
+        print("구글 로그인 성공")
         
         // 2
         guard let accessToken = user?.accessToken.tokenString, let idToken = user?.idToken?.tokenString else { return }
@@ -192,52 +282,16 @@ extension AuthViewModel {
         // 3
         Auth.auth().signIn(with: credential) { (result, error) in
             if let error = error {
-                print(error.localizedDescription)
+                print("FirebaseAuth를 통한 토큰 인증 실패: ", error.localizedDescription)
             } else {
-                self.signState = .signIn
-                self.signPlatform = .google
+                print("FirebaseAuth를 통한 토큰 인증 성공")
                 self.getOrCreateUser(authResult: result)
             }
         }
     }
     
-    // google 로그인 완료 후 유저 정보 저장 및 받아오는 절차
-    func getOrCreateUser(authResult: AuthDataResult?) {
-        guard let authResult = authResult else { return }
-        guard let email = authResult.user.email else { return }
-        let uid = authResult.user.uid
-                
-        Firestore.firestore().collection("users").document(uid).getDocument { (document, error) in
-            if let error = error {
-                print("users - document 접근 실패: ", error.localizedDescription)
-                return
-            }
-            
-            if let document = document, document.exists {
-                // 문서가 존재하면 유저 정보 파싱
-                do {
-                    let data = try JSONSerialization.data(withJSONObject: document.data(), options: [])
-                    let user = try JSONDecoder().decode(User.self, from: data)
-                    self.currentUser = user
-                } catch let error {
-                    print("JSON 인코딩 오류: \(error)")
-                }
-            } else {
-                // 문서가 존재하지 않으면 새 유저 정보를 저장
-                let user = User(id: uid, email: email)
-                
-                UserService.saveUser(user: user) { error in
-                    if let error = error {
-                        print("새로운 유저 저장 실패: ", error.localizedDescription)
-                    }
-                }
-                self.currentUser = user
-            }
-        }
-    }
-    
     // google 로그아웃 절차
-    func signOutGoogle() {
+    func signOutWithGoogle() {
         // 1
         GIDSignIn.sharedInstance.signOut()
         
@@ -246,50 +300,8 @@ extension AuthViewModel {
             try Auth.auth().signOut()
             self.signState = .signOut
         } catch {
-            print(error.localizedDescription)
+            print("FirebaseAuth 로그아웃 실패: ", error.localizedDescription)
         }
-    }
-    
-    func signInWithGoogle() {
-        if GIDSignIn.sharedInstance.hasPreviousSignIn() {
-            GIDSignIn.sharedInstance.restorePreviousSignIn { [unowned self] user, error in
-                print("구글 로그인 성공")
-                guard let email = user?.profile?.email else { return }
-                //self.email = email
-                //self.presentInputUsernameView = true
-            }
-        } else {
-            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
-            guard let rootViewController = windowScene.windows.first?.rootViewController else { return }
-            GIDSignIn.sharedInstance.signIn(withPresenting: rootViewController) { result, error in
-                if let error = error {
-                    print(error.localizedDescription)
-                    print("구글 로그인 실패")
-                } else {
-                    print("구글 로그인 성공")
-                    guard let email = result?.user.profile?.email else { return }
-                    //self.email = email
-                    //self.presentInputUsernameView = true
-                    
-                    // 백엔드에 토큰 보내기
-                    guard let result = result else { return }
-                    
-                    result.user.refreshTokensIfNeeded { user, error in
-                        if let error = error {
-                            print(error.localizedDescription)
-                            print("토큰 전달 실패")
-                        }
-                        print("토큰 전달 성공")
-                        guard let idToken = user?.idToken?.tokenString else { return }
-                        //TODO: 토큰 전달 API?
-                    }
-                }
-            }
-        }
-    }
-    
-    func signOutWithGoogle() {
-        
     }
 }
 

@@ -85,8 +85,7 @@ struct SettingView: View {
             .navigationBarTitleDisplayMode(.inline)
             .alert("로그아웃", isPresented: $showSignOutAlert) {
                 Button("확인") {
-                    authViewModel.signOutGoogle()
-                    
+                    authViewModel.signOut()
                     authViewModel.currentUser = nil
                 }
                 

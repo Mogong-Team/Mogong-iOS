@@ -16,7 +16,7 @@ struct SocialLogin: View {
             // MARK: - 카카오 로그인
             
             Button {
-                viewModel.loginWithKakaoTalk()
+                viewModel.signInWithKakaoTalk()
             } label: {
                 Image("kakaoLogo")
                     .frame(width: 73, height: 73)
@@ -26,7 +26,7 @@ struct SocialLogin: View {
             // MARK: - 구글 로그인
             
             Button {
-                viewModel.signInGoogle()
+                viewModel.signInWithGoogle()
             } label: {
                 Image("googleLogo")
                     .frame(width: 73, height: 73)
