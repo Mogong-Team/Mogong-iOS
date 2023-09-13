@@ -36,7 +36,7 @@ struct AuthView: View {
                     .padding()
             }
             .navigationBarHidden(true)
-            .navigationDestination(isPresented: $viewModel.presentNextView) {
+            .navigationDestination(isPresented: $viewModel.presentInputUsernameView) {
                 UsernameView()
             }
         }

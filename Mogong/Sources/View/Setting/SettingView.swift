@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct SettingView: View {
-    @EnvironmentObject var viewModel: UserViewModel
+    @EnvironmentObject var authViewModel: AuthViewModel
     @Environment(\.dismiss) var dismiss
     
     @State private var username = "민수민수"
     @State private var changeUsername: Bool = false
     @FocusState var focuseUsername: Bool
+    
+    @State private var showSignOutAlert = false
     
     var body: some View {
             VStack(spacing: 20) {
@@ -65,7 +67,15 @@ struct SettingView: View {
                     Text("로그아웃")
                         .foregroundColor(.red)
                         .onTapGesture {
-                            // TODO: 로그아웃
+//                            if authViewModel.signPlatform == .kakao {
+//
+//                            } else if authViewModel.signPlatform == .google {
+//                                authViewModel.signOutGoogle()
+//                            } else if authViewModel.signPlatform == .apple {
+//
+//                            }
+                            
+                            showSignOutAlert = true
                         }
                 }
                 Spacer()
@@ -73,6 +83,20 @@ struct SettingView: View {
             .padding(.horizontal, 20)
             .navigationBarTitle("설정", displayMode: .large)
             .navigationBarTitleDisplayMode(.inline)
+            .alert("로그아웃", isPresented: $showSignOutAlert) {
+                Button("확인") {
+                    authViewModel.signOutGoogle()
+                    
+                    authViewModel.currentUser = nil
+                }
+                
+                Button(role: .cancel) {
+                } label: {
+                    Text("취소")
+                }
+            } message: {
+                Text("로그아웃 하시겠습니까?")
+            }
     }
 }
 

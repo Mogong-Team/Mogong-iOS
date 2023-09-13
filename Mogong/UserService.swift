@@ -18,7 +18,8 @@ class UserService {
     
     private var db = Firestore.firestore()
     
-    // 유저 정보 업데이트
+    //MARK: 유저 정보 업데이트
+    
     static func updateUser(user: User, completion: @escaping (Error?) -> Void) {
         do {
             let jsonData = try JSONEncoder().encode(user)
@@ -37,7 +38,8 @@ class UserService {
         }
     }
 
-    // 현재 유저 정보 저장
+    //MARK: 유저 정보 저장
+    
     static func saveUser(user: User, completion: @escaping (Error?) -> Void) {
         do {
             let jsonData = try JSONEncoder().encode(user)
@@ -56,44 +58,60 @@ class UserService {
         }
     }
 
+    //MARK: 유저 정보 가져오기
     
-    // 현재 유저 정보 가져오기
     static func getUser(userId: String, completion: @escaping (Result<User, Error>) -> Void) {
-        shared.db.collection("users").document(userId).getDocument { document, error in
-            if let error = error {
-                completion(.failure(error))
-                return
-            }
-            
-            guard let document = document, document.exists, let data = document.data() else {
-                completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Document does not exist"])))
-                return
-            }
-            
-            guard
-                let id = data["id"] as? String,
-                let email = data["email"] as? String,
-                let username = data["username"] as? String,
-                let userimageString = data["userimageString"] as? String,
-                let submittedApplicationIds = data["submittedApplicationIds"] as? [String],
-                let joinedStudyIds = data["joinedStudyIds"] as? [String],
-                let bookmarkedStudyIds = data["bookmarkedStudyIds"] as? [String]
-            else {
-                completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "User data is corrupt"])))
-                return
-            }
+//        shared.db.collection("users").document(userId).getDocument { document, error in
+//            if let error = error {
+//                completion(.failure(error))
+//                return
+//            }
+//
+//            guard let document = document, document.exists, let data = document.data() else {
+//                completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Document does not exist"])))
+//                return
+//            }
+//
+//            guard
+//                let id = data["id"] as? String,
+//                let email = data["email"] as? String,
+//                let username = data["username"] as? String,
+//                let userimageString = data["userimageString"] as? String,
+//                let submittedApplicationIds = data["submittedApplicationIds"] as? [String],
+//                let joinedStudyIds = data["joinedStudyIds"] as? [String],
+//                let bookmarkedStudyIds = data["bookmarkedStudyIds"] as? [String]
+//            else {
+//                completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "User data is corrupt"])))
+//                return
+//            }
+//
+//            let user = User(
+//                id: id,
+//                email: email,
+//                username: username,
+//                userimageString: userimageString,
+//                submittedApplicationIds: submittedApplicationIds,
+//                joinedStudyIds: joinedStudyIds,
+//                bookmarkedStudyIds: bookmarkedStudyIds
+//            )
+//            completion(.success(user))
+//        }
+        
+        shared.db.collection("users").document(userId).getDocument { snapshot, error in
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
 
-            let user = User(
-                id: id,
-                email: email,
-                username: username,
-                userimageString: userimageString,
-                submittedApplicationIds: submittedApplicationIds,
-                joinedStudyIds: joinedStudyIds,
-                bookmarkedStudyIds: bookmarkedStudyIds
-            )
-            completion(.success(user))
-        }
+                do {
+                    guard let data = snapshot?.data() else { return }
+                    let jsonData = try JSONSerialization.data(withJSONObject: data, options: [])
+                    let user = try JSONDecoder().decode(User.self, from: jsonData)
+                    completion(.success(user))
+                } catch let error {
+                    completion(.failure(error))
+                }
+            }
     }
     
     //MARK: 스터디

@@ -26,7 +26,7 @@ struct SocialLogin: View {
             // MARK: - 구글 로그인
             
             Button {
-                viewModel.loginWithGoogle()
+                viewModel.signInGoogle()
             } label: {
                 Image("googleLogo")
                     .frame(width: 73, height: 73)

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct UsernameView: View {
-    @EnvironmentObject var viewModel: AuthViewModel
+    @EnvironmentObject var authViewModel: AuthViewModel
     @State private var presentCompleteSignInView = false
     
 //    @State private var isUsernameAvailable = false
@@ -19,7 +19,7 @@ struct UsernameView: View {
     }
     
     var isUsernameAvailable: Bool? {
-        return viewModel.isUsernameAvailable
+        return authViewModel.isUsernameAvailable
     }
     
     var isCompleted: Bool {
@@ -36,7 +36,7 @@ struct UsernameView: View {
                 .padding(.bottom, 20)
             
             HStack(spacing: 10) {
-                TextField("10글자 이내로 설정해주세요.", text: $viewModel.username)
+                TextField("10글자 이내로 설정해주세요.", text: $authViewModel.username)
                     .font(.pretendard(weight: .regular, size: 14))
                     .padding(10)
                     .frame(maxWidth: .infinity)
@@ -79,15 +79,18 @@ struct UsernameView: View {
             Spacer()
             
             ActionButton("다음") {
+                authViewModel.updateUsername()
                 presentCompleteSignInView = true
-                //TODO: 닉네님 api
             }
-            .disabled(!isCompleted)
+            //.disabled(!isCompleted)
             .navigationDestination(isPresented: $presentCompleteSignInView) {
                 CompleteSignInView()
             }
         }
         .padding(.horizontal, 20)
+        .onDisappear {
+            authViewModel.resetUsername()
+        }
     }
     
     func checkUsernameIsAvailable() {

@@ -8,14 +8,19 @@
 import SwiftUI
 
 struct User: Identifiable, Hashable, Codable {
-    var id: String = UUID().uuidString
+    var id: String
     var email: String
-    var username: String
+    var username: String = ""
     var userimageString: String = "TempBasicIUserimage"
     
     var submittedApplicationIds: [String] = []
     var joinedStudyIds: [String] = []
     var bookmarkedStudyIds: [String] = []
+    
+    init(id: String, email: String) {
+        self.id = id
+        self.email = email
+    }
         
     init(id: String, email: String, username: String) {
         self.id = id
