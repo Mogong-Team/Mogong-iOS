@@ -15,15 +15,36 @@ struct SearchStudyView: View {
             SearchBar(text: $viewModel.searchQuery)
                 .padding(.vertical, 10)
             
-            ScrollView {
-                //TODO: 검색 기능
+            if viewModel.filteredWithSearchStudy.isEmpty {
                 Text("검색된 내용이 없습니다.")
                     .padding(.top, 250)
+            } else {
+                ScrollView(showsIndicators: false) {
+                    VStack() {
+                        ForEach(viewModel.filteredWithSearchStudy) { study in
+                            StudyListCell(study: study)
+                                .padding(.bottom, 18)
+                                .onTapGesture {
+                                    viewModel.showStudyDetailOnSearch = true
+                                    viewModel.selectedStudy = study
+                                }
+                        }
+                    }
+                }
             }
+            Spacer()
         }
         .padding(.horizontal, 20)
         .navigationTitle("스터디 검색")
         .navigationBarTitleDisplayMode(.inline)
+        .onDisappear {
+            viewModel.resetSearchView()
+        }
+        .fullScreenCover(isPresented: $viewModel.showStudyDetailOnSearch) {
+            NavigationStack {
+                StudyDetailView()
+            }
+        }
     }
 }
 

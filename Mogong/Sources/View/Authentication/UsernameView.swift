@@ -10,20 +10,10 @@ import SwiftUI
 struct UsernameView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @State private var presentCompleteSignInView = false
-    
-//    @State private var isUsernameAvailable = false
-//    @State private var isUsernameChecked = false
-    
-    var isUsernameLengthValid: Bool {
-        return false
-    }
-    
-    var isUsernameAvailable: Bool? {
-        return authViewModel.isUsernameAvailable
-    }
-    
+
     var isCompleted: Bool {
-        return false
+        return authViewModel.username.count > 3
+        && authViewModel.username.count < 11
     }
     
     var body: some View {
@@ -36,7 +26,7 @@ struct UsernameView: View {
                 .padding(.bottom, 20)
             
             HStack(spacing: 10) {
-                TextField("10글자 이내로 설정해주세요.", text: $authViewModel.username)
+                TextField("4글자 이상 10글자 이내로 설정해주세요.", text: $authViewModel.username)
                     .font(.pretendard(weight: .regular, size: 14))
                     .padding(10)
                     .frame(maxWidth: .infinity)
@@ -46,30 +36,30 @@ struct UsernameView: View {
                             .stroke(Color(hexColor: "C5C5C5"), lineWidth: 1)
                     }
                 
-                Button {
-                    checkUsernameIsAvailable()
-                } label: {
-                    Text("중복 확인")
-                        .font(.pretendard(weight: .regular, size: 16))
-                        .foregroundColor(.white)
-                        .frame(width: 88, height: 44)
-                        .background(isUsernameLengthValid
-                                    ? Color.main
-                                    : Color(uiColor: .systemGray4))
-                        .cornerRadius(7)
-                }
-                .disabled(!isUsernameLengthValid)
+//                Button {
+//                    checkUsernameIsAvailable()
+//                } label: {
+//                    Text("중복 확인")
+//                        .font(.pretendard(weight: .regular, size: 16))
+//                        .foregroundColor(.white)
+//                        .frame(width: 88, height: 44)
+//                        .background(isUsernameLengthValid
+//                                    ? Color.main
+//                                    : Color(uiColor: .systemGray4))
+//                        .cornerRadius(7)
+//                }
+//                .disabled(!isUsernameLengthValid)
             }
             
-            if isUsernameAvailable == false {
-                Text("사용 불가능한 아이디입니다.")
-                    .font(.pretendard(weight: .regular, size: 16))
-                    .foregroundColor(.red)
-            } else if isUsernameAvailable == true {
-                Text("사용 가능한 아이디입니다.")
-                    .font(.pretendard(weight: .regular, size: 16))
-                    .foregroundColor(.blue)
-            }
+//            if isUsernameAvailable == false {
+//                Text("사용 불가능한 아이디입니다.")
+//                    .font(.pretendard(weight: .regular, size: 16))
+//                    .foregroundColor(.red)
+//            } else if isUsernameAvailable == true {
+//                Text("사용 가능한 아이디입니다.")
+//                    .font(.pretendard(weight: .regular, size: 16))
+//                    .foregroundColor(.blue)
+//            }
             
 //            if isUsernameChecked {
 //                Text(isUsernameAvailable ? "사용 가능한 아이디입니다." : "사용 불가능한 아이디입니다.")
@@ -82,7 +72,7 @@ struct UsernameView: View {
                 authViewModel.updateUsername()
                 presentCompleteSignInView = true
             }
-            //.disabled(!isCompleted)
+            .disabled(!isCompleted)
             .navigationDestination(isPresented: $presentCompleteSignInView) {
                 CompleteSignInView()
             }

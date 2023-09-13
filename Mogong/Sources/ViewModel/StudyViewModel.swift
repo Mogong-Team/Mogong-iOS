@@ -13,6 +13,7 @@ class StudyViewModel: ObservableObject {
     static let shared = StudyViewModel()
 
     @Published var allStudys = [Study]()
+    @Published var filteredWithSearchStudy = [Study]()
     @Published var filteredWithBestBookmarkStduy = [Study]()
     @Published var filteredWithCategoryStudys = [Study]()
     @Published var filteredWithMyBookmarkStudy = [Study]()
@@ -31,6 +32,7 @@ class StudyViewModel: ObservableObject {
     @Published var isPopularFilter: Bool = true
     @Published var isBookmarked: Bool = false
     @Published var showStudyDetail: Bool = false
+    @Published var showStudyDetailOnSearch: Bool = false
     @Published var showCreateStudyOnList: Bool = false
     
     // MARK: - 스터디 상세
@@ -103,6 +105,16 @@ class StudyViewModel: ObservableObject {
             }
             .store(in: &cancellables)
         
+        $searchQuery
+            .combineLatest($allStudys)
+            .map { query, studys in
+                return studys.filter { $0.title.contains(query) }
+            }
+            .sink { [weak self] filteredStudys in
+                self?.filteredWithSearchStudy = filteredStudys
+            }
+            .store(in: &cancellables)
+        
         $myAllStudys
             .map { $0.filter { $0.state != .ended } }
             .sink { [weak self] filteredStudys in
@@ -159,6 +171,10 @@ class StudyViewModel: ObservableObject {
             self.filteredWithCategoryStudys = filteredWithCategoryStudys
             self.filteredStudys = self.filteredWithCategoryStudys
         }
+    }
+    
+    func resetSearchView() {
+        self.filteredWithSearchStudy = []
     }
     
     //MARK: 스터디

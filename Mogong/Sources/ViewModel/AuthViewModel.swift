@@ -35,17 +35,16 @@ extension AuthViewModel {
 
 class AuthViewModel: NSObject, ObservableObject  {
     
-    @Published var username: String = ""
-    @Published var isUsernameAvailable: Bool?
-    @Published var presentInputUsernameView: Bool = false
-    
-    let naverLoginInstance = NaverThirdPartyLoginConnection.getSharedInstance()
-    
     @Published var signState: signSate = .signOut
     @Published var signPlatform: signPlatform = .none
     @Published var currentUser: User?
     
+    @Published var username: String = ""
+    @Published var presentInputUsernameView: Bool = false
+    
     @Published var currentNonce: String?
+    
+    let naverLoginInstance = NaverThirdPartyLoginConnection.getSharedInstance()
 
     func resetUsername() {
         username = ""
