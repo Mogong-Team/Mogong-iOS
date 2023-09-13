@@ -147,13 +147,13 @@ struct CreateStudy: View {
                 DatePicker("", selection: $viewModel.dueDate, displayedComponents: .date)
                     .datePickerStyle(.graphical)
                     .environment(\.locale, Locale.init(identifier: "ko_KR"))
-                    .presentationDetents([.fraction(0.5)])
                     .navigationBarItems(trailing:
                         Button("확인") {
                             showDatePicker.toggle()
                         }
                 )
             }
+            .presentationDetents([.fraction(0.6)])
         }
         .navigationDestination(isPresented: $showGeneralStudy, destination: {
             GeneralStudy()
