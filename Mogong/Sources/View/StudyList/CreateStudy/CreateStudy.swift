@@ -143,10 +143,17 @@ struct CreateStudy: View {
             }
         }
         .sheet(isPresented: $showDatePicker) {
-            DatePicker("", selection: $viewModel.dueDate, displayedComponents: .date)
-                .datePickerStyle(.graphical)
-                .environment(\.locale, Locale.init(identifier: "ko_KR"))
-                .presentationDetents([.fraction(0.5)])
+            NavigationView {
+                DatePicker("", selection: $viewModel.dueDate, displayedComponents: .date)
+                    .datePickerStyle(.graphical)
+                    .environment(\.locale, Locale.init(identifier: "ko_KR"))
+                    .presentationDetents([.fraction(0.5)])
+                    .navigationBarItems(trailing:
+                        Button("확인") {
+                            showDatePicker.toggle()
+                        }
+                )
+            }
         }
         .navigationDestination(isPresented: $showGeneralStudy, destination: {
             GeneralStudy()
