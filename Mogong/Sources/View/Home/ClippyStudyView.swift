@@ -24,7 +24,7 @@ struct ClippyStudyView: View {
 
             ScrollView() {
                 VStack(spacing: 16) {
-                    ForEach(viewModel.allStudys) { study in
+                    ForEach(viewModel.filteredWithBestBookmarkStduy) { study in
                         ClippyStudyCell(study: study)
                             .onTapGesture {
                                 viewModel.selectedStudy = study

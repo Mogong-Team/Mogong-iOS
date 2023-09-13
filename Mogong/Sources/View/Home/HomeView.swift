@@ -17,7 +17,7 @@ struct HomeView: View {
             ScrollView {
                 CompletedStudyView()
                     .padding(.top, 20)
-                    .padding(.bottom, 20)
+                    .padding(.bottom, 10)
                 ClippyStudyView()
             }
         }

@@ -23,7 +23,7 @@ struct CompletedStudyView: View {
             .padding(.horizontal, 20)
 
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 5) {
+                HStack(spacing: 15) {
                     ForEach(Array(viewModel.allStudys.enumerated()), id: \.element.id) { index, study in
                         let image = Image("CharacterCard\((index % 6) + 1)")
                         
@@ -34,7 +34,8 @@ struct CompletedStudyView: View {
                             }
                     }
                 }
-                .padding(.vertical, 10)
+                .padding(.top, 10)
+                .padding(.bottom, 20)
                 .padding(.horizontal, 15)
             }
         }

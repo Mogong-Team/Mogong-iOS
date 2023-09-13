@@ -29,7 +29,7 @@ struct ClippyStudyCell: View {
                     Image(systemName: "bookmark.fill")
                         .foregroundColor(Color.main)
                     
-                    Text("1000")
+                    Text("\(study.bookMarkedUsers.count)")
                         .font(.pretendard(weight: .bold, size: 16))
                         .foregroundColor(Color.main)
                 }

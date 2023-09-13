@@ -32,7 +32,7 @@ struct ContentView: View {
         UITabBar.appearance().tintColor = .red
         UITabBar.appearance().barTintColor = .red
         UITabBar.appearance().unselectedItemTintColor = .red
-        tabBarAppearance.shadowColor = .clear
+        tabBarAppearance.shadowColor = .systemGray6
     }
     
     var body: some View {
@@ -74,59 +74,57 @@ struct TabBar: View {
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            NavigationStack {
-                HomeView()
-            }
-            .tabItem {
-                if selectedTab == 0 {
-                    Image("home_selected")
-                } else {
-                    Image("home_unselected")
+            Group {
+                NavigationStack {
+                    HomeView()
                 }
-                Text("Home")
-            }
-            .tag(0)
-            
-            NavigationStack {
-                StudyListView()
-            }
-            .tabItem {
-                if selectedTab == 1 {
-                    Image("studylist_selected")
-                } else {
-                    Image("studylist_unselected")
+                .tabItem {
+                    if selectedTab == 0 {
+                        Image("home_selected")
+                    } else {
+                        Image("home_unselected")
+                    }
                 }
-                Text("Study List")
-            }
-            .tag(1)
-            
-            NavigationStack {
-                MyStudyView()
-            }
-            .tabItem {
-                if selectedTab == 2 {
-                    Image("mystudy_selected")
-                } else {
-                    Image("mystudy_unselected")
+                .tag(0)
+                
+                NavigationStack {
+                    StudyListView()
                 }
-                Text("My Study")
-            }
-            .tag(2)
-            
-            NavigationStack {
-                UserView()
-            }
-            .tabItem {
-                if selectedTab == 3 {
-                    Image("mypage_selected")
-                } else {
-                    Image("mypage_unselected")
+                .tabItem {
+                    if selectedTab == 1 {
+                        Image("studylist_selected")
+                    } else {
+                        Image("studylist_unselected")
+                    }
                 }
-                Text("Setting")
+                .tag(1)
+                
+                NavigationStack {
+                    MyStudyView()
+                }
+                .tabItem {
+                    if selectedTab == 2 {
+                        Image("mystudy_selected")
+                    } else {
+                        Image("mystudy_unselected")
+                    }
+                }
+                .tag(2)
+                
+                NavigationStack {
+                    UserView()
+                }
+                .tabItem {
+                    if selectedTab == 3 {
+                        Image("mypage_selected")
+                    } else {
+                        Image("mypage_unselected")
+                    }
+                }
+                .tag(3)
             }
-            .tag(3)
         }
-        //.accentColor(Color.main)
+        .tint(.black)
     }
 }
 

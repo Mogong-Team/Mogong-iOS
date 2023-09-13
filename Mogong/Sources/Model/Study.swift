@@ -62,7 +62,7 @@ extension Study {
     static var study1 = Study(
         category: .projectStudy,
         loaction: .online,
-        title: "study1",
+        title: "Study1",
         introduction: "화이팅",
         goal: "이번달까지 출시가 목표입니다.",
         memberPreference: "아무나 상관없습니다.",

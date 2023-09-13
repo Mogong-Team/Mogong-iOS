@@ -13,11 +13,11 @@ class StudyViewModel: ObservableObject {
     static let shared = StudyViewModel()
 
     @Published var allStudys = [Study]()
+    @Published var filteredWithBestBookmarkStduy = [Study]()
     @Published var filteredWithCategoryStudys = [Study]()
-    @Published var filteredWithBookmarkStudy = [Study]()
+    @Published var filteredWithMyBookmarkStudy = [Study]()
     @Published var filteredStudys = [Study]()
-    //@Published var selectedStudy: Study?
-    @Published var selectedStudy: Study = Study.study2
+    @Published var selectedStudy: Study = Study.study1
     
     // MARK: - 홈
     
@@ -94,19 +94,26 @@ class StudyViewModel: ObservableObject {
     private var cancellables: Set<AnyCancellable> = []
     
     init() {
-        //initStudys()
+        $allStudys
+            .map { studys in
+                return studys.sorted { $0.bookMarkedUsers.count > $1.bookMarkedUsers.count }.prefix(10)
+            }
+            .sink { [weak self] filteredStudys in
+                self?.filteredWithBestBookmarkStduy = Array(filteredStudys)
+            }
+            .store(in: &cancellables)
         
         $myAllStudys
             .map { $0.filter { $0.state != .ended } }
-            .sink { [weak self] filterdStudys in
-                self?.filterdOngoingMyStudy = filterdStudys
+            .sink { [weak self] filteredStudys in
+                self?.filterdOngoingMyStudy = filteredStudys
             }
             .store(in: &cancellables)
 
         $myAllStudys
             .map { $0.filter { $0.state == .ended }}
-            .sink { [weak self] filterdStudys in
-                self?.filterdEndedMyStudy = filterdStudys
+            .sink { [weak self] filteredStudys in
+                self?.filterdEndedMyStudy = filteredStudys
             }
             .store(in: &cancellables)
         
@@ -134,7 +141,7 @@ class StudyViewModel: ObservableObject {
     //MARK: 스터디 필터링
     
     func filteringStuddyWithBookmark() {
-        self.filteredWithBookmarkStudy = self.allStudys.filter { $0.bookMarkedUsers.contains(UserViewModel.shared.currentUser.id) }
+        self.filteredWithMyBookmarkStudy = self.allStudys.filter { $0.bookMarkedUsers.contains(UserViewModel.shared.currentUser.id) }
     }
     
     func filteringStudyWithState(state: StudyState) {

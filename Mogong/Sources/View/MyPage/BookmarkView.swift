@@ -32,7 +32,7 @@ struct BookmarkView: View {
             .background(Color(hexColor: "E8F5FF"))
             
             ScrollView(showsIndicators: false) {
-                if viewModel.filteredWithBookmarkStudy.count == 0 {
+                if viewModel.filteredWithMyBookmarkStudy.count == 0 {
                     VStack {
                         Spacer()
                             .frame(height: 250)
@@ -41,7 +41,7 @@ struct BookmarkView: View {
                     }
                 } else {
                     VStack(spacing: 20) {
-                        ForEach(viewModel.filteredWithBookmarkStudy) { study in
+                        ForEach(viewModel.filteredWithMyBookmarkStudy) { study in
                             StudyListCell(study: study)
                         }
                     }

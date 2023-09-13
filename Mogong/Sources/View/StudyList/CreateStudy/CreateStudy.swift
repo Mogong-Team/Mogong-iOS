@@ -135,7 +135,6 @@ struct CreateStudy: View {
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
                 Image(systemName: "xmark")
-                    .fontWeight(.bold)
                     .onTapGesture {
                         viewModel.showCreateStudyOnList = false
                         viewModel.showCreateStudyOnDetail = false
