@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MessageUI
 
 struct SettingView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
@@ -15,6 +16,7 @@ struct SettingView: View {
     @State private var changeUsername: Bool = false
     @FocusState var focuseUsername: Bool
     
+    @State private var showEmailSender = false
     @State private var showSignOutAlert = false
     
     var body: some View {
@@ -38,17 +40,16 @@ struct SettingView: View {
 //                Divider()
                 
                 VStack(spacing: 20) {
-                    NavigationLink {
-                        
-                    } label: {
-                        rightArrowLabel(title: "서비스 이용약관")
-                    }
+                    rightArrowLabel(title: "문의하기")
+                        .onTapGesture {
+                            showEmailSender = true
+                        }
                     Divider()
                     
                     NavigationLink {
-                        
+                        PolicyView()
                     } label: {
-                        rightArrowLabel(title: "개인정보 처리방침")
+                        rightArrowLabel(title: "개인정보처리방침")
                     }
                     Divider()
                     
@@ -61,20 +62,13 @@ struct SettingView: View {
                     }
                     Divider()
                 }
-        
+                
                 HStack {
                     Spacer()
                     Text("로그아웃")
+                        .font(.pretendard(weight: .semiBold, size: 15))
                         .foregroundColor(.red)
                         .onTapGesture {
-//                            if authViewModel.signPlatform == .kakao {
-//
-//                            } else if authViewModel.signPlatform == .google {
-//                                authViewModel.signOutGoogle()
-//                            } else if authViewModel.signPlatform == .apple {
-//
-//                            }
-                            
                             showSignOutAlert = true
                         }
                 }
@@ -83,6 +77,11 @@ struct SettingView: View {
             .padding(.horizontal, 20)
             .navigationBarTitle("설정", displayMode: .large)
             .navigationBarTitleDisplayMode(.inline)
+            .sheet(isPresented: $showEmailSender, content: {
+                if MFMailComposeViewController.canSendMail() {
+                    EmailSender()
+                }
+            })
             .alert("로그아웃", isPresented: $showSignOutAlert) {
                 Button("확인") {
                     authViewModel.signOut()
