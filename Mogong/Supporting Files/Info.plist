@@ -48,5 +48,9 @@
 		<string>Pretendard-ExtraLight.otf</string>
 		<string>Pretendard-Thin.otf</string>
 	</array>
+	<key>buildCount</key>
+	<string>2</string>
+	<key>buildDay</key>
+	<string>20230914</string>
 </dict>
 </plist>

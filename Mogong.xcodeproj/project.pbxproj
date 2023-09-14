@@ -578,7 +578,6 @@
 				8F8A67132A39755E00467936 /* Frameworks */,
 				8F8A67142A39755E00467936 /* Resources */,
 				E3D95C862BD99A57577FAA84 /* [CP] Embed Pods Frameworks */,
-				8FF2E0402AB2A50100A2BEDF /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -668,23 +667,6 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
-		};
-		8FF2E0402AB2A50100A2BEDF /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "buildDay=$(/usr/libexec/PlistBuddy -c \"Print buildDay\" \"$INFOPLIST_FILE\")\nbuildCount=$(/usr/libexec/PlistBuddy -c \"Print buildCount\" \"$INFOPLIST_FILE\")\ntoday=$(date +%Y%m%d)\n\nif [ x$buildDay == x ]; then\n    buildDay=${today}\n    buildCount=1\n    buildNumber=${buildDay}${buildCount}\n\n    /usr/libexec/PlistBuddy -c \"Add :buildDay string $buildDay\" \"$INFOPLIST_FILE\"\n    /usr/libexec/PlistBuddy -c \"Add :buildCount string $buildCount\" \"$INFOPLIST_FILE\"\n    /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"\n\nelif [ $buildDay != $today ]; then\n    buildDay=${today}\n    buildCount=1\n    buildNumber=${buildDay}${buildCount}\n\n    /usr/libexec/PlistBuddy -c \"Set :buildDay $buildDay\" \"$INFOPLIST_FILE\"\n    /usr/libexec/PlistBuddy -c \"Set :buildCount $buildCount\" \"$INFOPLIST_FILE\"\n    /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"\n\nelse\n    buildCount=$(($buildCount + 1))\n    buildNumber=${buildDay}${buildCount}\n\n    /usr/libexec/PlistBuddy -c \"Set :buildDay $buildDay\" \"$INFOPLIST_FILE\"\n    /usr/libexec/PlistBuddy -c \"Set :buildCount $buildCount\" \"$INFOPLIST_FILE\"\n    /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"\n\nfi\n";
 		};
 		E3D95C862BD99A57577FAA84 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
