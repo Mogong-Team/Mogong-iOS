@@ -19,7 +19,7 @@ struct ApplicationDetailView: View {
             ScrollView(showsIndicators: false) {
                 VStack {
                     VStack(spacing: 10) {
-                        Image(systemName: "circle.fill")
+                        Image("userimage_basic")
                             .resizable()
                             .frame(width: 90, height: 90)
                             .scaledToFit()

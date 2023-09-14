@@ -11,7 +11,7 @@ struct User: Identifiable, Hashable, Codable {
     var id: String
     var email: String
     var username: String = ""
-    var userimageString: String = "TempBasicIUserimage"
+    var userimageString: String = "userimage_basic"
     
     var submittedApplicationIds: [String] = []
     var joinedStudyIds: [String] = []

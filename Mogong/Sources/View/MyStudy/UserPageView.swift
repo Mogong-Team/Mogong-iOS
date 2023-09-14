@@ -13,7 +13,7 @@ struct UserPageView: View {
     
     var body: some View {
         VStack {
-            Image(systemName: "circle.fill")
+            Image(viewModel.selectedApplication.user.userimageString)
                 .resizable()
                 .frame(width: 60, height: 60)
                 .scaledToFit()

@@ -16,7 +16,7 @@ struct HStakTeamMemberView: View {
         HStack {
             ZStack {
                 if isSelected {
-                    Image(systemName: "circle.fill")
+                    Image(member.user.userimageString)
                         .resizable()
                         .frame(width: 60, height: 60)
                         .scaledToFit()
@@ -34,7 +34,7 @@ struct HStakTeamMemberView: View {
                         .padding(.top, -35)
                 } else {
                     ZStack {
-                        Image(systemName: "circle.fill")
+                        Image(member.user.userimageString)
                             .resizable()
                             .frame(width: 60, height: 60)
                             .scaledToFit()
