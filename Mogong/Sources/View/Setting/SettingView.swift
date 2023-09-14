@@ -48,6 +48,8 @@ struct SettingView: View {
                     
                     NavigationLink {
                         PolicyView()
+                            .navigationTitle("개인정보처리방침")
+                            .navigationBarTitleDisplayMode(.inline)
                     } label: {
                         rightArrowLabel(title: "개인정보처리방침")
                     }

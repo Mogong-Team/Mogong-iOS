@@ -311,8 +311,13 @@ extension AuthViewModel {
 extension AuthViewModel: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
     // Apple 로그인을 요청하는 메서드
     func loginWithApple() {
-        let request = ASAuthorizationAppleIDProvider().createRequest()
+        let nonce = randomNonceString()
+        currentNonce = nonce
+        
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
         request.requestedScopes = [.fullName, .email]
+        request.nonce = sha256(nonce)
         
         let controller = ASAuthorizationController(authorizationRequests: [request])
         controller.delegate = self
@@ -394,20 +399,6 @@ extension AuthViewModel: ASAuthorizationControllerDelegate, ASAuthorizationContr
         }
         
         return result
-    }
-    
-    func startSignInWithAppleFlow() {
-        let nonce = randomNonceString()
-        currentNonce = nonce
-        let appleIDProvider = ASAuthorizationAppleIDProvider()
-        let request = appleIDProvider.createRequest()
-        request.requestedScopes = [.fullName, .email]
-        request.nonce = sha256(nonce)
-        
-        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
-        authorizationController.delegate = self
-        authorizationController.presentationContextProvider = self
-        authorizationController.performRequests()
     }
     
     private func sha256(_ input: String) -> String {
