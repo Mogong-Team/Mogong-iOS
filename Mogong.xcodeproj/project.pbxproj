@@ -83,6 +83,7 @@
 		8FE8479D2AAC59090050D480 /* ProjectStudyHostPositionModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE8479C2AAC59090050D480 /* ProjectStudyHostPositionModal.swift */; };
 		8FEBA8642A70AFA9009275BD /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEBA8632A70AFA9009275BD /* SettingView.swift */; };
 		8FEBA8662A70AFDF009275BD /* EditUserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEBA8652A70AFDF009275BD /* EditUserInfo.swift */; };
+		8FED49112AB5BEB70038AF06 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FED49102AB5BEB70038AF06 /* Report.swift */; };
 		8FF09EDF2A569B6900630F19 /* HStakTeamMemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF09EDE2A569B6900630F19 /* HStakTeamMemberView.swift */; };
 		8FF09EE12A569B7200630F19 /* HStackNewTeamMemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF09EE02A569B7200630F19 /* HStackNewTeamMemberView.swift */; };
 		8FF09EE32A56A06800630F19 /* RemoveMemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF09EE22A56A06800630F19 /* RemoveMemberView.swift */; };
@@ -188,6 +189,7 @@
 		8FE8479C2AAC59090050D480 /* ProjectStudyHostPositionModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectStudyHostPositionModal.swift; sourceTree = "<group>"; };
 		8FEBA8632A70AFA9009275BD /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		8FEBA8652A70AFDF009275BD /* EditUserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserInfo.swift; sourceTree = "<group>"; };
+		8FED49102AB5BEB70038AF06 /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
 		8FF09EDE2A569B6900630F19 /* HStakTeamMemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HStakTeamMemberView.swift; sourceTree = "<group>"; };
 		8FF09EE02A569B7200630F19 /* HStackNewTeamMemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HStackNewTeamMemberView.swift; sourceTree = "<group>"; };
 		8FF09EE22A56A06800630F19 /* RemoveMemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveMemberView.swift; sourceTree = "<group>"; };
@@ -337,6 +339,7 @@
 				8FE5169A2A492EAF0059D720 /* Language.swift */,
 				8FE5169C2A4965310059D720 /* Application.swift */,
 				8F78DB9B2A4C04A20004F195 /* Alarm.swift */,
+				8FED49102AB5BEB70038AF06 /* Report.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -719,6 +722,7 @@
 				8FC6B3B92A6E130700B3A482 /* Study.swift in Sources */,
 				8FF26A3C2A6646E100149972 /* ProjectStudy.swift in Sources */,
 				8FA028002A5BC865001B17F6 /* ApplicationListView.swift in Sources */,
+				8FED49112AB5BEB70038AF06 /* Report.swift in Sources */,
 				8F8A673D2A39766B00467936 /* AuthViewModel.swift in Sources */,
 				8F72459D2A736C790032C3F4 /* Color.swift in Sources */,
 				8F8CA8572A4D1E93002E8D15 /* CheckLabel.swift in Sources */,
@@ -902,7 +906,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Mogong/Mogong.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202309142;
+				CURRENT_PROJECT_VERSION = 202309143;
 				DEVELOPMENT_ASSET_PATHS = "\"Mogong/Supporting Files/Preview Content\"";
 				DEVELOPMENT_TEAM = 89BLGRU39K;
 				ENABLE_PREVIEWS = YES;
@@ -936,7 +940,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Mogong/Mogong.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202309142;
+				CURRENT_PROJECT_VERSION = 202309143;
 				DEVELOPMENT_ASSET_PATHS = "\"Mogong/Supporting Files/Preview Content\"";
 				DEVELOPMENT_TEAM = 89BLGRU39K;
 				ENABLE_PREVIEWS = YES;

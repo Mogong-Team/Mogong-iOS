@@ -34,6 +34,10 @@ class StudyViewModel: ObservableObject {
     @Published var showStudyDetail: Bool = false
     @Published var showStudyDetailOnSearch: Bool = false
     @Published var showCreateStudyOnList: Bool = false
+    @Published var showCancleAlert: Bool = false
+    @Published var showMenu: Bool = false
+    @Published var showBadReport: Bool = false
+    @Published var presentCompleteBadReport: Bool = false
     
     // MARK: - 스터디 상세
     
