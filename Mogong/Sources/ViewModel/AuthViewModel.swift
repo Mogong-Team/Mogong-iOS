@@ -234,6 +234,21 @@ extension AuthViewModel {
             print("FirebaseAuth 로그아웃 실패: ", error.localizedDescription)
         }
     }
+    
+    // 유저, 스터디, 지원서 데이터 삭제 추가 필요
+    func deleteAccount() {
+        if let user = Auth.auth().currentUser {
+            user.delete { error in
+                if let error = error {
+                    print("회원탈퇴 실패 : ",error)
+                } else {
+                    print("회원탈퇴 성공!")
+                }
+            }
+        } else {
+            print("로그인 정보가 존재하지 않습니다")
+        }
+    }
 }
 
 // MARK: - 구글 로그인 extension
