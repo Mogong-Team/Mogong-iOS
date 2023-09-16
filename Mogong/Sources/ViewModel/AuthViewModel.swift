@@ -243,6 +243,7 @@ extension AuthViewModel {
                     print("회원탈퇴 실패 : ",error)
                 } else {
                     print("회원탈퇴 성공!")
+                    self.signState = .signOut
                 }
             }
         } else {
