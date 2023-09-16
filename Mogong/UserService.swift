@@ -114,6 +114,10 @@ class UserService {
             }
     }
     
+    //MAKR: 탈퇴하기
+    static func deleteAccount(userId: String) {
+    }
+    
     //MARK: 스터디
     
     static func addJoinedStudyIds(userId: String, studyId: String, completion: @escaping (Error?) -> Void) {

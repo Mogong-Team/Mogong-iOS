@@ -10,9 +10,7 @@ import SwiftUI
 struct StudyDetailView: View {
     @EnvironmentObject var viewModel: StudyViewModel
     @EnvironmentObject var applicationViewModel: ApplicationViewModel
-    
-    @State private var showAlert = false
-    
+        
     var body: some View {
         ScrollViewReader { proxy in
             ScrollView(showsIndicators: false) {
@@ -42,7 +40,7 @@ struct StudyDetailView: View {
                     } else {
                         if viewModel.checkSubimt {
                             CancelButton("지원 취소하기") {
-                                showAlert = true
+                                viewModel.showCancleAlert = true
                             }
                             .padding(.horizontal, 20)
                         } else {
@@ -81,7 +79,7 @@ struct StudyDetailView: View {
         .onAppear {
             viewModel.checkStudyDetailState()
         }
-        .alert("지원 취소하기", isPresented: $showAlert) {
+        .alert("지원 취소하기", isPresented: $viewModel.showCancleAlert) {
             Button("확인") {
                 applicationViewModel.deleteApplication(study: viewModel.selectedStudy) {
                     viewModel.getStudyWithId() {
@@ -124,6 +122,11 @@ struct Introduction: View {
                 }
                 
                 Spacer()
+                
+                Image(systemName: "ellipsis")
+                    .onTapGesture {
+                        viewModel.showMenu = true
+                    }
             }
             .padding(.bottom, 10)
             
@@ -135,6 +138,11 @@ struct Introduction: View {
             StudyDetail()
         }
         .padding(.horizontal, 20)
+        .sheet(isPresented: $viewModel.showMenu) {
+            StudyDetailMenu()
+                .presentationDetents([.fraction(0.3)])
+                .presentationDragIndicator(.visible)
+        }
     }
 }
 
@@ -289,6 +297,88 @@ struct CurrentMember: View {
             }
         }
         .padding(.horizontal, 20)
+    }
+}
+
+struct StudyDetailMenu: View {
+    @EnvironmentObject var viewModel: StudyViewModel
+    
+    var body: some View {
+        List {
+            Section {
+                Label("북마크", systemImage: "bookmark")
+                    .fontWeight(.semibold)
+            }
+            .foregroundColor(.black)
+            .onTapGesture {
+                viewModel.updateBookmark()
+                viewModel.showMenu = false
+            }
+            
+            
+            Section {
+                Label("신고", systemImage: "exclamationmark.bubble")
+                    .fontWeight(.semibold)
+            }
+            .foregroundColor(.red)
+            .onTapGesture {
+                viewModel.showBadReport = true
+            }
+        }
+        .sheet(isPresented: $viewModel.showBadReport) {
+            NavigationStack {
+                BadReportModal()
+            }
+            .presentationDetents([.fraction(0.6)])
+        }
+    }
+}
+
+struct BadReportModal: View {
+    @EnvironmentObject var viewModel: StudyViewModel
+    
+    var body: some View {
+        ForEach(BadReport.allCases, id: \.self) { report in
+            VStack(alignment: .leading) {
+                Divider()
+                    Text(report.title)
+                    .font(.pretendard(weight: .semiBold, size: 15))
+                        .frame(width: .infinity, height: 50, alignment: .leading)
+                        .onTapGesture {
+                            viewModel.presentCompleteBadReport = true
+                            //TODO: 신고하기
+                        }
+            }
+            .padding(.leading, 20)
+        }
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationDestination(isPresented: $viewModel.presentCompleteBadReport) {
+            CompleteBadReport()
+        }
+    }
+}
+
+struct CompleteBadReport: View {
+    @EnvironmentObject var viewModel: StudyViewModel
+    
+    var body: some View {
+        VStack {
+            Image(systemName: "checkmark.circle")
+                .resizable()
+                .frame(width: 60, height: 60)
+                .foregroundColor(.blue)
+                .padding(.top, 150)
+                .padding(.bottom, 20)
+            Text("알려주셔서 감사합니다")
+                .font(.pretendard(weight: .semiBold, size: 25))
+                Spacer()
+            ActionButton("완료") {
+                viewModel.showMenu = false
+                viewModel.showBadReport = false
+            }
+        }
+        .padding(.horizontal, 20)
+        .navigationBarBackButtonHidden()
     }
 }
 

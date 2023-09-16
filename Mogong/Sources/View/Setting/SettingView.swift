@@ -18,6 +18,7 @@ struct SettingView: View {
     
     @State private var showEmailSender = false
     @State private var showSignOutAlert = false
+    @State private var showDeleteAccount = false
     
     var body: some View {
             VStack(spacing: 20) {
@@ -66,12 +67,18 @@ struct SettingView: View {
                 }
                 
                 HStack {
-                    Spacer()
                     Text("로그아웃")
+                        .font(.pretendard(weight: .semiBold, size: 15))
+                        .foregroundColor(.blue)
+                        .onTapGesture {
+                            showSignOutAlert = true
+                        }
+                    Spacer()
+                    Text("탈퇴하기")
                         .font(.pretendard(weight: .semiBold, size: 15))
                         .foregroundColor(.red)
                         .onTapGesture {
-                            showSignOutAlert = true
+                            showDeleteAccount = true
                         }
                 }
                 Spacer()
@@ -96,6 +103,19 @@ struct SettingView: View {
                 }
             } message: {
                 Text("로그아웃 하시겠습니까?")
+            }
+            .alert("탈퇴하기", isPresented: $showDeleteAccount) {
+                Button("탈퇴") {
+                    authViewModel.deleteAccount()
+                    authViewModel.currentUser = nil
+                }
+                
+                Button(role: .cancel) {
+                } label: {
+                    Text("취소")
+                }
+            } message: {
+                Text("정말로 탈퇴 하시겠습니까?")
             }
     }
 }
