@@ -67,6 +67,6 @@
 <hr>
 
 ## Members
-|<img src="https://github.com/Mogong-Team/Mogong-iOS/assets/81469446/797832ae-60cf-4772-8f30-77f66adab4e9" width="200" height="200">|<img src="https://avatars.githubusercontent.com/u/114726674?v=4" width="300" height="300">|<img src="https://avatars.githubusercontent.com/u/81469446?v=4" width="300" height="300">
+|<img src="https://github.com/Mogong-Team/Mogong-iOS/assets/81469446/797832ae-60cf-4772-8f30-77f66adab4e9" width="300" height="300">|<img src="https://avatars.githubusercontent.com/u/114726674?v=4" width="300" height="300">|<img src="https://avatars.githubusercontent.com/u/81469446?v=4" width="300" height="300">
 |:-:|:-:|:-:|
 |[Designer<br/>윤서]()|[Developer<br/>Hyun Suk](https://github.com/hsuuuk)|[Developer<br/>Ye Gang](https://github.com/ye-gang-jjang)
