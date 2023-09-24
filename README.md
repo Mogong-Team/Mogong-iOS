@@ -1,5 +1,8 @@
+<div align="center">
+  <img src="https://github.com/Mogong-Team/Mogong-iOS/assets/81469446/a7c2883b-11a8-46c0-b5ba-6221320db052">
+</div>
+
 <h1 align="center">
-  <img src="https://github.com/Mogong-Team/Mogong-iOS/assets/81469446/a7c2883b-11a8-46c0-b5ba-6221320db052">  
   모공(MoGong)
 </h1>
 
