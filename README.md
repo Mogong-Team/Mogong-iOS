@@ -8,8 +8,7 @@
 </h4>
 
 <p align="center">
-  
-스터디 & 프로젝트 지원 앱
+  스터디 & 프로젝트 지원 앱
 </p>
 
 <p align="center">
