@@ -24,7 +24,6 @@
 <div align = "center">
   <img src = "https://github.com/Mogong-Team/Mogong-iOS/assets/81469446/7f17852f-9198-434d-9708-a70f9e661ddd" width="600" class= "center">
 </div>
-<hr>
 
 ## Summary
 당신의 프로젝트와 스터디를 완벽하게 지원합니다!
@@ -40,8 +39,6 @@
 * **수익화 유무**
   - 공부용이 아니라 창업을 준비하시는 분들을 위해 카테고리를 추가했어요.
  
-<hr>
-
 ## Tech Stack
 
  <img src="https://img.shields.io/badge/Swift UI-F05138?style=for-the-badge&logo=Swift&logoColor=white">
@@ -49,8 +46,6 @@
  <img src="https://img.shields.io/badge/Github-181717?style=for-the-badge&logo=GitHub&logoColor=white">
  <img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white">
  <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=Figma&logoColor=white">
- 
-<hr>
 
 ## Screenshots
 
@@ -64,7 +59,6 @@
 |---|---|---|
 |<img src = "https://github.com/Mogong-Team/Mogong-iOS/assets/81469446/93272591-2690-4489-87e3-56e4766ff5c8" width=300>|<img src = "https://github.com/Mogong-Team/Mogong-iOS/assets/81469446/c1d3aecd-59fa-4fec-be12-2adbe5fdd128" width=300>|<img src = "https://github.com/Mogong-Team/Mogong-iOS/assets/81469446/8dcbd17a-4f9e-40ba-9b12-0628bd92b876" width = 300>
 <br>
-<hr>
 
 ## Members
 |<img src="https://github.com/Mogong-Team/Mogong-iOS/assets/81469446/797832ae-60cf-4772-8f30-77f66adab4e9" width="300" height="300">|<img src="https://avatars.githubusercontent.com/u/114726674?v=4" width="300" height="300">|<img src="https://avatars.githubusercontent.com/u/81469446?v=4" width="300" height="300">
