@@ -24,6 +24,7 @@
 <div align = "center">
   <img src = "https://github.com/Mogong-Team/Mogong-iOS/assets/81469446/7f17852f-9198-434d-9708-a70f9e661ddd" width="600" class= "center">
 </div>
+<br>
 
 ## Summary
 당신의 프로젝트와 스터디를 완벽하게 지원합니다!
@@ -38,6 +39,7 @@
   - 스터디 횟수와 요일을 조정할 수 있어요.
 * **수익화 유무**
   - 공부용이 아니라 창업을 준비하시는 분들을 위해 카테고리를 추가했어요.
+<br>
  
 ## Tech Stack
 
@@ -46,10 +48,9 @@
  <img src="https://img.shields.io/badge/Github-181717?style=for-the-badge&logo=GitHub&logoColor=white">
  <img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white">
  <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=Figma&logoColor=white">
+<br>
 
 ## Screenshots
-
-
 |메인 화면|스터디 리스트|마이 스터디|마이 페이지
 |---|---|---|---|
 |<img src = "https://github.com/Mogong-Team/Mogong-iOS/assets/81469446/cde26db8-b4d8-4fd2-8d93-77dafb5cefe9" width=300>|<img src = "https://github.com/Mogong-Team/Mogong-iOS/assets/81469446/bf35c3a4-71fd-4728-96a2-99aedf91c030" width=300>|<img src = "https://github.com/Mogong-Team/Mogong-iOS/assets/81469446/5f348619-e443-491d-bc7b-1692143227cb" width = 300>|<img src = "https://github.com/Mogong-Team/Mogong-iOS/assets/81469446/d0084c3f-add6-4b97-b74b-f367918eb980" width = 300>
