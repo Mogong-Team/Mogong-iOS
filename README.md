@@ -1,6 +1,7 @@
-<img src="https://github.com/Mogong-Team/Mogong-iOS/assets/81469446/a7c2883b-11a8-46c0-b5ba-6221320db052">  
-
-<h1 align="center">모공(MoGong)</h1>
+<h1 align="center">
+  <img src="https://github.com/Mogong-Team/Mogong-iOS/assets/81469446/a7c2883b-11a8-46c0-b5ba-6221320db052">  
+  모공(MoGong)
+</h1>
 
 <h4 align="center">
   모여서 공부해요! 같이 성장하는 방법
